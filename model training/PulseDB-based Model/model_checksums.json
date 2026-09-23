@@ -1,0 +1,14 @@
+{
+  "models/cnn_validation.npy": "d2e9ded94a29749d4187a43f10d975577f779f689dceb2be1b6f261e2d364c4d",
+  "models/xgb_d3_validation.npy": "f17cd534599123c22fc26e688d9040840961f6093cf69e70ba2759e8aabd12b4",
+  "models/xgb_d5_validation.npy": "0cdacb0aa990fd3b83b99063560de59b43028dff331aba7ce758362fdce4dc52",
+  "models/cnn_full.pt": "bb6742489f64128e714b365ebb2dd659b82ed2a8b8476a61416f9dff8af42ef1",
+  "models/cnn_full_validation.npy": "c46ad578cbc791c9d99e39964875890fc1d8e8929296d916b231d91185e2764c",
+  "models/selection.json": "3072ef1a9c64ea376968ac3d59223d6d73a0f8ec5b0ee397cbb40833d7862ef5",
+  "models/train_mean.npy": "35fdd8ecb0bbd1cca284a2cc8dc45ed7550253d3a9fe04a10291da5d225c2ced",
+  "models/xgb_d5_0.ubj": "e77f559264df86a55efd8ffe0fe9cafbf46c904f1abd5424564ed4a4e7132bb7",
+  "models/xgb_d5_1.ubj": "d0f5603c151c7e4bbb9fb884be1e17f9ff2af148407e4c5fffd84896e3319d89",
+  "models/xgb_d3_0.ubj": "2c6d85ee307f8c24cce47e431043d7a6d9a2dd4050044445c5e3d55cafd383a2",
+  "models/xgb_d3_1.ubj": "30cc41025afa113459f901c09da91571d23b0dfe55970aabe60fe602f713d5ed",
+  "models/cnn.pt": "09d44e53c2a0e9d49f394ab77d5859533148a0be042777cd91620edcfade0a1f"
+}

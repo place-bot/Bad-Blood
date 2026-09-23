@@ -1,0 +1,31 @@
+{
+  "tree_name": null,
+  "cnn_name": "cnn_full",
+  "tree_weight": 0,
+  "validation": {
+    "mae": [
+      12.384201049804688,
+      8.334688186645508
+    ],
+    "rmse": [
+      15.684818267822266,
+      10.623247146606445
+    ],
+    "bias": [
+      -1.1148229837417603,
+      -0.9274944067001343
+    ],
+    "macro_mae": [
+      12.3841552734375,
+      8.334693908691406
+    ]
+  },
+  "preprocessing": "pulsedb_filtered_minmax_v2",
+  "targets": [
+    "SBP",
+    "DBP"
+  ],
+  "selection_metric": "participant_macro_MAE_mean_over_targets",
+  "fs_hz": 125,
+  "samples_per_channel": 1250
+}

@@ -1,0 +1,8 @@
+{
+  "contract_tests_passed": 4,
+  "release_tests_passed": 3,
+  "platform": "macOS ARM64, local CPU",
+  "single_segment_mean_ms_100_runs": 0.8229320800091955,
+  "trainable_parameters": 37666,
+  "raspberry_pi_tested": false
+}

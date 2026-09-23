@@ -1,0 +1,163 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=0.85in,headheight=15pt]{geometry}
+\usepackage{fontspec,xeCJK,booktabs,array,xcolor,fancyhdr,hyperref}
+\setmainfont{Georgia}
+\setsansfont{Helvetica Neue}
+\setmonofont[Scale=0.85]{Menlo}
+\setCJKmainfont{Songti SC}
+\setCJKsansfont{Heiti SC}
+\definecolor{navy}{HTML}{17344B}
+\hypersetup{colorlinks=true,urlcolor=navy,linkcolor=navy}
+\pagestyle{fancy}\fancyhf{}
+\lhead{\small\sffamily\color{navy}BAD BLOOD / DATA COLLECTION}
+\rhead{\small 23 September 2026}
+\cfoot{\small\thepage}
+\setlength{\parindent}{0pt}\setlength{\parskip}{7pt}
+\renewcommand{\arraystretch}{1.22}
+\setlength{\tabcolsep}{5pt}
+\setlength{\emergencystretch}{3em}
+\begin{document}
+{\sffamily\color{navy}\LARGE 血压研究数据采集手册\par}
+与 PulseDB 对齐的 ECG 与 PPG 采集\\
+Jingyi Guo、Carlos Alberto Lopez Hernandez、Brian Rabideau
+\section*{1. 需要采集什么}
+每条完整记录由一段 10 秒 ECG/PPG 信号和一次配对的上臂袖带血压读数组成。设备保存波形，操作人员在纸上记录血压和对应的片段编号，再用编号将二者合并。
+
+\par\smallskip
+\begin{tabular}{@{}p{0.19\linewidth}p{0.74\linewidth}@{}}\toprule
+记录方式 & 内容\\\midrule
+设备 & 同步采集两路信号，每秒 125 点，每段每路 1,250 点。\\
+纸质表格 & 参与者随机编号、访问次数、测量轮次、片段编号、SBP、DBP、完成状态及采集备注。\\
+场次设置 & 设备型号、固件、通道单位、PPG LED 通道、采样率、信号极性和时间同步设置。\\
+\bottomrule\end{tabular}\par\smallskip
+\subsection*{采集顺序}
+按获批研究流程和已完成安全审核的设备配置开展采集。分配随机编号，确认访问次数，安置传感器和袖带。完成规定的坐位静息后，检查两路实时信号。保存袖带充气前紧邻的 10 秒信号，再把显示的 SBP、DBP 记录到对应片段编号下。配对测量期间保持坐位和静止。
+计划每次访问三组配对测量，每人两次访问，间隔 3-14 天。袖带测量间隔遵循获批流程。未成功的轮次记录原因；流程允许的重测使用新的片段编号。配对波形在充气前结束，因此不包含袖带充气造成的扰动。
+访问结束时逐行核对纸质记录与电子文件，确认文件可读取，再转存到获批的 ND 受限存储。纸张照片可用于录入血压记录；电子波形文件仍需一并保留。\newpage
+\section*{2. 文件格式与字段}
+CSV 是本项目的数据接口。PulseDB 原文件为 MATLAB .mat 数组；官方子集的 Subset.Signals 包含 ECG、PPG 和 ABP，标签位于 Subset.SBP 和 Subset.DBP。本模型只使用 ECG、PPG 预测，公共数据的血压标签来自 ABP。
+\subsection*{A. 设备保存的原始片段}
+\begin{verbatim}time_s,ecg_raw,ppg_raw\end{verbatim}
+共 1,250 行数值，时间间隔为 0.008 秒。ECG、PPG 对应相同时间戳，原始幅度单位记录在场次设置中。同时保留连续采集源文件。
+\subsection*{B. 纸质记录转录表}
+\begin{verbatim}participant_id,visit,cycle,segment_id,
+waveform_file,SBP,DBP,status\end{verbatim}
+实际文件的表头在同一行。waveform\_file 为相对文件路径，SBP、DBP 单位为 mmHg。完整可用的配对记录标为 accepted。访问和轮次信息保留在此表中，不作为模型输入。
+\subsection*{C. 输入模型的宽格式 CSV}
+
+\par\smallskip
+\begin{tabular}{@{}p{0.15\linewidth}p{0.45\linewidth}p{0.32\linewidth}@{}}\toprule
+列位置 & 字段名／命名规则 & 含义\\\midrule
+1-4 & \texttt{dataset, participant\_id,}\newline\texttt{segment\_id, fs\_hz} & 来源、参与者、片段和采样率\\
+5-6 & \texttt{SBP, DBP} & 参考血压，mmHg\\
+7-1256 & \texttt{ecg\_0000} ... \texttt{ecg\_1249} & 按时间排列的 ECG\\
+1257-2506 & \texttt{ppg\_0000} ... \texttt{ppg\_1249} & 按时间排列的 PPG\\
+\bottomrule\end{tabular}\par\smallskip
+完整的 2,506 个列名见 complete\_header.csv，column\_dictionary.csv 逐列说明。样本索引 j 对应 j/125 秒。两路信号均为滤波并归一化后的无量纲幅度。标签和编号不输入预测模型。\newpage
+\section*{3. 读取 20 条真实片段记录}
+以下为导出程序选出的开发训练数据中前 20 条有效记录，均为真实数据。同一公共参与者的每一行代表不同的 10 秒片段。完整 CSV 还包含每行的 2,500 个波形数值。
+
+\par\smallskip
+\begin{tabular}{@{}p{0.14\linewidth}p{0.39\linewidth}p{0.18\linewidth}p{0.18\linewidth}@{}}\toprule
+Row & Participant & SBP & DBP\\\midrule
+1 & p000001\_1 & 130.71 & 87.99\\
+2 & p000001\_1 & 129.74 & 89.15\\
+3 & p000001\_1 & 131.32 & 83.79\\
+4 & p000001\_1 & 157.72 & 104.95\\
+5 & p000001\_1 & 123.77 & 76.92\\
+6 & p000001\_1 & 130.37 & 86.78\\
+7 & p000001\_1 & 119.83 & 80.51\\
+8 & p000001\_1 & 126.36 & 85.51\\
+9 & p000001\_1 & 132.65 & 86.41\\
+10 & p000001\_1 & 121.11 & 76.66\\
+11 & p000001\_1 & 133.50 & 83.99\\
+12 & p000001\_1 & 160.56 & 105.70\\
+13 & p000001\_1 & 112.99 & 74.76\\
+14 & p000001\_1 & 148.09 & 95.13\\
+15 & p000001\_1 & 118.82 & 78.91\\
+16 & p000001\_1 & 112.82 & 66.31\\
+17 & p000001\_1 & 110.42 & 74.19\\
+18 & p000001\_1 & 119.83 & 82.93\\
+19 & p000001\_1 & 116.07 & 69.26\\
+20 & p000001\_1 & 117.57 & 77.25\\
+\bottomrule\end{tabular}\par\smallskip
+
+第一行的参与者为 \texttt{p000001\_1}，片段为 \texttt{official\_train\_row\_1}。标签是 130.71/87.99 mmHg。模型读取该行的 ECG/PPG 数组，输出两个预测血压值。
+real\_20\_segments.csv 保存完整记录；real\_20\_segments\_metadata.csv 为上表的简版。片段编号中的行号指官方 MATLAB 训练子集的一起始行号，并非原始记录中的 SegmentID。提取信息见 provenance.json。\newpage
+\section*{4. 读取波形数值}
+这是上一页第一条片段的另一种展开方式。此处一行代表一个采样时刻，而非一个片段。前 20 点覆盖 0.000-0.152 秒。
+
+\par\smallskip
+\begin{tabular}{@{}p{0.14\linewidth}p{0.23\linewidth}p{0.25\linewidth}p{0.25\linewidth}@{}}\toprule
+Index & Time (s) & ECG & PPG\\\midrule
+0 & 0.000 & 0.127385 & 0.038952\\
+1 & 0.008 & 0.144529 & 0.049507\\
+2 & 0.016 & 0.161971 & 0.064195\\
+3 & 0.024 & 0.183065 & 0.083477\\
+4 & 0.032 & 0.201643 & 0.107861\\
+5 & 0.040 & 0.210779 & 0.137500\\
+6 & 0.048 & 0.212760 & 0.172536\\
+7 & 0.056 & 0.204401 & 0.212786\\
+8 & 0.064 & 0.176399 & 0.257863\\
+9 & 0.072 & 0.135182 & 0.307352\\
+10 & 0.080 & 0.099445 & 0.360438\\
+11 & 0.088 & 0.078871 & 0.416186\\
+12 & 0.096 & 0.074263 & 0.473611\\
+13 & 0.104 & 0.082308 & 0.531529\\
+14 & 0.112 & 0.093708 & 0.588727\\
+15 & 0.120 & 0.101428 & 0.644077\\
+16 & 0.128 & 0.101906 & 0.696453\\
+17 & 0.136 & 0.094458 & 0.744762\\
+18 & 0.144 & 0.110324 & 0.788136\\
+19 & 0.152 & 0.218902 & 0.825858\\
+\bottomrule\end{tabular}\par\smallskip
+
+例如，样本 1 在宽格式中分别存于 ecg\_0001 和 ppg\_0001，均对应 0.008 秒。将连续数值按时间连线便得到波形。这些数值是归一化信号幅度，不是血压。
+导出的实际数值保留 float32 精度，本页为便于阅读显示六位小数。real\_20\_samples.csv 包含完整数值及对应参与者／片段编号。\newpage
+\section*{5. 纸质采集记录表}
+每次访问打印一张。填写随机编号而非姓名，参与者在后续访问使用相同编号。
+\par
+参与者编号：\rule{4cm}{0.4pt} \quad 访问次数：\rule{1.5cm}{0.4pt}\\
+采集配置编号：\rule{7cm}{0.4pt}
+\vspace{8pt}
+\renewcommand{\arraystretch}{2.7}
+
+\par\smallskip
+\begin{tabular}{@{}p{0.12\linewidth}p{0.31\linewidth}p{0.12\linewidth}p{0.12\linewidth}p{0.23\linewidth}@{}}\toprule
+轮次 & 片段编号 & SBP & DBP & 状态／备注\\\midrule
+1 &  &  &  & \\
+2 &  &  &  & \\
+3 &  &  &  & \\
+重测 &  &  &  & \\
+重测 &  &  &  & \\
+重测 &  &  &  & \\
+\bottomrule\end{tabular}\par\smallskip
+\renewcommand{\arraystretch}{1.22}
+\subsection*{结束前核对}
+确认每条完整记录均有对应波形文件，血压数值清楚可读。标明未完成和重测轮次，保留备注。修改转录错误时保留原始记录。用照片录入时拍清整张表，并对照照片核实整理后的数值表。
+命名示例：ND017\_V1\_C2 表示参与者 ND017 的第 1 次访问、第 2 轮，电子文件保存为 ND017\_V1\_C2.csv。重测可命名为 ND017\_V1\_C2\_R1，纸上填写完全相同的编号。
+实际参与者文件和照片存放在研究受限存储中；公开 GitHub 的 nd 文件夹仅保存模板与转换说明。\newpage
+\section*{6. 数据转换与预测}
+在模型目录中创建 Python 环境并安装 requirements。当前选定模型为 cnn\_full，即双通道残差 CNN。
+\begin{verbatim}
+python predict.py "../../data/PulseDB/examples/real_20_segments.csv" 
+    --output predictions.csv --format filtered
+python convert_nd.py /restricted/reference_log.csv 
+    --output /restricted/nd_segments.csv
+python predict.py /restricted/nd_segments.csv 
+    --output /restricted/nd_predictions.csv --format filtered
+\end{verbatim}
+此处命令为排版换行，执行时每条输入一行。macOS 如遇 XGBoost/OpenMP 加载问题，可用 sh run.sh predict.py ... 启动；当前选中的 CNN 本身不需要 XGBoost。
+ND 转换器对 ECG 使用 0.5-40 Hz 四阶 Butterworth 滤波，对 PPG 使用 0.5-8 Hz 四阶 Chebyshev II 滤波（阻带参数 20 dB），再逐通道归一化至 0-1。公共数据使用已提供的滤波通道；该窗口级转换器是明确定义的部署实现，不代表与原数据处理链完全等价。
+\subsection*{模型实测结果}
+
+\par\smallskip
+\begin{tabular}{@{}p{0.53\linewidth}p{0.19\linewidth}p{0.19\linewidth}@{}}\toprule
+评估集 & SBP MAE & DBP MAE\\\midrule
+官方跨人测试集 & 12.46 & 8.46\\
+排除前期接触者后 & 12.44 & 8.39\\
+AAMI 命名子集 & 19.34 & 13.17\\
+\bottomrule\end{tabular}\par\smallskip
+误差单位为 mmHg。官方测试集为 144 人、57,600 段，其中 3 人出现在前期探索工作中；排除后为 141 人、56,400 段。AAMI 命名子集为 116 人、666 段，其名称不代表认证。该模型为研究预测器，ND 迁移效果和树莓派延迟尚待实测。
+\small 来源：\href{https://github.com/pulselabteam/PulseDB}{PulseDB repository}; \href{https://www.kaggle.com/datasets/weinanwangrutgers/pulsedb-balanced-training-and-testing}{official author-hosted subsets}; Wang et al., Frontiers in Digital Health (2023), DOI: 10.3389/fdgth.2022.1090854. Public sample data: CC BY-NC-SA 4.0; license and attribution accompany the examples.
+\end{document}

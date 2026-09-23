@@ -1,0 +1,163 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=0.85in,headheight=15pt]{geometry}
+\usepackage{fontspec,xeCJK,booktabs,array,xcolor,fancyhdr,hyperref}
+\setmainfont{Georgia}
+\setsansfont{Helvetica Neue}
+\setmonofont[Scale=0.85]{Menlo}
+\setCJKmainfont{Songti SC}
+\setCJKsansfont{Heiti SC}
+\definecolor{navy}{HTML}{17344B}
+\hypersetup{colorlinks=true,urlcolor=navy,linkcolor=navy}
+\pagestyle{fancy}\fancyhf{}
+\lhead{\small\sffamily\color{navy}BAD BLOOD / DATA COLLECTION}
+\rhead{\small 23 September 2026}
+\cfoot{\small\thepage}
+\setlength{\parindent}{0pt}\setlength{\parskip}{7pt}
+\renewcommand{\arraystretch}{1.22}
+\setlength{\tabcolsep}{5pt}
+\setlength{\emergencystretch}{3em}
+\begin{document}
+{\sffamily\color{navy}\LARGE Blood Pressure Data Collection\par}
+PulseDB-aligned ECG and PPG acquisition\\
+Jingyi Guo, Carlos Alberto Lopez Hernandez, Brian Rabideau
+\section*{1. What the team collects}
+Each usable record combines a 10-second ECG/PPG segment with one paired upper-arm cuff reading. The device saves the waveforms. The operator records the cuff values and matching segment ID on paper. The shared ID joins the two records.
+
+\par\smallskip
+\begin{tabular}{@{}p{0.19\linewidth}p{0.74\linewidth}@{}}\toprule
+Recorded by & Information\\\midrule
+Device & Two synchronized channels, 125 samples/second, 1,250 samples per channel per segment.\\
+Paper form & Participant token, visit, cycle, segment ID, SBP, DBP, completion status and relevant acquisition notes.\\
+Session settings & Device models, firmware, channel units, PPG LED channel, sample rate, polarity and timing configuration.\\
+\bottomrule\end{tabular}\par\smallskip
+\subsection*{Collection sequence}
+Use the approved study procedure and cleared body-connected equipment. Assign a random token, confirm the visit number, and prepare the sensors and cuff. After the required seated rest, check both live signals. Save the ten seconds immediately before cuff inflation, then record the displayed SBP and DBP against that segment ID. Keep the participant seated and still during the pair.
+The plan is three paired cycles per visit and two visits 3-14 days apart. Use the approved interval between cuff measurements. Log an unsuccessful cycle and its reason; a permitted repeat receives a new segment ID. The waveform used for a pair ends before inflation, so cuff-induced disturbance is outside that segment.
+At the end of the visit, match every paper row to an electronic file, verify the file opens, and transfer the files to approved restricted ND storage. A photograph supports transcription of the paper form; the electronic waveform files remain necessary.\newpage
+\section*{2. File formats and exact fields}
+The CSV files are project interfaces. PulseDB itself is distributed as MATLAB .mat arrays; its official subset stores ECG, PPG and ABP in Subset.Signals, and labels in Subset.SBP and Subset.DBP. We use ECG and PPG as predictors. ABP supplies the public reference labels.
+\subsection*{A. Electronic raw segment}
+\begin{verbatim}time_s,ecg_raw,ppg_raw\end{verbatim}
+Exactly 1,250 numeric rows. Time advances by 0.008 seconds. ECG and PPG are measured at the same timestamps; their raw units are documented in the session settings. Retain the continuous source recording.
+\subsection*{B. Transcribed paper log}
+\begin{verbatim}participant_id,visit,cycle,segment_id,
+waveform_file,SBP,DBP,status\end{verbatim}
+This header is one line in the actual file. waveform\_file is the relative file path. SBP and DBP are in mmHg. Use accepted for a complete usable pair. Keep visit/cycle information in this log; it is not a model input.
+\subsection*{C. Model-ready wide CSV}
+
+\par\smallskip
+\begin{tabular}{@{}p{0.15\linewidth}p{0.45\linewidth}p{0.32\linewidth}@{}}\toprule
+Column positions & Exact names / rule & Meaning\\\midrule
+1-4 & \texttt{dataset, participant\_id,}\newline\texttt{segment\_id, fs\_hz} & Source, person, segment and sampling rate\\
+5-6 & \texttt{SBP, DBP} & Reference labels in mmHg\\
+7-1256 & \texttt{ecg\_0000} ... \texttt{ecg\_1249} & ECG samples in time order\\
+1257-2506 & \texttt{ppg\_0000} ... \texttt{ppg\_1249} & PPG samples in time order\\
+\bottomrule\end{tabular}\par\smallskip
+All 2,506 exact column names are supplied in complete\_header.csv. column\_dictionary.csv defines every column individually. Sample index j corresponds to j/125 seconds. The two signal blocks contain filtered, min-max-normalized amplitudes, without physical units. Labels and identifiers are excluded from the model inputs.\newpage
+\section*{3. Twenty real segment records}
+The following are the first 20 eligible development-training rows selected by the export script, not simulated data. Each row represents a different 10-second segment from the same public participant. The full CSV also includes all 2,500 waveform values for each row.
+
+\par\smallskip
+\begin{tabular}{@{}p{0.14\linewidth}p{0.39\linewidth}p{0.18\linewidth}p{0.18\linewidth}@{}}\toprule
+Row & Participant & SBP & DBP\\\midrule
+1 & p000001\_1 & 130.71 & 87.99\\
+2 & p000001\_1 & 129.74 & 89.15\\
+3 & p000001\_1 & 131.32 & 83.79\\
+4 & p000001\_1 & 157.72 & 104.95\\
+5 & p000001\_1 & 123.77 & 76.92\\
+6 & p000001\_1 & 130.37 & 86.78\\
+7 & p000001\_1 & 119.83 & 80.51\\
+8 & p000001\_1 & 126.36 & 85.51\\
+9 & p000001\_1 & 132.65 & 86.41\\
+10 & p000001\_1 & 121.11 & 76.66\\
+11 & p000001\_1 & 133.50 & 83.99\\
+12 & p000001\_1 & 160.56 & 105.70\\
+13 & p000001\_1 & 112.99 & 74.76\\
+14 & p000001\_1 & 148.09 & 95.13\\
+15 & p000001\_1 & 118.82 & 78.91\\
+16 & p000001\_1 & 112.82 & 66.31\\
+17 & p000001\_1 & 110.42 & 74.19\\
+18 & p000001\_1 & 119.83 & 82.93\\
+19 & p000001\_1 & 116.07 & 69.26\\
+20 & p000001\_1 & 117.57 & 77.25\\
+\bottomrule\end{tabular}\par\smallskip
+
+Read the first row: participant \texttt{p000001\_1}, segment \texttt{official\_train\_row\_1}. Its labels are 130.71/87.99 mmHg. The model receives that row's ECG/PPG arrays and predicts two blood pressure values.
+Files: real\_20\_segments.csv contains the complete rows; real\_20\_segments\_metadata.csv is the compact view above. Row numbers in segment IDs refer to the official MATLAB training subset (one-based indexing), not the original source-record SegmentID. provenance.json records the extraction details.\newpage
+\section*{4. Reading the waveform values}
+This is a second view of the first segment above. Here one row is one sampling instant, not one segment. The first 20 points cover 0.000-0.152 seconds.
+
+\par\smallskip
+\begin{tabular}{@{}p{0.14\linewidth}p{0.23\linewidth}p{0.25\linewidth}p{0.25\linewidth}@{}}\toprule
+Index & Time (s) & ECG & PPG\\\midrule
+0 & 0.000 & 0.127385 & 0.038952\\
+1 & 0.008 & 0.144529 & 0.049507\\
+2 & 0.016 & 0.161971 & 0.064195\\
+3 & 0.024 & 0.183065 & 0.083477\\
+4 & 0.032 & 0.201643 & 0.107861\\
+5 & 0.040 & 0.210779 & 0.137500\\
+6 & 0.048 & 0.212760 & 0.172536\\
+7 & 0.056 & 0.204401 & 0.212786\\
+8 & 0.064 & 0.176399 & 0.257863\\
+9 & 0.072 & 0.135182 & 0.307352\\
+10 & 0.080 & 0.099445 & 0.360438\\
+11 & 0.088 & 0.078871 & 0.416186\\
+12 & 0.096 & 0.074263 & 0.473611\\
+13 & 0.104 & 0.082308 & 0.531529\\
+14 & 0.112 & 0.093708 & 0.588727\\
+15 & 0.120 & 0.101428 & 0.644077\\
+16 & 0.128 & 0.101906 & 0.696453\\
+17 & 0.136 & 0.094458 & 0.744762\\
+18 & 0.144 & 0.110324 & 0.788136\\
+19 & 0.152 & 0.218902 & 0.825858\\
+\bottomrule\end{tabular}\par\smallskip
+
+For example, sample 1 is stored in ecg\_0001 and ppg\_0001 in the wide file. Both correspond to 0.008 seconds. Connecting successive values against time produces the plotted waveform. These are normalized signal amplitudes, not blood pressure values.
+The actual exported values retain float32 precision. This page rounds to six decimal places for readability. real\_20\_samples.csv contains the full numeric values and the matching participant/segment IDs.\newpage
+\section*{5. Paper collection record}
+Print one sheet per visit. Use a random token, not a name. The participant retains the same token for the return visit.
+\par
+Participant token: \rule{4cm}{0.4pt} \quad Visit: \rule{1.5cm}{0.4pt}\\
+Acquisition configuration ID: \rule{7cm}{0.4pt}
+\vspace{8pt}
+\renewcommand{\arraystretch}{2.7}
+
+\par\smallskip
+\begin{tabular}{@{}p{0.12\linewidth}p{0.31\linewidth}p{0.12\linewidth}p{0.12\linewidth}p{0.23\linewidth}@{}}\toprule
+Cycle & Segment ID & SBP & DBP & Status / note\\\midrule
+1 &  &  &  & \\
+2 &  &  &  & \\
+3 &  &  &  & \\
+Repeat &  &  &  & \\
+Repeat &  &  &  & \\
+Repeat &  &  &  & \\
+\bottomrule\end{tabular}\par\smallskip
+\renewcommand{\arraystretch}{1.22}
+\subsection*{Before leaving the session}
+Confirm that each complete row has a matching waveform file and legible cuff values. Mark incomplete or repeated cycles and keep their notes. Retain the original record when correcting a transcription. For photo-based transcription, photograph the full sheet clearly and verify the returned numeric table against it.
+Example naming: ND017\_V1\_C2 is participant ND017, visit 1, cycle 2. Save its electronic segment as ND017\_V1\_C2.csv. A repeat can use ND017\_V1\_C2\_R1. The operator records the exact same ID on paper.
+Actual participant files and photographs belong in restricted study storage. The public GitHub nd folder holds templates and conversion instructions only.\newpage
+\section*{6. Conversion and prediction}
+From the model directory, install requirements in a Python environment. The trained selection is cnn\_full, a two-channel residual CNN.
+\begin{verbatim}
+python predict.py "../../data/PulseDB/examples/real_20_segments.csv" 
+    --output predictions.csv --format filtered
+python convert_nd.py /restricted/reference_log.csv 
+    --output /restricted/nd_segments.csv
+python predict.py /restricted/nd_segments.csv 
+    --output /restricted/nd_predictions.csv --format filtered
+\end{verbatim}
+Commands are wrapped here; enter each command on one line. On macOS, use sh run.sh predict.py ... if XGBoost/OpenMP loading requires the included launcher. The selected CNN itself does not need XGBoost.
+The ND adapter filters ECG at 0.5-40 Hz (fourth-order Butterworth) and PPG at 0.5-8 Hz (fourth-order Chebyshev II, 20 dB stopband parameter), then normalizes each channel to 0-1. The source uses provided filtered channels; this window-local adapter is a defined deployment implementation, not a claim of exact equivalence to the source filter chain.
+\subsection*{Measured model performance}
+
+\par\smallskip
+\begin{tabular}{@{}p{0.53\linewidth}p{0.19\linewidth}p{0.19\linewidth}@{}}\toprule
+Evaluation & SBP MAE & DBP MAE\\\midrule
+Official unseen-person test & 12.46 & 8.46\\
+Prior-exposure-excluded test & 12.44 & 8.39\\
+AAMI-designated subset & 19.34 & 13.17\\
+\bottomrule\end{tabular}\par\smallskip
+All errors are mmHg. The official test has 144 people/57,600 segments. Three people appeared in earlier exploratory work; excluding them leaves 141 people/56,400 segments. The AAMI-designated subset has 116 people/666 segments; its name is not a certification. The model is a research predictor, with ND transfer performance still to be measured. Raspberry Pi latency has not been measured.
+\small Sources: \href{https://github.com/pulselabteam/PulseDB}{PulseDB repository}; \href{https://www.kaggle.com/datasets/weinanwangrutgers/pulsedb-balanced-training-and-testing}{official author-hosted subsets}; Wang et al., Frontiers in Digital Health (2023), DOI: 10.3389/fdgth.2022.1090854. Public sample data: CC BY-NC-SA 4.0; license and attribution accompany the examples.
+\end{document}

@@ -1,0 +1,32 @@
+{
+  "source": "https://www.kaggle.com/datasets/weinanwangrutgers/pulsedb-balanced-training-and-testing",
+  "file": "VitalDB_Train_Subset.mat",
+  "matlab_rows_1_based": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "fields": "Subset.Signals channels ECG_F and PPG_F; Subset.SBP/DBP/Subject",
+  "transform": "Per-channel min-max normalization; float32 waveform values. Source signals already filtered. No synthetic rows.",
+  "csv_columns": 2506,
+  "sampling_rate_hz": 125,
+  "window_seconds": 10,
+  "license": "See bundled PulseDB LICENSE.txt and source terms."
+}

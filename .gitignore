@@ -1,0 +1,17 @@
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+data/PulseDB/*.zip
+data/PulseDB/official/
+data/PulseDB/train/
+data/PulseDB/test/
+data/PulseDB/aami/
+data/nd/raw/
+data/nd/records/
+data/nd/photos/
+data/nd/processed/
+*.aux
+*.log
+*.out
+*.toc

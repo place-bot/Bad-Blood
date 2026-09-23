@@ -1,0 +1,20 @@
+{
+  "train": {
+    "file": "VitalDB_Train_Subset.mat",
+    "rows": 465480,
+    "subjects": 1293,
+    "invalid": 0
+  },
+  "test": {
+    "file": "VitalDB_CalFree_Test_Subset.mat",
+    "rows": 57600,
+    "subjects": 144,
+    "invalid": 0
+  },
+  "aami": {
+    "file": "VitalDB_AAMI_Test_Subset.mat",
+    "rows": 666,
+    "subjects": 116,
+    "invalid": 0
+  }
+}
