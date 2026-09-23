@@ -37,6 +37,7 @@ memory use, then compare transfer-learning approaches when ND data are available
 
 ## Start here
 
+- [Computer-to-Pi deployment: prompt for Codex](deployment/OMEN-Codex-Prompt/README.md)
 - [English collection manual](data/Data%20Collection%20Manual/Data_Collection_Manual_EN.pdf)
 - [中文采集手册](data/Data%20Collection%20Manual/Data_Collection_Manual_ZH.pdf)
 - [V1: model comparison and prediction commands](model%20training/PulseDB-based%20Model-V1/README.md)
