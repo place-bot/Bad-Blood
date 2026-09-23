@@ -1,5 +1,8 @@
 # Bad Blood V1 — Raspberry Pi implementation pack
 
+这里集中说明按原 prompt 完成的代码、树莓派实测结果和复现步骤。请克隆**整个仓库**；
+运行代码和模型权重分别在下方链接的位置，这个文件夹是清晰的交接入口。
+
 This folder is the handoff for the work requested by
 [`../PROMPT_ZH.md`](../PROMPT_ZH.md). Clone the **whole repository**: the
 deployable code, released model weights and public example input are linked
