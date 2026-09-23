@@ -159,5 +159,42 @@ ND 转换器对 ECG 使用 0.5-40 Hz 四阶 Butterworth 滤波，对 PPG 使用 
 AAMI 命名子集 & 19.34 & 13.17\\
 \bottomrule\end{tabular}\par\smallskip
 误差单位为 mmHg。官方测试集为 144 人、57,600 段，其中 3 人出现在前期探索工作中；排除后为 141 人、56,400 段。AAMI 命名子集为 116 人、666 段，其名称不代表认证。该模型为研究预测器，ND 迁移效果和树莓派延迟尚待实测。
-\small 来源：\href{https://github.com/pulselabteam/PulseDB}{PulseDB repository}; \href{https://www.kaggle.com/datasets/weinanwangrutgers/pulsedb-balanced-training-and-testing}{official author-hosted subsets}; Wang et al., Frontiers in Digital Health (2023), DOI: 10.3389/fdgth.2022.1090854. Public sample data: CC BY-NC-SA 4.0; license and attribution accompany the examples.
+\small 来源：\href{https://github.com/pulselabteam/PulseDB}{PulseDB repository}; \href{https://www.kaggle.com/datasets/weinanwangrutgers/pulsedb-balanced-training-and-testing}{official author-hosted subsets}; Wang et al., Frontiers in Digital Health (2023), DOI: 10.3389/fdgth.2022.1090854. Public sample data: CC BY-NC-SA 4.0; license and attribution accompany the examples.\newpage
+\section*{7. V1 完整误差指标}
+V1：高分辨率双通道残差一维 CNN，使用标准化目标的 MSE 训练。以下指标来自已选定模型的保存预测，权重未变。
+\subsection*{官方跨人测试集：144 人／57,600 段}
+{\small\renewcommand{\arraystretch}{1.05}
+
+\par\smallskip
+\begin{tabular}{@{}p{0.57\linewidth}p{0.17\linewidth}p{0.17\linewidth}@{}}\toprule
+指标 & SBP & DBP\\\midrule
+MAE & 12.46 & 8.46\\
+Bias & -1.92 & -1.64\\
+误差 SD & 15.89 & 10.66\\
+误差不超过 5 mmHg（\%） & 26.06 & 37.24\\
+误差不超过 10 mmHg（\%） & 48.80 & 66.11\\
+误差不超过 15 mmHg（\%） & 67.55 & 84.62\\
+参与者平均 MAE & 12.46 & 8.46\\
+参与者 MAE：中位数 & 11.02 & 7.32\\
+参与者 MAE：第90百分位 & 20.80 & 14.35\\
+\bottomrule\end{tabular}\par\smallskip
+}
+\subsection*{AAMI 命名子集：116 人／666 段}
+{\small\renewcommand{\arraystretch}{1.05}
+
+\par\smallskip
+\begin{tabular}{@{}p{0.57\linewidth}p{0.17\linewidth}p{0.17\linewidth}@{}}\toprule
+指标 & SBP & DBP\\\midrule
+MAE & 19.34 & 13.17\\
+Bias & -12.74 & -9.31\\
+误差 SD & 22.72 & 13.93\\
+误差不超过 5 mmHg（\%） & 19.22 & 24.77\\
+误差不超过 10 mmHg（\%） & 36.19 & 45.20\\
+误差不超过 15 mmHg（\%） & 53.00 & 67.27\\
+参与者平均 MAE & 19.58 & 13.10\\
+参与者 MAE：中位数 & 15.95 & 11.46\\
+参与者 MAE：第90百分位 & 36.76 & 23.72\\
+\bottomrule\end{tabular}\par\smallskip
+}
+误差为预测值减参考值；SD 使用 N-1。除百分比外单位均为 mmHg，区间包含边界。参与者平均 MAE 对每人等权。这些是公共数据评估，不是袖带设备临床验证。完整验证集、排除前期接触者后的指标及逐参与者 MAE 均在 V1 的 reports 文件夹。
 \end{document}

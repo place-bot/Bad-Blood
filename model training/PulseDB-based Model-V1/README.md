@@ -58,6 +58,11 @@ limited to these four candidates; depth 7 is excluded.
 
 ## Locked test results
 
+[Complete metrics](reports/METRICS.md) include signed bias, sample error SD,
+percentages within 5/10/15 mmHg, and participant-level MAE distributions.
+The reports directory also contains machine-readable metrics and per-participant
+CSV files. These extend evaluation of the existing weights without retraining.
+
 | Evaluation | People / segments | SBP MAE | DBP MAE |
 |---|---|---:|---:|
 | Official calibration-free | 144 / 57,600 | 12.46 | 8.46 |
