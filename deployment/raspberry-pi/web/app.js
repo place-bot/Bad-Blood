@@ -40,8 +40,8 @@ function presentSource(mode) {
 
 function clearReadings() {
   for (const id of ids) el(id).textContent = "--";
-  drawWave("ecg-chart", null, "#087f78");
-  drawWave("ppg-chart", null, "#4268b4");
+  drawWave("ecg-chart", null, "#85d6c8");
+  drawWave("ppg-chart", null, "#edc07d");
 }
 
 function setStatus(message, ok) {
@@ -61,8 +61,8 @@ function drawWave(id, samples, color) {
   ctx.clearRect(0, 0, width, height);
   const left = 39, right = width - 12, top = 12, bottom = height - 24;
   ctx.font = "11px Arial";
-  ctx.strokeStyle = "#dce7e6";
-  ctx.fillStyle = "#587078";
+  ctx.strokeStyle = "#30434b";
+  ctx.fillStyle = "#94a9ad";
   ctx.lineWidth = 1;
   for (const value of [0, 0.5, 1]) {
     const y = bottom - value * (bottom - top);
@@ -119,8 +119,8 @@ async function refresh() {
     el("hostname").textContent = data.hostname;
     el("message").textContent = data.message;
     if (lastSequence !== data.sequence) {
-      drawWave("ecg-chart", data.waveforms.ecg, "#087f78");
-      drawWave("ppg-chart", data.waveforms.ppg, "#4268b4");
+      drawWave("ecg-chart", data.waveforms.ecg, "#85d6c8");
+      drawWave("ppg-chart", data.waveforms.ppg, "#edc07d");
       lastSequence = data.sequence;
     }
   } catch (error) {
