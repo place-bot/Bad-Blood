@@ -91,6 +91,7 @@ async function refresh() {
     const data = await response.json();
     if (!presentSource(data.mode)) {
       clearReadings();
+      sourceUnavailable();
       setStatus("Unsupported source", false);
       el("message").textContent = "This source mode is not approved for display.";
       return;

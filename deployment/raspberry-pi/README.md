@@ -22,7 +22,7 @@ A future medical-device adapter belongs at this source boundary. It must collect
 - `app.py`: checks released model SHA-256 and selection, loads `Predictor` once, starts the source worker and loopback HTTP server.
 - `sources.py`: canonical input contract and public-recording replay adapter.
 - `service.py`: inference worker, state freshness, local API and static assets.
-- `web/`: locally hosted dashboard, with persistent recorded-data labeling and stale-state clearing.
+- `web/`: locally hosted source-neutral dashboard, with truthful input-source labeling and stale-state clearing.
 - `test_deployment.py`: source/API contract tests.
 - `run_pi_checks.py`: **Pi-only** release tests, all 20 original predictions and reference comparison, and 10 warmup/100 timed predictor calls. It records Pi hardware, software, commit, weight hash, p50/p95, and peak RSS to timestamped JSON/CSV under `results/`.
 

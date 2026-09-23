@@ -1,5 +1,5 @@
 [Unit]
-Description=Bad Blood V1 recorded waveform replay
+Description=Bad Blood V1 waveform inference service
 After=network-online.target
 Wants=network-online.target
 

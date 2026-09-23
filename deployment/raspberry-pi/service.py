@@ -1,4 +1,4 @@
-"""Local replay worker and JSON-only dashboard server."""
+"""Source-independent inference worker and local dashboard server."""
 
 import json
 import logging
@@ -155,11 +155,11 @@ def serve(state: InferenceState, host="127.0.0.1", port=8000):
         raise ValueError("This version only binds Pi loopback; use an SSH tunnel")
     stop = threading.Event()
     worker = threading.Thread(target=state.run, args=(stop,), daemon=True,
-                              name="recorded-replay")
+                              name="waveform-inference")
     server = ThreadingHTTPServer((host, port), make_handler(state))
     worker.start()
     try:
-        logging.info("Bad-Blood replay listening on http://%s:%d", host, port)
+        logging.info("Bad-Blood inference service listening on http://%s:%d", host, port)
         server.serve_forever(poll_interval=0.2)
     finally:
         stop.set()
