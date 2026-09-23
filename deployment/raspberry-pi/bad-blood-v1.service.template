@@ -1,0 +1,17 @@
+[Unit]
+Description=Bad Blood V1 recorded waveform replay
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=__PI_USER__
+WorkingDirectory=__REPO_PATH__
+ExecStart=__VENV_PYTHON__ __REPO_PATH__/deployment/raspberry-pi/app.py
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
