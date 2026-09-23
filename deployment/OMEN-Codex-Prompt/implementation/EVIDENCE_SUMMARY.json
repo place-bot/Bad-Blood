@@ -1,0 +1,22 @@
+{
+  "measured_at_utc": "2026-09-23T22:58:50Z",
+  "measured_on": "Raspberry Pi 4 Model B Rev 1.5",
+  "architecture": "aarch64",
+  "application_commit": "7a26cdd26d6e82059952486761ff9613123480ce",
+  "python": "3.13.5",
+  "packages": {"numpy": "2.2.6", "scipy": "1.16.3", "torch": "2.8.0"},
+  "model": "V1 cnn_full",
+  "weight_sha256": "bb6742489f64128e714b365ebb2dd659b82ed2a8b8476a61416f9dff8af42ef1",
+  "deployment_tests_passed": 6,
+  "original_contract_tests_passed": 4,
+  "original_release_tests_passed": 3,
+  "reference_comparison": {"rows": 20, "max_absolute_difference_mmHg": 0.0, "tolerance_mmHg": 0.01},
+  "predictor_benchmark": {
+    "warmup_calls": 10,
+    "timed_calls": 100,
+    "p50_ms": 5.4224085,
+    "p95_ms": 5.7958562,
+    "peak_process_rss_kib": 295988
+  },
+  "scope": "Recorded public PulseDB input; no physical sensor or clinical validation"
+}

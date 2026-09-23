@@ -8,9 +8,10 @@ Goal: run the existing V1 model **on the Raspberry Pi**, with SBP/DBP and wavefo
 visible in the computer's browser. No sensor is needed for the first phase:
 use the repository's recorded PulseDB waveforms, labeled as **RECORDED DATA**.
 
-At the time of this handoff, model inference exists but the Pi dashboard and
-system service still need to be implemented and tested on the destination Pi.
-No Pi benchmark or hardware deployment is claimed by these instructions.
+The Raspberry Pi dashboard and replay service have since been implemented and
+tested on the destination Pi. See [implementation/](implementation/README.md)
+for measured results and remaining deployment steps. The prompt remains the
+requirements document; the status file records what has actually been done.
 
 The other Codex should stop only for actual physical actions, credentials,
 disk-erasure confirmation or missing hardware. It should never infer that a

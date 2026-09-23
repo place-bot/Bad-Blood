@@ -96,7 +96,7 @@ segment 的结果；如有版本/输入差异先查清。记录最大数值偏�
 
 前端只是读取 Pi 的 JSON API 并显示：
 - 大号 SBP、DBP，单位 mmHg；模型 V1 / cnn_full。
-- 清晰常驻的 `RECORDED DATA - PulseDB replay` 标签。
+- 页面主体使用通用标题；当前来源清晰显示 `SAMPLE RECORDING / PulseDB`。接入设备后按实际来源切换，不能把样本标成实时设备数据。
 - ECG、PPG 两条波形，每段横轴 0-10 s，纵轴注明 normalized amplitude，不假装 mV。
 - segment ID、序号、最后更新时间、预测状态、推理延迟和服务器 hostname。
 - 可把参考 SBP/DBP 显示在单独区域，明确 Reference，不能拿参考值冒充预测值。
@@ -138,3 +138,7 @@ API 提供 mode、model、sequence、时间、预测、状态和波形，拒绝 
 未来必须有同步且已验证的 ECG/PPG 采集与必要 ADC；Pi 不会直接把模拟 ECG 当数字输入。
 实测采样率、时间同步和原始/已滤波状态核实后，才进入 125 Hz、10 秒窗口契约。
 不要把回放模式的成功当作人体连接安全审核或 IRB 批准。
+
+## 7. 本次实现
+
+这份文件保留部署要求。实际完成情况、代码索引、树莓派测量结果和复现步骤见 [implementation/README.md](implementation/README.md)。

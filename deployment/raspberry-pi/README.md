@@ -25,6 +25,7 @@ A future medical-device adapter belongs at this source boundary. It must collect
 - `web/`: locally hosted source-neutral dashboard, with truthful input-source labeling and stale-state clearing.
 - `test_deployment.py`: source/API contract tests.
 - `run_pi_checks.py`: **Pi-only** release tests, all 20 original predictions and reference comparison, and 10 warmup/100 timed predictor calls. It records Pi hardware, software, commit, weight hash, p50/p95, and peak RSS to timestamped JSON/CSV under `results/`.
+- `requirements-pi.lock`: exact versions from the tested Pi virtual environment; `requirements-pi.txt` lists the direct inference dependencies.
 
 ## Deployment sequence
 
