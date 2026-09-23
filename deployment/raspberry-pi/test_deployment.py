@@ -121,7 +121,11 @@ class DeploymentTests(unittest.TestCase):
                 self.assertEqual(response.status, 200)
                 self.assertEqual(json.load(response)["prediction"]["SBP_mmHg"], 120.0)
             with urlopen(url + "/") as response:
-                self.assertIn(b"RECORDED DATA - PulseDB replay", response.read())
+                self.assertIn(b"SOURCE UNAVAILABLE", response.read())
+            with urlopen(url + "/app.js") as response:
+                source_ui = response.read()
+                self.assertIn(b"SAMPLE RECORDING / PulseDB", source_ui)
+                self.assertIn(b"CONNECTED DEVICE / prototype", source_ui)
             with self.assertRaises(HTTPError) as raised:
                 urlopen(url + "/../../models/cnn_full.pt")
             self.assertEqual(raised.exception.code, 404)
