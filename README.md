@@ -35,21 +35,6 @@ sensor integration, Raspberry Pi deployment, the browser dashboard and a stable
 live demonstration. We will measure prediction error, inference latency and
 memory use, then compare transfer-learning approaches when ND data are available.
 
-### 中文说明
-
-我们的目标是做一个基于树莓派、完全本地推理的小型化血压估计系统。
-模型在电脑上训练，之后部署到树莓派。树莓派连接真实 ECG／PPG 传感器，
-完成信号采集、滤波和模型推理，计划利用最近 10 秒的信号，每 5 秒更新一次预测。
-
-不必另外购买屏幕：我的电脑可以通过同一局域网，用浏览器查看树莓派提供的
-波形和预测结果。电脑只负责显示和操作，计算仍在树莓派上，不需要互联网或
-云端服务器。显示端断开后，树莓派按设计继续采集和推理，重新连接后查看结果。
-
-这样可以减少设备对外部电脑算力和网络的依赖，让推理过程中的生理数据留在
-本地。袖带血压计用于提供训练、验证及可能的校准参考，不是每次预测所需的输入。
-目前模型训练和公共数据评估已完成，接下来重点是传感器接入、树莓派部署、
-浏览器界面和稳定的现场演示，并记录准确性、推理延迟和内存占用。
-
 ## Start here
 
 - [English collection manual](data/Data%20Collection%20Manual/Data_Collection_Manual_EN.pdf)
