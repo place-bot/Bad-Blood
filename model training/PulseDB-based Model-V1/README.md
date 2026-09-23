@@ -1,4 +1,8 @@
-# PulseDB-based Model
+# PulseDB-based Model — V1
+
+V1 establishes the four-model comparison and selects the higher-resolution
+CNN. [V2](../PulseDB-based%20Model-V2/README.md) retains that architecture and
+investigates a revised training objective with a broader error analysis.
 
 ## Run predictions
 

@@ -39,7 +39,8 @@ memory use, then compare transfer-learning approaches when ND data are available
 
 - [English collection manual](data/Data%20Collection%20Manual/Data_Collection_Manual_EN.pdf)
 - [中文采集手册](data/Data%20Collection%20Manual/Data_Collection_Manual_ZH.pdf)
-- [Model and prediction commands](model%20training/PulseDB-based%20Model/README.md)
+- [V1: model comparison and prediction commands](model%20training/PulseDB-based%20Model-V1/README.md)
+- [V2: selected CNN refinement](model%20training/PulseDB-based%20Model-V2/README.md)
 - [Public-data processing and examples](data/PulseDB/README.md)
 - [ND data interface and blank templates](data/nd/README.md)
 
@@ -47,7 +48,19 @@ The manuals include a printable visit record and walk through twenty real
 public-data segments and twenty sampling points. Paper records supply cuff
 values and IDs; ECG/PPG waveforms are saved electronically.
 
-## Current result
+## Model progression
+
+**V1 — architecture selection.** Compare four candidates and select the
+higher-resolution two-channel CNN using participant-disjoint validation.
+
+**V2 — objective refinement.** Retain the selected V1 architecture and input
+contract, replace normalized MSE with Huber loss plus a batch-bias penalty,
+and expand evaluation to MAE, signed bias, error SD, fractions within
+5/10/15 mmHg, and per-participant MAE. Retraining is in progress. The same
+participant splits and training settings support a controlled comparison;
+V1 remains available independently of the V2 outcome.
+
+## V1 result
 
 Four candidates were compared on a participant-disjoint validation set.
 The selected model is a compact two-channel residual CNN without the initial

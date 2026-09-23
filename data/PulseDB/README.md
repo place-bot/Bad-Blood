@@ -9,7 +9,7 @@ Official [repository](https://github.com/pulselabteam/PulseDB) and
 
 ```
 python data/PulseDB/download.py
-cd "model training/PulseDB-based Model"
+cd "model training/PulseDB-based Model-V1"
 python prepare.py --features
 ```
 
