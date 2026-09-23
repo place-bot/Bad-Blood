@@ -24,7 +24,7 @@ CSV = ROOT / "data" / "PulseDB" / "examples" / "real_20_segments.csv"
 class DeviceStub:
     """A future device adapter can satisfy precisely the replay contract."""
 
-    mode = "device_stub_test_only"
+    mode = "device_live"
 
     def __init__(self, waves):
         self.waves = waves
@@ -34,6 +34,12 @@ class DeviceStub:
 
 
 class DeploymentTests(unittest.TestCase):
+    def test_unrecognized_mode_is_rejected(self):
+        source = DeviceStub(PulseDBReplay(CSV).next_window().waves)
+        source.mode = "unknown_source"
+        with self.assertRaises(ValueError):
+            InferenceState(source, lambda *_args, **_kwargs: None)
+
     def test_all_recorded_rows_are_canonical_and_loop(self):
         source = PulseDBReplay(CSV)
         windows = [source.next_window() for _ in range(21)]

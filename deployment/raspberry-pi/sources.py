@@ -12,6 +12,7 @@ FS_HZ = 125
 SAMPLES = 1250
 CHANNELS = ("ECG", "PPG")
 PREPROCESSING = "pulsedb_filtered_minmax_v2"
+SOURCE_MODES = ("recorded_pulsedb_replay", "device_live")
 
 
 @dataclass(frozen=True)
@@ -49,7 +50,11 @@ def validate_window(window: SignalWindow) -> np.ndarray:
 
 
 class WaveformSource(Protocol):
-    """Replay and future device adapters both emit the same canonical window."""
+    """Replay and future device adapters both emit the same canonical window.
+
+    A verified device adapter should use ``mode='device_live'``. This mode
+    changes source labeling only; the V1 predictor input is unchanged.
+    """
 
     mode: str
 

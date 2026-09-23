@@ -13,7 +13,7 @@ from typing import Callable
 
 import numpy as np
 
-from sources import WaveformSource, validate_window
+from sources import SOURCE_MODES, WaveformSource, validate_window
 
 ASSETS = Path(__file__).with_name("web")
 STALE_AFTER_SECONDS = 12
@@ -21,6 +21,8 @@ STALE_AFTER_SECONDS = 12
 
 class InferenceState:
     def __init__(self, source: WaveformSource, predict: Callable, interval_seconds=5.0):
+        if source.mode not in SOURCE_MODES:
+            raise ValueError(f"Unsupported source mode: {source.mode}")
         if interval_seconds <= 0:
             raise ValueError("Replay interval must be positive")
         self.source = source
@@ -91,7 +93,7 @@ class InferenceState:
                                "ppg": waves[1].astype(float).tolist()},
                     message=("Recorded PulseDB segment. Not a live sensor reading."
                              if self.source.mode == "recorded_pulsedb_replay"
-                             else "Source window processed by the V1 model."),
+                             else "Connected-device ECG/PPG window. Prototype estimate only."),
                 )
             except Exception as error:
                 logging.exception("Replay update failed")

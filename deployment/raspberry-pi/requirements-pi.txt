@@ -1,0 +1,5 @@
+# Verified on Raspberry Pi 4B, Debian 13 ARM64, Python 3.13.5.
+# Only V1 inference dependencies; training-only packages are omitted.
+numpy==2.2.6
+scipy==1.16.3
+torch==2.8.0

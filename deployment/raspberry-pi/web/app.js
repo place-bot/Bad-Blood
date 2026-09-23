@@ -1,7 +1,42 @@
 "use strict";
 const el = (id) => document.getElementById(id);
 const ids = ["sbp", "dbp", "segment", "position", "cycle", "sequence", "updated", "latency", "hostname"];
+const sourceCopy = {
+  recorded_pulsedb_replay: {
+    title: "Blood pressure replay",
+    badge: "RECORDED DATA - PulseDB replay",
+    description: "This is a public recording, not a live patient or connected sensor. Each 10-second segment is shown separately; successive segments may be from different people.",
+    window: "RECORDED WINDOW",
+    footer: "Prototype estimates from the V1 model. Recorded-data demonstration; not a medical device reading.",
+    active: "Replay active",
+    hasReplayPosition: true,
+  },
+  device_live: {
+    title: "Blood pressure estimate",
+    badge: "LIVE DEVICE INPUT - prototype",
+    description: "ECG and PPG from a connected device. Each 10-second window is shown with its V1 prototype estimate. Device compatibility and clinical use require separate validation.",
+    window: "DEVICE WINDOW",
+    footer: "Prototype V1 estimate from connected ECG/PPG input. Not validated for clinical decisions.",
+    active: "Device input active",
+    hasReplayPosition: false,
+  },
+};
 let lastSequence = null;
+let currentMode = null;
+
+function presentSource(mode) {
+  const copy = sourceCopy[mode];
+  if (!copy || currentMode === mode) return Boolean(copy);
+  el("page-title").textContent = copy.title;
+  el("source-badge").textContent = copy.badge;
+  el("source-description").textContent = copy.description;
+  el("window-eyebrow").textContent = copy.window;
+  el("footer-note").textContent = copy.footer;
+  el("position-row").hidden = !copy.hasReplayPosition;
+  el("cycle-row").hidden = !copy.hasReplayPosition;
+  currentMode = mode;
+  return true;
+}
 
 function clearReadings() {
   for (const id of ids) el(id).textContent = "--";
@@ -58,6 +93,12 @@ async function refresh() {
     const response = await fetch("/api/state", {cache: "no-store", signal: controller.signal});
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
+    if (!presentSource(data.mode)) {
+      clearReadings();
+      setStatus("Unsupported source", false);
+      el("message").textContent = "This source mode is not approved for display.";
+      return;
+    }
     if (!(["ok", "review_prediction"].includes(data.status)) ||
         data.age_seconds == null || data.age_seconds > 12 || !data.prediction) {
       clearReadings();
@@ -65,12 +106,13 @@ async function refresh() {
       el("message").textContent = data.message || "Waiting for a fresh recorded segment.";
       return;
     }
-    setStatus(data.status === "ok" ? "Replay active" : "Review prediction", true);
+    setStatus(data.status === "ok" ? sourceCopy[data.mode].active : "Review prediction", true);
     el("sbp").textContent = data.prediction.SBP_mmHg.toFixed(1);
     el("dbp").textContent = data.prediction.DBP_mmHg.toFixed(1);
     el("segment").textContent = data.segment_id || "--";
-    el("position").textContent = `${data.position} / ${data.total}`;
-    el("cycle").textContent = String(data.cycle) + (data.loop_replay ? " (looped)" : "");
+    el("position").textContent = data.position == null ? "--" : `${data.position} / ${data.total}`;
+    el("cycle").textContent = data.cycle == null ? "--" :
+      String(data.cycle) + (data.loop_replay ? " (looped)" : "");
     el("sequence").textContent = String(data.sequence);
     el("updated").textContent = new Date(data.updated_at).toLocaleString();
     el("latency").textContent = `${data.inference_ms.toFixed(2)} ms`;

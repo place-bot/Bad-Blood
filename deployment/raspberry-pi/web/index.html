@@ -10,13 +10,13 @@
 <body>
   <main class="shell">
     <header class="topbar">
-      <div><div class="eyebrow">BAD BLOOD / V1</div><h1>Blood pressure replay</h1></div>
+      <div><div class="eyebrow">BAD BLOOD / V1</div><h1 id="page-title">Blood pressure replay</h1></div>
       <div class="connection"><span id="status-dot" class="dot"></span><span id="status">Connecting...</span></div>
     </header>
 
     <section class="mode" aria-label="Data source">
-      <strong>RECORDED DATA - PulseDB replay</strong>
-      <span>This is a public recording, not a live patient or connected sensor. Each 10-second segment is shown separately; successive segments may be from different people.</span>
+      <strong id="source-badge">RECORDED DATA - PulseDB replay</strong>
+      <span id="source-description">This is a public recording, not a live patient or connected sensor. Each 10-second segment is shown separately; successive segments may be from different people.</span>
     </section>
 
     <section class="vitals" aria-label="Latest model estimates">
@@ -24,24 +24,24 @@
       <article class="metric"><div class="metric-label">Diastolic estimate</div><div><span id="dbp" class="metric-value">--</span><span class="unit">mmHg</span></div><div class="metric-foot">DBP / V1 cnn_full</div></article>
     </section>
 
-    <section class="waveforms" aria-label="Recorded waveforms">
-      <div class="panel-head"><div><div class="eyebrow">RECORDED WINDOW</div><h2>ECG and PPG</h2></div><div class="window-caption">125 Hz &nbsp;·&nbsp; 10 seconds</div></div>
-      <div class="plot"><div class="plot-title"><span class="swatch ecg"></span>ECG <small>normalized amplitude</small></div><canvas id="ecg-chart" aria-label="Recorded ECG waveform"></canvas></div>
-      <div class="plot"><div class="plot-title"><span class="swatch ppg"></span>PPG <small>normalized amplitude</small></div><canvas id="ppg-chart" aria-label="Recorded PPG waveform"></canvas></div>
+    <section class="waveforms" aria-label="Input waveforms">
+      <div class="panel-head"><div><div class="eyebrow" id="window-eyebrow">RECORDED WINDOW</div><h2>ECG and PPG</h2></div><div class="window-caption">125 Hz &nbsp;·&nbsp; 10 seconds</div></div>
+      <div class="plot"><div class="plot-title"><span class="swatch ecg"></span>ECG <small>normalized amplitude</small></div><canvas id="ecg-chart" aria-label="ECG input waveform"></canvas></div>
+      <div class="plot"><div class="plot-title"><span class="swatch ppg"></span>PPG <small>normalized amplitude</small></div><canvas id="ppg-chart" aria-label="PPG input waveform"></canvas></div>
       <p class="plot-note">Horizontal axis: time (s), 0 to 10. Vertical axis: normalized amplitude, 0 to 1. Waveforms are not calibrated mV.</p>
     </section>
 
-    <section class="details" aria-label="Replay details">
+    <section class="details" aria-label="Source details">
       <div><span>Segment ID</span><strong id="segment">--</strong></div>
-      <div><span>Window</span><strong id="position">--</strong></div>
-      <div><span>Replay cycle</span><strong id="cycle">--</strong></div>
+      <div id="position-row"><span>Window</span><strong id="position">--</strong></div>
+      <div id="cycle-row"><span>Replay cycle</span><strong id="cycle">--</strong></div>
       <div><span>Sequence</span><strong id="sequence">--</strong></div>
       <div><span>Updated</span><strong id="updated">--</strong></div>
       <div><span>Predictor call</span><strong id="latency">--</strong></div>
       <div><span>Pi hostname</span><strong id="hostname">--</strong></div>
     </section>
     <p id="message" class="message" role="status">Waiting for Raspberry Pi data.</p>
-    <footer>Prototype estimates from the V1 model. Recorded-data demonstration; not a medical device reading.</footer>
+    <footer id="footer-note">Prototype estimates from the V1 model. Recorded-data demonstration; not a medical device reading.</footer>
   </main>
 </body>
 </html>
