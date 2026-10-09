@@ -18,6 +18,7 @@ sys.path.insert(0, str(V2))
 from shared.metrics import summarize, paired_patient_change
 from reports.analysis_details import scientific_details, insert_gap_breaks
 from reports.personal_details import build_personal_details
+from reports.task_figure import build_task_figure
 from reports.verify_inventory import verify_a_inventory, verify_b_inventory
 
 A_VARIANTS = ["baseline", "se_last", "temporal_last", "cbam_last", "additive_last", "se_all",
@@ -306,6 +307,7 @@ def main():
         expected_manifest_hash=read(root / "personalization/run_manifest.json")["manifest_hash"])
     personal_tables = build_personal_details(out, bs, units, selection,
                                              provenance=read(root / "personalization/run_manifest.json"))
+    build_task_figure(out)
     write_json(results / "attention.json", {"runs": aruns, "paired": apaired})
     write_json(results / "personalization.json", {
         "summaries": {"/".join(map(str, k)): v for k, v in bs.items()},
@@ -478,6 +480,7 @@ boundary-relative analysis uses a distinct label.
         ("patient_changes", "Every final patient's paired change at K=10. Negative values improve on the matched population model; heterogeneous failures must not be hidden."),
         ("temporal_examples", "Representative upper-median and worst patients under baseline seed 42 query MAE, shown at K=10. Lines break at recording gaps. Bias and full-model alternatives were prespecified; no post-hoc time alignment is applied."),
         ("architecture", "The unchanged high-resolution backbone and final-block intervention. Shapes omit batch size. Inputs are observed, contemporaneous ECG/PPG; outputs are scalar pressures."),
+        ("personal_task", "Personal calibration and later contemporaneous inference. Only early invasive-ABP-derived scalar references fit the personal parameters. Later observed ECG/PPG enters the estimator; later blood-pressure labels enter only the evaluator. The 20\\% split uses elapsed case span and preserves recording gaps."),
         ("drift_gain", "Paired patient-macro MAE change versus the population model in each time interval, at K=10. Negative values favor calibration. Changing patient coverage is shown in the appendix."),
         ("repeated_bland_altman", "Descriptive repeated-measurement Bland--Altman plots for seed 42, K=10. Colors identify the six patients. Every fourth window is displayed; all windows determine the bias and random-intercept limits of agreement. Serial dependence remains, so these are not confidence bounds or clinical validation limits."),
         ("observed_waveforms", "Actual normalized ten-second ECG/PPG input windows from the prespecified example patients. These are observed signals, not predicted future waveforms. Corresponding scalar reference and prediction values are tabulated in the appendix.")):
