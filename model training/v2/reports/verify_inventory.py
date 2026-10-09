@@ -78,10 +78,14 @@ def _signature(paths):
     return tuple((str(p.resolve()), p.stat().st_size, p.stat().st_mtime_ns) for p in paths)
 
 
-def _verify_population_inputs(config: dict, manifest: dict) -> dict:
-    """Revalidate source bytes and corrected split using the authoritative loader."""
+def _verify_population_inputs(config: dict, manifest: dict, *, population_data_root: Path | None = None) -> dict:
+    """Revalidate identical source bytes, optionally at a relocated data root.
+
+    The override changes only file discovery. The recorded configuration and
+    canonical manifest remain untouched and every identity check still applies.
+    """
     from shared.data import EXCLUSION_PATH, load_population
-    root = Path(config["data_root"])
+    root = Path(config["data_root"] if population_data_root is None else population_data_root)
     files = [root / "split.json", Path(EXCLUSION_PATH)]
     files.extend(root / name / filename for name in ("train", "test", "aami")
                  for filename in ("waves.npy", "y.npy", "subjects.npy", "valid.npy", "complete.json"))
@@ -93,9 +97,10 @@ def _verify_population_inputs(config: dict, manifest: dict) -> dict:
     return bundle
 
 
-def _verify_personal_inputs(manifest: dict) -> dict:
+def _verify_personal_inputs(manifest: dict, *, individual_root: Path | None = None) -> dict:
+    """Locate personal files without rewriting their original provenance."""
     from shared.data import DEFAULT_AUDIT_PATH, load_personal_cohort
-    root = Path(manifest["individual_root"])
+    root = Path(manifest["individual_root"] if individual_root is None else individual_root)
     patient_ids = DEV_IDS + TARGET_IDS
     paths = [Path(DEFAULT_AUDIT_PATH)] + [root / (p.split(":")[1] + ".mat") for p in patient_ids]
     signature = _signature(paths)
@@ -131,8 +136,8 @@ def _close_structure(actual, expected, where: str = "value") -> None:
         require(actual == expected, f"Metadata differs: {where}")
 
 
-def verify_a_folder(folder: Path, variant: str, seed: int) -> dict:
-    """Verify one expected model/seed, including live labels and original rows."""
+def verify_a_folder(folder: Path, variant: str, seed: int, *, population_data_root: Path | None = None) -> dict:
+    """Verify one expected model/seed, including relocated identical source data."""
     folder = Path(folder).resolve()
     require(variant in EXPECTED_PARAMETERS and seed in SEEDS, "Unknown expected A identity")
     require(not variant.startswith("baseline_") or seed == 42, "Modality ablations have one frozen seed")
@@ -154,7 +159,8 @@ def verify_a_folder(folder: Path, variant: str, seed: int) -> dict:
     source_hashes = config["hashes"]["source"]
     require(set(source_hashes) == {"attention_cnn/train.py", "shared/models.py", "shared/data.py", "shared/metrics.py", "PROTOCOL.md"}, "Population source inventory is incomplete")
     _verify_source_hashes(source_hashes)
-    bundle = _verify_population_inputs(config, manifest)
+    data_location = {} if population_data_root is None else {"population_data_root": population_data_root}
+    bundle = _verify_population_inputs(config, manifest, **data_location)
     checkpoint_path = folder / "best.pt"
     require(file_hash(checkpoint_path) == completion["best_checkpoint_sha256"], "Population checkpoint bytes changed")
     checkpoint = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
@@ -279,8 +285,13 @@ def _verify_unit(folder: Path, item: dict, phase: str, patient: dict, provenance
     return record
 
 
-def verify_b_inventory(folder: Path) -> dict:
-    """Verify all 1,068 development and 684 final units and their frozen choice."""
+def verify_b_inventory(folder: Path, *, population_data_root: Path | None = None,
+                       individual_root: Path | None = None) -> dict:
+    """Verify every personal unit, optionally locating identical data elsewhere.
+
+    Data-root overrides do not alter original run configuration/provenance
+    hashes. Population checkpoint folders remain relative to the artifact root.
+    """
     folder = Path(folder).resolve()
     manifest = read_json(folder / "run_manifest.json")
     provenance_hash = canonical_hash(manifest)
@@ -290,14 +301,16 @@ def verify_b_inventory(folder: Path) -> dict:
     require(set(source_hashes) == {"personalized_forecasting/run.py", "personalized_forecasting/adaptation.py",
             "shared/models.py", "shared/data.py", "shared/metrics.py", "PROTOCOL.md"}, "Personal source inventory incomplete")
     _verify_source_hashes(source_hashes)
-    cohort = _verify_personal_inputs(manifest)
+    personal_location = {} if individual_root is None else {"individual_root": individual_root}
+    population_location = {} if population_data_root is None else {"population_data_root": population_data_root}
+    cohort = _verify_personal_inputs(manifest, **personal_location)
     patient_map = {p["patient_id"]: p for p in cohort["development"] + cohort["target"]}
     require(set(patient_map) == set(DEV_IDS + TARGET_IDS), "Personal live cohort is incomplete")
     for patient in patient_map.values():
         validate_patient(patient)
     for seed in SEEDS:
         population_folder = folder.parent / "attention" / f"baseline_seed{seed}"
-        verified = verify_a_folder(population_folder, "baseline", seed)
+        verified = verify_a_folder(population_folder, "baseline", seed, **population_location)
         require(verified["completion"]["best_checkpoint_sha256"] == manifest["checkpoint_hashes"][str(seed)], "Personal baseline differs from population report baseline")
         expected = manifest["population_provenance_file_hashes"][str(seed)]
         require(set(expected) == {"config.json", "manifest.json", "completion.json"}, "Personal population-provenance inventory incomplete")
@@ -325,13 +338,15 @@ def verify_b_inventory(folder: Path) -> dict:
     return output
 
 
-def verify_a_inventory(root: Path, include_eca: bool = False) -> dict:
-    """Convenience entry point requiring every expected population run."""
+def verify_a_inventory(root: Path, include_eca: bool = False, *, population_data_root: Path | None = None) -> dict:
+    """Require every population run, optionally reading identical relocated data."""
     variants = A_VARIANTS + (("eca_last",) if include_eca else ())
     result = {}
+    data_location = {} if population_data_root is None else {"population_data_root": population_data_root}
     for variant in variants:
         for seed in (42,) if variant.startswith("baseline_") else SEEDS:
-            result[f"{variant}_seed{seed}"] = verify_a_folder(Path(root) / f"{variant}_seed{seed}", variant, seed)
+            result[f"{variant}_seed{seed}"] = verify_a_folder(
+                Path(root) / f"{variant}_seed{seed}", variant, seed, **data_location)
     require(len({r["completion"]["manifest_hash"] for r in result.values()}) == 1, "Population runs use different split manifests")
     for split in ("validation", "test", "aami"):
         reference = result["baseline_seed42"]["predictions"][split]

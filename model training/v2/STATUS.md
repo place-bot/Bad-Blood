@@ -1,16 +1,17 @@
 # Workflow status
 
-## 2026-10-09: implementation and real execution
+## 2026-10-09 16:03 America/Chicago: implementation and real execution
 
 - The review gate was committed as `1b93cf1`, followed by the population
   implementation (`13e42ee`) and personal-calibration implementation (`57c6059`).
-- Forty-two automated tests pass, including exact V1 architectural equality,
+- Sixty-two automated tests pass, including exact V1 architectural equality,
   CPU checkpoint/resume equivalence, support/query and split isolation,
   parameter-freezing checks, metric arithmetic, full-inventory corruption
-  checks, report aggregation, and prediction-CLI parity.
+  checks, portable artifact verification, report aggregation, and prediction-CLI parity.
 - The required 20-fit population suite is running on local MPS. Baseline seed
-  42 completed nine epochs and selected epoch 1 by the frozen validation rule.
-  This is one completed fit, not a completed experiment suite.
+  42 completed nine epochs and selected epoch 1; seed 43 completed seventeen
+  epochs and selected epoch 9 by the frozen validation rule. Seed 44 is running.
+  These are two completed fits, not a completed experiment suite.
 - Personal development and final-target evaluation require all three newly
   trained baseline seeds. They have not yet started at this status snapshot.
 - Run artifacts and resumable state are outside Git under

@@ -13,3 +13,7 @@ checkpoints/
 cache/
 *.pt
 *.pth
+# Raw recordings, waveform arrays, and full prediction archives stay external.
+*.mat
+*.npy
+*.npz

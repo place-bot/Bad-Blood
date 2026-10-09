@@ -20,6 +20,7 @@ The review/protocol gate was committed at [1b93cf13249931af650cdfa91e19343564032
 | [AUDIT.md](AUDIT.md) | Architecture, local data, provenance, eligibility, limitations |
 | [audit_snapshot.json](audit_snapshot.json) | Original proposal and frozen final support/query manifests |
 | [DATA_DIAGNOSTICS.md](DATA_DIAGNOSTICS.md) | Observed upstream timestamp anomalies |
+| [DATA_ACCESS.md](DATA_ACCESS.md) | Fresh-machine source preparation, ten personal downloads/checksums, and artifact availability |
 | [REVIEW_GATE.md](REVIEW_GATE.md) | Both literature PDFs compiled and visually checked |
 | [Track A review](attention_cnn/literature_review.pdf) | Attention evidence and prospective protocol |
 | [Track B review](personalized_forecasting/literature_review.pdf) | Calibration evidence and prospective protocol |
@@ -226,7 +227,7 @@ personalization/
     adapted.pt OR calibration.json
 ```
 
-Suite status is invocation-level: `completed_this_invocation` is not the cumulative research inventory. Individual `completion.json` and personal `unit.json` files are written after their outputs. A log line or launched process alone does not mean completion.
+Suite status is invocation-level: `completed_this_invocation` is not the cumulative research inventory. Individual `completion.json` and personal `unit.json` files are written after their outputs. A log line or launched process alone does not mean completion. Known runner caveat: preflight errors such as an existing run without `--resume`, a missing required baseline, or a log-open failure can leave the suite JSON at `running` after the process exits; check the process/log and verified individual artifacts rather than interpreting that field as a heartbeat.
 
 Population predictions retain references, estimates, source-qualified patient IDs, source-row indices, selected epoch and manifest identity. They do not fabricate unavailable case IDs/timestamps. Personal predictions retain support/query indices, timestamps, case IDs, labels, estimates, reference ages, and checkpoint/configuration identities. Neural units also record trainable masks and measured parameter changes.
 
@@ -255,7 +256,8 @@ Output is a new float32 N × 2 `.npy` array in SBP/DBP order, in mmHg. Existing 
 Only after the full required inventory is complete:
 
 ```sh
-"$BB_PY" reports/build_report.py --artifact-root "$BB_RUN_ROOT" --individual-root "$BB_PERSONAL"
+"$BB_PY" reports/build_report.py --artifact-root "$BB_RUN_ROOT" \
+  --data-root "$BB_POP" --individual-root "$BB_PERSONAL"
 ```
 
 The builder rejects missing required runs, toy runs, changed prediction/checkpoint artifacts, incomplete personal indexes, and inconsistent frozen selections. It generates `reports/final_report.tex`, a combined bibliography, figures, and small JSON summaries under `reports/results/`. It does not train models or compile LaTeX.

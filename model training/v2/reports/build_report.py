@@ -19,6 +19,8 @@ from shared.metrics import summarize, paired_patient_change
 from reports.analysis_details import scientific_details, insert_gap_breaks
 from reports.personal_details import build_personal_details
 from reports.task_figure import build_task_figure
+from reports.extended_tables import build_extended_tables
+from reports.personal_interpretation import build_personal_interpretation
 from reports.verify_inventory import verify_a_inventory, verify_b_inventory
 
 A_VARIANTS = ["baseline", "se_last", "temporal_last", "cbam_last", "additive_last", "se_all",
@@ -64,12 +66,13 @@ def figure(out, name):
     plt.close()
 
 
-def aggregate_a(root):
+def aggregate_a(root, population_data_root=None):
     runs, predictions = {}, {}
     variants = list(A_VARIANTS)
     if all((root / "attention" / f"eca_last_seed{s}" / "completion.json").exists() for s in (42, 43, 44)):
         variants.append("eca_last")
-    verified = verify_a_inventory(root / "attention", include_eca="eca_last" in variants)
+    verified = verify_a_inventory(root / "attention", include_eca="eca_last" in variants,
+                                  population_data_root=population_data_root)
     for variant in variants:
         for seed in ([42] if variant.startswith("baseline_") else [42, 43, 44]):
             key = f"{variant}_seed{seed}"
@@ -103,9 +106,10 @@ def aggregate_a(root):
     return variants, runs, predictions, paired
 
 
-def aggregate_b(root):
+def aggregate_b(root, population_data_root=None, individual_root=None):
     folder = root / "personalization"
-    verified = verify_b_inventory(folder)
+    verified = verify_b_inventory(folder, population_data_root=population_data_root,
+                                  individual_root=individual_root)
     development, test = verified["development_index"], verified["test_index"]
     if not development["complete"] or development["n_units"] != 1068:
         raise ValueError("The full development matrix is incomplete")
@@ -290,12 +294,14 @@ def tables_and_figures(out, variants, aruns, apred, apaired, bsummaries, bpred, 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--artifact-root", type=Path, required=True)
+    parser.add_argument("--data-root", type=Path,
+                        help="Optional relocated population arrays; original byte hashes still must match")
     parser.add_argument("--individual-root", type=Path, required=True,
-                        help="Original timestamped files, used only for verified observed-waveform figures")
+                        help="Timestamped files for byte-verified personal inventory and observed-waveform figures")
     args = parser.parse_args()
     root, out = args.artifact_root.resolve(), Path(__file__).resolve().parent
-    variants, aruns, apred, apaired = aggregate_a(root)
-    bs, bp, bd, bc, selection, units = aggregate_b(root)
+    variants, aruns, apred, apaired = aggregate_a(root, args.data_root)
+    bs, bp, bd, bc, selection, units = aggregate_b(root, args.data_root, args.individual_root)
     results = out / "results"
     results.mkdir(exist_ok=True)
     seeds = (42, 43, 44)
@@ -307,12 +313,15 @@ def main():
         expected_manifest_hash=read(root / "personalization/run_manifest.json")["manifest_hash"])
     personal_tables = build_personal_details(out, bs, units, selection,
                                              provenance=read(root / "personalization/run_manifest.json"))
+    extended_tables = build_extended_tables(aruns, bs, bc, selection)
+    personal_interpretation, personal_interpretation_data = build_personal_interpretation(bs, bc, bd)
     build_task_figure(out)
     write_json(results / "attention.json", {"runs": aruns, "paired": apaired})
     write_json(results / "personalization.json", {
         "summaries": {"/".join(map(str, k)): v for k, v in bs.items()},
         "paired": {"/".join(map(str, k)): v for k, v in bc.items()},
         "drift": {"/".join(map(str, k)): v for k, v in bd.items()}, "selection": selection})
+    write_json(results / "personal_interpretation.json", personal_interpretation_data)
     write_json(results / "inventory.json", {"population_completed": len(aruns), "population_required": 20,
         "personal_development_completed": 1068, "personal_test_completed": len(units),
         "supplementary_ECA_completed": "eca_last" in variants,
@@ -426,7 +435,13 @@ ECA is explicitly supplementary. All parameters and state keys are tested
 against the original implementation, rather than approximating the backbone.
 
 Inputs use provided filtered fields with per-window/channel min--max scaling.
-Labels use training-only centering/scaling. All fits use normalized MSE,
+For observed window $X$, the physical-unit prediction is
+\begin{equation}
+g_\theta(X)=\mu_{\rm tr}+\sigma_{\rm tr}\odot f_\theta(N(X)),
+\end{equation}
+where $N$ scales each input channel within that window. Labels use
+training-only centering/scaling: $\mu_{\rm tr}=(115.418,62.928)$ and
+$\sigma_{\rm tr}=(18.942,12.083)$ mmHg, in SBP/DBP order. All fits use normalized MSE,
 AdamW (learning rate 0.001, weight decay 0.001), batch size 256, noise SD 0.003,
 gradient clipping at norm 5, maximum 40 epochs, and patience 8. A factor-0.5,
 patience-3 plateau scheduler and best-checkpoint selection use mean validation
@@ -452,6 +467,17 @@ BN running state and dropout remain fixed. Neural learning rates 0.0001/0.001
 and steps 20/100, and affine penalties 1/10/100, are selected only on the four
 development patients averaged across seeds. No final patient's later labels
 control adaptation stopping, parameter selection or normalization.
+Bias calibration adds the support mean residual,
+\begin{equation}
+\delta_i=\frac{1}{K}\sum_{j=1}^{K}\bigl(y_{ij}-g_\theta(X_{ij})\bigr),
+\end{equation}
+to each later prediction. For each pressure separately, affine calibration
+fits $a z_j+b$ to standardized support labels $u_j$ by minimizing
+$\sum_j(u_j-a z_j-b)^2+\lambda(a-1)^2$; the intercept is unpenalized.
+Last-reference and reference-mean controls predict the corresponding scalar
+support pressure without using later waveforms. Neural adaptation minimizes
+the same standardized two-output MSE on all $K$ support windows for the
+development-selected number of updates; it never monitors later BP loss.
 The nested chronological prefixes vary both reference count and reference
 recency. Budget curves therefore describe this acquisition policy, not pure
 sample complexity with reference age held constant.
@@ -468,12 +494,23 @@ between/within-person error; serial correlation remains a limitation.
 Drift uses time from the actual last support reference, not silently the 20\%
 boundary. Empty bins are unavailable, not zero error. The saved secondary
 boundary-relative analysis uses a distinct label.
+For one pressure and errors $e_{ij}=\hat y_{ij}-y_{ij}$, the primary
+patient-macro definitions are
+\begin{align}
+{\rm MAE}_{\rm macro}&=\frac{1}{P}\sum_i\frac{1}{n_i}\sum_j|e_{ij}|,\\
+{\rm RMSE}_{\rm macro}&=\frac{1}{P}\sum_i\sqrt{\frac{1}{n_i}\sum_j e_{ij}^2}.
+\end{align}
+Pooled RMSE instead takes one square root after averaging all window errors.
+Error SD uses denominator $N-1$; threshold fractions include equality.
+Correlations and $R^2$ with zero required variance are undefined, not zero;
+macro summaries retain the number of patients for whom each metric exists.
 
 \section{Results}
 """
     final += f"Validation selects {DISPLAY[winner]} across matched seeds. Its primary-test patient-macro SBP/DBP MAE is {win_mae[0]:.2f}/{win_mae[1]:.2f} mmHg, versus {base_mae[0]:.2f}/{base_mae[1]:.2f} for the unchanged CNN. This is a validation-based choice, not selection on test accuracy.\n\n"
     final += "\n\n".join(tex(x) for x in observations)
     final += "\n\n" + extra_notes
+    final += "\n\n" + personal_interpretation
     for name, caption in (("attention_results", "Population comparison: patient-macro errors; bars show across-seed SD, absent for single-seed modality ablations."),
         ("personal_budget", "Calibration-budget curves on common later queries. Every curve averages six patients equally and three seeds; reference age changes with nested budget."),
         ("personal_drift", "Within-case error versus minutes since the actual final reference at K=10. Patient counts vary by interval; complete counts are saved with the results."),
@@ -534,7 +571,7 @@ remain outside Git under the documented artifact root. Committed JSON
 summaries retain run/config/checkpoint hashes and per-patient metrics.
 """
     final += r"\clearpage\appendix\section{Complete paired, pressure-range and budget results}" + "\n"
-    final += extra_tables + "\n" + personal_tables
+    final += extra_tables + "\n" + personal_tables + "\n" + extended_tables
     final += r"\clearpage\bibliography{references}\end{document}" + "\n"
     (out / "final_report.tex").write_text(final)
     # Bibliographies have distinct keys; preserve verified source entries.
