@@ -355,10 +355,16 @@ def main():
     personal_abstract = {
         method: mean_metric([bs[(method, 10, s)] for s in seeds], "mae")
         for method in ("population", "full", "bias", "calibration_mean")}
-    abstract_result = (
-        f"Within the prospective four-model attention comparison, validation selects {DISPLAY[attention_choice]}, "
-        f"with primary-test patient-macro SBP/DBP MAE {attention_choice_mae[0]:.2f}/{attention_choice_mae[1]:.2f} mmHg "
-        f"versus {base_mae[0]:.2f}/{base_mae[1]:.2f} for the unchanged CNN. "
+    if attention_choice == "baseline":
+        attention_abstract = (
+            "The prospective four-model validation comparison retains the unchanged CNN, "
+            f"whose primary-test patient-macro SBP/DBP MAE is {base_mae[0]:.2f}/{base_mae[1]:.2f} mmHg. ")
+    else:
+        attention_abstract = (
+            f"Within the prospective four-model attention comparison, validation selects {DISPLAY[attention_choice]}, "
+            f"with primary-test patient-macro SBP/DBP MAE {attention_choice_mae[0]:.2f}/{attention_choice_mae[1]:.2f} mmHg "
+            f"versus {base_mae[0]:.2f}/{base_mae[1]:.2f} for the unchanged CNN. ")
+    abstract_result = (attention_abstract +
         f"With ten simulated personal references, population and full-adaptation MAE are "
         f"{personal_abstract['population'][0]:.2f}/{personal_abstract['population'][1]:.2f} and "
         f"{personal_abstract['full'][0]:.2f}/{personal_abstract['full'][1]:.2f} mmHg; "
@@ -565,7 +571,11 @@ Figure~\ref{fig:observed_waveforms}. Figure~\ref{fig:repeated_bland_altman}
 shows descriptive agreement. Appendix~\ref{sec:complete} provides complete
 paired, pressure-range, budget and patient-level tables.
 """
-    final += f"Across the six required three-seed architectures, including capacity and placement controls, validation selects {DISPLAY[winner]}. Its primary-test patient-macro SBP/DBP MAE is {win_mae[0]:.2f}/{win_mae[1]:.2f} mmHg, versus {base_mae[0]:.2f}/{base_mae[1]:.2f} for the unchanged CNN. The four-model attention ranking is reported separately below; neither ranking uses test accuracy.\n\n"
+    if winner == "baseline":
+        final += f"The unchanged CNN ranks first on validation among all six required three-seed architectures, including capacity and placement controls. Its primary-test patient-macro SBP/DBP MAE is {base_mae[0]:.2f}/{base_mae[1]:.2f} mmHg. "
+    else:
+        final += f"Across the six required three-seed architectures, including capacity and placement controls, validation selects {DISPLAY[winner]}. Its primary-test patient-macro SBP/DBP MAE is {win_mae[0]:.2f}/{win_mae[1]:.2f} mmHg, versus {base_mae[0]:.2f}/{base_mae[1]:.2f} for the unchanged CNN. "
+    final += "The four-model attention ranking is reported separately below; neither ranking uses test accuracy.\n\n"
     final += "\n\n".join(tex(x) for x in observations)
     final += "\n\n" + extra_notes
     final += "\n\n" + attention_interpretation
