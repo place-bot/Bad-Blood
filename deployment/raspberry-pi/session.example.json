@@ -1,0 +1,16 @@
+{
+  "schema": "bad_blood_raw125_v1",
+  "session_id": "replace-with-nonidentifying-session-token",
+  "device": "replace-with-device-model-and-revision",
+  "firmware": "replace-with-firmware-version",
+  "units": ["replace-with-ECG-unit", "replace-with-PPG-unit"],
+  "placement": "replace-with-electrode-and-optical-placement",
+  "fs_hz": 125,
+  "channels": ["ECG", "PPG"],
+  "quality": {
+    "version": "replace-with-reviewed-policy-version",
+    "minimum_peak_to_peak": [null, null],
+    "adc_min": [null, null],
+    "adc_max": [null, null]
+  }
+}

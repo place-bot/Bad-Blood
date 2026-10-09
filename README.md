@@ -30,13 +30,18 @@ power. The upper-arm cuff supplies reference measurements for training,
 evaluation and any calibration, rather than an input required for every
 prediction.
 
-Model training and source-data evaluation are complete. The next steps are
-sensor integration, Raspberry Pi deployment, the browser dashboard and a stable
-live demonstration. We will measure prediction error, inference latency and
-memory use, then compare transfer-learning approaches when ND data are available.
+Model training, source-data evaluation and Pi 4 recorded-data deployment are
+complete. The deployment includes a local dashboard, bounded raw-recording
+replay, acquisition provenance and experimental quality gates. Physical sensor
+integration and wearable validation remain open. Saved Pi evidence reports
+5.80 ms predictor p95 and about 289 MiB benchmark-process peak RSS; these do not
+measure the new raw pipeline, wearable power or live accuracy. See the
+[deployment guide](deployment/raspberry-pi/README.md) for current software and
+the [optimization plan](docs/WEARABLE_BP_OPTIMIZATION_PLAN.md) for subsequent work.
 
 ## Start here
 
+- [Wearable BP optimization plan and implementation roadmap](docs/WEARABLE_BP_OPTIMIZATION_PLAN.md)
 - [Computer-to-Pi deployment: prompt for Codex](deployment/OMEN-Codex-Prompt/README.md)
 - [English collection manual](data/Data%20Collection%20Manual/Data_Collection_Manual_EN.pdf)
 - [中文采集手册](data/Data%20Collection%20Manual/Data_Collection_Manual_ZH.pdf)

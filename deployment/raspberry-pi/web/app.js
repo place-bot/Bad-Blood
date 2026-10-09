@@ -1,6 +1,6 @@
 "use strict";
 const el = (id) => document.getElementById(id);
-const ids = ["sbp", "dbp", "segment", "source-name", "sequence", "updated", "latency", "hostname"];
+const ids = ["sbp", "dbp", "segment", "source-name", "sequence", "updated", "latency", "hostname", "age", "pipeline"];
 const sourceCopy = {
   recorded_pulsedb_replay: {
     badge: "SAMPLE RECORDING / PulseDB",
@@ -14,9 +14,20 @@ const sourceCopy = {
     sourceName: "Connected device",
     active: "Device input active",
   },
+  recorded_raw_replay: {
+    badge: "RAW RECORDING / replay",
+    description: "Previously recorded raw ECG and PPG, replayed at acquisition speed. No device is connected.",
+    sourceName: "Raw recording",
+    active: "Raw replay active",
+  },
 };
 let lastSequence = null;
 let currentMode = null;
+let bootId = null;
+let responseSequence = -1;
+let refreshing = false;
+let lastData = null;
+let renderedAt = null;
 
 function presentSource(mode) {
   const copy = sourceCopy[mode];
@@ -35,6 +46,9 @@ function sourceUnavailable() {
 }
 
 function clearReadings() {
+  lastSequence = null;
+  lastData = null;
+  renderedAt = null;
   for (const id of ids) el(id).textContent = "--";
   drawWave("ecg-chart", null, "#85d6c8");
   drawWave("ppg-chart", null, "#edc07d");
@@ -83,12 +97,29 @@ function drawWave(id, samples, color) {
 }
 
 async function refresh() {
+  if (refreshing) return;
+  refreshing = true;
   const controller = new AbortController();
+  const requestedAt = performance.now();
   const timer = setTimeout(() => controller.abort(), 3500);
   try {
     const response = await fetch("/api/state", {cache: "no-store", signal: controller.signal});
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
+    if (Number.isFinite(data.age_seconds)) {
+      // Conservatively include transit time; an old delayed response is not fresh.
+      data.age_seconds += (performance.now() - requestedAt) / 1000;
+    }
+    if (typeof data.boot_id !== "string" || !Number.isInteger(data.sequence)) {
+      throw new Error("Missing service identity");
+    }
+    if (bootId !== data.boot_id) {
+      bootId = data.boot_id;
+      responseSequence = -1;
+      lastSequence = null;
+    }
+    if (data.sequence < responseSequence) return;
+    responseSequence = data.sequence;
     if (!presentSource(data.mode)) {
       clearReadings();
       sourceUnavailable();
@@ -96,14 +127,21 @@ async function refresh() {
       el("message").textContent = "This source mode is not approved for display.";
       return;
     }
-    if (!(["ok", "review_prediction"].includes(data.status)) ||
-        data.age_seconds == null || data.age_seconds > 12 || !data.prediction) {
+    const prediction = data.prediction;
+    if (data.status !== "ok" ||
+        !Number.isFinite(data.age_seconds) || data.age_seconds < 0 || data.age_seconds > 12 ||
+        !prediction || !Number.isFinite(prediction.SBP_mmHg) || !Number.isFinite(prediction.DBP_mmHg) ||
+        prediction.SBP_mmHg <= prediction.DBP_mmHg || prediction.DBP_mmHg <= 0 ||
+        !Number.isFinite(data.inference_ms) || !data.waveforms) {
       clearReadings();
-      setStatus(data.status === "initializing" ? "Starting" : "Unavailable / stale", false);
+      const labels = {initializing: "Collecting a window", poor_signal: "Check contact / movement",
+        discontinuity: "Collecting after a data gap", disconnected: "Sensor disconnected",
+        ended: "Recording ended", invalid_prediction: "Estimate unavailable", stale: "Input stale"};
+      setStatus(labels[data.status] || "Estimate unavailable", false);
       el("message").textContent = data.message || "Waiting for a fresh input window.";
       return;
     }
-    setStatus(data.status === "ok" ? sourceCopy[data.mode].active : "Review prediction", true);
+    setStatus(sourceCopy[data.mode].active, true);
     el("sbp").textContent = data.prediction.SBP_mmHg.toFixed(1);
     el("dbp").textContent = data.prediction.DBP_mmHg.toFixed(1);
     el("segment").textContent = data.segment_id || "--";
@@ -112,12 +150,16 @@ async function refresh() {
     el("updated").textContent = new Date(data.updated_at).toLocaleString();
     el("latency").textContent = `${data.inference_ms.toFixed(2)} ms`;
     el("hostname").textContent = data.hostname;
+    el("age").textContent = `${data.age_seconds.toFixed(1)} s`;
+    el("pipeline").textContent = Number.isFinite(data.pipeline_ms) ? `${data.pipeline_ms.toFixed(1)} ms` : "--";
     el("message").textContent = data.message;
     if (lastSequence !== data.sequence) {
       drawWave("ecg-chart", data.waveforms.ecg, "#85d6c8");
       drawWave("ppg-chart", data.waveforms.ppg, "#edc07d");
       lastSequence = data.sequence;
     }
+    lastData = data;
+    renderedAt = performance.now();
   } catch (error) {
     clearReadings();
     lastSequence = null;
@@ -126,10 +168,25 @@ async function refresh() {
     el("message").textContent = "Raspberry Pi service is unreachable. No current reading is shown.";
   } finally {
     clearTimeout(timer);
+    refreshing = false;
+    setTimeout(refresh, 1000);
   }
 }
 
-window.addEventListener("resize", () => {lastSequence = null; refresh();});
+window.addEventListener("resize", () => {
+  drawWave("ecg-chart", lastData?.waveforms.ecg, "#85d6c8");
+  drawWave("ppg-chart", lastData?.waveforms.ppg, "#edc07d");
+});
+// Expire displayed data even while a slow request is in flight.
+setInterval(() => {
+  if (lastData && renderedAt !== null) {
+    const age = lastData.age_seconds + (performance.now() - renderedAt) / 1000;
+    if (age > 12) {
+      clearReadings();
+      setStatus("Input stale", false);
+      el("message").textContent = "Waiting for a fresh input window.";
+    }
+  }
+}, 250);
 clearReadings();
 refresh();
-setInterval(refresh, 1000);

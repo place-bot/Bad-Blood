@@ -15,7 +15,8 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).parent))
 from service import InferenceState, make_handler
-from sources import PulseDBReplay, SignalWindow, validate_window
+from sources import Acquisition, PulseDBReplay, SignalWindow, validate_window
+from acquisition import RAW_VERSION
 
 ROOT = Path(__file__).resolve().parents[2]
 CSV = ROOT / "data" / "PulseDB" / "examples" / "real_20_segments.csv"
@@ -29,8 +30,10 @@ class DeviceStub:
     def __init__(self, waves):
         self.waves = waves
 
-    def next_window(self):
-        return SignalWindow("device-window-1", self.waves.copy())
+    def next_window(self, timeout=.5):
+        return SignalWindow("device-window-1", self.waves.copy(),
+                            acquisition=Acquisition("device", 0, 1250, time.monotonic()),
+                            quality={"status": "screened", "preprocessing": RAW_VERSION})
 
 
 class DeploymentTests(unittest.TestCase):
@@ -62,15 +65,7 @@ class DeploymentTests(unittest.TestCase):
 
         for source in (PulseDBReplay(CSV), DeviceStub(waves)):
             state = InferenceState(source, fake_predict, interval_seconds=60)
-            stop = threading.Event()
-            worker = threading.Thread(target=state.run, args=(stop,), daemon=True)
-            worker.start()
-            deadline = time.monotonic() + 3
-            while state.snapshot()["sequence"] == 0 and time.monotonic() < deadline:
-                time.sleep(.01)
-            stop.set()
-            worker.join(3)
-            self.assertFalse(worker.is_alive())
+            state.process_window(source.next_window())
             self.assertEqual(state.snapshot()["prediction"],
                              {"SBP_mmHg": 120.0, "DBP_mmHg": 75.0})
         self.assertEqual(len(calls), 2)
@@ -120,6 +115,8 @@ class DeploymentTests(unittest.TestCase):
             with urlopen(url + "/api/state") as response:
                 self.assertEqual(response.status, 200)
                 self.assertEqual(json.load(response)["prediction"]["SBP_mmHg"], 120.0)
+            with urlopen(url + "/api/live") as response:
+                self.assertEqual(json.load(response), {"status": "alive"})
             with urlopen(url + "/") as response:
                 self.assertIn(b"SOURCE UNAVAILABLE", response.read())
             with urlopen(url + "/app.js") as response:
@@ -134,6 +131,9 @@ class DeploymentTests(unittest.TestCase):
             self.assertEqual(snapshot["status"], "stale")
             self.assertIsNone(snapshot["prediction"])
             self.assertIsNone(snapshot["waveforms"])
+            with self.assertRaises(HTTPError) as raised:
+                urlopen(url + "/api/health")
+            self.assertEqual(raised.exception.code, 503)
         finally:
             server.shutdown()
             server.server_close()

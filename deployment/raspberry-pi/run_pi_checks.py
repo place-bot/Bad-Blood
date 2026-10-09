@@ -59,6 +59,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output-dir", type=Path,
                         default=Path(__file__).with_name("results"))
+    parser.add_argument("--threads", type=int, choices=(1, 2, 4), default=4)
     args = parser.parse_args()
     model_text = Path("/proc/device-tree/model").read_bytes().replace(b"\0", b"").decode()
     if platform.machine() != "aarch64" or "Raspberry Pi 4" not in model_text:
@@ -89,6 +90,8 @@ def main():
     sys.path.insert(0, str(V1))
     from inference import Predictor
     predictor = Predictor(V1 / "models")
+    import torch
+    torch.set_num_threads(args.threads)
     count = sum(parameter.numel() for parameter in predictor.cnn.parameters())
     if count != 37666:
         raise AssertionError(f"Unexpected V1 parameter count: {count}")
@@ -115,7 +118,7 @@ def main():
         "weight_sha256": digest, "source": "public PulseDB 20-segment filtered CSV",
         "tests": {name: "passed" for name in test_results},
         "reference_comparison": comparison,
-        "benchmark": {"warmup_calls": 10, "timed_calls": len(timings_ms),
+        "benchmark": {"threads": args.threads, "warmup_calls": 10, "timed_calls": len(timings_ms),
                       "p50_ms": float(np.percentile(timings_ms, 50)),
                       "p95_ms": float(np.percentile(timings_ms, 95)),
                       "peak_process_rss_kib": resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,

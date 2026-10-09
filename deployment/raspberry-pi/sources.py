@@ -1,4 +1,4 @@
-"""Waveform-source boundary. Only the recorded PulseDB source is implemented."""
+"""Canonical model input, source errors and acquisition provenance."""
 
 import csv
 from dataclasses import dataclass, field
@@ -12,7 +12,37 @@ FS_HZ = 125
 SAMPLES = 1250
 CHANNELS = ("ECG", "PPG")
 PREPROCESSING = "pulsedb_filtered_minmax_v2"
-SOURCE_MODES = ("recorded_pulsedb_replay", "device_live")
+SOURCE_MODES = ("recorded_pulsedb_replay", "recorded_raw_replay", "device_live")
+
+
+class SourceUnavailable(Exception):
+    """An expected source condition; detail is safe to show in the local UI."""
+
+    def __init__(self, status, detail):
+        super().__init__(detail)
+        self.status = status
+
+
+@dataclass(frozen=True)
+class Acquisition:
+    """Host-monotonic mapping of sample time, not packet arrival time.
+
+    end_sample is exclusive; end_monotonic is the end of the sample interval.
+    Device adapters must verify their sensor-to-host clock mapping separately.
+    """
+
+    session_id: str
+    first_sample: int
+    end_sample: int
+    end_monotonic: float
+
+    def validate(self):
+        if (not isinstance(self.session_id, str) or not self.session_id.strip()
+                or type(self.first_sample) is not int
+                or type(self.end_sample) is not int or self.first_sample < 0
+                or self.end_sample - self.first_sample != SAMPLES
+                or not np.isfinite(self.end_monotonic)):
+            raise ValueError("Invalid acquisition provenance")
 
 
 @dataclass(frozen=True)
@@ -29,6 +59,8 @@ class SignalWindow:
     channels: tuple[str, str] = CHANNELS
     preprocessing: str = PREPROCESSING
     source_details: dict = field(default_factory=dict)
+    acquisition: Acquisition = None
+    quality: dict = field(default_factory=dict)
 
 
 def validate_window(window: SignalWindow) -> np.ndarray:
@@ -46,14 +78,17 @@ def validate_window(window: SignalWindow) -> np.ndarray:
         raise ValueError("Source waveform must not be flat")
     if not window.segment_id:
         raise ValueError("Source window needs an ID")
+    if window.acquisition is not None:
+        window.acquisition.validate()
     return waves
 
 
 class WaveformSource(Protocol):
     """Replay and future device adapters both emit the same canonical window.
 
-    A verified device adapter should use ``mode='device_live'``. This mode
-    changes source labeling only; the V1 predictor input is unchanged.
+    A verified device adapter uses ``mode='device_live'`` with acquisition
+    provenance and raw quality screening. Streaming next_window(timeout) must
+    be bounded and close() must unblock reads. The V1 tensor is unchanged.
     """
 
     mode: str

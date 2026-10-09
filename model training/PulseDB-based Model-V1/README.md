@@ -16,9 +16,11 @@ python predict.py "../../data/PulseDB/examples/real_20_segments.csv" --format fi
 
 `models/selection.json` selects `cnn_full.pt`. The selected network needs
 NumPy, SciPy and PyTorch; XGBoost and the other packages support reproduction
-and comparison. CPU inference is supported. Raspberry Pi installation and
-latency still require testing on the target OS/hardware; the current execution
-verification is macOS ARM64, not a claim of measured Pi performance.
+and comparison. CPU inference is supported. The later
+[Pi deployment evidence](../../deployment/OMEN-Codex-Prompt/implementation/EVIDENCE_SUMMARY.json)
+records Pi 4B predictor p95 of 5.80 ms and exact parity on 20 examples.
+Those measurements cover prepared recorded inputs, not the new raw acquisition
+pipeline, real sensors, battery life or wearable accuracy.
 
 The input is a headered wide CSV. It needs `fs_hz=125`, `ecg_0000` through
 `ecg_1249`, and `ppg_0000` through `ppg_1249`. IDs are copied into the output

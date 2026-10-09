@@ -1,0 +1,21 @@
+{
+  "schema": "bad_blood_bundle_v1",
+  "bundle_id": "v1-cnn-full-raw125-1",
+  "contract": {
+    "fs_hz": 125,
+    "channels": [
+      "ECG",
+      "PPG"
+    ],
+    "samples": 1250,
+    "preprocessing": "pulsedb_filtered_minmax_v2",
+    "raw_adapter": "raw125_window_zero_phase_v1"
+  },
+  "sha256": {
+    "common.py": "18e60d9cf83e8595037bb43ac2f92d6348fd002e5605a0ab514710e6cb1720a0",
+    "network.py": "650e9d7b43cc8599a35c7075ea12347efb6f33c31046b0843bdbca0d47bf2d5d",
+    "inference.py": "d78f658e0ca37d1829c04bb2300d805d883c98d3853cecde2269a08a6610ef60",
+    "models/selection.json": "3072ef1a9c64ea376968ac3d59223d6d73a0f8ec5b0ee397cbb40833d7862ef5",
+    "models/cnn_full.pt": "bb6742489f64128e714b365ebb2dd659b82ed2a8b8476a61416f9dff8af42ef1"
+  }
+}
