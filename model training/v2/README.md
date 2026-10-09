@@ -1,51 +1,293 @@
-# VitalDB architecture and personalization research
+# Bad-Blood V2: attention and personal BP calibration
 
-This work extends V1 without modifying its release. The repository base is
-`7553248168295bcad593739fdc733dbefff0c3b1`; the V1 network and training code
-were introduced at `1f33cdcf090d51133c91dd50af2e575f5eaa0053`.
+This directory implements two controlled studies using the existing VitalDB-derived data. Track A compares attention mechanisms in the unchanged high-resolution V1 CNN architecture. Track B uses early personal ECG/PPG and scalar BP references to adapt that population model, then estimates **same-window SBP/DBP from later observed ECG/PPG**. The directory name `personalized_forecasting/` is retained from the original assignment; this is not open-loop waveform forecasting.
 
-## Scope
+V1 is preserved in `../PulseDB-based Model-V1/`. The unchanged reference is `BPNet(pool=1)`, with 37,666 trainable parameters, two 125-Hz input channels, 1,250 samples per channel, and two scalar outputs. “Higher resolution” means retaining the original ten-second input resolution rather than applying the alternate model's initial fivefold pooling. New V2 baseline weights are trained from scratch on the corrected population split; the historical V1 checkpoint is not a clean personal-cohort initializer.
 
-- `attention_cnn/`: controlled attention ablations on the existing ECG/PPG to
-  scalar SBP/DBP task, retaining the actual high-resolution V1 backbone.
-- `personalized_forecasting/`: personal calibration with early ECG/PPG and BP,
-  followed by contemporaneous SBP/DBP estimation from later observed ECG/PPG.
-  The original directory name is retained for compatibility. Open-loop future
-  waveform prediction is outside the revised assignment.
-- `shared/`: reusable implementation after the literature gate is complete.
-- `reports/`: combined, result-derived reporting after experiments.
+Dataset expansion, MIMIC training, and the teammate's larger CRC experiments are outside this study.
 
-Dataset expansion, CRC training on all of PulseDB, and MIMIC data are outside
-this assignment. Existing VitalDB-derived data are the sole experimental source.
-The complete updated user prompt is [RESEARCH_PROMPT.md](RESEARCH_PROMPT.md);
-the prespecified experiment matrix is [PROTOCOL.md](PROTOCOL.md).
+## Verified status and authoritative documents
 
-## Ordered gates
+At the documentation snapshot **2026-10-09 15:30 America/Chicago**, `baseline_seed42` had a completed real-run marker, `baseline_seed43` was running, and the full suite was incomplete. This snapshot is not a completion claim and will become historical. Inspect the current runtime inventory before interpreting results.
 
-1. Audit code, provenance, patients, timestamps, labels and resources.
-2. Complete both literature reviews and frozen experimental protocols.
-3. Compile and visually inspect both review PDFs.
-4. Commit the reviews/protocols before implementing or training.
-5. Implement, test, and run the full principal experiment matrix.
-6. Generate quantitative reports from saved predictions and run manifests.
-7. Push a dedicated branch and open a pull request without merging.
+The review/protocol gate was committed at [1b93cf13249931af650cdfa91e19343564032451](https://github.com/place-bot/Bad-Blood/commit/1b93cf13249931af650cdfa91e19343564032451), before implementation or training. The repository research base is `7553248168295bcad593739fdc733dbefff0c3b1`; the V1 network's source-changing commit is `1f33cdcf090d51133c91dd50af2e575f5eaa0053`.
 
-The dated status and experiment inventory distinguish completed work from
-pending runs. No unrun results or clinical certification claims are implied.
+| Document | Purpose |
+|---|---|
+| [RESEARCH_PROMPT.md](RESEARCH_PROMPT.md) | User-confirmed task revision and completion requirements |
+| [PROTOCOL.md](PROTOCOL.md) | Frozen methods, optimization, cohorts, selection, statistics |
+| [experiment_matrix.json](experiment_matrix.json) | Machine-readable required and supplementary inventory |
+| [AUDIT.md](AUDIT.md) | Architecture, local data, provenance, eligibility, limitations |
+| [audit_snapshot.json](audit_snapshot.json) | Original proposal and frozen final support/query manifests |
+| [DATA_DIAGNOSTICS.md](DATA_DIAGNOSTICS.md) | Observed upstream timestamp anomalies |
+| [REVIEW_GATE.md](REVIEW_GATE.md) | Both literature PDFs compiled and visually checked |
+| [Track A review](attention_cnn/literature_review.pdf) | Attention evidence and prospective protocol |
+| [Track B review](personalized_forecasting/literature_review.pdf) | Calibration evidence and prospective protocol |
+| [STATUS.md](STATUS.md) | Dated workflow notes; runtime artifacts supply live run status |
 
-## Document style
+## Data contract and provenance
 
-The unmodified official ACL `acl.sty` and `acl_natbib.bst` are vendored in each
-document directory for portability. Source:
-https://github.com/acl-org/acl-style-files,
-commit `d5adc823ff0f80f98c80405ca0ab66c68e684409`.
-Reports use the nonanonymous, page-numbered `preprint` option. This is a
-technical research report, not a claim of ACL submission or acceptance.
+These are VitalDB-derived **PulseDB** data, not native unprocessed VitalDB recordings. Provenance was checked using decoded source suffixes, the official PulseDB generator/field dictionary, and all 31 case-to-subject mappings in the 30 complete individual files against the public VitalDB clinical metadata.
 
-## Artifact storage
+Source-qualified canonical IDs are `vitaldb:pXXXXXX`. The `_1` in official-subset IDs means VitalDB source, not visit number. Distinct `CaseID` values identify recordings of a patient. The balanced population subsets do not retain timestamps or CaseIDs, so their row order cannot establish chronology.
 
-Raw recordings, caches, large model weights and detailed predictions stay out
-of ordinary Git. Local artifact root: `output/bad_blood_v2_runs/` outside the
-repository. Commit only code, configurations, split manifests, small summary
-tables, documentation, and rendered research reports. Do not copy credentials
-or identifiable ND participant data into this project.
+References and terms:
+
+- [PulseDB repository](https://github.com/pulselabteam/PulseDB), [dataset paper](https://doi.org/10.3389/fdgth.2022.1090854), and [field dictionary](https://github.com/pulselabteam/PulseDB/blob/main/Supplementary%20Materials.pdf).
+- [VitalDB dataset and parameter documentation](https://vitaldb.net/dataset/) and [clinical mapping API](https://api.vitaldb.net/cases).
+- VitalDB-derived PulseDB material carries CC BY-NC-SA 4.0 terms; retain the existing dataset attribution and license. Raw source access and storage remain separate from publishing this code.
+
+Both tracks use filtered `ECG_F` and `PPG_F`, normalized independently within each observed window/channel to [0,1], with no additional raw-input filter. Labels are invasive-ABP-derived `SBP/DBP` or `SegSBP/SegDBP` in mmHg. ABP samples, reference-derived landmarks, and demographic/identity fields are not predictors. Population target mean/SD are fitted only on eligible population training rows.
+
+**There are no actual cuff/NIBP events in the local files.** Track B is a sparse-reference simulation using distinct ABP-labelled windows. Sixty-second spacing does not make them independently acquired cuff readings or statistically independent physiological observations.
+
+Upstream offline filtering, undocumented exact resampling support, and reference-dependent quality selection limit online/deployment interpretation. The study does not establish cross-visit durability, clinical-standard compliance, or Raspberry Pi latency.
+
+### Population files
+
+Point `--data-root` at the existing prepared `bp_model_v2/data` directory. It must contain:
+
+```text
+split.json
+train/{waves.npy,y.npy,subjects.npy,valid.npy,complete.json}
+test/{waves.npy,y.npy,subjects.npy,valid.npy,complete.json}
+aami/{waves.npy,y.npy,subjects.npy,valid.npy,complete.json}
+```
+
+Waveforms must be float32 with shape N × 2 × 1250; labels must have shape N × 2 in SBP/DBP order. These are the prepared arrays from the V1 source pathway. If rebuilding source arrays is necessary, follow the preserved [PulseDB preparation documentation](../../data/PulseDB/README.md); do not retrain or overwrite V1 release weights.
+
+All 31 historically explored IDs in V1's `reports/prior_exploratory_subjects.json` are excluded from every new population partition:
+
+| Partition | Patients | Windows |
+|---|---:|---:|
+| Training | 1,085 | 390,600 |
+| Validation | 192 | 69,120 |
+| Primary calibration-free test | 141 | 56,400 |
+| Separate AAMI-named stress subset | 116 | 666 |
+
+The original source files contain 1,293/465,480 training-subset patients/windows, 144/57,600 calibration-free test patients/windows, and 116/666 stress-subset patients/windows. The corrected counts above are asserted at load time. All retained rows are used. AAMI-named results are reported separately and do not imply certification. Historical test exposure is disclosed; these are controlled comparisons, not newly collected external validation.
+
+The loader computes full SHA-256 values for waveform arrays, labels, IDs, validity masks, split files, and completion metadata. Large waveform hashes have a process-local cache keyed by resolved path, byte size, and modification time in nanoseconds; small identity files are rehashed. Train/validation share memory-mapped source waveforms and differ by frozen row indices.
+
+### Personal records and frozen windows
+
+Point `--individual-root` at the existing directory containing individual PulseDB v2 MATLAB files. Thirty complete files contain 30 patients, 31 records, and 15,486 retained windows/43.0167 observed hours. The original manifest has one absent file and one truncated file; neither enters the final cohort.
+
+| Role | Patients | All retained windows | Final query windows |
+|---|---|---:|---:|
+| Development | p005548, p005647, p005968, p006090 | 2,409 | 1,855 |
+| Final targets | p005879, p005885, p005977, p005984, p006009, p006052 | 5,103 | 4,284 |
+
+The final allocation, original proposal, and availability-only replacement p005983 → p005977 are preserved in `audit_snapshot.json`. No replacement was based on model performance.
+
+Within each single case, the calibration boundary is the first retained timestamp plus 20% of the elapsed span through the final window's exclusive endpoint. It is not 20% of shuffled rows. A greedy early-window pool enforces start-to-start spacing of at least 60 seconds. Ten entries are selected using rounded evenly spaced pool positions; budgets K=1,2,3,5,10 use nested chronological prefixes. All query windows start at least ten seconds after the boundary, and the query set is fixed across budgets and methods.
+
+Each patient manifest stores source-row indices and exact intervals. The loader verifies these against original `T`, `SubjectID`, and `CaseID`, checks full raw-file hashes, and aborts on mismatches or invalid inputs. Gaps are retained. Two late query-to-query pairs have an upstream one-sample/8-ms timestamp overlap; they are preserved, diagnosed in metadata, and do not overlap support windows.
+
+Primary drift measures time from the **actual final reference endpoint to query endpoint**, with bins [0,15), [15,30), [30,60), and [60,infinity) minutes. Boundary-relative time is secondary. Reference age differs by budget, and empty bins remain unavailable rather than zero error.
+
+## Required experiment inventory
+
+Track A has **20 required population fits**:
+
+| Variant | Parameters | Seeds | Purpose |
+|---|---:|---|---|
+| `baseline` | 37,666 | 42,43,44 | Exact full-resolution V1 architecture |
+| `se_last` | 38,296 | 42,43,44 | Final-block feature-channel gate |
+| `temporal_last` | 37,680 | 42,43,44 | Final-block temporal gate |
+| `cbam_last` | 38,310 | 42,43,44 | Channel then temporal gates |
+| `additive_last` | 38,296 | 42,43,44 | SE-matched parameter-count control |
+| `se_all` | 38,670 | 42,43,44 | Placement ablation over all residual blocks |
+| `baseline_ecg` | 37,666 | 42 | ECG-only, other input channel zeroed |
+| `baseline_ppg` | 37,666 | 42 | PPG-only, other input channel zeroed |
+| `eca_last` | 37,669 | 42,43,44 | Supplementary; three additional fits |
+
+Attention acts on learned features, not directly on sensor modality identity. The principal comparisons require three seeds; the two modality ablations are explicitly single-seed. ECA does not replace any required run.
+
+Every population fit uses the frozen optimizer/augmentation settings, at most 40 epochs, and eight-epoch early stopping. Selection is the mean of patient-macro SBP/DBP validation MAE. Final predictions always load `best.pt`. There are no CLI controls to silently reduce data, training duration, or tuning budgets.
+
+Track B requires **1,068 development units and 684 final-target units**. A unit is a patient × seed × budget × strategy × adaptation-setting evaluation; repeated units do not add independent patients.
+
+- Four reference/control strategies: population, additive bias, last reference, calibration mean.
+- Three neural strategies: head-only, last block plus head, full model.
+- Affine calibration only at K=3,5,10.
+- Development searches two learning rates × two update counts for each neural strategy and three affine penalties. Settings are chosen across all four development patients and seeds 42/43/44, then saved before final-target evaluation.
+- Every final adaptation starts afresh from the corresponding newly trained unchanged baseline. BatchNorm running statistics and dropout remain frozen during adaptation. Final query labels never guide adaptation or setting selection.
+
+Development arithmetic is 12 patient-seed pairs × [5 budgets × (4 controls + 3 neural methods × 4 settings) + 3 affine budgets × 3 penalties] = 1,068. Final arithmetic is 18 patient-seed pairs × [5 × (4 + 3) + 3] = 684.
+
+## Environment and setup
+
+The recorded local environment is Python 3.12.13, Apple M5, 24 GiB memory, ten logical CPUs, macOS ARM64, and PyTorch 2.14.0. Version pins are in [requirements.txt](requirements.txt). MPS is available in an unrestricted local process; the restricted sandbox can report it unavailable. CPU and CUDA are also accepted. Accelerator execution is best-effort deterministic; exact epoch-resume equality is tested on CPU.
+
+For a portable reproduction, change the following paths to your checkout and existing datasets. Keep the runtime directory **outside the Git repository** and use a new directory for a scientifically different run.
+
+```sh
+export BB_REPO="/path/to/Bad-Blood"
+export BB_POP="/path/to/existing/bp_model_v2/data"
+export BB_PERSONAL="/path/to/existing/bp_model/data/vital"
+export BB_RUN_ROOT="/path/to/bad_blood_v2_runs/reproduction"
+export BB_DEVICE="mps"
+export BB_PERSONAL_DEVICE="cpu"
+
+mkdir -p "$BB_RUN_ROOT"
+python3.12 -m venv "$BB_RUN_ROOT/venv"
+export BB_PY="$BB_RUN_ROOT/venv/bin/python"
+cd "$BB_REPO/model training/v2"
+"$BB_PY" -m pip install -r requirements.txt
+export MPLCONFIGDIR="$BB_RUN_ROOT/mpl-cache"
+mkdir -p "$MPLCONFIGDIR"
+"$BB_PY" -m unittest discover -s tests -v
+```
+
+Choose `BB_DEVICE=cpu` when no accelerator is available, or `cuda` for an appropriately configured CUDA host. Keep the selected device and source/configuration unchanged within a resumable run. Unit tests use small fixtures to test failure modes; their outputs are not research results.
+
+The current local paths are:
+
+```text
+Repository: /Users/jguo9/Desktop/26fall/LLM/output/Bad-Blood
+Population: /Users/jguo9/Desktop/26fall/LLM/output/bp_model_v2/data
+Individual: /Users/jguo9/Desktop/26fall/LLM/output/bp_model/data/vital
+Python:     /Users/jguo9/Desktop/26fall/LLM/output/bp_model/.venv/bin/python
+Artifacts:  /Users/jguo9/Desktop/26fall/LLM/output/bad_blood_v2_runs/20261009
+```
+
+## Execute or resume the full suite
+
+From `model training/v2`, one command runs the required population fits sequentially, then personal development, then final personal evaluation:
+
+```sh
+"$BB_PY" run_experiments.py \
+  --stage all \
+  --data-root "$BB_POP" \
+  --individual-root "$BB_PERSONAL" \
+  --artifact-root "$BB_RUN_ROOT" \
+  --device "$BB_DEVICE" \
+  --personal-device "$BB_PERSONAL_DEVICE"
+```
+
+For an existing suite, repeat the command with `--resume`. Add `--include-eca` only to request the three supplementary ECA fits. The orchestrator runs one population fit at a time; avoid concurrent writers to the same artifact root.
+
+To execute stages separately, use the same command with `--stage population` first and `--stage personalization` afterward. Supply both data-root arguments in either mode because the parser requires them. The personal stage requires completed real baseline runs at all three seeds and executes development before test.
+
+For a single population run:
+
+```sh
+"$BB_PY" attention_cnn/train.py \
+  --variant baseline --seed 42 \
+  --data-root "$BB_POP" \
+  --output-dir "$BB_RUN_ROOT/attention/baseline_seed42" \
+  --device "$BB_DEVICE"
+```
+
+Append `--resume` only when that individual run directory already exists. Interrupted population runs restore the last complete epoch, optimizer, scheduler, RNG states, and accumulated time. An interrupted partial epoch is replayed. Changed data, split, source, protocol, or configuration hashes cause a resume error rather than silent continuation. A completed run can be verified/skipped with `--resume`.
+
+Track B can also be run directly after all three baseline checkpoints exist:
+
+```sh
+"$BB_PY" personalized_forecasting/run.py \
+  --phase development \
+  --population-root "$BB_RUN_ROOT/attention" \
+  --individual-root "$BB_PERSONAL" \
+  --output-dir "$BB_RUN_ROOT/personalization" \
+  --device "$BB_PERSONAL_DEVICE" --threads 4
+
+"$BB_PY" personalized_forecasting/run.py \
+  --phase test \
+  --population-root "$BB_RUN_ROOT/attention" \
+  --individual-root "$BB_PERSONAL" \
+  --output-dir "$BB_RUN_ROOT/personalization" \
+  --device "$BB_PERSONAL_DEVICE" --threads 4
+```
+
+Add `--resume` when continuing either phase. Completed units are checked against their configuration and artifact hashes; an incomplete personal unit restarts from its original population baseline, not partially adapted weights. The final phase requires the existing development provenance and frozen `selection.json`. A mismatch is a failed reproducibility check, not a reason to edit hashes manually.
+
+## Runtime outputs and checking completion
+
+Raw data, large checkpoints, full predictions, caches, and logs remain outside Git. The artifact root contains:
+
+```text
+suite_population.json / suite_personalization.json / suite_all.json
+logs/
+attention/
+  baseline_seed42/
+    config.json, manifest.json, environment.json
+    history.json, metrics.json, costs.json
+    best.pt, last.pt
+    predictions_validation.npz, predictions_test.npz, predictions_aami.npz
+    completion.json
+  ...other variant/seed directories...
+personalization/
+  run_manifest.json, selection.json
+  development_index.json, test_index.json
+  development/<patient>/seed<seed>/K<budget>/<method>/<setting>/
+  test/<patient>/seed<seed>/K<budget>/<method>/<setting>/
+    predictions.npz, unit.json
+    adapted.pt OR calibration.json
+```
+
+Suite status is invocation-level: `completed_this_invocation` is not the cumulative research inventory. Individual `completion.json` and personal `unit.json` files are written after their outputs. A log line or launched process alone does not mean completion.
+
+Population predictions retain references, estimates, source-qualified patient IDs, source-row indices, selected epoch and manifest identity. They do not fabricate unavailable case IDs/timestamps. Personal predictions retain support/query indices, timestamps, case IDs, labels, estimates, reference ages, and checkpoint/configuration identities. Neural units also record trainable masks and measured parameter changes.
+
+The personal phase indexes must report exactly 1,068 development and 684 test units. These checks, all 20 required population completion markers, corresponding checkpoints/prediction hashes, and the report builder's validation establish computational completion. A final report and inspected PDF are additional deliverables.
+
+## Offline prediction from a completed population checkpoint
+
+The reusable CLI accepts a NumPy `.npy` array shaped N × 2 × 1250: already-filtered ECG followed by PPG, at 125 Hz. It requires no labels, demographics, IDs, or raw ABP. It applies per-window/channel min-max normalization by default and performs no additional filtering or resampling. If the array already uses the normalized source representation, add `--already-normalized`; the values must then lie in [0,1]. Nonfinite values, constant channels, incompatible sampling/channel declarations, and wrong shapes are rejected. NPY has no inherent channel/filter metadata, so these declarations remain the caller's responsibility.
+
+```sh
+cd "$BB_REPO/model training/v2"
+"$BB_PY" shared/predict.py \
+  --checkpoint "$BB_RUN_ROOT/attention/baseline_seed42/best.pt" \
+  --input "$BB_RUN_ROOT/new_filtered_windows.npy" \
+  --output "$BB_RUN_ROOT/new_predictions.npy" \
+  --fs-hz 125 --channel-order ECG PPG \
+  --trust-checkpoint
+```
+
+Output is a new float32 N × 2 `.npy` array in SBP/DBP order, in mmHg. Existing output files are not overwritten. Inference runs deterministically on CPU in evaluation mode without augmentation or adaptation. Other completed V2 population variants use the same CLI; the variant is read from the checkpoint.
+
+`--trust-checkpoint` is required because full training checkpoints contain optimizer/RNG Python objects and require `torch.load(weights_only=False)`. Only use a locally controlled checkpoint you trust; deserializing an untrusted pickle can execute code. The loader subsequently verifies pool=1, configuration consistency, the frozen model/data/protocol source contract, and finite target center/scale. An adjacent `manifest.json`, when present, must also match. A standalone copied `best.pt` is supported with the matching V2 source checkout; historical V1 or per-patient `adapted.pt` formats are not accepted by this CLI.
+
+## Build the result-derived report and PDFs
+
+Only after the full required inventory is complete:
+
+```sh
+"$BB_PY" reports/build_report.py --artifact-root "$BB_RUN_ROOT" --individual-root "$BB_PERSONAL"
+```
+
+The builder rejects missing required runs, toy runs, changed prediction/checkpoint artifacts, incomplete personal indexes, and inconsistent frozen selections. It generates `reports/final_report.tex`, a combined bibliography, figures, and small JSON summaries under `reports/results/`. It does not train models or compile LaTeX.
+
+With a LaTeX installation providing `pdflatex` and `bibtex`, compile each document from its own directory:
+
+```sh
+cd "$BB_REPO/model training/v2/attention_cnn"
+pdflatex -interaction=nonstopmode -halt-on-error literature_review.tex
+bibtex literature_review
+pdflatex -interaction=nonstopmode -halt-on-error literature_review.tex
+pdflatex -interaction=nonstopmode -halt-on-error literature_review.tex
+
+cd "$BB_REPO/model training/v2/personalized_forecasting"
+pdflatex -interaction=nonstopmode -halt-on-error literature_review.tex
+bibtex literature_review
+pdflatex -interaction=nonstopmode -halt-on-error literature_review.tex
+pdflatex -interaction=nonstopmode -halt-on-error literature_review.tex
+
+cd "$BB_REPO/model training/v2/reports"
+pdflatex -interaction=nonstopmode -halt-on-error final_report.tex
+bibtex final_report
+pdflatex -interaction=nonstopmode -halt-on-error final_report.tex
+pdflatex -interaction=nonstopmode -halt-on-error final_report.tex
+```
+
+Inspect every page of the resulting PDFs; successful compilation alone does not verify table widths, figure legibility, or citation layout. The unmodified official ACL `acl.sty`/`acl_natbib.bst` are vendored from [acl-style-files](https://github.com/acl-org/acl-style-files), commit `d5adc823ff0f80f98c80405ca0ab66c68e684409`. Documents use the nonanonymous page-numbered preprint format; this does not imply conference submission or acceptance.
+
+## Metrics, interpretation, and publication
+
+Report SBP and DBP separately in mmHg: MAE, RMSE, signed bias, sample error SD, median and tail absolute errors, fractions within 5/10/15 mmHg, correlation, and R-squared when defined. Window-pooled and equally weighted patient-macro values answer different questions. Paired uncertainty bootstraps patients after averaging matched seed differences, rather than treating correlated windows as independent. Pressure strata, all six personal targets, negative results, and empty drift bins remain visible.
+
+The current pilot cannot establish a universal cuff-calibration count or persistence across visits. Reference-only controls test whether personal neural adaptation adds information beyond the early pressures themselves. Desktop timing is not Raspberry Pi timing.
+
+Commit code, versioned configuration/manifests, documentation, LaTeX sources, PDFs, and appropriately sized result summaries. Keep the raw recordings and detailed runtime tree external. Preserve V1 and unrelated team work; use the dedicated `research/v2-vitaldb-attention-personalization` branch without force-pushing or merging. Computational completion, PDF inspection, and successful GitHub delivery must each be verified rather than inferred from the presence of this README.
