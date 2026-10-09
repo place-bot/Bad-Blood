@@ -138,7 +138,7 @@ class AnalysisDetailTests(unittest.TestCase):
             # rows or 18 patients after repeating three seeds—are counted.
             self.assertIn("CNN: 100 to below 140 & 21 & 6 & 10.00 & 10.00 & 10.00", latex)
             self.assertIn("CNN: below 100 & 0 & 0 & -- & -- & --", latex)
-            self.assertIn("SE-last minus Additive gives -1.00/-1.00", notes)
+            self.assertEqual(notes, "")
             self.assertEqual(len(plots), 2)
             np.testing.assert_allclose(plots[0], [np.nan, -6, -6, -6], equal_nan=True)
             np.testing.assert_allclose(plots[1], [np.nan, -3, -3, -3], equal_nan=True)

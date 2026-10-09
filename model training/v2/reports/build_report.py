@@ -21,6 +21,8 @@ from reports.personal_details import build_personal_details
 from reports.task_figure import build_task_figure
 from reports.extended_tables import build_extended_tables
 from reports.personal_interpretation import build_personal_interpretation
+from reports.attention_interpretation import build_attention_interpretation, REQUIRED_THREE_SEED
+from reports.personal_failure_context import build_personal_failure_context
 from reports.verify_inventory import verify_a_inventory, verify_b_inventory
 
 A_VARIANTS = ["baseline", "se_last", "temporal_last", "cbam_last", "additive_last", "se_all",
@@ -180,8 +182,11 @@ def tables_and_figures(out, variants, aruns, apred, apaired, bsummaries, bpred, 
     for col, metric in enumerate(("mae", "rmse")):
         for q, target in enumerate(("SBP", "DBP")):
             vals = [np.array([r["macro"][metric][q] for r in arows(v)]) for v in variants]
-            axes[q, col].bar(range(len(variants)), [x.mean() for x in vals],
-                            yerr=[x.std(ddof=1) if len(x) > 1 else 0 for x in vals], capsize=3)
+            axes[q, col].bar(range(len(variants)), [x.mean() for x in vals])
+            repeated = [i for i, x in enumerate(vals) if len(x) > 1]
+            axes[q, col].errorbar(repeated, [vals[i].mean() for i in repeated],
+                                 yerr=[vals[i].std(ddof=1) for i in repeated],
+                                 fmt="none", color="black", capsize=3)
             axes[q, col].set_xticks(range(len(variants)), [DISPLAY[v] for v in variants], rotation=45, ha="right")
             axes[q, col].set_ylabel(f"{target} patient-macro {metric.upper()} (mmHg)")
     figure(out, "attention_results")
@@ -305,7 +310,7 @@ def main():
     results = out / "results"
     results.mkdir(exist_ok=True)
     seeds = (42, 43, 44)
-    principal = [v for v in variants if not v.startswith("baseline_")]
+    principal = [v for v in REQUIRED_THREE_SEED if v in variants]
     winner = min(principal, key=lambda v: np.mean([aruns[f"{v}_seed{s}"]["metrics"]["validation"]["macro"]["mae"] for s in seeds]))
     table_tex, examples = tables_and_figures(out, variants, aruns, apred, apaired, bs, bp, bd, bc)
     extra_tables, extra_notes = scientific_details(out, variants, aruns, apred, apaired, bs, bp, bd, bc,
@@ -315,6 +320,14 @@ def main():
                                              provenance=read(root / "personalization/run_manifest.json"))
     extended_tables = build_extended_tables(aruns, bs, bc, selection)
     personal_interpretation, personal_interpretation_data = build_personal_interpretation(bs, bc, bd)
+    attention_interpretation, attention_interpretation_data = build_attention_interpretation(aruns, winner)
+    context_units = []
+    for record in units:
+        if (record["strategy"], record["budget"], record["seed"]) == ("population", 10, 42):
+            with np.load(root / "personalization" / record["unit_path"] / "predictions.npz",
+                         allow_pickle=False) as saved:
+                context_units.append({"record": record, "predictions": dict(saved)})
+    failure_context, failure_context_data = build_personal_failure_context(context_units)
     build_task_figure(out)
     write_json(results / "attention.json", {"runs": aruns, "paired": apaired})
     write_json(results / "personalization.json", {
@@ -322,6 +335,8 @@ def main():
         "paired": {"/".join(map(str, k)): v for k, v in bc.items()},
         "drift": {"/".join(map(str, k)): v for k, v in bd.items()}, "selection": selection})
     write_json(results / "personal_interpretation.json", personal_interpretation_data)
+    write_json(results / "attention_interpretation.json", attention_interpretation_data)
+    write_json(results / "personal_failure_context.json", failure_context_data)
     write_json(results / "inventory.json", {"population_completed": len(aruns), "population_required": 20,
         "personal_development_completed": 1068, "personal_test_completed": len(units),
         "supplementary_ECA_completed": "eca_last" in variants,
@@ -330,13 +345,6 @@ def main():
     win_mae = mean_metric([aruns[f"{winner}_seed{s}"]["metrics"]["test"] for s in seeds], "mae")
     base_mae = mean_metric([aruns[f"baseline_seed{s}"]["metrics"]["test"] for s in seeds], "mae")
     observations = []
-    for variant in principal:
-        if variant != "baseline":
-            change = apaired[variant]["mae"]
-            observations.append(f"{DISPLAY[variant]} changes patient-macro SBP/DBP MAE by "
-                f"{number(change['estimate'][0])}/{number(change['estimate'][1])} mmHg versus the unchanged CNN. "
-                f"The patient-bootstrap intervals are [{number(change['ci_lower'][0])}, {number(change['ci_upper'][0])}] "
-                f"and [{number(change['ci_lower'][1])}, {number(change['ci_upper'][1])}].")
     for method in ("bias", "head", "last_block", "full"):
         c = bc[(method, 10)]["mae"]
         gains = np.array(list(c["patient_changes"].values()))
@@ -507,9 +515,10 @@ macro summaries retain the number of patients for whom each metric exists.
 
 \section{Results}
 """
-    final += f"Validation selects {DISPLAY[winner]} across matched seeds. Its primary-test patient-macro SBP/DBP MAE is {win_mae[0]:.2f}/{win_mae[1]:.2f} mmHg, versus {base_mae[0]:.2f}/{base_mae[1]:.2f} for the unchanged CNN. This is a validation-based choice, not selection on test accuracy.\n\n"
+    final += f"Across the six required three-seed architectures, including capacity and placement controls, validation selects {DISPLAY[winner]}. Its primary-test patient-macro SBP/DBP MAE is {win_mae[0]:.2f}/{win_mae[1]:.2f} mmHg, versus {base_mae[0]:.2f}/{base_mae[1]:.2f} for the unchanged CNN. The four-model attention ranking is reported separately below; neither ranking uses test accuracy.\n\n"
     final += "\n\n".join(tex(x) for x in observations)
     final += "\n\n" + extra_notes
+    final += "\n\n" + attention_interpretation
     final += "\n\n" + personal_interpretation
     for name, caption in (("attention_results", "Population comparison: patient-macro errors; bars show across-seed SD, absent for single-seed modality ablations."),
         ("personal_budget", "Calibration-budget curves on common later queries. Every curve averages six patients equally and three seeds; reference age changes with nested budget."),
@@ -574,7 +583,7 @@ remain outside Git under the documented artifact root. Committed JSON
 summaries retain run/config/checkpoint hashes and per-patient metrics.
 """
     final += r"\clearpage\appendix\section{Complete paired, pressure-range and budget results}" + "\n"
-    final += extra_tables + "\n" + personal_tables + "\n" + extended_tables
+    final += extra_tables + "\n" + personal_tables + "\n" + extended_tables + "\n" + failure_context
     final += r"\clearpage\bibliography{references}\end{document}" + "\n"
     (out / "final_report.tex").write_text(final)
     # Bibliographies have distinct keys; preserve verified source entries.

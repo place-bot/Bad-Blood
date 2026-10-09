@@ -101,14 +101,8 @@ def scientific_details(out, variants, aruns, apred, apaired, bs, bp, bd, bc,
         tables.append(table(["Model minus CNN", "SBP change [95\\% CI]", "DBP change [95\\% CI]"], rows,
             f"Patient-paired {metric.upper()} changes (mmHg) on the primary test. Negative values favor the intervention. "
             "Seeds are averaged within patient before resampling 141 patients; no window-level bootstrap is used."))
-    # Capacity and placement differences are descriptive matched-seed contrasts.
-    for left, right, concept in (("se_last", "additive_last", "multiplicative attention versus matched additive capacity"),
-                                 ("se_all", "se_last", "attention placement")):
-        delta = np.mean([np.asarray(aruns[f"{left}_seed{s}"]["metrics"]["test"]["macro"]["mae"]) -
-                         np.asarray(aruns[f"{right}_seed{s}"]["metrics"]["test"]["macro"]["mae"]) for s in SEEDS], 0)
-        notes.append(f"For {concept}, {DISPLAY[left]} minus {DISPLAY[right]} gives "
-                     f"{delta[0]:.2f}/{delta[1]:.2f} mmHg SBP/DBP patient-macro MAE. "
-                     "This is an architectural contrast under the fixed optimizer, not evidence that all possible tuning would rank them similarly.")
+    # Architectural contrasts and paired intervals are reported once by
+    # attention_interpretation.py rather than duplicated as point estimates.
     # Pressure-range sample counts are fixed by labels and never selected by errors.
     for target, q in (("SBP", 0), ("DBP", 1)):
         rows = []

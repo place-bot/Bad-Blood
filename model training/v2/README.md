@@ -25,6 +25,7 @@ The review/protocol gate was committed at [1b93cf13249931af650cdfa91e19343564032
 | [Track A review](attention_cnn/literature_review.pdf) | Attention evidence and prospective protocol |
 | [Track B review](personalized_forecasting/literature_review.pdf) | Calibration evidence and prospective protocol |
 | [STATUS.md](STATUS.md) | Dated workflow notes; runtime artifacts supply live run status |
+| [Runtime integrity check](reports/RUNTIME_INTEGRITY_CHECK_20261009.md) | Eight actual development units, exact saved-model replay, and frozen-parameter checks |
 
 ## Data contract and provenance
 

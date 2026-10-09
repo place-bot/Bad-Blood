@@ -1,5 +1,20 @@
 # Workflow status
 
+## 2026-10-09 16:30 America/Chicago: personal test phase
+
+- All 1,068 development units completed; the development-selected settings
+  were saved before the final-target phase began. The 684-unit final phase
+  is still running. No target outcome changes adaptation settings.
+- The population suite is still running: three baseline fits and SE-last
+  seed 42 have completed. Neither track is represented as a complete study.
+- Seventy automated tests pass. The report now distinguishes the prospective
+  four-model attention ranking from the six-required-model validation ranking,
+  adds paired capacity/placement/modality contrasts, and reports early/later
+  reference distributions as descriptive failure context rather than causes.
+- Eight real development units passed direct checkpoint replay, exact
+  source/reference/timestamp alignment, and frozen-parameter/BN-buffer checks;
+  see `reports/RUNTIME_INTEGRITY_CHECK_20261009.md`.
+
 ## 2026-10-09 16:12 America/Chicago: implementation and real execution
 
 - The review gate was committed as `1b93cf1`, followed by the population
