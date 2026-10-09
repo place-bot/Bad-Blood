@@ -533,7 +533,10 @@ Variant & Parameters & Actual epochs & Selected epochs & Total training minutes\
 \caption{Real fitting costs across included seeds. Training time includes per-epoch validation and checkpointing. Complete CPU/accelerator inference timings and memory definitions are in the result JSON.}\end{table*}
 The recorded environment is an Apple M5 with 24 GiB memory and PyTorch 2.14.0.
 Population fitting uses MPS; personal adaptation uses CPU. Measured desktop
-costs are not Raspberry Pi timings. Full source waveform hashes and patient
+costs are not Raspberry Pi timings. Personal CPU execution overlapped later
+MPS population fits on the same workstation; the saved timing ranges therefore
+include shared-host workload variation, rather than isolated-hardware benchmarks.
+Full source waveform hashes and patient
 selection hashes are verified. Tests cover V1 equality, attention shapes and
 counts, split separation, label/time alignment, support-only fitting, exact
 hand-computed metrics, frozen BN and parameters, and epoch-resume equality.

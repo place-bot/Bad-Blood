@@ -1,6 +1,6 @@
 # Workflow status
 
-## 2026-10-09 16:02 America/Chicago: implementation and real execution
+## 2026-10-09 16:12 America/Chicago: implementation and real execution
 
 - The review gate was committed as `1b93cf1`, followed by the population
   implementation (`13e42ee`) and personal-calibration implementation (`57c6059`).
@@ -10,10 +10,13 @@
   checks, portable artifact verification, report aggregation, and prediction-CLI parity.
 - The required 20-fit population suite is running on local MPS. Baseline seed
   42 completed nine epochs and selected epoch 1; seed 43 completed seventeen
-  epochs and selected epoch 9 by the frozen validation rule. Seed 44 is running.
-  These are two completed fits, not a completed experiment suite.
-- Personal development and final-target evaluation require all three newly
-  trained baseline seeds. They have not yet started at this status snapshot.
+  epochs and selected epoch 9; seed 44 completed sixteen epochs and selected
+  epoch 8 by the frozen validation rule. SE-last seed 42 is running.
+  These are three completed fits, not a completed experiment suite.
+- Personal development has started on CPU using the three completed baseline
+  seeds. Final-target evaluation will follow the frozen development selection.
+  CPU personalization overlaps later MPS population fits; timing results must
+  acknowledge shared-host load rather than claim isolated hardware benchmarks.
 - Run artifacts and resumable state are outside Git under
   `/Users/jguo9/Desktop/26fall/LLM/output/bad_blood_v2_runs/20261009`.
 - The result builder requires the full hash-verified inventory before writing
