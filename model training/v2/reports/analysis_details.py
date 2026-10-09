@@ -55,7 +55,7 @@ def table(headers, rows, caption, size="small"):
 
 
 def architecture(out):
-    fig, ax = plt.subplots(figsize=(10, 3.4), constrained_layout=True)
+    fig, ax = plt.subplots(figsize=(7.5, 2.6), constrained_layout=True)
     ax.set_axis_off()
     boxes = [(.08, .73, "ECG + PPG\n2 x 1250"), (.29, .73, "Conv7 / BN / SiLU\n8 x 625"),
              (.50, .73, "Residual block\n16 x 313"), (.71, .73, "Residual block\n32 x 157"),
