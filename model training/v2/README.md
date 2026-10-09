@@ -26,6 +26,7 @@ The review/protocol gate was committed at [1b93cf13249931af650cdfa91e19343564032
 | [Track B review](personalized_forecasting/literature_review.pdf) | Calibration evidence and prospective protocol |
 | [STATUS.md](STATUS.md) | Dated workflow notes; runtime artifacts supply live run status |
 | [Runtime integrity check](reports/RUNTIME_INTEGRITY_CHECK_20261009.md) | Eight actual development units, exact saved-model replay, and frozen-parameter checks |
+| [Personal inference guide](personalized_forecasting/INFERENCE.md) | Apply completed personal weights or calibration coefficients without later labels; exact real-artifact replay evidence |
 
 ## Data contract and provenance
 
@@ -251,6 +252,16 @@ cd "$BB_REPO/model training/v2"
 Output is a new float32 N × 2 `.npy` array in SBP/DBP order, in mmHg. Existing output files are not overwritten. Inference runs deterministically on CPU in evaluation mode without augmentation or adaptation. Other completed V2 population variants use the same CLI; the variant is read from the checkpoint.
 
 `--trust-checkpoint` is required because full training checkpoints contain optimizer/RNG Python objects and require `torch.load(weights_only=False)`. Only use a locally controlled checkpoint you trust; deserializing an untrusted pickle can execute code. The loader subsequently verifies pool=1, configuration consistency, the frozen model/data/protocol source contract, and finite target center/scale. An adjacent `manifest.json`, when present, must also match. A standalone copied `best.pt` is supported with the matching V2 source checkout; historical V1 or per-patient `adapted.pt` formats are not accepted by this CLI.
+
+## Inference from a completed personal calibration
+
+Completed Track B units also have a label-free inference entry point in
+`personalized_forecasting/predict.py`. It supports all eight saved strategies,
+checks the exact patient and population-checkpoint identity, and never fits or
+selects a method. See the [personal inference guide](personalized_forecasting/INFERENCE.md)
+for the minimal portable package and exact commands. Real replay of all eight
+K10/seed42 units for the first frozen target reproduced all 654 stored query
+predictions bitwise without modifying the existing artifacts.
 
 ## Build the result-derived report and PDFs
 

@@ -600,6 +600,11 @@ counts, split separation, label/time alignment, support-only fitting, exact
 hand-computed metrics, frozen BN and parameters, and epoch-resume equality.
 No toy-test outputs enter the real inventory. The development and final
 personal phases require 1,068 and 684 completed units respectively.
+The personal inference CLI applies saved weights or correction coefficients
+without later labels. All eight K=10/seed-42 strategies for the first frozen
+target reproduced all 654 saved query predictions bitwise on CPU; source
+artifacts remained unchanged. This replay is an engineering consistency
+check, not another independent accuracy experiment.
 
 \section{Interpretation and limitations}
 The controlled attention intervention tests mechanisms, placement, modality
