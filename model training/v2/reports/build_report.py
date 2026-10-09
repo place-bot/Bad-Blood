@@ -243,7 +243,7 @@ def tables_and_figures(out, variants, aruns, apred, apaired, bsummaries, bpred, 
             else:
                 delta = "Reference"
             table.append(DISPLAY[method] + " & " + " & ".join(number(x) for x in values) + " & " + delta + " & " + number(100 * mean_metric(rows, "within_10", "pooled")[q]) + r"\\")
-        table += [r"\bottomrule\end{tabular}", f"\\caption{{Personal {target} results at ten simulated references. Paired changes are model minus population, averaged within patient across seeds before a 2,000-resample patient bootstrap. Intervals are descriptive for six patients.}}\\end{{table*}}"]
+        table += [r"\bottomrule\end{tabular}", f"\\caption{{Personal {target} results at ten simulated references. MAE/RMSE are patient-macro; Bias, Error SD and the within-10 percentage are pooled-window statistics. Entries average matched seeds. Paired changes are model minus population, averaged within patient across seeds before a 2,000-resample patient bootstrap. Intervals are descriptive for six patients.}}\\end{{table*}}"]
         tables.append("\n".join(table))
     for q, target in enumerate(("SBP", "DBP")):
         table = [r"\begin{table*}[t]\centering\scriptsize\setlength{\tabcolsep}{3pt}",
@@ -464,6 +464,12 @@ gates. A 630-parameter additive pooled-context control matches SE capacity.
 SE-all tests placement. ECG-only/PPG-only ablations zero the absent channel.
 ECA is explicitly supplementary. All parameters and state keys are tested
 against the original implementation, rather than approximating the backbone.
+Figure~\ref{fig:architecture} shows the shared backbone and intervention point.
+\begin{figure*}[t]\centering
+\includegraphics[width=\textwidth]{figures/architecture.pdf}
+\caption{The unchanged high-resolution backbone and final-block intervention.
+Shapes omit batch size. Inputs are observed, contemporaneous ECG/PPG;
+outputs are scalar pressures.}\label{fig:architecture}\end{figure*}
 
 Inputs use provided filtered fields with per-window/channel min--max scaling.
 For observed window $X$, the physical-unit prediction is
@@ -512,6 +518,14 @@ development-selected number of updates; it never monitors later BP loss.
 The nested chronological prefixes vary both reference count and reference
 recency. Budget curves therefore describe this acquisition policy, not pure
 sample complexity with reference age held constant.
+Figure~\ref{fig:personal_task} separates calibration, later inference and evaluation.
+\begin{figure*}[t]\centering
+\includegraphics[width=\textwidth]{figures/personal_task.pdf}
+\caption{Personal calibration and later contemporaneous inference. Only early
+invasive-ABP-derived scalar references fit the personal parameters. Later
+observed ECG/PPG enters the estimator; later blood-pressure labels enter only
+the evaluator. The 20\% split uses elapsed case span and preserves recording
+gaps.}\label{fig:personal_task}\end{figure*}
 
 \subsection{Evaluation and uncertainty}
 MAE/RMSE, bias, sample error SD, median and 90th/95th error quantiles,
@@ -541,6 +555,15 @@ Correlations and $R^2$ with zero required variance are undefined, not zero;
 macro summaries retain the number of patients for whom each metric exists.
 
 \section{Results}
+Figure~\ref{fig:attention_results} summarizes population errors.
+Figures~\ref{fig:personal_budget} and~\ref{fig:personal_drift} show the
+personal-reference budget and elapsed-time analyses; the paired time-bin
+effects are in Figure~\ref{fig:drift_gain}. Individual paired changes are in
+Figure~\ref{fig:patient_changes}, with chronological examples in
+Figure~\ref{fig:temporal_examples} and observed input signals in
+Figure~\ref{fig:observed_waveforms}. Figure~\ref{fig:repeated_bland_altman}
+shows descriptive agreement. Appendix~\ref{sec:complete} provides complete
+paired, pressure-range, budget and patient-level tables.
 """
     final += f"Across the six required three-seed architectures, including capacity and placement controls, validation selects {DISPLAY[winner]}. Its primary-test patient-macro SBP/DBP MAE is {win_mae[0]:.2f}/{win_mae[1]:.2f} mmHg, versus {base_mae[0]:.2f}/{base_mae[1]:.2f} for the unchanged CNN. The four-model attention ranking is reported separately below; neither ranking uses test accuracy.\n\n"
     final += "\n\n".join(tex(x) for x in observations)
@@ -552,12 +575,10 @@ macro summaries retain the number of patients for whom each metric exists.
         ("personal_drift", "Within-case error versus minutes since the actual final reference at K=10. Patient counts vary by interval; complete counts are saved with the results."),
         ("patient_changes", "Every final patient's paired change at K=10. Negative values improve on the matched population model; heterogeneous failures must not be hidden."),
         ("temporal_examples", "Representative upper-median and worst patients under baseline seed 42 query MAE, shown at K=10. Lines break at recording gaps. Bias and full-model alternatives were prespecified; no post-hoc time alignment is applied."),
-        ("architecture", "The unchanged high-resolution backbone and final-block intervention. Shapes omit batch size. Inputs are observed, contemporaneous ECG/PPG; outputs are scalar pressures."),
-        ("personal_task", "Personal calibration and later contemporaneous inference. Only early invasive-ABP-derived scalar references fit the personal parameters. Later observed ECG/PPG enters the estimator; later blood-pressure labels enter only the evaluator. The 20\\% split uses elapsed case span and preserves recording gaps."),
         ("drift_gain", "Paired patient-macro MAE change versus the population model in each time interval, at K=10. Negative values favor calibration. Changing patient coverage is shown in the appendix."),
         ("repeated_bland_altman", "Descriptive repeated-measurement Bland--Altman plots for seed 42, K=10. Colors identify the six patients. Every fourth window is displayed; all windows determine the bias and random-intercept limits of agreement. Serial dependence remains, so these are not confidence bounds or clinical validation limits."),
         ("observed_waveforms", "Actual normalized ten-second ECG/PPG input windows from the prespecified example patients. These are observed signals, not predicted future waveforms. Corresponding scalar reference and prediction values are tabulated in the appendix.")):
-        final += f"\n\\begin{{figure*}}[t]\\centering\\includegraphics[width=\\textwidth]{{figures/{name}.pdf}}\\caption{{{caption}}}\\end{{figure*}}\n"
+        final += f"\n\\begin{{figure*}}[t]\\centering\\includegraphics[width=\\textwidth]{{figures/{name}.pdf}}\\caption{{{caption}}}\\label{{fig:{name}}}\\end{{figure*}}\n"
     final += table_tex
     final += r"""
 \section{Computational cost and engineering verification}
@@ -570,8 +591,9 @@ Variant & Parameters & Actual epochs & Selected epochs & Total training minutes\
 The recorded environment is an Apple M5 with 24 GiB memory and PyTorch 2.14.0.
 Population fitting uses MPS; personal adaptation uses CPU. Measured desktop
 costs are not Raspberry Pi timings. Personal CPU execution overlapped later
-MPS population fits on the same workstation; the saved timing ranges therefore
-include shared-host workload variation, rather than isolated-hardware benchmarks.
+MPS population fits, and other local jobs were active during part of the suite.
+The saved timing ranges therefore include shared-host workload variation,
+rather than isolated-hardware benchmarks.
 Full source waveform hashes and patient
 selection hashes are verified. Tests cover V1 equality, attention shapes and
 counts, split separation, label/time alignment, support-only fitting, exact
@@ -592,7 +614,7 @@ low-pressure strata can reveal failures concealed by overall averages.
 
 Six personal targets cannot establish a universal calibration budget or
 durability time. The references are real invasive labels sampled to simulate
-sparse calibration, whereas intended ND measurements will be cuffs. Sensor,
+sparse calibration, whereas the intended Notre Dame student measurements will use cuffs. Sensor,
 population and reference differences remain separate transfer questions.
 Provided offline filtering, upstream reference-based quality selection and
 an incompletely documented resampling kernel constrain online interpretation.
@@ -609,7 +631,7 @@ passes hash checks. Raw recordings, detailed predictions and model weights
 remain outside Git under the documented artifact root. Committed JSON
 summaries retain run/config/checkpoint hashes and per-patient metrics.
 """
-    final += r"\clearpage\appendix\section{Complete paired, pressure-range and budget results}" + "\n"
+    final += r"\clearpage\appendix\section{Complete paired, pressure-range and budget results}\label{sec:complete}" + "\n"
     final += extra_tables + "\n" + personal_tables + "\n" + extended_tables + "\n" + failure_context
     final += r"\clearpage\bibliography{references}\end{document}" + "\n"
     (out / "final_report.tex").write_text(final)

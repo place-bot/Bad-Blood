@@ -1,5 +1,22 @@
 # Workflow status
 
+## 2026-10-09 17:03 America/Chicago: draft pull request and continuing population suite
+
+- [Draft PR #1](https://github.com/place-bot/Bad-Blood/pull/1) is open. The
+  branch was verified remotely at `d21b23a`; nothing was merged into main.
+- Eight of twenty required population fits have completed. Temporal seed 44
+  is now running. The completed personal inventory is unchanged; the final
+  combined report remains gated on the full population inventory.
+- Independent source/protocol and report-method reviews found no new
+  consequential inconsistency. Seventy-eight automated tests pass again.
+- Report typography checks use isolated, explicitly synthetic layout fixtures
+  only. Actual result PDFs will be compiled and visually checked after all
+  required fits finish. Core figures now have numbered cross-references, and
+  mixed pooled/patient-macro summary columns are explicitly distinguished.
+- Other local compute jobs were observed alongside population training.
+  Timing measurements are shared-host observations, not isolated benchmarks.
+  No other task's process or resource settings were changed.
+
 ## 2026-10-09 16:46 America/Chicago: personal inventory verified
 
 - Track B completed all 1,068 development and 684 final-target units. The
