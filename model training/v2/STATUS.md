@@ -1,5 +1,26 @@
 # Workflow status
 
+## 2026-10-09 16:46 America/Chicago: personal inventory verified
+
+- Track B completed all 1,068 development and 684 final-target units. The
+  authoritative verifier checked source/data/checkpoint/configuration hashes,
+  all saved outputs, and the development-only selection. The final inventory
+  contains six targets, 4,284 common queries, 114 method/budget/seed groups and
+  33 paired comparisons. A runtime-only verified analysis snapshot is stored
+  at the artifact root under `analysis/personal_verified.json`.
+- At K=10, seed-mean patient-macro SBP/DBP MAE is 12.73/7.80 for population,
+  9.24/4.66 for full adaptation, 9.02/4.84 for bias correction and 9.01/4.04
+  for reference mean. Full-minus-population paired changes have descriptive
+  95% patient intervals of [-7.65,-0.87] and [-7.03,0.10] mmHg. These six-patient
+  results do not establish a uniform advantage for deeper adaptation.
+- Track A has six completed fits and is running Temporal seed 42. Its full
+  required inventory and the combined final report remain incomplete.
+- Seventy-eight automated tests pass. Complete metric summaries will be
+  stored losslessly as deterministic gzip JSON, with an uncompressed browsable
+  overview; compression does not drop metrics or round values.
+- The research branch was backed up to GitHub at `d024ec9`; main/V1 remain
+  unchanged. The final result/report commit and pull request are still pending.
+
 ## 2026-10-09 16:30 America/Chicago: personal test phase
 
 - All 1,068 development units completed; the development-selected settings

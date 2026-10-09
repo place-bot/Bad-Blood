@@ -23,6 +23,7 @@ from reports.extended_tables import build_extended_tables
 from reports.personal_interpretation import build_personal_interpretation
 from reports.attention_interpretation import build_attention_interpretation, REQUIRED_THREE_SEED
 from reports.personal_failure_context import build_personal_failure_context
+from reports.result_storage import write_compressed_json, build_metric_overview
 from reports.verify_inventory import verify_a_inventory, verify_b_inventory
 
 A_VARIANTS = ["baseline", "se_last", "temporal_last", "cbam_last", "additive_last", "se_all",
@@ -329,21 +330,42 @@ def main():
                 context_units.append({"record": record, "predictions": dict(saved)})
     failure_context, failure_context_data = build_personal_failure_context(context_units)
     build_task_figure(out)
-    write_json(results / "attention.json", {"runs": aruns, "paired": apaired})
-    write_json(results / "personalization.json", {
+    write_compressed_json(results / "attention.json.gz", {"runs": aruns, "paired": apaired})
+    write_compressed_json(results / "personalization.json.gz", {
         "summaries": {"/".join(map(str, k)): v for k, v in bs.items()},
         "paired": {"/".join(map(str, k)): v for k, v in bc.items()},
         "drift": {"/".join(map(str, k)): v for k, v in bd.items()}, "selection": selection})
     write_json(results / "personal_interpretation.json", personal_interpretation_data)
     write_json(results / "attention_interpretation.json", attention_interpretation_data)
     write_json(results / "personal_failure_context.json", failure_context_data)
+    write_json(results / "metric_overview.json", build_metric_overview(
+        aruns, bs, attention_interpretation_data["selection"]))
     write_json(results / "inventory.json", {"population_completed": len(aruns), "population_required": 20,
         "personal_development_completed": 1068, "personal_test_completed": len(units),
         "supplementary_ECA_completed": "eca_last" in variants,
         "artifact_root": str(root), "protocol_commit": "1b93cf13249931af650cdfa91e19343564032451",
-        "representative_patients": examples, "raw_predictions_in_git": False})
+        "representative_patients": examples, "raw_predictions_in_git": False,
+        "full_metric_archives": ["attention.json.gz", "personalization.json.gz"],
+        "browsable_metric_summary": "metric_overview.json"})
     win_mae = mean_metric([aruns[f"{winner}_seed{s}"]["metrics"]["test"] for s in seeds], "mae")
     base_mae = mean_metric([aruns[f"baseline_seed{s}"]["metrics"]["test"] for s in seeds], "mae")
+    attention_choice = attention_interpretation_data["selection"]["attention_winner"]
+    attention_choice_mae = mean_metric(
+        [aruns[f"{attention_choice}_seed{s}"]["metrics"]["test"] for s in seeds], "mae")
+    personal_abstract = {
+        method: mean_metric([bs[(method, 10, s)] for s in seeds], "mae")
+        for method in ("population", "full", "bias", "calibration_mean")}
+    abstract_result = (
+        f"Within the prospective four-model attention comparison, validation selects {DISPLAY[attention_choice]}, "
+        f"with primary-test patient-macro SBP/DBP MAE {attention_choice_mae[0]:.2f}/{attention_choice_mae[1]:.2f} mmHg "
+        f"versus {base_mae[0]:.2f}/{base_mae[1]:.2f} for the unchanged CNN. "
+        f"With ten simulated personal references, population and full-adaptation MAE are "
+        f"{personal_abstract['population'][0]:.2f}/{personal_abstract['population'][1]:.2f} and "
+        f"{personal_abstract['full'][0]:.2f}/{personal_abstract['full'][1]:.2f} mmHg; "
+        f"bias correction gives {personal_abstract['bias'][0]:.2f}/{personal_abstract['bias'][1]:.2f}, "
+        f"and reference mean gives {personal_abstract['calibration_mean'][0]:.2f}/"
+        f"{personal_abstract['calibration_mean'][1]:.2f}. "
+        "Paired patient intervals and all individual cases qualify these descriptive comparisons.\n")
     observations = []
     for method in ("bias", "head", "last_block", "full"):
         c = bc[(method, 10)]["mae"]
@@ -378,6 +400,7 @@ with adaptation settings chosen on four different patients. Results below
 are computed from completed, hash-verified experiments, not simulations of
 model accuracy. Sparse references are simulated from real invasive labels;
 they are not actual cuff events.
+""" + abstract_result + r"""
 \end{abstract}
 \section{Research questions and motivation}
 The application is a population-trained estimator that can be calibrated to
@@ -496,7 +519,11 @@ within-5/10/15-mmHg fractions, correlation and $R^2$ are saved separately
 for SBP and DBP. Patient-macro metrics weight people equally; pooled metrics
 weight windows equally. Paired changes average matched seeds within patient,
 then resample patients 2,000 times for descriptive 95\% intervals. Seed SD and
-patient uncertainty are separate. Pressure strata and all patient failures
+patient uncertainty are separate. Reference-only predictors have identical
+predictions across seeds by construction; zero seed SD does not imply zero
+patient uncertainty or three independent replications. Counts of patients
+with lower error describe its sign, not a minimum practically important change.
+Pressure strata and all patient failures
 remain visible. Repeated-measurement Bland--Altman summaries decompose
 between/within-person error; serial correlation remains a limitation.
 Drift uses time from the actual last support reference, not silently the 20\%

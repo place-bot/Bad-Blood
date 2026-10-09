@@ -261,7 +261,17 @@ Only after the full required inventory is complete:
   --data-root "$BB_POP" --individual-root "$BB_PERSONAL"
 ```
 
-The builder rejects missing required runs, toy runs, changed prediction/checkpoint artifacts, incomplete personal indexes, and inconsistent frozen selections. It generates `reports/final_report.tex`, a combined bibliography, figures, and small JSON summaries under `reports/results/`. It does not train models or compile LaTeX.
+The builder rejects missing required runs, toy runs, changed prediction/checkpoint artifacts, incomplete personal indexes, and inconsistent frozen selections. It generates `reports/final_report.tex`, a combined bibliography, figures, and machine-readable results under `reports/results/`. It does not train models or compile LaTeX.
+
+`metric_overview.json` provides browsable seed-mean pooled and patient-macro metrics, with the number of defined seeds for each endpoint. Complete per-patient, pressure-range, drift and provenance summaries remain losslessly available in `attention.json.gz` and `personalization.json.gz`. Deterministic gzip keeps these detailed results compact without dropping metrics or rounding values. Small interpretation and inventory JSON files stay uncompressed. To read a detailed archive with Python:
+
+```python
+import gzip
+import json
+
+with gzip.open("reports/results/personalization.json.gz", "rt", encoding="utf-8") as stream:
+    results = json.load(stream)
+```
 
 With a LaTeX installation providing `pdflatex` and `bibtex`, compile each document from its own directory:
 
