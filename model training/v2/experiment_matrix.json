@@ -1,0 +1,27 @@
+{
+  "protocol_commit": "1b93cf13249931af650cdfa91e19343564032451",
+  "population": {
+    "required_three_seed_variants": ["baseline", "se_last", "temporal_last", "cbam_last", "additive_last", "se_all"],
+    "seeds": [42, 43, 44],
+    "required_single_seed_variants": ["baseline_ecg", "baseline_ppg"],
+    "single_seed": 42,
+    "supplementary_three_seed_variants": ["eca_last"],
+    "required_fits": 20
+  },
+  "personalization": {
+    "task": "early calibration then contemporaneous later SBP/DBP estimation",
+    "population_initialization": "new unchanged baseline, matched seed",
+    "seeds": [42, 43, 44],
+    "budgets": [1, 2, 3, 5, 10],
+    "development_patients": 4,
+    "final_patients": 6,
+    "neural_methods": ["head", "last_block", "full"],
+    "controls": ["population", "bias", "last_reference", "calibration_mean"],
+    "affine_budgets": [3, 5, 10],
+    "learning_rates": [0.0001, 0.001],
+    "update_steps": [20, 100],
+    "affine_penalties": [1, 10, 100],
+    "required_development_units": 1068,
+    "required_final_units": 684
+  }
+}
