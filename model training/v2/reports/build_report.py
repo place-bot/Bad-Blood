@@ -16,7 +16,7 @@ import numpy as np
 V2 = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(V2))
 from shared.metrics import summarize, paired_patient_change
-from reports.analysis_details import scientific_details
+from reports.analysis_details import scientific_details, insert_gap_breaks
 from reports.personal_details import build_personal_details
 from reports.verify_inventory import verify_a_inventory, verify_b_inventory
 
@@ -234,6 +234,19 @@ def tables_and_figures(out, variants, aruns, apred, apaired, bsummaries, bpred, 
             table.append(DISPLAY[method] + " & " + " & ".join(number(x) for x in values) + " & " + delta + " & " + number(100 * mean_metric(rows, "within_10", "pooled")[q]) + r"\\")
         table += [r"\bottomrule\end{tabular}", f"\\caption{{Personal {target} results at ten simulated references. Paired changes are model minus population, averaged within patient across seeds before a 2,000-resample patient bootstrap. Intervals are descriptive for six patients.}}\\end{{table*}}"]
         tables.append("\n".join(table))
+    for q, target in enumerate(("SBP", "DBP")):
+        table = [r"\begin{table*}[t]\centering\scriptsize\setlength{\tabcolsep}{3pt}",
+                 r"\begin{tabular}{lrrrrrrrrrrrr}\toprule",
+                 f"{target}, K=10 & MAE & RMSE & Bias & SD & MedAE & Q90 & Q95 & $\\leq5$ & $\\leq10$ & $\\leq15$ & $r$ & $R^2$\\\\\\midrule"]
+        for method in B_METHODS:
+            rows = [bsummaries[(method, 10, s)] for s in (42, 43, 44)]
+            values = [mean_metric(rows, m, "pooled")[q] for m in
+                      ("mae", "rmse", "bias", "error_sd", "median_ae", "q90_ae", "q95_ae", "within_5", "within_10", "within_15", "pearson_r", "r2")]
+            values[7:10] = [100 * v for v in values[7:10]]
+            table.append(DISPLAY[method] + " & " + " & ".join(number(x) for x in values) + r"\\")
+        table += [r"\bottomrule\end{tabular}",
+                  f"\\caption{{Complete pooled-window personal {target} metrics at K=10, averaged across three seeds. Thresholds are percentages; undefined correlations are marked unavailable. Reference-only controls may correlate when pooling different patient means, despite being constant within each patient.}}\\end{{table*}}"]
+        tables.append("\n".join(table))
     methods = [m for m in B_METHODS if m != "population"]
     patients = sorted(bpaired[("bias", 10)]["mae"]["patient_changes"])
     fig, axes = plt.subplots(1, 2, figsize=(10, 4), constrained_layout=True)
@@ -259,9 +272,12 @@ def tables_and_figures(out, variants, aruns, apred, apaired, bsummaries, bpred, 
             p = bpred[("population", 10, 42)]
             mask = p["subjects"] == patient
             time = p["elapsed_since_reference_min"][mask]
-            axes[r, q].plot(time, p["y"][mask, q], color="black", linewidth=.7, label="Reference")
+            starts, ends = p["start"][mask], p["end_exclusive"][mask]
+            axes[r, q].plot(*insert_gap_breaks(time, p["y"][mask, q], starts, ends),
+                            color="black", linewidth=.7, label="Reference")
             for method in ("population", "bias", "full"):
-                axes[r, q].plot(time, bpred[(method, 10, 42)]["pred"][mask, q], linewidth=.7, alpha=.8, label=DISPLAY[method])
+                axes[r, q].plot(*insert_gap_breaks(time, bpred[(method, 10, 42)]["pred"][mask, q], starts, ends),
+                                linewidth=.7, alpha=.8, label=DISPLAY[method])
             axes[r, q].set_title(f"{patient.split(':')[-1]}: {target}")
             axes[r, q].set_xlabel("Minutes since final reference")
             axes[r, q].set_ylabel("mmHg")
@@ -286,7 +302,8 @@ def main():
     winner = min(principal, key=lambda v: np.mean([aruns[f"{v}_seed{s}"]["metrics"]["validation"]["macro"]["mae"] for s in seeds]))
     table_tex, examples = tables_and_figures(out, variants, aruns, apred, apaired, bs, bp, bd, bc)
     extra_tables, extra_notes = scientific_details(out, variants, aruns, apred, apaired, bs, bp, bd, bc,
-                                                  args.individual_root, examples, winner)
+        args.individual_root, examples, winner,
+        expected_manifest_hash=read(root / "personalization/run_manifest.json")["manifest_hash"])
     personal_tables = build_personal_details(out, bs, units, selection,
                                              provenance=read(root / "personalization/run_manifest.json"))
     write_json(results / "attention.json", {"runs": aruns, "paired": apaired})
@@ -334,7 +351,7 @@ def main():
 \begin{abstract}
 We evaluate lightweight attention interventions on the actual high-resolution
 Bad-Blood CNN and early personal calibration for later contemporaneous blood-
-pressure estimation. All models receive ten-second ECG/PPG windows and output
+pressure estimation. Waveform models receive ten-second ECG/PPG windows and output
 scalar SBP/DBP. The controlled population comparison excludes previously
 explored personal patients and retrains the unchanged baseline. A separate
 six-patient chronological pilot evaluates sparse ABP-reference calibration,
@@ -459,7 +476,7 @@ boundary-relative analysis uses a distinct label.
         ("personal_budget", "Calibration-budget curves on common later queries. Every curve averages six patients equally and three seeds; reference age changes with nested budget."),
         ("personal_drift", "Within-case error versus minutes since the actual final reference at K=10. Patient counts vary by interval; complete counts are saved with the results."),
         ("patient_changes", "Every final patient's paired change at K=10. Negative values improve on the matched population model; heterogeneous failures must not be hidden."),
-        ("temporal_examples", "Representative upper-median and worst patients under baseline seed 42 query MAE, shown at K=10. Bias and full-model alternatives were prespecified; no post-hoc time alignment is applied."),
+        ("temporal_examples", "Representative upper-median and worst patients under baseline seed 42 query MAE, shown at K=10. Lines break at recording gaps. Bias and full-model alternatives were prespecified; no post-hoc time alignment is applied."),
         ("architecture", "The unchanged high-resolution backbone and final-block intervention. Shapes omit batch size. Inputs are observed, contemporaneous ECG/PPG; outputs are scalar pressures."),
         ("drift_gain", "Paired patient-macro MAE change versus the population model in each time interval, at K=10. Negative values favor calibration. Changing patient coverage is shown in the appendix."),
         ("repeated_bland_altman", "Descriptive repeated-measurement Bland--Altman plots for seed 42, K=10. Colors identify the six patients. Every fourth window is displayed; all windows determine the bias and random-intercept limits of agreement. Serial dependence remains, so these are not confidence bounds or clinical validation limits."),

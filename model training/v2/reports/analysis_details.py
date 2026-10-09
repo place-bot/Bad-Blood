@@ -34,6 +34,19 @@ def spread(values):
     return f"{values.mean():.2f} $\\pm$ {values.std(ddof=1):.2f}" if len(values) > 1 else fmt(values[0])
 
 
+def insert_gap_breaks(x, y, starts, ends, tolerance=1e-6):
+    """Break plotted lines across missing recording intervals; never interpolate."""
+    x, y, starts, ends = [np.asarray(a, dtype=float) for a in (x, y, starts, ends)]
+    if x.ndim != 1 or any(a.shape != x.shape for a in (y, starts, ends)):
+        raise ValueError("Plot coordinates and observation intervals must align")
+    if not all(np.isfinite(a).all() for a in (x, y, starts, ends)):
+        raise ValueError("Only finite observations can define gap breaks")
+    if np.any(ends <= starts) or np.any(np.diff(starts) < 0):
+        raise ValueError("Observation intervals must be positive and chronological")
+    breaks = np.flatnonzero(starts[1:] > ends[:-1] + tolerance) + 1
+    return np.insert(x, breaks, np.nan), np.insert(y, breaks, np.nan)
+
+
 def table(headers, rows, caption, size="small"):
     return "\n".join([f"\\begin{{table*}}[t]\\centering\\{size}",
         "\\begin{tabular}{l" + "r" * (len(headers) - 1) + "}\\toprule",
@@ -48,7 +61,7 @@ def architecture(out):
              (.50, .73, "Residual block\n16 x 313"), (.71, .73, "Residual block\n32 x 157"),
              (.92, .73, "Residual block\n48 x 79"), (.92, .20, "Gate / control\n48 x 79"),
              (.66, .20, "Global mean\n48 features"), (.40, .20, "Dropout + MLP\n48 > 32 > 2"),
-             (.14, .20, "Scalar SBP / DBP\nmmHg")]
+             (.14, .20, "Denormalize\nSBP / DBP (mmHg)")]
     for i, (x, y, label) in enumerate(boxes):
         ax.text(x, y, label, ha="center", va="center", fontsize=9,
                 bbox={"boxstyle": "round,pad=.5", "facecolor": "#edf3f7", "edgecolor": "#38536a"})
@@ -67,7 +80,7 @@ def architecture(out):
 
 
 def scientific_details(out, variants, aruns, apred, apaired, bs, bp, bd, bc,
-                       individual_root, examples, validation_winner):
+                       individual_root, examples, validation_winner, *, expected_manifest_hash):
     tables, notes = [], []
     # Seed variability is different from the patient bootstrap below.
     rows = []
@@ -151,7 +164,8 @@ def scientific_details(out, variants, aruns, apred, apaired, bs, bp, bd, bc,
     fig.savefig(out / "figures/drift_gain.pdf", bbox_inches="tight")
     plt.close(fig)
     # Repeated-measurement limits accompany errors, rather than claiming each window is independent.
-    fig, axes = plt.subplots(2, 3, figsize=(10, 6), constrained_layout=True)
+    fig, axes = plt.subplots(2, 3, figsize=(10, 6), constrained_layout=True,
+                             sharex="row", sharey="row")
     for col, method in enumerate(("population", "bias", "full")):
         p = bp[(method, 10, 42)]
         patients = sorted(np.unique(p["subjects"]))
@@ -160,16 +174,33 @@ def scientific_details(out, variants, aruns, apred, apaired, bs, bp, bd, bc,
             for patient in patients:
                 mask = np.flatnonzero(p["subjects"] == patient)[::4]
                 axes[q, col].scatter((p["pred"][mask, q] + p["y"][mask, q]) / 2,
-                                    p["pred"][mask, q] - p["y"][mask, q], s=3, alpha=.35)
+                                    p["pred"][mask, q] - p["y"][mask, q], s=3, alpha=.35,
+                                    label=patient.split(":")[-1])
             for key, style in (("pooled_bias", "-"), ("loa_lower", "--"), ("loa_upper", "--")):
                 axes[q, col].axhline(ba[key][q], color="black", ls=style, lw=.8)
             axes[q, col].set_title(f"{DISPLAY[method]}: {target}")
             axes[q, col].set_xlabel("Mean of estimate/reference (mmHg)")
             axes[q, col].set_ylabel("Estimate - reference (mmHg)")
+    fig.legend(*axes[0, 0].get_legend_handles_labels(), loc="outside lower center", ncol=6,
+               frameon=False, markerscale=3)
     fig.savefig(out / "figures/repeated_bland_altman.pdf", bbox_inches="tight")
     plt.close(fig)
     # Actual observed input waveforms: first common query of the prespecified examples.
     cohort = load_personal_cohort(individual_root)
+    if cohort["manifest_hash"] != expected_manifest_hash:
+        raise ValueError("Observed-waveform source differs from the verified personal experiment")
+    cohort_rows = []
+    for role in ("development", "target"):
+        for p in cohort[role]:
+            cohort_rows.append([p["patient_id"].split(":")[-1] + " (" + ("Dev" if role == "development" else "Test") + ")",
+                                str(p["case_id"]), str(len(p["x"])),
+                                fmt(len(p["x"]) / 6), fmt((p["end_exclusive"][-1] - p["start"][0]) / 60),
+                                str(len(p["query_indices"])),
+                                fmt((p["calibration_boundary"] - p["start"][0]) / 60)])
+    tables.append(table(["Patient (role)", "Case", "Windows", "Observed min", "Elapsed min", "Queries", "Early span min"],
+        cohort_rows, "Chronological personal cohort. Observed duration counts retained ten-second windows; "
+        "elapsed duration includes gaps. Every patient has ten available spaced reference windows; K selects a nested prefix. "
+        "Queries are identical across all methods and budgets, and all ten patients were excluded from population fitting.", "scriptsize"))
     patients = {p["patient_id"]: p for p in cohort["target"]}
     example_metadata = []
     fig, axes = plt.subplots(2, 2, figsize=(10, 5), constrained_layout=True)
