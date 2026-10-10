@@ -361,14 +361,14 @@ def main():
     if attention_choice == "baseline":
         attention_abstract = (
             "The prospective four-model validation comparison retains the unchanged CNN, "
-            f"whose primary-test patient-macro SBP/DBP MAE is {base_mae[0]:.2f}/{base_mae[1]:.2f} mmHg. ")
+            f"whose primary-test patient-macro SBP/DBP MAE, averaged across seeds 42/43/44, is {base_mae[0]:.2f}/{base_mae[1]:.2f} mmHg. ")
     else:
         attention_abstract = (
             f"Within the prospective four-model attention comparison, validation selects {DISPLAY[attention_choice]}, "
-            f"with primary-test patient-macro SBP/DBP MAE {attention_choice_mae[0]:.2f}/{attention_choice_mae[1]:.2f} mmHg "
+            f"with primary-test patient-macro SBP/DBP MAE, averaged across seeds 42/43/44, of {attention_choice_mae[0]:.2f}/{attention_choice_mae[1]:.2f} mmHg "
             f"versus {base_mae[0]:.2f}/{base_mae[1]:.2f} for the unchanged CNN. ")
     abstract_result = (attention_abstract +
-        f"With ten simulated personal references, population and full-adaptation MAE are "
+        f"With ten simulated personal references, three-seed mean patient-macro population and full-adaptation MAE are "
         f"{personal_abstract['population'][0]:.2f}/{personal_abstract['population'][1]:.2f} and "
         f"{personal_abstract['full'][0]:.2f}/{personal_abstract['full'][1]:.2f} mmHg; "
         f"bias correction gives {personal_abstract['bias'][0]:.2f}/{personal_abstract['bias'][1]:.2f}, "
@@ -575,16 +575,16 @@ shows descriptive agreement. Appendix~\ref{sec:complete} provides complete
 paired, pressure-range, budget and patient-level tables.
 """
     if winner == "baseline":
-        final += f"The unchanged CNN ranks first on validation among all six required three-seed architectures, including capacity and placement controls. Its primary-test patient-macro SBP/DBP MAE is {base_mae[0]:.2f}/{base_mae[1]:.2f} mmHg. "
+        final += f"The unchanged CNN ranks first on validation among all six required three-seed architectures, including capacity and placement controls. Its primary-test patient-macro SBP/DBP MAE, averaged across seeds 42/43/44, is {base_mae[0]:.2f}/{base_mae[1]:.2f} mmHg. "
     else:
-        final += f"Across the six required three-seed architectures, including capacity and placement controls, validation selects {DISPLAY[winner]}. Its primary-test patient-macro SBP/DBP MAE is {win_mae[0]:.2f}/{win_mae[1]:.2f} mmHg, versus {base_mae[0]:.2f}/{base_mae[1]:.2f} for the unchanged CNN. "
-    final += "The four-model attention ranking is reported separately below; neither ranking uses test accuracy.\n\n"
+        final += f"Across the six required three-seed architectures, including capacity and placement controls, validation selects {DISPLAY[winner]}. Its primary-test patient-macro SBP/DBP MAE, averaged across seeds 42/43/44, is {win_mae[0]:.2f}/{win_mae[1]:.2f} mmHg, versus {base_mae[0]:.2f}/{base_mae[1]:.2f} for the unchanged CNN. "
+    final += "The four-model attention ranking is reported separately below; neither ranking uses test accuracy. Unless explicitly labeled seed 42, principal-model results average three separately evaluated checkpoints, not one seed-42 run or an ensemble of predictions.\n\n"
     final += "\n\n".join(tex(x) for x in observations)
     final += "\n\n" + extra_notes
     final += "\n\n" + attention_interpretation
     final += "\n\n" + training_diagnostics
     final += "\n\n" + personal_interpretation
-    for name, caption in (("attention_results", "Population comparison: patient-macro errors; bars show across-seed SD, absent for single-seed modality ablations."),
+    for name, caption in (("attention_results", "Primary-test patient-macro errors, averaged across seeds 42/43/44; error bars are sample seed SD. ECG-only/PPG-only results use seed 42 only and have no seed error bar. Test results do not determine selection."),
         ("attention_training_mse", "Complete recorded training histories for the four primary architectures. Lines distinguish seeds and stop at their actual last epochs. MSE uses standardized targets and training-time augmentation; it is not measured in mmHg."),
         ("attention_validation_mae", "Complete validation histories for the same fixed fits. The ordinate averages patient-macro SBP and DBP MAE in mmHg. Circles mark saved validation-selected epochs; neither curves nor markers use test outcomes."),
         ("personal_budget", "Calibration-budget curves on common later queries. Every curve averages six patients equally and three seeds; reference age changes with nested budget."),

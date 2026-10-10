@@ -163,6 +163,29 @@ def _secondary_tables(comparisons):
     return "\n\n".join(tables)
 
 
+def _validation_table(records):
+    rows = []
+    for index, variant in enumerate(REQUIRED_THREE_SEED):
+        if index == len(ATTENTION_SET):
+            rows.append(r"\midrule")
+        row = records[variant]
+        values = [*row["sbp_dbp_seed_mean"], *row["selection_score_by_seed"], row["selection_score_mean"]]
+        rows.append(DISPLAY[variant] + " & " + " & ".join(f"{value:.3f}" for value in values) + r"\\")
+    return "\n".join([
+        r"\begin{table*}[t]\centering\small\setlength{\tabcolsep}{5pt}",
+        r"\begin{tabular}{lrrrrrr}\toprule",
+        r"Model & SBP mean & DBP mean & $Q_{42}$ & $Q_{43}$ & $Q_{44}$ & $\overline{Q}$\\\midrule",
+        *rows, r"\bottomrule\end{tabular}",
+        r"\caption{Validation patient-macro MAE (mmHg), not primary-test error. "
+        r"Every run uses its own validation-selected checkpoint. SBP and DBP means average seeds 42/43/44; "
+        r"$Q_s=({\rm MAE}_{s,\rm SBP}+{\rm MAE}_{s,\rm DBP})/2$ is one seed's score, "
+        r"and $\overline{Q}=(Q_{42}+Q_{43}+Q_{44})/3$ ranks architectures. "
+        r"The first four rows form the attention comparison; Additive and SE-all are capacity and placement controls in the separate six-model ranking. "
+        r"Values are rounded to three decimals for display only; selection uses unrounded values.}"
+        r"\label{tab:attention_validation}\end{table*}",
+    ])
+
+
 def build_attention_interpretation(aruns, validation_winner=None):
     """Return (LaTeX, JSON-ready evidence) from complete verified real summaries.
 
@@ -171,8 +194,15 @@ def build_attention_interpretation(aruns, validation_winner=None):
     is reported separately; optional ECA never enters either primary ranking.
     """
     variants = _validate(aruns)
-    scores = {variant: float(np.mean([aruns[f"{variant}_seed{seed}"]["metrics"]["validation"]["macro"]["mae"]
-                                     for seed in SEEDS])) for variant in REQUIRED_THREE_SEED}
+    validation_mae = {variant: np.asarray([
+        aruns[f"{variant}_seed{seed}"]["metrics"]["validation"]["macro"]["mae"] for seed in SEEDS], float)
+        for variant in REQUIRED_THREE_SEED}
+    scores = {variant: float(values.mean()) for variant, values in validation_mae.items()}
+    validation_records = {variant: {
+        "seeds": list(SEEDS), "sbp_dbp_by_seed": values.tolist(),
+        "sbp_dbp_seed_mean": values.mean(0).tolist(),
+        "selection_score_by_seed": values.mean(1).tolist(), "selection_score_mean": scores[variant],
+    } for variant, values in validation_mae.items()}
     main_winner = min(ATTENTION_SET, key=scores.get)
     required_winner = min(REQUIRED_THREE_SEED, key=scores.get)
     _require(validation_winner is None or validation_winner == required_winner,
@@ -188,7 +218,8 @@ def build_attention_interpretation(aruns, validation_winner=None):
                 "tie_rule": "first model in the stated fixed candidate order; exact score ties only",
                 "selection_uses": "validation patient-macro MAE averaged over SBP/DBP and three seeds only",
                 "supplementary_eca_excluded": True}
-    details = {"selection": rankings, "comparisons": comparisons, "target_order": list(TARGETS),
+    details = {"selection": rankings, "validation_table": validation_records,
+               "comparisons": comparisons, "target_order": list(TARGETS),
                "primary_test_patients": 141, "primary_test_windows": 56400,
                "uncertainty": "2,000 patient resamples after within-patient matched-seed averaging; descriptive, not multiplicity-adjusted",
                "conditioning": "fixed fitted checkpoints and available offline-filtered cohort; does not sample a population of training seeds",
@@ -199,7 +230,12 @@ def build_attention_interpretation(aruns, validation_winner=None):
         f"The separate required three-seed comparison, which also includes Additive and SE-all, selects "
         f"{DISPLAY[required_winner]} ({scores[required_winner]:.2f} mmHg). "
         + ("The choices coincide. " if main_winner == required_winner else "The choices differ; the larger set is not relabeled as the primary attention family. ")
-        + "Both choices use validation only; capacity, placement and modality contrasts retain their distinct roles, and optional ECA is supplementary.",
+        + "Both choices use validation only; capacity, placement and modality contrasts retain their distinct roles, and optional ECA is supplementary. "
+        + r"Table~\ref{tab:attention_validation} separates validation SBP/DBP errors from the combined selection scores. "
+        + "A run is one architecture at one seed: its checkpoint is selected using that run's validation history. "
+        + "An architecture is ranked by the mean validation score of its three selected runs. "
+        + "Reported three-seed metrics average separately evaluated checkpoints, not predictions in an ensemble; a seed-42 score is one run, not the three-seed mean.",
+        _validation_table(validation_records),
         r"\paragraph{Attention effects and heterogeneity.}",
         "The following are primary-test MAE changes with descriptive paired 95\\% patient intervals, in mmHg, relative to the same-seed CNN. "
         "Negative values reduce error. SBP and DBP remain separate rather than being replaced by the selection scalar."]

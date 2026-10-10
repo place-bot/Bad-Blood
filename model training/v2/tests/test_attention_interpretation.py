@@ -140,11 +140,34 @@ class AttentionInterpretationTests(unittest.TestCase):
         before = copy.deepcopy(runs)
         latex, _ = build_attention_interpretation(runs)
         self.assertEqual(runs, before)
-        self.assertEqual(latex.count(r"\begin{table*}"), 2)
-        self.assertEqual(latex.count(r"\end{table*}"), 2)
+        self.assertEqual(latex.count(r"\begin{table*}"), 3)
+        self.assertEqual(latex.count(r"\end{table*}"), 3)
         self.assertNotIn(r"\\[", latex)
         self.assertIn("not evidence of equivalence", latex)
         self.assertIn("not multiplicity-adjusted", latex)
+
+    def test_validation_table_separates_targets_single_seeds_and_architecture_mean(self):
+        latex, data = build_attention_interpretation(fixture(include_eca=True))
+        rows = data["validation_table"]
+        self.assertEqual(tuple(rows), REQUIRED_THREE_SEED)
+        self.assertEqual(rows["baseline"]["seeds"], [42, 43, 44])
+        np.testing.assert_allclose(rows["baseline"]["sbp_dbp_by_seed"],
+                                   [[29.9, 19.9], [30., 20.], [30.1, 20.1]])
+        np.testing.assert_allclose(rows["baseline"]["sbp_dbp_seed_mean"], [30., 20.])
+        np.testing.assert_allclose(rows["baseline"]["selection_score_by_seed"], [24.9, 25., 25.1])
+        self.assertAlmostEqual(rows["baseline"]["selection_score_mean"], 25.)
+        for variant, row in rows.items():
+            self.assertEqual(row["selection_score_mean"], data["selection"]["validation_mean_macro_mae"][variant])
+        table = latex.split(r"\begin{table*}", 1)[1].split(r"\end{table*}", 1)[0]
+        self.assertIn(r"CNN & 30.000 & 20.000 & 24.900 & 25.000 & 25.100 & 25.000\\", table)
+        self.assertIn(r"Additive & 27.000 & 17.000 & 21.900 & 22.000 & 22.100 & 22.000\\", table)
+        self.assertIn(r"$Q_{42}$ & $Q_{43}$ & $Q_{44}$ & $\overline{Q}$", table)
+        self.assertNotIn("ECA", table)
+        self.assertNotIn("ECG only", table)
+        self.assertIn("not primary-test error", table)
+        self.assertIn("selection uses unrounded values", table)
+        self.assertIn("not predictions in an ensemble", latex)
+        self.assertIn("a seed-42 score is one run, not the three-seed mean", latex)
 
 
 if __name__ == "__main__":
