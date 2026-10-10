@@ -1,0 +1,395 @@
+{
+  "budget": 10,
+  "seed": 42,
+  "artifact_strategy": "population",
+  "n_patients": 6,
+  "target_order": [
+    "SBP",
+    "DBP"
+  ],
+  "units": "mmHg",
+  "sd_ddof": 1,
+  "shift_sign": "query mean minus support mean",
+  "patients": {
+    "vitaldb:p005879": {
+      "case": "c5552",
+      "support": {
+        "n_windows": 10,
+        "targets": {
+          "SBP": {
+            "mean": 92.9407569885254,
+            "sample_sd": 5.994954789493037,
+            "minimum": 84.84770965576172,
+            "maximum": 103.96912384033203,
+            "range": [
+              84.84770965576172,
+              103.96912384033203
+            ]
+          },
+          "DBP": {
+            "mean": 48.174906158447264,
+            "sample_sd": 3.025076151746928,
+            "minimum": 43.74964904785156,
+            "maximum": 53.429229736328125,
+            "range": [
+              43.74964904785156,
+              53.429229736328125
+            ]
+          }
+        }
+      },
+      "query": {
+        "n_windows": 654,
+        "targets": {
+          "SBP": {
+            "mean": 94.58389436214343,
+            "sample_sd": 7.271360165510883,
+            "minimum": 82.11553955078125,
+            "maximum": 120.23362731933594,
+            "range": [
+              82.11553955078125,
+              120.23362731933594
+            ]
+          },
+          "DBP": {
+            "mean": 46.63910212502203,
+            "sample_sd": 3.714897480698863,
+            "minimum": 39.051002502441406,
+            "maximum": 60.22223663330078,
+            "range": [
+              39.051002502441406,
+              60.22223663330078
+            ]
+          }
+        }
+      },
+      "query_minus_support_mean": {
+        "SBP": 1.643137373618032,
+        "DBP": -1.5358040334252365
+      },
+      "support_elapsed_span_seconds": 1720.0,
+      "query_elapsed_span_seconds": 6950.0,
+      "calibration_boundary": 6170.008,
+      "config_hash": "28701796530908b7e9d548b74a71cdbb1735d7d7eab8336f4076fd6fa807e368",
+      "checkpoint_sha256": "972125f69da1b01d827e2d8162228311987bb781da5640b72309d2b36cf15f35",
+      "unit_path": "test/vitaldb:p005879/seed42/K10/population/fixed"
+    },
+    "vitaldb:p005885": {
+      "case": "c0637",
+      "support": {
+        "n_windows": 10,
+        "targets": {
+          "SBP": {
+            "mean": 135.44561767578125,
+            "sample_sd": 22.78891805550741,
+            "minimum": 111.92581176757812,
+            "maximum": 179.7768096923828,
+            "range": [
+              111.92581176757812,
+              179.7768096923828
+            ]
+          },
+          "DBP": {
+            "mean": 73.08373641967773,
+            "sample_sd": 6.875788323178634,
+            "minimum": 65.1496810913086,
+            "maximum": 88.84844970703125,
+            "range": [
+              65.1496810913086,
+              88.84844970703125
+            ]
+          }
+        }
+      },
+      "query": {
+        "n_windows": 1220,
+        "targets": {
+          "SBP": {
+            "mean": 130.41350483503498,
+            "sample_sd": 13.423497707738626,
+            "minimum": 102.68559265136719,
+            "maximum": 182.77284240722656,
+            "range": [
+              102.68559265136719,
+              182.77284240722656
+            ]
+          },
+          "DBP": {
+            "mean": 72.18090235288025,
+            "sample_sd": 4.558119605756416,
+            "minimum": 60.945919036865234,
+            "maximum": 100.26504516601562,
+            "range": [
+              60.945919036865234,
+              100.26504516601562
+            ]
+          }
+        }
+      },
+      "query_minus_support_mean": {
+        "SBP": -5.032112840746265,
+        "DBP": -0.9028340667974817
+      },
+      "support_elapsed_span_seconds": 3440.0,
+      "query_elapsed_span_seconds": 13800.000000000002,
+      "calibration_boundary": 3836.008,
+      "config_hash": "ca734440183086f452c5893e97de5aaf93ddb7cb99a721de563f581f216d710c",
+      "checkpoint_sha256": "972125f69da1b01d827e2d8162228311987bb781da5640b72309d2b36cf15f35",
+      "unit_path": "test/vitaldb:p005885/seed42/K10/population/fixed"
+    },
+    "vitaldb:p005977": {
+      "case": "c3725",
+      "support": {
+        "n_windows": 10,
+        "targets": {
+          "SBP": {
+            "mean": 109.49468460083008,
+            "sample_sd": 20.115088352680385,
+            "minimum": 80.44769287109375,
+            "maximum": 139.10662841796875,
+            "range": [
+              80.44769287109375,
+              139.10662841796875
+            ]
+          },
+          "DBP": {
+            "mean": 50.28946876525879,
+            "sample_sd": 8.05503558812935,
+            "minimum": 38.99069595336914,
+            "maximum": 62.01438522338867,
+            "range": [
+              38.99069595336914,
+              62.01438522338867
+            ]
+          }
+        }
+      },
+      "query": {
+        "n_windows": 569,
+        "targets": {
+          "SBP": {
+            "mean": 106.50586334389416,
+            "sample_sd": 8.426505773470483,
+            "minimum": 76.76049041748047,
+            "maximum": 143.42530822753906,
+            "range": [
+              76.76049041748047,
+              143.42530822753906
+            ]
+          },
+          "DBP": {
+            "mean": 51.82912308972833,
+            "sample_sd": 5.135371209234487,
+            "minimum": 39.736328125,
+            "maximum": 81.72034454345703,
+            "range": [
+              39.736328125,
+              81.72034454345703
+            ]
+          }
+        }
+      },
+      "query_minus_support_mean": {
+        "SBP": -2.988821256935921,
+        "DBP": 1.539654324469538
+      },
+      "support_elapsed_span_seconds": 1700.0,
+      "query_elapsed_span_seconds": 6910.0,
+      "calibration_boundary": 3960.008,
+      "config_hash": "7fadd0df739d9d6bc875b3295e60fa31bca086ae3e01023ae48f3aaf37278f4f",
+      "checkpoint_sha256": "972125f69da1b01d827e2d8162228311987bb781da5640b72309d2b36cf15f35",
+      "unit_path": "test/vitaldb:p005977/seed42/K10/population/fixed"
+    },
+    "vitaldb:p005984": {
+      "case": "c4777",
+      "support": {
+        "n_windows": 10,
+        "targets": {
+          "SBP": {
+            "mean": 97.24259033203126,
+            "sample_sd": 12.672218981208696,
+            "minimum": 83.26080322265625,
+            "maximum": 124.51984405517578,
+            "range": [
+              83.26080322265625,
+              124.51984405517578
+            ]
+          },
+          "DBP": {
+            "mean": 46.30576057434082,
+            "sample_sd": 7.902984162650652,
+            "minimum": 38.83132553100586,
+            "maximum": 64.76240539550781,
+            "range": [
+              38.83132553100586,
+              64.76240539550781
+            ]
+          }
+        }
+      },
+      "query": {
+        "n_windows": 666,
+        "targets": {
+          "SBP": {
+            "mean": 98.10097363904431,
+            "sample_sd": 11.187827482560392,
+            "minimum": 75.53993225097656,
+            "maximum": 149.03160095214844,
+            "range": [
+              75.53993225097656,
+              149.03160095214844
+            ]
+          },
+          "DBP": {
+            "mean": 50.43735087741245,
+            "sample_sd": 5.291885557105526,
+            "minimum": 37.45887756347656,
+            "maximum": 74.97730255126953,
+            "range": [
+              37.45887756347656,
+              74.97730255126953
+            ]
+          }
+        }
+      },
+      "query_minus_support_mean": {
+        "SBP": 0.8583833070130567,
+        "DBP": 4.131590303071626
+      },
+      "support_elapsed_span_seconds": 2100.0,
+      "query_elapsed_span_seconds": 8620.0,
+      "calibration_boundary": 2338.008,
+      "config_hash": "7420463d2140a28e2f49ee7028e5d02ce32e3a111277b493dd8bfe95c818ccb4",
+      "checkpoint_sha256": "972125f69da1b01d827e2d8162228311987bb781da5640b72309d2b36cf15f35",
+      "unit_path": "test/vitaldb:p005984/seed42/K10/population/fixed"
+    },
+    "vitaldb:p006009": {
+      "case": "c2935",
+      "support": {
+        "n_windows": 10,
+        "targets": {
+          "SBP": {
+            "mean": 104.7133659362793,
+            "sample_sd": 13.029329644982258,
+            "minimum": 84.22441864013672,
+            "maximum": 123.14717864990234,
+            "range": [
+              84.22441864013672,
+              123.14717864990234
+            ]
+          },
+          "DBP": {
+            "mean": 51.23940505981445,
+            "sample_sd": 5.705982597345224,
+            "minimum": 44.092552185058594,
+            "maximum": 60.12007141113281,
+            "range": [
+              44.092552185058594,
+              60.12007141113281
+            ]
+          }
+        }
+      },
+      "query": {
+        "n_windows": 761,
+        "targets": {
+          "SBP": {
+            "mean": 109.70373278503818,
+            "sample_sd": 14.450758615671743,
+            "minimum": 86.74098205566406,
+            "maximum": 163.319091796875,
+            "range": [
+              86.74098205566406,
+              163.319091796875
+            ]
+          },
+          "DBP": {
+            "mean": 54.83053146241999,
+            "sample_sd": 5.39361719413152,
+            "minimum": 46.47688293457031,
+            "maximum": 82.80470275878906,
+            "range": [
+              46.47688293457031,
+              82.80470275878906
+            ]
+          }
+        }
+      },
+      "query_minus_support_mean": {
+        "SBP": 4.990366848758882,
+        "DBP": 3.591126402605539
+      },
+      "support_elapsed_span_seconds": 769.9999999999998,
+      "query_elapsed_span_seconds": 12490.000000000002,
+      "calibration_boundary": 4506.008,
+      "config_hash": "54725e14b792ee18c116d06f1107ca560b045318efb1fa2b5ff07fe66f52b43e",
+      "checkpoint_sha256": "972125f69da1b01d827e2d8162228311987bb781da5640b72309d2b36cf15f35",
+      "unit_path": "test/vitaldb:p006009/seed42/K10/population/fixed"
+    },
+    "vitaldb:p006052": {
+      "case": "c4462",
+      "support": {
+        "n_windows": 10,
+        "targets": {
+          "SBP": {
+            "mean": 90.9565357208252,
+            "sample_sd": 23.338587040314245,
+            "minimum": 60.76675033569336,
+            "maximum": 124.67269134521484,
+            "range": [
+              60.76675033569336,
+              124.67269134521484
+            ]
+          },
+          "DBP": {
+            "mean": 54.312923431396484,
+            "sample_sd": 9.409663552255934,
+            "minimum": 42.36676025390625,
+            "maximum": 69.14370727539062,
+            "range": [
+              42.36676025390625,
+              69.14370727539062
+            ]
+          }
+        }
+      },
+      "query": {
+        "n_windows": 414,
+        "targets": {
+          "SBP": {
+            "mean": 97.39859266787911,
+            "sample_sd": 12.106178507571332,
+            "minimum": 70.22972869873047,
+            "maximum": 138.48245239257812,
+            "range": [
+              70.22972869873047,
+              138.48245239257812
+            ]
+          },
+          "DBP": {
+            "mean": 54.43731281262089,
+            "sample_sd": 4.849388076646291,
+            "minimum": 42.334346771240234,
+            "maximum": 67.70941162109375,
+            "range": [
+              42.334346771240234,
+              67.70941162109375
+            ]
+          }
+        }
+      },
+      "query_minus_support_mean": {
+        "SBP": 6.4420569470539135,
+        "DBP": 0.1243893812244039
+      },
+      "support_elapsed_span_seconds": 1190.0,
+      "query_elapsed_span_seconds": 4800.0,
+      "calibration_boundary": 1934.008,
+      "config_hash": "9d46e4e76f746d58333550a317257bb94488e4bde5703ff8c5ef318a76a62981",
+      "checkpoint_sha256": "972125f69da1b01d827e2d8162228311987bb781da5640b72309d2b36cf15f35",
+      "unit_path": "test/vitaldb:p006052/seed42/K10/population/fixed"
+    }
+  },
+  "interpretation_limit": "These are descriptive differences between ten sparse early ABP-derived references and all later query references, not evidence that a particular physiological mechanism or overfitting caused an error increase. SD is variability among the retained reference windows, not cuff uncertainty. Unequal sample sizes and serial dependence also affect SD and observed ranges; a wider query range alone is not proof of temporal drift.",
+  "inference_claim": "descriptive, not causal or clinical harm"
+}

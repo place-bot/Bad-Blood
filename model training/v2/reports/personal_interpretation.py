@@ -190,6 +190,22 @@ def build_personal_interpretation(bs, bc, bd):
         details["budgets"][str(budget)] = outcomes
         paragraphs.append(f"\\textbf{{K={budget}.}} " + " ".join(sentences))
 
+    full_reference_key = ("full", "calibration_mean", 10)
+    if full_reference_key not in comparisons:
+        comparisons[full_reference_key] = paired_patient_change(
+            [bs[("full", 10, seed)] for seed in SEEDS],
+            [bs[("calibration_mean", 10, seed)] for seed in SEEDS], "mae")
+    full_reference = comparisons[full_reference_key]
+    details["k10_full_minus_reference_mean"] = full_reference
+    full_reference_text = "; ".join(
+        f"{target} {full_reference['estimate'][q]:+.3f} "
+        f"[{full_reference['ci_lower'][q]:+.3f}, {full_reference['ci_upper'][q]:+.3f}]"
+        for q, target in enumerate(TARGETS))
+    paragraphs.append(f"At K=10, Full minus Reference mean patient-macro MAE is {full_reference_text} mmHg "
+                      r"(descriptive paired 95\% patient intervals). Positive changes favor Reference mean. "
+                      "Matched-seed differences are averaged within each of the six patients before resampling patients; "
+                      "these intervals are not adjusted for multiple comparisons and do not select a deployment method.")
+
     paragraphs.append(r"\paragraph{Whose prediction error improves or worsens at K=10?}")
     for q, target in enumerate(TARGETS):
         counts_text = []

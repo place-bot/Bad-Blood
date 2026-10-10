@@ -658,9 +658,13 @@ passes hash checks. Raw recordings, detailed predictions and model weights
 remain outside Git under the documented artifact root. Committed JSON
 summaries retain run/config/checkpoint hashes and per-patient metrics.
 """
-    final += r"\clearpage\appendix\section{Complete paired, pressure-range and budget results}\label{sec:complete}" + "\n"
-    final += extra_tables + "\n" + personal_tables + "\n" + extended_tables + "\n" + failure_context
-    final += r"\clearpage\bibliography{references}\end{document}" + "\n"
+    # Full-width appendix tables may start under their heading rather than
+    # being deferred by the two-column table* top-float rule to a blank opener.
+    final += r"\onecolumn\appendix\section{Complete paired, pressure-range and budget results}\label{sec:complete}" + "\n"
+    appendix_tex = extra_tables + "\n" + personal_tables + "\n" + extended_tables + "\n" + failure_context
+    final += appendix_tex.replace(r"\begin{table*}[t]", r"\begin{table}[!htbp]").replace(
+        r"\end{table*}", r"\end{table}")
+    final += r"\twocolumn\bibliography{references}\end{document}" + "\n"
     (out / "final_report.tex").write_text(final)
     # Bibliographies have distinct keys; preserve verified source entries.
     (out / "references.bib").write_text((V2 / "attention_cnn/references.bib").read_text() + "\n" +

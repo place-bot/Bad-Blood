@@ -1,5 +1,36 @@
 # Workflow status
 
+## 2026-10-09 22:49 America/Chicago: complete experiment and report verification
+
+- All 20 required population fits are complete, including the ECG-only and
+  PPG-only controls. The original orchestrator exited successfully. No test
+  outcome changed a training setting or the frozen inventory.
+- All 1,068 personal development units and 684 final-target units are complete.
+  The strict builder verified source/configuration/checkpoint/prediction hashes
+  and generated the complete actual-result report and metric archives.
+- Independent numeric checks reproduced all 20 population metric sets, all
+  684 personal units, 114 personal summary groups, the paired comparisons,
+  and all six patients' K10 outcomes. The full suite passes 98 tests.
+- SE-last has the lowest observed test SBP/DBP MAE among the six required
+  three-seed dual-channel models, while CNN has the lowest mean validation
+  score. PPG-only seed 42 is lower still than matched-seed CNN and SE-last;
+  this single-run evidence is explicitly separated from the three-seed results.
+- Personal full adaptation at K10 improves on the population model but does
+  not outperform reference mean on the observed average errors. The report
+  includes the paired uncertainty, per-patient failures and pressure strata.
+- The two literature reviews (7 and 6 pages) were compiled and inspected
+  before implementation. The completed combined ACL report has 25 pages;
+  every page has been visually checked. No missing references or overfull
+  boxes remain. The appendix uses full-width tables.
+- All changes remain under `model training/v2/`; V1 and unrelated files are
+  unchanged relative to the research base. Final artifacts are prepared for
+  the dedicated branch and PR, without merging. PDF hashes and verification
+  details are in [FINAL_VERIFICATION.md](reports/FINAL_VERIFICATION.md).
+- No required experiment is outstanding. Supplementary ECA was not run;
+  actual cuff calibration, cross-visit durability, and Raspberry Pi benchmarks
+  are unsupported questions, not completed claims. Full runtime weights and
+  predictions remain local and outside ordinary Git history.
+
 ## 2026-10-09 22:17 America/Chicago: all required three-seed comparisons complete
 
 - Eighteen of twenty population fits are complete: all six required dual-channel

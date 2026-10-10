@@ -316,8 +316,21 @@ def build_attention_interpretation(aruns, validation_winner=None):
         + " SE-all inserts gates at three residual outputs and has 374 more parameters than SE-last; the contrast combines insertion depth with capacity, not a pure relocation. "
         "The direct CBAM1D-versus-SE and CBAM1D-versus-Temporal MAE/RMSE contrasts are tabulated below. "
         "CBAM1D also changes channel pooling from SE's average-only descriptor to shared average/max descriptors, so it is not a factorial test isolating the added temporal gate.")
+    seed42_mae = {variant: list(aruns[f"{variant}_seed42"]["metrics"]["test"]["macro"]["mae"])
+                  for variant in ("baseline_ppg", "baseline", "se_last")}
+    details["matched_seed42_modality_mae"] = {"seed": 42, "patient_macro_mae": seed42_mae,
+                                           "scope": "single matched run per model, not three-seed evidence"}
+    seed42_text = (
+        f"At seed 42, PPG-only primary-test patient-macro SBP/DBP MAE is {seed42_mae['baseline_ppg'][0]:.3f}/{seed42_mae['baseline_ppg'][1]:.3f} mmHg, "
+        f"versus {seed42_mae['baseline'][0]:.3f}/{seed42_mae['baseline'][1]:.3f} for CNN "
+        f"and {seed42_mae['se_last'][0]:.3f}/{seed42_mae['se_last'][1]:.3f} for SE-last. ")
+    if all(np.all(np.asarray(seed42_mae["baseline_ppg"]) < np.asarray(seed42_mae[comparator]) - TOLERANCE)
+           for comparator in ("baseline", "se_last")):
+        seed42_text += "PPG-only has lower observed point errors on both endpoints than both comparators in this run. "
+    seed42_text += "These matched-seed point estimates are single-run evidence, not a three-seed superiority claim. "
     paragraphs.extend([r"\paragraph{Observed-sensor ablations.}",
         "The zero-channel models are retrained baselines, not missing-sensor tests of the trained two-sensor model. "
+        + seed42_text
         + "; ".join(f"{DISPLAY[variant]} minus CNN MAE: {_delta_text(comparisons[f'{variant}-minus-baseline']['mae'])}"
                     for variant in MODALITIES) + ". "
         "ECG only removes PPG, whereas PPG only removes ECG. Their patient intervals condition on seed 42 and cannot establish seed-robust sensor importance or an attention-by-modality interaction. "

@@ -138,6 +138,9 @@ class AnalysisDetailTests(unittest.TestCase):
             # rows or 18 patients after repeating three seeds—are counted.
             self.assertIn("CNN: 100 to below 140 & 21 & 6 & 10.00 & 10.00 & 10.00", latex)
             self.assertIn("CNN: below 100 & 0 & 0 & -- & -- & --", latex)
+            self.assertIn("Three-seed comparisons average seeds 42/43/44 within patient", latex)
+            self.assertIn("ECG-only/PPG-only ablations compare seed 42 only", latex)
+            self.assertIn("The bootstrap resamples 141 patients, not windows", latex)
             self.assertEqual(notes, "")
             self.assertEqual(len(plots), 2)
             np.testing.assert_allclose(plots[0], [np.nan, -6, -6, -6], equal_nan=True)

@@ -100,7 +100,8 @@ def scientific_details(out, variants, aruns, apred, apaired, bs, bp, bd, bc,
                         f"{fmt(result['ci_upper'][q])}]" for q in range(2)])
         tables.append(table(["Model minus CNN", "SBP change [95\\% CI]", "DBP change [95\\% CI]"], rows,
             f"Patient-paired {metric.upper()} changes (mmHg) on the primary test. Negative values favor the intervention. "
-            "Seeds are averaged within patient before resampling 141 patients; no window-level bootstrap is used."))
+            "Three-seed comparisons average seeds 42/43/44 within patient; ECG-only/PPG-only ablations compare seed 42 only. "
+            "The bootstrap resamples 141 patients, not windows."))
     # Architectural contrasts and paired intervals are reported once by
     # attention_interpretation.py rather than duplicated as point estimates.
     # Pressure-range sample counts are fixed by labels and never selected by errors.

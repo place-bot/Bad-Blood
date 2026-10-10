@@ -104,6 +104,21 @@ class PersonalInterpretationTests(unittest.TestCase):
         self.assertNotIn("harmed", tex)
         self.assertNotIn("adaptation harm", tex)
 
+    def test_k10_full_reference_mean_interval_is_fixed_full_contrast_not_lowest_neural(self):
+        bs, bc, bd = interpretation_fixture()
+        tex, details = build_personal_interpretation(bs, bc, bd)
+        self.assertNotEqual(details["budgets"]["10"]["SBP"]["representative_lowest_neural"], "full")
+        expected = paired_patient_change([bs[("full", 10, s)] for s in SEEDS],
+                                       [bs[("calibration_mean", 10, s)] for s in SEEDS], "mae")
+        self.assertEqual(details["k10_full_minus_reference_mean"], expected)
+        for q, target in enumerate(("SBP", "DBP")):
+            value = (f"{target} {expected['estimate'][q]:+.3f} "
+                     f"[{expected['ci_lower'][q]:+.3f}, {expected['ci_upper'][q]:+.3f}]")
+            self.assertIn(value, tex)
+        self.assertIn("Full minus Reference mean patient-macro MAE", tex)
+        self.assertIn("Positive changes favor Reference mean", tex)
+        self.assertIn("not adjusted for multiple comparisons", tex)
+
     def test_drift_pairs_within_bins_and_does_not_multiply_counts_by_seeds(self):
         tex, details = build_personal_interpretation(*interpretation_fixture())
         bins = details["k10_reference_age_bins"]

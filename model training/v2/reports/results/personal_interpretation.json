@@ -1,0 +1,2529 @@
+{
+  "ranking_role": "descriptive final-test ranking, not deployment selection",
+  "difference_sign": "method minus comparator; negative MAE change is better",
+  "uncertainty": "patient bootstrap after averaging matched seeds; descriptive, six-person pilot, no rank-selection correction",
+  "budgets": {
+    "1": {
+      "SBP": {
+        "all_method_mae": {
+          "population": 12.72765170390771,
+          "bias": 14.530792214895078,
+          "head": 11.859592872042262,
+          "last_block": 10.48177202669297,
+          "full": 9.859173659501174,
+          "last_reference": 18.760567678917422,
+          "calibration_mean": 18.760567678917422
+        },
+        "lowest_observed_methods": [
+          "full"
+        ],
+        "lowest_observed_mae": 9.859173659501174,
+        "lowest_neural_methods": [
+          "full"
+        ],
+        "representative_lowest_neural": "full",
+        "lowest_neural_mae": 9.859173659501174,
+        "neural_vs_controls": {
+          "bias": {
+            "comparator_mae": 14.530792214895078,
+            "mae_change": -4.671618555393902,
+            "ci_lower": -10.800123102359079,
+            "ci_upper": -0.518624744398475,
+            "patient_changes": {
+              "vitaldb:p005879": -2.2858527381486207,
+              "vitaldb:p005885": 1.8882525104291243,
+              "vitaldb:p005977": -1.7208801064982346,
+              "vitaldb:p005984": -6.168643237914476,
+              "vitaldb:p006009": -1.4407603213011217,
+              "vitaldb:p006052": -18.301827438930083
+            }
+          },
+          "last_reference": {
+            "comparator_mae": 18.760567678917422,
+            "mae_change": -8.901394019416252,
+            "ci_lower": -17.105222365371457,
+            "ci_upper": -1.7896277012477,
+            "patient_changes": {
+              "vitaldb:p005879": -0.81372067009648,
+              "vitaldb:p005885": 1.2266267661490342,
+              "vitaldb:p005977": -15.83360978266204,
+              "vitaldb:p005984": -6.151915528949352,
+              "vitaldb:p006009": -4.761615481672897,
+              "vitaldb:p006052": -27.07412941926577
+            }
+          },
+          "calibration_mean": {
+            "comparator_mae": 18.760567678917422,
+            "mae_change": -8.901394019416252,
+            "ci_lower": -17.105222365371457,
+            "ci_upper": -1.7896277012477,
+            "patient_changes": {
+              "vitaldb:p005879": -0.81372067009648,
+              "vitaldb:p005885": 1.2266267661490342,
+              "vitaldb:p005977": -15.83360978266204,
+              "vitaldb:p005984": -6.151915528949352,
+              "vitaldb:p006009": -4.761615481672897,
+              "vitaldb:p006052": -27.07412941926577
+            }
+          }
+        }
+      },
+      "DBP": {
+        "all_method_mae": {
+          "population": 7.797456667138124,
+          "bias": 6.4784791404311415,
+          "head": 7.246210023790309,
+          "last_block": 6.159527799517368,
+          "full": 5.914117912747543,
+          "last_reference": 6.343608519426066,
+          "calibration_mean": 6.343608519426066
+        },
+        "lowest_observed_methods": [
+          "full"
+        ],
+        "lowest_observed_mae": 5.914117912747543,
+        "lowest_neural_methods": [
+          "full"
+        ],
+        "representative_lowest_neural": "full",
+        "lowest_neural_mae": 5.914117912747543,
+        "neural_vs_controls": {
+          "bias": {
+            "comparator_mae": 6.4784791404311415,
+            "mae_change": -0.564361227683598,
+            "ci_lower": -2.6510070214317403,
+            "ci_upper": 1.5003095174181145,
+            "patient_changes": {
+              "vitaldb:p005879": 2.0355211932473236,
+              "vitaldb:p005885": -0.5736891944201977,
+              "vitaldb:p005977": 3.105021699366507,
+              "vitaldb:p005984": -3.3221482324950764,
+              "vitaldb:p006009": -3.9912584914406573,
+              "vitaldb:p006052": -0.6396143403594873
+            }
+          },
+          "last_reference": {
+            "comparator_mae": 6.343608519426066,
+            "mae_change": -0.42949060667852207,
+            "ci_lower": -3.8568810174424315,
+            "ci_upper": 2.8490352081824035,
+            "patient_changes": {
+              "vitaldb:p005879": 4.569831362191691,
+              "vitaldb:p005885": 1.4570196644253672,
+              "vitaldb:p005977": 4.503284440528872,
+              "vitaldb:p005984": -4.852425755513546,
+              "vitaldb:p006009": -2.509040020772068,
+              "vitaldb:p006052": -5.745613330931447
+            }
+          },
+          "calibration_mean": {
+            "comparator_mae": 6.343608519426066,
+            "mae_change": -0.42949060667852207,
+            "ci_lower": -3.8568810174424315,
+            "ci_upper": 2.8490352081824035,
+            "patient_changes": {
+              "vitaldb:p005879": 4.569831362191691,
+              "vitaldb:p005885": 1.4570196644253672,
+              "vitaldb:p005977": 4.503284440528872,
+              "vitaldb:p005984": -4.852425755513546,
+              "vitaldb:p006009": -2.509040020772068,
+              "vitaldb:p006052": -5.745613330931447
+            }
+          }
+        }
+      }
+    },
+    "2": {
+      "SBP": {
+        "all_method_mae": {
+          "population": 12.72765170390771,
+          "bias": 13.31116029440207,
+          "head": 10.936527947996504,
+          "last_block": 10.86340760551874,
+          "full": 10.356721687437956,
+          "last_reference": 15.198923561945827,
+          "calibration_mean": 16.332579083447953
+        },
+        "lowest_observed_methods": [
+          "full"
+        ],
+        "lowest_observed_mae": 10.356721687437956,
+        "lowest_neural_methods": [
+          "full"
+        ],
+        "representative_lowest_neural": "full",
+        "lowest_neural_mae": 10.356721687437956,
+        "neural_vs_controls": {
+          "bias": {
+            "comparator_mae": 13.31116029440207,
+            "mae_change": -2.9544386069641146,
+            "ci_lower": -6.620033198599708,
+            "ci_upper": -0.03750255668318267,
+            "patient_changes": {
+              "vitaldb:p005879": -3.7693627325488444,
+              "vitaldb:p005885": 2.2216452903265385,
+              "vitaldb:p005977": -2.9349819058217483,
+              "vitaldb:p005984": -1.1679973685766945,
+              "vitaldb:p006009": -0.8763288108048215,
+              "vitaldb:p006052": -11.199606114359119
+            }
+          },
+          "last_reference": {
+            "comparator_mae": 15.198923561945827,
+            "mae_change": -4.842201874507873,
+            "ci_lower": -9.19000559662633,
+            "ci_upper": -1.1506660818040915,
+            "patient_changes": {
+              "vitaldb:p005879": -0.3371413309689733,
+              "vitaldb:p005885": -2.8140872088185183,
+              "vitaldb:p005977": -9.208496909302934,
+              "vitaldb:p005984": -0.733294103347311,
+              "vitaldb:p006009": -1.7000889843869842,
+              "vitaldb:p006052": -14.260102710222519
+            }
+          },
+          "calibration_mean": {
+            "comparator_mae": 16.332579083447953,
+            "mae_change": -5.975857396009996,
+            "ci_lower": -12.621212614166588,
+            "ci_upper": -0.49128683907510434,
+            "patient_changes": {
+              "vitaldb:p005879": -0.656146101417057,
+              "vitaldb:p005885": 1.2197865149463716,
+              "vitaldb:p005977": -12.332359070252103,
+              "vitaldb:p005984": -1.3705029216626974,
+              "vitaldb:p006009": -2.7044989398465575,
+              "vitaldb:p006052": -20.011423857827936
+            }
+          }
+        }
+      },
+      "DBP": {
+        "all_method_mae": {
+          "population": 7.797456667138124,
+          "bias": 6.016245485146183,
+          "head": 5.572343237181347,
+          "last_block": 5.033633708406876,
+          "full": 5.218223904404662,
+          "last_reference": 7.5830684219884406,
+          "calibration_mean": 6.826255770290708
+        },
+        "lowest_observed_methods": [
+          "last_block"
+        ],
+        "lowest_observed_mae": 5.033633708406876,
+        "lowest_neural_methods": [
+          "last_block"
+        ],
+        "representative_lowest_neural": "last_block",
+        "lowest_neural_mae": 5.033633708406876,
+        "neural_vs_controls": {
+          "bias": {
+            "comparator_mae": 6.016245485146183,
+            "mae_change": -0.9826117767393071,
+            "ci_lower": -3.310860577906339,
+            "ci_upper": 0.8160948180442877,
+            "patient_changes": {
+              "vitaldb:p005879": 0.5806855115032287,
+              "vitaldb:p005885": 1.0829839250112432,
+              "vitaldb:p005977": 1.767749207898466,
+              "vitaldb:p005984": -2.0509690117297414,
+              "vitaldb:p006009": -5.890040523030982,
+              "vitaldb:p006052": -1.3860797700880567
+            }
+          },
+          "last_reference": {
+            "comparator_mae": 7.5830684219884406,
+            "mae_change": -2.549434713581564,
+            "ci_lower": -4.873131662279282,
+            "ci_upper": -0.5709555590693416,
+            "patient_changes": {
+              "vitaldb:p005879": 1.0388311549611038,
+              "vitaldb:p005885": -1.7483842600953157,
+              "vitaldb:p005977": -7.903980479278123,
+              "vitaldb:p005984": -1.0066111994179827,
+              "vitaldb:p006009": -1.8892321378730033,
+              "vitaldb:p006052": -3.7872313597860625
+            }
+          },
+          "calibration_mean": {
+            "comparator_mae": 6.826255770290708,
+            "mae_change": -1.7926220618838322,
+            "ci_lower": -3.4471115075342977,
+            "ci_upper": -0.05529725588410701,
+            "patient_changes": {
+              "vitaldb:p005879": 1.0112333367906203,
+              "vitaldb:p005885": 0.6471068240191347,
+              "vitaldb:p005977": -4.164219451893397,
+              "vitaldb:p005984": -2.4605571039406695,
+              "vitaldb:p006009": -1.1894411732576733,
+              "vitaldb:p006052": -4.5998548030210085
+            }
+          }
+        }
+      }
+    },
+    "3": {
+      "SBP": {
+        "all_method_mae": {
+          "population": 12.72765170390771,
+          "bias": 13.675049422985547,
+          "affine": 13.686161392357034,
+          "head": 11.276327725890903,
+          "last_block": 11.429223972050679,
+          "full": 10.574069944123224,
+          "last_reference": 15.201470489256225,
+          "calibration_mean": 15.616911496867479
+        },
+        "lowest_observed_methods": [
+          "full"
+        ],
+        "lowest_observed_mae": 10.574069944123224,
+        "lowest_neural_methods": [
+          "full"
+        ],
+        "representative_lowest_neural": "full",
+        "lowest_neural_mae": 10.574069944123224,
+        "neural_vs_controls": {
+          "bias": {
+            "comparator_mae": 13.675049422985547,
+            "mae_change": -3.1009794788623224,
+            "ci_lower": -8.396984610944648,
+            "ci_upper": 0.4588056754257299,
+            "patient_changes": {
+              "vitaldb:p005879": -4.467248171788836,
+              "vitaldb:p005885": 2.017892077930911,
+              "vitaldb:p005977": -0.6832081579299235,
+              "vitaldb:p005984": -0.4610380898765749,
+              "vitaldb:p006009": 0.09731387071029356,
+              "vitaldb:p006052": -15.109588402219805
+            }
+          },
+          "last_reference": {
+            "comparator_mae": 15.201470489256225,
+            "mae_change": -4.6274005451330025,
+            "ci_lower": -12.517177343460228,
+            "ci_upper": 0.28177407435998414,
+            "patient_changes": {
+              "vitaldb:p005879": -1.8851488659016982,
+              "vitaldb:p005885": 2.304488690156125,
+              "vitaldb:p005977": -1.057128169109526,
+              "vitaldb:p005984": -0.34536348956057034,
+              "vitaldb:p006009": -3.677473293302354,
+              "vitaldb:p006052": -23.10377814307999
+            }
+          },
+          "calibration_mean": {
+            "comparator_mae": 15.616911496867479,
+            "mae_change": -5.042841552744254,
+            "ci_lower": -12.077478035230973,
+            "ci_upper": 0.09731770860260391,
+            "patient_changes": {
+              "vitaldb:p005879": -0.2801995213483493,
+              "vitaldb:p005885": 1.6642739139451586,
+              "vitaldb:p005977": -8.487208714777394,
+              "vitaldb:p005984": -0.7884425931392475,
+              "vitaldb:p006009": -1.3957999404387476,
+              "vitaldb:p006052": -20.969672460706946
+            }
+          }
+        }
+      },
+      "DBP": {
+        "all_method_mae": {
+          "population": 7.797456667138124,
+          "bias": 6.226724219924545,
+          "affine": 6.1601438533270665,
+          "head": 5.617383560945062,
+          "last_block": 4.9549692603964175,
+          "full": 5.10938012595733,
+          "last_reference": 6.815875957681219,
+          "calibration_mean": 6.29693399572137
+        },
+        "lowest_observed_methods": [
+          "last_block"
+        ],
+        "lowest_observed_mae": 4.9549692603964175,
+        "lowest_neural_methods": [
+          "last_block"
+        ],
+        "representative_lowest_neural": "last_block",
+        "lowest_neural_mae": 4.9549692603964175,
+        "neural_vs_controls": {
+          "bias": {
+            "comparator_mae": 6.226724219924545,
+            "mae_change": -1.2717549595281283,
+            "ci_lower": -3.0954420244940866,
+            "ci_upper": 0.328401070566407,
+            "patient_changes": {
+              "vitaldb:p005879": 0.043587262040371666,
+              "vitaldb:p005885": 0.8977727411250344,
+              "vitaldb:p005977": 1.1797908477539012,
+              "vitaldb:p005984": -1.9263260832822473,
+              "vitaldb:p006009": -3.8938971767614965,
+              "vitaldb:p006052": -3.9314573480443324
+            }
+          },
+          "last_reference": {
+            "comparator_mae": 6.815875957681219,
+            "mae_change": -1.8609066972848016,
+            "ci_lower": -4.424787751561614,
+            "ci_upper": 0.431573339501323,
+            "patient_changes": {
+              "vitaldb:p005879": 0.7081286038837397,
+              "vitaldb:p005885": 0.380794129447285,
+              "vitaldb:p005977": -4.4954078670372395,
+              "vitaldb:p005984": -2.0220808602928986,
+              "vitaldb:p006009": 1.407234780043036,
+              "vitaldb:p006052": -7.1441089697527325
+            }
+          },
+          "calibration_mean": {
+            "comparator_mae": 6.29693399572137,
+            "mae_change": -1.341964735324953,
+            "ci_lower": -3.5505993454509617,
+            "ci_upper": 0.8183876871351324,
+            "patient_changes": {
+              "vitaldb:p005879": 1.46705315229824,
+              "vitaldb:p005885": 1.6780140281089142,
+              "vitaldb:p005977": -4.5527162383682365,
+              "vitaldb:p005984": -2.1693480310281363,
+              "vitaldb:p006009": 0.5785789172139483,
+              "vitaldb:p006052": -5.053370240174448
+            }
+          }
+        }
+      }
+    },
+    "5": {
+      "SBP": {
+        "all_method_mae": {
+          "population": 12.72765170390771,
+          "bias": 11.024647166871281,
+          "affine": 10.947630997839028,
+          "head": 11.11860100190846,
+          "last_block": 10.329076140298282,
+          "full": 9.005321431208351,
+          "last_reference": 17.557680940332993,
+          "calibration_mean": 12.550219385988
+        },
+        "lowest_observed_methods": [
+          "full"
+        ],
+        "lowest_observed_mae": 9.005321431208351,
+        "lowest_neural_methods": [
+          "full"
+        ],
+        "representative_lowest_neural": "full",
+        "lowest_neural_mae": 9.005321431208351,
+        "neural_vs_controls": {
+          "bias": {
+            "comparator_mae": 11.024647166871281,
+            "mae_change": -2.0193257356629295,
+            "ci_lower": -6.078742585158229,
+            "ci_upper": 0.7773766342325036,
+            "patient_changes": {
+              "vitaldb:p005879": -3.4197100162596086,
+              "vitaldb:p005885": 2.30208647811448,
+              "vitaldb:p005977": -0.17715016483112164,
+              "vitaldb:p005984": -0.0007779939912143282,
+              "vitaldb:p006009": 0.20719358941415203,
+              "vitaldb:p006052": -11.027596306424266
+            }
+          },
+          "last_reference": {
+            "comparator_mae": 17.557680940332993,
+            "mae_change": -8.552359509124644,
+            "ci_lower": -16.729442225852612,
+            "ci_upper": -3.3314978582874564,
+            "patient_changes": {
+              "vitaldb:p005879": -1.3026170667858452,
+              "vitaldb:p005885": -28.27371876300329,
+              "vitaldb:p005977": -3.7164876316613698,
+              "vitaldb:p005984": -6.202227997948694,
+              "vitaldb:p006009": -8.050652001371262,
+              "vitaldb:p006052": -3.768453593977393
+            }
+          },
+          "calibration_mean": {
+            "comparator_mae": 12.550219385988,
+            "mae_change": -3.544897954779648,
+            "ci_lower": -7.514909838135403,
+            "ci_upper": -0.6858496964665408,
+            "patient_changes": {
+              "vitaldb:p005879": -0.28611279189843347,
+              "vitaldb:p005885": -0.3098903578417141,
+              "vitaldb:p005977": -4.584204429287241,
+              "vitaldb:p005984": -0.5043865529881328,
+              "vitaldb:p006009": -2.4192997654793955,
+              "vitaldb:p006052": -13.165493831182971
+            }
+          }
+        }
+      },
+      "DBP": {
+        "all_method_mae": {
+          "population": 7.797456667138124,
+          "bias": 5.78144089693755,
+          "affine": 5.4344916617202825,
+          "head": 5.521322244808942,
+          "last_block": 4.858526850327961,
+          "full": 4.795136810612067,
+          "last_reference": 6.432219572858936,
+          "calibration_mean": 5.380934375889956
+        },
+        "lowest_observed_methods": [
+          "full"
+        ],
+        "lowest_observed_mae": 4.795136810612067,
+        "lowest_neural_methods": [
+          "full"
+        ],
+        "representative_lowest_neural": "full",
+        "lowest_neural_mae": 4.795136810612067,
+        "neural_vs_controls": {
+          "bias": {
+            "comparator_mae": 5.78144089693755,
+            "mae_change": -0.9863040863254838,
+            "ci_lower": -2.094091819486888,
+            "ci_upper": 0.048296777792316815,
+            "patient_changes": {
+              "vitaldb:p005879": -0.30821832037328994,
+              "vitaldb:p005885": -0.18135732752679642,
+              "vitaldb:p005977": 1.2161918427965281,
+              "vitaldb:p005984": -1.705610266159619,
+              "vitaldb:p006009": -2.8693764382725924,
+              "vitaldb:p006052": -2.0694540084171336
+            }
+          },
+          "last_reference": {
+            "comparator_mae": 6.432219572858936,
+            "mae_change": -1.6370827622468687,
+            "ci_lower": -2.9925516513223074,
+            "ci_upper": -0.4168917656001563,
+            "patient_changes": {
+              "vitaldb:p005879": -2.1357351767039043,
+              "vitaldb:p005885": -2.630196276749766,
+              "vitaldb:p005977": 0.6741611609538495,
+              "vitaldb:p005984": -0.2530688785344921,
+              "vitaldb:p006009": -1.165554210465004,
+              "vitaldb:p006052": -4.312103191981895
+            }
+          },
+          "calibration_mean": {
+            "comparator_mae": 5.380934375889956,
+            "mae_change": -0.5857975652778895,
+            "ci_lower": -1.811324698853973,
+            "ci_upper": 0.519736624872767,
+            "patient_changes": {
+              "vitaldb:p005879": 0.21841558022533217,
+              "vitaldb:p005885": 0.37327966789429645,
+              "vitaldb:p005977": -3.1574152765689374,
+              "vitaldb:p005984": -0.9370376235857396,
+              "vitaldb:p006009": 1.545241228404208,
+              "vitaldb:p006052": -1.5572689680364966
+            }
+          }
+        }
+      }
+    },
+    "10": {
+      "SBP": {
+        "all_method_mae": {
+          "population": 12.72765170390771,
+          "bias": 9.022017673104555,
+          "affine": 9.337454075606516,
+          "head": 10.45751542216737,
+          "last_block": 9.271643378254678,
+          "full": 9.24071285308941,
+          "last_reference": 17.53573335216446,
+          "calibration_mean": 9.01441489195723
+        },
+        "lowest_observed_methods": [
+          "calibration_mean"
+        ],
+        "lowest_observed_mae": 9.01441489195723,
+        "lowest_neural_methods": [
+          "full"
+        ],
+        "representative_lowest_neural": "full",
+        "lowest_neural_mae": 9.24071285308941,
+        "neural_vs_controls": {
+          "bias": {
+            "comparator_mae": 9.022017673104555,
+            "mae_change": 0.21869517998485424,
+            "ci_lower": -1.1850753147295925,
+            "ci_upper": 1.6036111978764864,
+            "patient_changes": {
+              "vitaldb:p005879": -2.2123382351667793,
+              "vitaldb:p005885": 2.485411924842969,
+              "vitaldb:p005977": 2.5330378007289895,
+              "vitaldb:p005984": -1.0775174997139112,
+              "vitaldb:p006009": -0.05701427209507474,
+              "vitaldb:p006052": -0.35940863868706757
+            }
+          },
+          "last_reference": {
+            "comparator_mae": 17.53573335216446,
+            "mae_change": -8.295020499075056,
+            "ci_lower": -15.120845184795678,
+            "ci_upper": -1.8195619828091072,
+            "patient_changes": {
+              "vitaldb:p005879": 1.362129895362056,
+              "vitaldb:p005885": 1.2946613460921579,
+              "vitaldb:p005977": 0.34100376993363213,
+              "vitaldb:p005984": -18.671614475665752,
+              "vitaldb:p006009": -16.570687804317195,
+              "vitaldb:p006052": -17.52561572585523
+            }
+          },
+          "calibration_mean": {
+            "comparator_mae": 9.01441489195723,
+            "mae_change": 0.22629796113217807,
+            "ci_lower": -1.114072669846078,
+            "ci_upper": 1.3746349602999153,
+            "patient_changes": {
+              "vitaldb:p005879": 2.482220965601382,
+              "vitaldb:p005885": 1.2662400254114459,
+              "vitaldb:p005977": 1.068602570995047,
+              "vitaldb:p005984": -0.8958608793570416,
+              "vitaldb:p006009": -2.2457001246365533,
+              "vitaldb:p006052": -0.31771479122121143
+            }
+          }
+        }
+      },
+      "DBP": {
+        "all_method_mae": {
+          "population": 7.797456667138124,
+          "bias": 4.841024517299764,
+          "affine": 4.524887311295381,
+          "head": 4.953685191155748,
+          "last_block": 4.745095522265477,
+          "full": 4.658133828424222,
+          "last_reference": 8.760058081834732,
+          "calibration_mean": 4.0378639815229755
+        },
+        "lowest_observed_methods": [
+          "calibration_mean"
+        ],
+        "lowest_observed_mae": 4.0378639815229755,
+        "lowest_neural_methods": [
+          "full"
+        ],
+        "representative_lowest_neural": "full",
+        "lowest_neural_mae": 4.658133828424222,
+        "neural_vs_controls": {
+          "bias": {
+            "comparator_mae": 4.841024517299764,
+            "mae_change": -0.1828906888755409,
+            "ci_lower": -0.6531498465088893,
+            "ci_upper": 0.572216793196464,
+            "patient_changes": {
+              "vitaldb:p005879": -0.570155363069296,
+              "vitaldb:p005885": -0.3017177426317656,
+              "vitaldb:p005977": 1.6517745387062484,
+              "vitaldb:p005984": -0.441163495004921,
+              "vitaldb:p006009": -0.656940451950237,
+              "vitaldb:p006052": -0.7791416193032741
+            }
+          },
+          "last_reference": {
+            "comparator_mae": 8.760058081834732,
+            "mae_change": -4.101924253410509,
+            "ci_lower": -8.014607489712748,
+            "ci_upper": -0.628026240499424,
+            "patient_changes": {
+              "vitaldb:p005879": -0.8435918198632798,
+              "vitaldb:p005885": 1.4327536610621239,
+              "vitaldb:p005977": -0.21547819184686082,
+              "vitaldb:p005984": -8.604238689226724,
+              "vitaldb:p006009": -5.35911656156379,
+              "vitaldb:p006052": -11.021873919024522
+            }
+          },
+          "calibration_mean": {
+            "comparator_mae": 4.0378639815229755,
+            "mae_change": 0.6202698469012473,
+            "ci_lower": 0.12948623443064064,
+            "ci_upper": 1.0713995711987416,
+            "patient_changes": {
+              "vitaldb:p005879": 0.26925802870604637,
+              "vitaldb:p005885": 1.2922602431033796,
+              "vitaldb:p005977": 1.3548486786339637,
+              "vitaldb:p005984": 0.5046594025906753,
+              "vitaldb:p006009": 0.629520181127088,
+              "vitaldb:p006052": -0.32892745275366925
+            }
+          }
+        }
+      }
+    }
+  },
+  "k10_patient_counts": {
+    "bias": {
+      "SBP": {
+        "helped": 4,
+        "harmed": 2,
+        "unchanged": 0,
+        "n_patients": 6
+      },
+      "DBP": {
+        "helped": 4,
+        "harmed": 2,
+        "unchanged": 0,
+        "n_patients": 6
+      }
+    },
+    "affine": {
+      "SBP": {
+        "helped": 5,
+        "harmed": 1,
+        "unchanged": 0,
+        "n_patients": 6
+      },
+      "DBP": {
+        "helped": 5,
+        "harmed": 1,
+        "unchanged": 0,
+        "n_patients": 6
+      }
+    },
+    "head": {
+      "SBP": {
+        "helped": 4,
+        "harmed": 2,
+        "unchanged": 0,
+        "n_patients": 6
+      },
+      "DBP": {
+        "helped": 5,
+        "harmed": 1,
+        "unchanged": 0,
+        "n_patients": 6
+      }
+    },
+    "last_block": {
+      "SBP": {
+        "helped": 5,
+        "harmed": 1,
+        "unchanged": 0,
+        "n_patients": 6
+      },
+      "DBP": {
+        "helped": 5,
+        "harmed": 1,
+        "unchanged": 0,
+        "n_patients": 6
+      }
+    },
+    "full": {
+      "SBP": {
+        "helped": 5,
+        "harmed": 1,
+        "unchanged": 0,
+        "n_patients": 6
+      },
+      "DBP": {
+        "helped": 5,
+        "harmed": 1,
+        "unchanged": 0,
+        "n_patients": 6
+      }
+    },
+    "last_reference": {
+      "SBP": {
+        "helped": 3,
+        "harmed": 3,
+        "unchanged": 0,
+        "n_patients": 6
+      },
+      "DBP": {
+        "helped": 3,
+        "harmed": 3,
+        "unchanged": 0,
+        "n_patients": 6
+      }
+    },
+    "calibration_mean": {
+      "SBP": {
+        "helped": 4,
+        "harmed": 2,
+        "unchanged": 0,
+        "n_patients": 6
+      },
+      "DBP": {
+        "helped": 5,
+        "harmed": 1,
+        "unchanged": 0,
+        "n_patients": 6
+      }
+    }
+  },
+  "worst_full_adaptation_change": {
+    "SBP": {
+      "positive_harm_observed": true,
+      "largest_mae_change": 0.043105886071904465,
+      "patients": [
+        {
+          "patient": "vitaldb:p005984",
+          "population_mae": 7.793614969443138,
+          "full_mae": 7.8367208555150425,
+          "mae_change": 0.043105886071904465
+        }
+      ]
+    },
+    "DBP": {
+      "positive_harm_observed": true,
+      "largest_mae_change": 2.1266854558026878,
+      "patients": [
+        {
+          "patient": "vitaldb:p005984",
+          "population_mae": 3.6266374360982243,
+          "full_mae": 5.753322891900912,
+          "mae_change": 2.1266854558026878
+        }
+      ]
+    }
+  },
+  "budget_caveat": "Nested reference budgets jointly change count and recency; not pure sample complexity",
+  "k10_full_minus_reference_mean": {
+    "estimate": [
+      0.22629796113217807,
+      0.6202698469012473
+    ],
+    "ci_lower": [
+      -1.114072669846078,
+      0.12948623443064064
+    ],
+    "ci_upper": [
+      1.3746349602999153,
+      1.0713995711987416
+    ],
+    "n_patients": 6,
+    "resamples": 2000,
+    "method": "patient bootstrap percentile, descriptive 95% interval",
+    "sign": "model minus baseline; negative is improvement",
+    "metric": "mae",
+    "seed_macro_changes": [
+      [
+        1.9590664089079548,
+        0.7239496693149654
+      ],
+      [
+        -0.5811221859685013,
+        0.9707600254886234
+      ],
+      [
+        -0.6990503395429192,
+        0.16609984590015317
+      ]
+    ],
+    "patient_changes": {
+      "vitaldb:p005879": [
+        2.482220965601382,
+        0.26925802870604637
+      ],
+      "vitaldb:p005885": [
+        1.2662400254114459,
+        1.2922602431033796
+      ],
+      "vitaldb:p005977": [
+        1.068602570995047,
+        1.3548486786339637
+      ],
+      "vitaldb:p005984": [
+        -0.8958608793570416,
+        0.5046594025906753
+      ],
+      "vitaldb:p006009": [
+        -2.2457001246365533,
+        0.629520181127088
+      ],
+      "vitaldb:p006052": [
+        -0.31771479122121143,
+        -0.32892745275366925
+      ]
+    }
+  },
+  "k10_reference_age_bins": [
+    {
+      "lower_minutes_inclusive": 0,
+      "upper_minutes_exclusive": 15,
+      "n_windows": 352,
+      "n_patients": 5,
+      "patient_ids": [
+        "vitaldb:p005879",
+        "vitaldb:p005885",
+        "vitaldb:p005977",
+        "vitaldb:p005984",
+        "vitaldb:p006052"
+      ],
+      "paired_mae_changes": {
+        "bias": {
+          "estimate": [
+            -3.533370469285562,
+            -4.364067195577322
+          ],
+          "ci_lower": [
+            -13.683093010073424,
+            -10.524503655887047
+          ],
+          "ci_upper": [
+            6.6163520715023,
+            1.7963692647324017
+          ],
+          "n_patients": 5,
+          "resamples": 2000,
+          "method": "patient bootstrap percentile, descriptive 95% interval",
+          "sign": "model minus baseline; negative is improvement",
+          "metric": "mae",
+          "seed_macro_changes": [
+            [
+              -5.546055685168461,
+              -3.1841799252975336
+            ],
+            [
+              -3.0241184461363773,
+              -3.9423535779650636
+            ],
+            [
+              -2.0299372765518475,
+              -5.965668083469369
+            ]
+          ],
+          "patient_changes": {
+            "vitaldb:p005879": [
+              -14.480596907515656,
+              -10.615015169704476
+            ],
+            "vitaldb:p005885": [
+              13.635389978223069,
+              3.560550412593514
+            ],
+            "vitaldb:p005977": [
+              -18.338641376724286,
+              -14.580423617990341
+            ],
+            "vitaldb:p005984": [
+              4.293984441476297,
+              2.0461931012602883
+            ],
+            "vitaldb:p006052": [
+              -2.776988481887232,
+              -2.2316407040455952
+            ]
+          }
+        },
+        "affine": {
+          "estimate": [
+            -3.1932668423024664,
+            -4.610681598637745
+          ],
+          "ci_lower": [
+            -13.266151776811167,
+            -10.881709357487145
+          ],
+          "ci_upper": [
+            7.022580930180513,
+            1.6603461602116536
+          ],
+          "n_patients": 5,
+          "resamples": 2000,
+          "method": "patient bootstrap percentile, descriptive 95% interval",
+          "sign": "model minus baseline; negative is improvement",
+          "metric": "mae",
+          "seed_macro_changes": [
+            [
+              -5.434782570121849,
+              -3.344850099513592
+            ],
+            [
+              -2.486703131826844,
+              -4.26876675127407
+            ],
+            [
+              -1.6583148249587054,
+              -6.218427945125577
+            ]
+          ],
+          "patient_changes": {
+            "vitaldb:p005879": [
+              -15.762370938166972,
+              -11.779582422911547
+            ],
+            "vitaldb:p005885": [
+              14.597988463551774,
+              3.516802693061528
+            ],
+            "vitaldb:p005977": [
+              -16.49551369700943,
+              -14.291793081237401
+            ],
+            "vitaldb:p005984": [
+              4.2233657636867195,
+              1.7669605970365228
+            ],
+            "vitaldb:p006052": [
+              -2.529803803574422,
+              -2.265795779137833
+            ]
+          }
+        },
+        "head": {
+          "estimate": [
+            -2.502303688501202,
+            -4.343901293704163
+          ],
+          "ci_lower": [
+            -11.848506729792662,
+            -10.109399964277658
+          ],
+          "ci_upper": [
+            6.843899352790258,
+            1.421597376869332
+          ],
+          "n_patients": 5,
+          "resamples": 2000,
+          "method": "patient bootstrap percentile, descriptive 95% interval",
+          "sign": "model minus baseline; negative is improvement",
+          "metric": "mae",
+          "seed_macro_changes": [
+            [
+              -2.118400248176061,
+              -2.5026729915673416
+            ],
+            [
+              -2.4650011528235956,
+              -4.309863072193616
+            ],
+            [
+              -2.923509664503951,
+              -6.219167817351533
+            ]
+          ],
+          "patient_changes": {
+            "vitaldb:p005879": [
+              -14.455137122225382,
+              -10.99518040518844
+            ],
+            "vitaldb:p005885": [
+              14.328690051851796,
+              3.8874334192648576
+            ],
+            "vitaldb:p005977": [
+              -13.440169673401007,
+              -12.97253805163272
+            ],
+            "vitaldb:p005984": [
+              4.507018358979117,
+              0.9723414767814588
+            ],
+            "vitaldb:p006052": [
+              -3.4519200577105345,
+              -2.611562907745973
+            ]
+          }
+        },
+        "last_block": {
+          "estimate": [
+            -4.06426413921281,
+            -4.532774106200978
+          ],
+          "ci_lower": [
+            -12.92347606635467,
+            -10.258482857490495
+          ],
+          "ci_upper": [
+            4.947870413411617,
+            1.1929346450885407
+          ],
+          "n_patients": 5,
+          "resamples": 2000,
+          "method": "patient bootstrap percentile, descriptive 95% interval",
+          "sign": "model minus baseline; negative is improvement",
+          "metric": "mae",
+          "seed_macro_changes": [
+            [
+              -5.705166964667553,
+              -3.554299854521404
+            ],
+            [
+              -3.223761644264222,
+              -4.167296277122965
+            ],
+            [
+              -3.263863808706654,
+              -5.876726186958566
+            ]
+          ],
+          "patient_changes": {
+            "vitaldb:p005879": [
+              -14.725219030795822,
+              -10.83044834994931
+            ],
+            "vitaldb:p005885": [
+              10.794044934625282,
+              2.91495942080212
+            ],
+            "vitaldb:p005977": [
+              -15.509437623014103,
+              -13.622431145121416
+            ],
+            "vitaldb:p005984": [
+              4.031971174686923,
+              1.2607048405747494
+            ],
+            "vitaldb:p006052": [
+              -4.912680151566328,
+              -2.386655297311035
+            ]
+          }
+        },
+        "full": {
+          "estimate": [
+            -4.994005132506844,
+            -4.773810244924651
+          ],
+          "ci_lower": [
+            -12.622225850008652,
+            -10.216959583718829
+          ],
+          "ci_upper": [
+            2.8496518321764546,
+            0.6693390938695287
+          ],
+          "n_patients": 5,
+          "resamples": 2000,
+          "method": "patient bootstrap percentile, descriptive 95% interval",
+          "sign": "model minus baseline; negative is improvement",
+          "metric": "mae",
+          "seed_macro_changes": [
+            [
+              -6.85504808866933,
+              -4.184221054325096
+            ],
+            [
+              -3.905146246667326,
+              -4.161731349623407
+            ],
+            [
+              -4.221821062183877,
+              -5.975478330825449
+            ]
+          ],
+          "patient_changes": {
+            "vitaldb:p005879": [
+              -14.082573583580029,
+              -10.87344499939114
+            ],
+            "vitaldb:p005885": [
+              6.944764135879907,
+              1.6822299670847396
+            ],
+            "vitaldb:p005977": [
+              -15.187374851177422,
+              -13.360245668181014
+            ],
+            "vitaldb:p005984": [
+              3.003572252779137,
+              1.2998260593140039
+            ],
+            "vitaldb:p006052": [
+              -5.648413616435814,
+              -2.6174165834498435
+            ]
+          }
+        },
+        "last_reference": {
+          "estimate": [
+            1.3035104101828041,
+            -0.8354783389164682
+          ],
+          "ci_lower": [
+            -9.019440218340048,
+            -8.330451927887715
+          ],
+          "ci_upper": [
+            11.626461038705655,
+            6.687015258280883
+          ],
+          "n_patients": 5,
+          "resamples": 2000,
+          "method": "patient bootstrap percentile, descriptive 95% interval",
+          "sign": "model minus baseline; negative is improvement",
+          "metric": "mae",
+          "seed_macro_changes": [
+            [
+              -0.3472225100855475,
+              0.4468916363638879
+            ],
+            [
+              1.5785355704113702,
+              -0.8913033627555269
+            ],
+            [
+              2.67921817022259,
+              -2.062023290357764
+            ]
+          ],
+          "patient_changes": {
+            "vitaldb:p005879": [
+              -12.999575245610941,
+              -11.314593032437331
+            ],
+            "vitaldb:p005885": [
+              11.912857919233659,
+              3.1933123669191836
+            ],
+            "vitaldb:p005977": [
+              -13.032043808932636,
+              -11.17699299130681
+            ],
+            "vitaldb:p005984": [
+              6.9660370173869195,
+              8.827739311983514
+            ],
+            "vitaldb:p006052": [
+              13.67027616883702,
+              6.293142650259102
+            ]
+          }
+        },
+        "calibration_mean": {
+          "estimate": [
+            -3.4033451336313947,
+            -3.6621133319921535
+          ],
+          "ci_lower": [
+            -13.092772348477341,
+            -10.091979188998781
+          ],
+          "ci_upper": [
+            6.554965981971255,
+            2.983143591286773
+          ],
+          "n_patients": 5,
+          "resamples": 2000,
+          "method": "patient bootstrap percentile, descriptive 95% interval",
+          "sign": "model minus baseline; negative is improvement",
+          "metric": "mae",
+          "seed_macro_changes": [
+            [
+              -5.0540780538997465,
+              -2.379743356711797
+            ],
+            [
+              -3.1283199734028293,
+              -3.7179383558312127
+            ],
+            [
+              -2.02763737359161,
+              -4.88865828343345
+            ]
+          ],
+          "patient_changes": {
+            "vitaldb:p005879": [
+              -15.709287252921593,
+              -11.980196182699103
+            ],
+            "vitaldb:p005885": [
+              11.998734384077409,
+              3.8818614086672305
+            ],
+            "vitaldb:p005977": [
+              -17.08817905167392,
+              -13.084765753326266
+            ],
+            "vitaldb:p005984": [
+              4.995354889340329,
+              4.27946127170203
+            ],
+            "vitaldb:p006052": [
+              -1.2133486369792035,
+              -1.4069274043046558
+            ]
+          }
+        }
+      },
+      "n_seeds": 3
+    },
+    {
+      "lower_minutes_inclusive": 15,
+      "upper_minutes_exclusive": 30,
+      "n_windows": 379,
+      "n_patients": 5,
+      "patient_ids": [
+        "vitaldb:p005879",
+        "vitaldb:p005885",
+        "vitaldb:p005977",
+        "vitaldb:p005984",
+        "vitaldb:p006052"
+      ],
+      "paired_mae_changes": {
+        "bias": {
+          "estimate": [
+            -4.01117350471898,
+            -3.3762682518108953
+          ],
+          "ci_lower": [
+            -12.107960448100197,
+            -9.795824592513586
+          ],
+          "ci_upper": [
+            2.7495135637538914,
+            1.6099075928945559
+          ],
+          "n_patients": 5,
+          "resamples": 2000,
+          "method": "patient bootstrap percentile, descriptive 95% interval",
+          "sign": "model minus baseline; negative is improvement",
+          "metric": "mae",
+          "seed_macro_changes": [
+            [
+              -3.9313254808190394,
+              -1.9782497526956497
+            ],
+            [
+              -4.357394013431592,
+              -3.716012839673657
+            ],
+            [
+              -3.744801019906306,
+              -4.434542163063378
+            ]
+          ],
+          "patient_changes": {
+            "vitaldb:p005879": [
+              5.351572931984123,
+              -1.43444393651241
+            ],
+            "vitaldb:p005885": [
+              -4.14140469658858,
+              -4.075678113604424
+            ],
+            "vitaldb:p005977": [
+              -19.636883240755278,
+              -14.52267199767896
+            ],
+            "vitaldb:p005984": [
+              3.5929133256948966,
+              4.486881644667943
+            ],
+            "vitaldb:p006052": [
+              -5.222065843930058,
+              -1.335428855926626
+            ]
+          }
+        },
+        "affine": {
+          "estimate": [
+            -3.8451247894483616,
+            -3.468643829415188
+          ],
+          "ci_lower": [
+            -11.247308967704058,
+            -9.754802013569147
+          ],
+          "ci_upper": [
+            2.541485571523518,
+            1.7285140734350215
+          ],
+          "n_patients": 5,
+          "resamples": 2000,
+          "method": "patient bootstrap percentile, descriptive 95% interval",
+          "sign": "model minus baseline; negative is improvement",
+          "metric": "mae",
+          "seed_macro_changes": [
+            [
+              -3.909113024045825,
+              -2.0091560224504335
+            ],
+            [
+              -4.111535793794397,
+              -3.7909049678415956
+            ],
+            [
+              -3.5147255505048633,
+              -4.605870497953535
+            ]
+          ],
+          "patient_changes": {
+            "vitaldb:p005879": [
+              4.55243781816701,
+              -2.165511513541571
+            ],
+            "vitaldb:p005885": [
+              -4.0522047392355915,
+              -4.060521849079363
+            ],
+            "vitaldb:p005977": [
+              -18.255343906173533,
+              -14.457442289304426
+            ],
+            "vitaldb:p005984": [
+              3.8273784802595814,
+              4.6814178557025246
+            ],
+            "vitaldb:p006052": [
+              -5.297891600259276,
+              -1.3411613508531026
+            ]
+          }
+        },
+        "head": {
+          "estimate": [
+            -2.7461499146356596,
+            -3.261998838954061
+          ],
+          "ci_lower": [
+            -9.670428753468633,
+            -9.390257512099959
+          ],
+          "ci_upper": [
+            3.679602779349924,
+            1.620186603263735
+          ],
+          "n_patients": 5,
+          "resamples": 2000,
+          "method": "patient bootstrap percentile, descriptive 95% interval",
+          "sign": "model minus baseline; negative is improvement",
+          "metric": "mae",
+          "seed_macro_changes": [
+            [
+              -2.2000642290589547,
+              -1.4794691070553154
+            ],
+            [
+              -3.0352511607806036,
+              -4.000523864190775
+            ],
+            [
+              -3.0031343540674214,
+              -4.306003545616093
+            ]
+          ],
+          "patient_changes": {
+            "vitaldb:p005879": [
+              6.11308288922469,
+              -1.4026171653412611
+            ],
+            "vitaldb:p005885": [
+              -3.846414775607149,
+              -3.9163322171309356
+            ],
+            "vitaldb:p005977": [
+              -16.177363040273665,
+              -13.877446059342532
+            ],
+            "vitaldb:p005984": [
+              5.009131446953695,
+              4.473294132930291
+            ],
+            "vitaldb:p006052": [
+              -4.829186093475871,
+              -1.5868928858858677
+            ]
+          }
+        },
+        "last_block": {
+          "estimate": [
+            -3.699138490602838,
+            -3.1929847298586362
+          ],
+          "ci_lower": [
+            -11.582413887134006,
+            -9.519511837411436
+          ],
+          "ci_upper": [
+            3.7211341770138504,
+            2.1399966321062793
+          ],
+          "n_patients": 5,
+          "resamples": 2000,
+          "method": "patient bootstrap percentile, descriptive 95% interval",
+          "sign": "model minus baseline; negative is improvement",
+          "metric": "mae",
+          "seed_macro_changes": [
+            [
+              -3.1884606002201776,
+              -1.6148442900441402
+            ],
+            [
+              -3.7041436794206724,
+              -3.571506431281975
+            ],
+            [
+              -4.204811192167664,
+              -4.392603468249794
+            ]
+          ],
+          "patient_changes": {
+            "vitaldb:p005879": [
+              3.9658793713899403,
+              -2.0117571693022884
+            ],
+            "vitaldb:p005885": [
+              -5.0886405045082315,
+              -3.9857327290385207
+            ],
+            "vitaldb:p005977": [
+              -18.929769434183914,
+              -14.21187859120343
+            ],
+            "vitaldb:p005984": [
+              6.576144006062514,
+              5.220635524659431
+            ],
+            "vitaldb:p006052": [
+              -5.019305891774497,
+              -0.9761906844083749
+            ]
+          }
+        },
+        "full": {
+          "estimate": [
+            -4.280765695935838,
+            -3.4906759972562056
+          ],
+          "ci_lower": [
+            -12.151677634298705,
+            -9.91862395027518
+          ],
+          "ci_upper": [
+            3.015673892025265,
+            2.0697155160665384
+          ],
+          "n_patients": 5,
+          "resamples": 2000,
+          "method": "patient bootstrap percentile, descriptive 95% interval",
+          "sign": "model minus baseline; negative is improvement",
+          "metric": "mae",
+          "seed_macro_changes": [
+            [
+              -3.13959925365237,
+              -1.707521371631379
+            ],
+            [
+              -4.773857169526465,
+              -4.131174620093678
+            ],
+            [
+              -4.92884066462868,
+              -4.633332000043562
+            ]
+          ],
+          "patient_changes": {
+            "vitaldb:p005879": [
+              2.945021358117364,
+              -2.4157484962857274
+            ],
+            "vitaldb:p005885": [
+              -4.806081495971529,
+              -3.6123938901278088
+            ],
+            "vitaldb:p005977": [
+              -19.622939884200875,
+              -14.574922484144404
+            ],
+            "vitaldb:p005984": [
+              6.026588279816558,
+              5.405643293091795
+            ],
+            "vitaldb:p006052": [
+              -5.946416737440711,
+              -2.2559584088148856
+            ]
+          }
+        },
+        "last_reference": {
+          "estimate": [
+            -0.8066570716860728,
+            -0.8614880330988166
+          ],
+          "ci_lower": [
+            -11.502852141109935,
+            -7.846312381960537
+          ],
+          "ci_upper": [
+            8.69158743662679,
+            6.240578060119043
+          ],
+          "n_patients": 5,
+          "resamples": 2000,
+          "method": "patient bootstrap percentile, descriptive 95% interval",
+          "sign": "model minus baseline; negative is improvement",
+          "metric": "mae",
+          "seed_macro_changes": [
+            [
+              -0.7360276928708828,
+              0.7038083258407767
+            ],
+            [
+              -1.3635023159313922,
+              -1.4587095322918302
+            ],
+            [
+              -0.320441206255942,
+              -1.8295628928453955
+            ]
+          ],
+          "patient_changes": {
+            "vitaldb:p005879": [
+              -1.510148522941371,
+              -4.012783108186432
+            ],
+            "vitaldb:p005885": [
+              -3.263177872341726,
+              -3.134599328517402
+            ],
+            "vitaldb:p005977": [
+              -21.333724573832807,
+              -14.03569818245621
+            ],
+            "vitaldb:p005984": [
+              9.750090888290472,
+              9.170016477557843
+            ],
+            "vitaldb:p006052": [
+              12.323674722395067,
+              7.705623976108119
+            ]
+          }
+        },
+        "calibration_mean": {
+          "estimate": [
+            -4.371080512593065,
+            -3.981461376886243
+          ],
+          "ci_lower": [
+            -12.199035446825123,
+            -10.56733286764376
+          ],
+          "ci_upper": [
+            1.039172334299022,
+            1.308251182183734
+          ],
+          "n_patients": 5,
+          "resamples": 2000,
+          "method": "patient bootstrap percentile, descriptive 95% interval",
+          "sign": "model minus baseline; negative is improvement",
+          "metric": "mae",
+          "seed_macro_changes": [
+            [
+              -4.300451133777877,
+              -2.4161650179466507
+            ],
+            [
+              -4.927925756838384,
+              -4.578682876079257
+            ],
+            [
+              -3.8848646471629342,
+              -4.949536236632822
+            ]
+          ],
+          "patient_changes": {
+            "vitaldb:p005879": [
+              3.1312936530297413,
+              -2.854785909021928
+            ],
+            "vitaldb:p005885": [
+              -3.2719407769176185,
+              -3.340117389318383
+            ],
+            "vitaldb:p005977": [
+              -19.637898978885357,
+              -15.991503279763686
+            ],
+            "vitaldb:p005984": [
+              1.010130825627719,
+              3.801136803282136
+            ],
+            "vitaldb:p006052": [
+              -3.086987285819811,
+              -1.522037109609354
+            ]
+          }
+        }
+      },
+      "n_seeds": 3
+    },
+    {
+      "lower_minutes_inclusive": 30,
+      "upper_minutes_exclusive": 60,
+      "n_windows": 781,
+      "n_patients": 6,
+      "patient_ids": [
+        "vitaldb:p005879",
+        "vitaldb:p005885",
+        "vitaldb:p005977",
+        "vitaldb:p005984",
+        "vitaldb:p006009",
+        "vitaldb:p006052"
+      ],
+      "paired_mae_changes": {
+        "bias": {
+          "estimate": [
+            -3.9487602951885883,
+            -1.1547896705157659
+          ],
+          "ci_lower": [
+            -8.752750138067723,
+            -6.280149043109328
+          ],
+          "ci_upper": [
+            -0.377977376438129,
+            3.3961005611992667
+          ],
+          "n_patients": 6,
+          "resamples": 2000,
+          "method": "patient bootstrap percentile, descriptive 95% interval",
+          "sign": "model minus baseline; negative is improvement",
+          "metric": "mae",
+          "seed_macro_changes": [
+            [
+              -3.3310343195553123,
+              -0.6244994517777319
+            ],
+            [
+              -3.1979066492190547,
+              -0.8485219428955219
+            ],
+            [
+              -5.317339916791399,
+              -1.9913476168740436
+            ]
+          ],
+          "patient_changes": {
+            "vitaldb:p005879": [
+              1.4831530652156937,
+              -5.614475666445675
+            ],
+            "vitaldb:p005885": [
+              -4.972843422395249,
+              0.47143400218633236
+            ],
+            "vitaldb:p005977": [
+              -15.265109718018806,
+              -11.973998042433053
+            ],
+            "vitaldb:p005984": [
+              -2.580609702912299,
+              3.8527647180940257
+            ],
+            "vitaldb:p006009": [
+              -0.7971997244955465,
+              6.332726148508932
+            ],
+            "vitaldb:p006052": [
+              -1.5599522685253262,
+              0.0028108169948422024
+            ]
+          }
+        },
+        "affine": {
+          "estimate": [
+            -3.022428840475548,
+            -1.848998273294378
+          ],
+          "ci_lower": [
+            -7.061574047716316,
+            -6.536891521274019
+          ],
+          "ci_upper": [
+            -0.29198235046202675,
+            2.6146310427798327
+          ],
+          "n_patients": 6,
+          "resamples": 2000,
+          "method": "patient bootstrap percentile, descriptive 95% interval",
+          "sign": "model minus baseline; negative is improvement",
+          "metric": "mae",
+          "seed_macro_changes": [
+            [
+              -2.513036011254396,
+              -0.9009855864940985
+            ],
+            [
+              -2.8305610295475296,
+              -2.152931991434991
+            ],
+            [
+              -3.723689480624717,
+              -2.4930772419540443
+            ]
+          ],
+          "patient_changes": {
+            "vitaldb:p005879": [
+              -1.051565229325113,
+              -7.311815091230398
+            ],
+            "vitaldb:p005885": [
+              -2.0630375287067833,
+              0.048311848217802066
+            ],
+            "vitaldb:p005977": [
+              -12.7311388715503,
+              -11.75398069949083
+            ],
+            "vitaldb:p005984": [
+              -2.9651183586506096,
+              3.9826319323668127
+            ],
+            "vitaldb:p006009": [
+              0.46760052840105953,
+              3.811941737952388
+            ],
+            "vitaldb:p006052": [
+              0.2086864169784596,
+              0.12892063241795762
+            ]
+          }
+        },
+        "head": {
+          "estimate": [
+            -0.9050309438189322,
+            -1.3658109009410415
+          ],
+          "ci_lower": [
+            -5.091312422328551,
+            -5.504962658896822
+          ],
+          "ci_upper": [
+            2.649776338297809,
+            2.078041614608786
+          ],
+          "n_patients": 6,
+          "resamples": 2000,
+          "method": "patient bootstrap percentile, descriptive 95% interval",
+          "sign": "model minus baseline; negative is improvement",
+          "metric": "mae",
+          "seed_macro_changes": [
+            [
+              2.111000257367296,
+              -0.0566966144392973
+            ],
+            [
+              -1.953536092280065,
+              -1.5709500388627589
+            ],
+            [
+              -2.8725569965440276,
+              -2.4697860495210677
+            ]
+          ],
+          "patient_changes": {
+            "vitaldb:p005879": [
+              3.760874512546691,
+              -5.34908534529576
+            ],
+            "vitaldb:p005885": [
+              0.3564101846138327,
+              1.3417895614504074
+            ],
+            "vitaldb:p005977": [
+              -10.38623186424419,
+              -9.839301367389398
+            ],
+            "vitaldb:p005984": [
+              -3.5046129222828646,
+              3.8608690137608495
+            ],
+            "vitaldb:p006009": [
+              3.6771243936267033,
+              2.6960828172851357
+            ],
+            "vitaldb:p006052": [
+              0.6662500328262327,
+              -0.9052200854574841
+            ]
+          }
+        },
+        "last_block": {
+          "estimate": [
+            -3.227274667023117,
+            -1.4780380191780231
+          ],
+          "ci_lower": [
+            -7.605799015725476,
+            -5.877803339034177
+          ],
+          "ci_upper": [
+            0.14128421418133055,
+            2.353423939644335
+          ],
+          "n_patients": 6,
+          "resamples": 2000,
+          "method": "patient bootstrap percentile, descriptive 95% interval",
+          "sign": "model minus baseline; negative is improvement",
+          "metric": "mae",
+          "seed_macro_changes": [
+            [
+              -0.7084396719922174,
+              -0.3307409508577514
+            ],
+            [
+              -4.308233951600292,
+              -1.4860504162081571
+            ],
+            [
+              -4.665150377476841,
+              -2.6173226904681597
+            ]
+          ],
+          "patient_changes": {
+            "vitaldb:p005879": [
+              1.3965050805983708,
+              -5.354703313986323
+            ],
+            "vitaldb:p005885": [
+              -2.04767615258423,
+              0.3996182449280363
+            ],
+            "vitaldb:p005977": [
+              -13.718262286166222,
+              -10.97103168790062
+            ],
+            "vitaldb:p005984": [
+              -4.353660106619768,
+              4.05691029840765
+            ],
+            "vitaldb:p006009": [
+              -0.3846549306857317,
+              3.433493567517189
+            ],
+            "vitaldb:p006052": [
+              -0.2558996066811208,
+              -0.43251522403406906
+            ]
+          }
+        },
+        "full": {
+          "estimate": [
+            -3.29852712057714,
+            -1.759327671398567
+          ],
+          "ci_lower": [
+            -7.422402250905528,
+            -5.973570049654011
+          ],
+          "ci_upper": [
+            -0.5223981115341115,
+            2.3067404915023704
+          ],
+          "n_patients": 6,
+          "resamples": 2000,
+          "method": "patient bootstrap percentile, descriptive 95% interval",
+          "sign": "model minus baseline; negative is improvement",
+          "metric": "mae",
+          "seed_macro_changes": [
+            [
+              0.2616360951403222,
+              -0.7882716265136683
+            ],
+            [
+              -5.702795283522046,
+              -1.856651778713239
+            ],
+            [
+              -4.454422173349697,
+              -2.6330596089687943
+            ]
+          ],
+          "patient_changes": {
+            "vitaldb:p005879": [
+              -0.2721362749470379,
+              -5.834358894457927
+            ],
+            "vitaldb:p005885": [
+              -2.7720796332381,
+              -0.4059713527621713
+            ],
+            "vitaldb:p005977": [
+              -13.058243755708745,
+              -10.861684437886494
+            ],
+            "vitaldb:p005984": [
+              -3.26402517061452,
+              3.968056746521851
+            ],
+            "vitaldb:p006009": [
+              0.18447702816926417,
+              3.9128961168094825
+            ],
+            "vitaldb:p006052": [
+              -0.6091549171237034,
+              -1.3349042066161452
+            ]
+          }
+        },
+        "last_reference": {
+          "estimate": [
+            3.8039632696677828,
+            1.5744759815996214
+          ],
+          "ci_lower": [
+            -6.213422600349368,
+            -4.13545914981066
+          ],
+          "ci_upper": [
+            14.999824186593552,
+            7.733723456996359
+          ],
+          "n_patients": 6,
+          "resamples": 2000,
+          "method": "patient bootstrap percentile, descriptive 95% interval",
+          "sign": "model minus baseline; negative is improvement",
+          "metric": "mae",
+          "seed_macro_changes": [
+            [
+              4.859283220587355,
+              2.0994631608291883
+            ],
+            [
+              3.2874390204322825,
+              1.94207887364124
+            ],
+            [
+              3.2651675679837133,
+              0.681885910328436
+            ]
+          ],
+          "patient_changes": {
+            "vitaldb:p005879": [
+              -1.3675226555873798,
+              -4.728905835905842
+            ],
+            "vitaldb:p005885": [
+              -7.4343247854022705,
+              -3.431266947470045
+            ],
+            "vitaldb:p005977": [
+              -12.242515934714637,
+              -8.451175296483795
+            ],
+            "vitaldb:p005984": [
+              25.654781956268142,
+              10.327274673378566
+            ],
+            "vitaldb:p006009": [
+              2.4437164755111858,
+              5.0034282195315045
+            ],
+            "vitaldb:p006052": [
+              15.769644561931656,
+              10.72750107654734
+            ]
+          }
+        },
+        "calibration_mean": {
+          "estimate": [
+            -3.5235817575356343,
+            -3.423694734656987
+          ],
+          "ci_lower": [
+            -8.232591902825023,
+            -6.860571494016668
+          ],
+          "ci_upper": [
+            1.1032921339492738,
+            -0.15451186287772323
+          ],
+          "n_patients": 6,
+          "resamples": 2000,
+          "method": "patient bootstrap percentile, descriptive 95% interval",
+          "sign": "model minus baseline; negative is improvement",
+          "metric": "mae",
+          "seed_macro_changes": [
+            [
+              -2.4682618066160633,
+              -2.8987075554274195
+            ],
+            [
+              -4.040106006771135,
+              -3.0560918426153685
+            ],
+            [
+              -4.062377459219705,
+              -4.316284805928173
+            ]
+          ],
+          "patient_changes": {
+            "vitaldb:p005879": [
+              -3.5293793090366363,
+              -6.412970208107826
+            ],
+            "vitaldb:p005885": [
+              -7.46214392190095,
+              -3.292180882312007
+            ],
+            "vitaldb:p005977": [
+              -13.616997216445336,
+              -10.368368110996817
+            ],
+            "vitaldb:p005984": [
+              2.4469634633234563,
+              3.1767052164764586
+            ],
+            "vitaldb:p006009": [
+              4.235138747239707,
+              -2.143424655224353
+            ],
+            "vitaldb:p006052": [
+              -3.215072308394046,
+              -1.501929767777377
+            ]
+          }
+        }
+      },
+      "n_seeds": 3
+    },
+    {
+      "lower_minutes_inclusive": 60,
+      "upper_minutes_exclusive": null,
+      "n_windows": 2772,
+      "n_patients": 6,
+      "patient_ids": [
+        "vitaldb:p005879",
+        "vitaldb:p005885",
+        "vitaldb:p005977",
+        "vitaldb:p005984",
+        "vitaldb:p006009",
+        "vitaldb:p006052"
+      ],
+      "paired_mae_changes": {
+        "bias": {
+          "estimate": [
+            -3.134817084362822,
+            -3.198223821932011
+          ],
+          "ci_lower": [
+            -8.275378298483702,
+            -7.481852956072026
+          ],
+          "ci_upper": [
+            0.8468171491633981,
+            0.19001170313488167
+          ],
+          "n_patients": 6,
+          "resamples": 2000,
+          "method": "patient bootstrap percentile, descriptive 95% interval",
+          "sign": "model minus baseline; negative is improvement",
+          "metric": "mae",
+          "seed_macro_changes": [
+            [
+              -2.4639397335568396,
+              -3.0180733239695154
+            ],
+            [
+              -2.257160550860062,
+              -2.009430549544095
+            ],
+            [
+              -4.683350968671562,
+              -4.567167592282423
+            ]
+          ],
+          "patient_changes": {
+            "vitaldb:p005879": [
+              3.0090742769787284,
+              -5.025742585745689
+            ],
+            "vitaldb:p005885": [
+              -5.178658149057665,
+              -1.847052312263248
+            ],
+            "vitaldb:p005977": [
+              -14.837412272333365,
+              -12.886583142987774
+            ],
+            "vitaldb:p005984": [
+              1.3825076417888278,
+              1.8238482633542341
+            ],
+            "vitaldb:p006009": [
+              -1.3332835322760932,
+              0.6414265905401058
+            ],
+            "vitaldb:p006052": [
+              -1.8511304712773622,
+              -1.895239744489695
+            ]
+          }
+        },
+        "affine": {
+          "estimate": [
+            -2.8133157553345,
+            -3.484250214977362
+          ],
+          "ci_lower": [
+            -7.148852477591117,
+            -7.76174890035347
+          ],
+          "ci_upper": [
+            0.48815635046457445,
+            0.10195936608531685
+          ],
+          "n_patients": 6,
+          "resamples": 2000,
+          "method": "patient bootstrap percentile, descriptive 95% interval",
+          "sign": "model minus baseline; negative is improvement",
+          "metric": "mae",
+          "seed_macro_changes": [
+            [
+              -1.9892473086629991,
+              -2.655325242647892
+            ],
+            [
+              -2.6018801298256338,
+              -3.1801824065259443
+            ],
+            [
+              -3.848819827514866,
+              -4.617242995758249
+            ]
+          ],
+          "patient_changes": {
+            "vitaldb:p005879": [
+              -0.0198432614718221,
+              -6.70121935880496
+            ],
+            "vitaldb:p005885": [
+              -4.96356498493797,
+              -1.9878728878372238
+            ],
+            "vitaldb:p005977": [
+              -12.586681903914814,
+              -12.549610877815008
+            ],
+            "vitaldb:p005984": [
+              2.009729638492471,
+              2.3248618064765094
+            ],
+            "vitaldb:p006009": [
+              -1.1698731127824,
+              -0.23256852203360623
+            ],
+            "vitaldb:p006052": [
+              -0.14966090739246476,
+              -1.7590914498498824
+            ]
+          }
+        },
+        "head": {
+          "estimate": [
+            -1.728397875399864,
+            -2.8236913198542717
+          ],
+          "ci_lower": [
+            -5.080647207612269,
+            -5.812391723736667
+          ],
+          "ci_upper": [
+            1.4661372734015494,
+            -0.1088241684281206
+          ],
+          "n_patients": 6,
+          "resamples": 2000,
+          "method": "patient bootstrap percentile, descriptive 95% interval",
+          "sign": "model minus baseline; negative is improvement",
+          "metric": "mae",
+          "seed_macro_changes": [
+            [
+              -0.8491364717985318,
+              -2.219593528251312
+            ],
+            [
+              -0.9297489387558938,
+              -1.9837779281174155
+            ],
+            [
+              -3.4063082156451667,
+              -4.267702503194088
+            ]
+          ],
+          "patient_changes": {
+            "vitaldb:p005879": [
+              2.7228232256466334,
+              -5.148991677676176
+            ],
+            "vitaldb:p005885": [
+              -4.435511060064989,
+              -1.86489285243705
+            ],
+            "vitaldb:p005977": [
+              -8.8524105322789,
+              -8.943625811763019
+            ],
+            "vitaldb:p005984": [
+              2.9567343647083995,
+              2.4635092988540723
+            ],
+            "vitaldb:p006009": [
+              -1.5973948519837478,
+              -1.0295883770177146
+            ],
+            "vitaldb:p006052": [
+              -1.1646283984265793,
+              -2.418558499085744
+            ]
+          }
+        },
+        "last_block": {
+          "estimate": [
+            -3.0121054315208844,
+            -3.195347112353194
+          ],
+          "ci_lower": [
+            -7.2187468658658664,
+            -6.827112072698378
+          ],
+          "ci_upper": [
+            0.047635161895911195,
+            -0.22248853418992123
+          ],
+          "n_patients": 6,
+          "resamples": 2000,
+          "method": "patient bootstrap percentile, descriptive 95% interval",
+          "sign": "model minus baseline; negative is improvement",
+          "metric": "mae",
+          "seed_macro_changes": [
+            [
+              -2.018593962724527,
+              -2.8917087005455713
+            ],
+            [
+              -2.4805019247451408,
+              -1.8017428013634955
+            ],
+            [
+              -4.537220407092986,
+              -4.892589835150516
+            ]
+          ],
+          "patient_changes": {
+            "vitaldb:p005879": [
+              1.298283087533755,
+              -5.191844185217143
+            ],
+            "vitaldb:p005885": [
+              -3.940307847157046,
+              -2.1381862604599204
+            ],
+            "vitaldb:p005977": [
+              -12.852069459345033,
+              -11.174586625872337
+            ],
+            "vitaldb:p005984": [
+              0.6123859267257176,
+              1.5676937424338455
+            ],
+            "vitaldb:p006009": [
+              -1.4231607683109608,
+              -0.5733342186438888
+            ],
+            "vitaldb:p006052": [
+              -1.767763528571739,
+              -1.6618251263597204
+            ]
+          }
+        },
+        "full": {
+          "estimate": [
+            -2.9137021192622448,
+            -3.1474186833563134
+          ],
+          "ci_lower": [
+            -6.454183483282406,
+            -6.365317291062016
+          ],
+          "ci_upper": [
+            -0.6984539361842556,
+            -0.34682912423121126
+          ],
+          "n_patients": 6,
+          "resamples": 2000,
+          "method": "patient bootstrap percentile, descriptive 95% interval",
+          "sign": "model minus baseline; negative is improvement",
+          "metric": "mae",
+          "seed_macro_changes": [
+            [
+              -0.8651861409095591,
+              -2.724270427981191
+            ],
+            [
+              -3.093627090357588,
+              -1.8463536056507976
+            ],
+            [
+              -4.782293126519587,
+              -4.871632016436951
+            ]
+          ],
+          "patient_changes": {
+            "vitaldb:p005879": [
+              -0.005243369280554688,
+              -5.74809301486703
+            ],
+            "vitaldb:p005885": [
+              -1.9852663040274698,
+              -2.0160530389308944
+            ],
+            "vitaldb:p005977": [
+              -11.422461893666158,
+              -10.138187807572114
+            ],
+            "vitaldb:p005984": [
+              -0.4871826106410199,
+              0.9713868726476353
+            ],
+            "vitaldb:p006009": [
+              -1.3916645030879564,
+              -0.013194269857829047
+            ],
+            "vitaldb:p006052": [
+              -2.19039403487031,
+              -1.9403708415576453
+            ]
+          }
+        },
+        "last_reference": {
+          "estimate": [
+            5.540507571381741,
+            1.167536994895016
+          ],
+          "ci_lower": [
+            -4.187609817307102,
+            -5.512939399624345
+          ],
+          "ci_upper": [
+            15.221557390268755,
+            8.003894774247959
+          ],
+          "n_patients": 6,
+          "resamples": 2000,
+          "method": "patient bootstrap percentile, descriptive 95% interval",
+          "sign": "model minus baseline; negative is improvement",
+          "metric": "mae",
+          "seed_macro_changes": [
+            [
+              5.535133446451776,
+              1.6779931687713405
+            ],
+            [
+              6.370084020122441,
+              1.8322464615539793
+            ],
+            [
+              4.716305247571003,
+              -0.007628645640271141
+            ]
+          ],
+          "patient_changes": {
+            "vitaldb:p005879": [
+              -1.1927107796349887,
+              -4.05881218932976
+            ],
+            "vitaldb:p005885": [
+              -3.278935404011143,
+              -3.4759277826819077
+            ],
+            "vitaldb:p005977": [
+              -12.903431132539206,
+              -12.162181367284772
+            ],
+            "vitaldb:p005984": [
+              20.151304728000046,
+              11.536939394491306
+            ],
+            "vitaldb:p006009": [
+              15.197854154330523,
+              5.351538850204435
+            ],
+            "vitaldb:p006052": [
+              15.268963862145213,
+              9.813665063970793
+            ]
+          }
+        },
+        "calibration_mean": {
+          "estimate": [
+            -3.487088829111974,
+            -4.081052283002725
+          ],
+          "ci_lower": [
+            -7.522335076162652,
+            -8.096786628214481
+          ],
+          "ci_upper": [
+            -0.5852501211480328,
+            -1.0174897713382256
+          ],
+          "n_patients": 6,
+          "resamples": 2000,
+          "method": "patient bootstrap percentile, descriptive 95% interval",
+          "sign": "model minus baseline; negative is improvement",
+          "metric": "mae",
+          "seed_macro_changes": [
+            [
+              -3.4924629540419385,
+              -3.5705961091264005
+            ],
+            [
+              -2.6575123803712732,
+              -3.4163428163437612
+            ],
+            [
+              -4.3112911529227125,
+              -5.256217923538012
+            ]
+          ],
+          "patient_changes": {
+            "vitaldb:p005879": [
+              -3.0091426488502555,
+              -5.601285640980588
+            ],
+            "vitaldb:p005885": [
+              -3.243636550846078,
+              -3.348193951520799
+            ],
+            "vitaldb:p005977": [
+              -12.914003411531416,
+              -13.253598522274723
+            ],
+            "vitaldb:p005984": [
+              -0.3737149246811529,
+              0.13863094510062965
+            ],
+            "vitaldb:p006009": [
+              0.8516606720822365,
+              -0.6355739238916195
+            ],
+            "vitaldb:p006052": [
+              -2.2336961108451816,
+              -1.7862926044492469
+            ]
+          }
+        }
+      },
+      "n_seeds": 3
+    }
+  ],
+  "full_model_drift_outcomes": {
+    "SBP": {
+      "nonempty_bins": 4,
+      "below_population_bins": 4,
+      "above_population_bins": 0,
+      "intervals_wholly_below_zero": 2,
+      "intervals_wholly_above_zero": 0
+    },
+    "DBP": {
+      "nonempty_bins": 4,
+      "below_population_bins": 4,
+      "above_population_bins": 0,
+      "intervals_wholly_below_zero": 1,
+      "intervals_wholly_above_zero": 0
+    }
+  }
+}

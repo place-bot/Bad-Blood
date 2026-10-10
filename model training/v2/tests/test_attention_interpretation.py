@@ -236,6 +236,23 @@ class AttentionInterpretationTests(unittest.TestCase):
         self.assertIn("SE-last's observed SBP MAE is higher", observed["discussion_latex"])
         json.dumps(data, allow_nan=False)
 
+    def test_ppg_point_comparison_uses_matched_seed42_not_three_seed_means(self):
+        runs = fixture()
+        change_summary(runs["baseline_ppg_seed42"], "test", lambda i, y: [1., 2.])
+        latex, data = build_attention_interpretation(runs)
+        evidence = data["matched_seed42_modality_mae"]
+        self.assertEqual(evidence["seed"], 42)
+        for variant, values in evidence["patient_macro_mae"].items():
+            np.testing.assert_array_equal(values, runs[f"{variant}_seed42"]["metrics"]["test"]["macro"]["mae"])
+        baseline = evidence["patient_macro_mae"]["baseline"]
+        se = evidence["patient_macro_mae"]["se_last"]
+        self.assertIn("At seed 42, PPG-only primary-test patient-macro SBP/DBP MAE is 1.000/2.000", latex)
+        self.assertIn(f"versus {baseline[0]:.3f}/{baseline[1]:.3f} for CNN and {se[0]:.3f}/{se[1]:.3f} for SE-last", latex)
+        self.assertIn("lower observed point errors on both endpoints than both comparators in this run", latex)
+        self.assertIn("single-run evidence, not a three-seed superiority claim", latex)
+        other_latex, _ = build_attention_interpretation(fixture())
+        self.assertNotIn("PPG-only has lower observed point errors", other_latex)
+
 
 if __name__ == "__main__":
     unittest.main()

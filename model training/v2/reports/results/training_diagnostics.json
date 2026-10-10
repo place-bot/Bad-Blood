@@ -1,0 +1,5844 @@
+{
+  "required_completed_runs": 20,
+  "total_completed_runs": 20,
+  "supplementary_eca_completed": false,
+  "figure_variant_order": [
+    "baseline",
+    "se_last",
+    "temporal_last",
+    "cbam_last"
+  ],
+  "figure_seed_order": [
+    42,
+    43,
+    44
+  ],
+  "figures": {
+    "training": "figures/attention_training_mse.pdf",
+    "validation": "figures/attention_validation_mae.pdf"
+  },
+  "source_scope": "Already-verified saved per-epoch training and validation histories only; no test metrics are accessed",
+  "training_objective": "Dimensionless MSE of train-standardized SBP/DBP, averaged over minibatches during parameter updates with augmentation and training-mode layers",
+  "validation_objective": "Mean of SBP and DBP equal-patient macro MAE in mmHg, evaluated after each epoch",
+  "selected_marker": "Saved earliest strict minimum of validation selection_macro_mae; not a new selection",
+  "history_digest_definition": "SHA-256 of canonical JSON history values, not the source history.json byte hash",
+  "plot_policy": "One curve per saved seed; straight connections between recorded epochs only, no smoothing, extrapolation, seed averaging or causal diagnosis",
+  "interpretation_limit": "Different objectives, scales and evaluation conditions; not a directly comparable train-validation generalization gap or proof of causal overfitting",
+  "runs": {
+    "additive_last_seed42": {
+      "variant": "additive_last",
+      "seed": 42,
+      "shown_in_primary_figures": false,
+      "actual_epochs": 9,
+      "selected_epoch": 1,
+      "early_stopped": true,
+      "selected_validation_mean_macro_mae_mmhg": 10.400070267970914,
+      "training_normalized_mse_at_selected_epoch": 0.660898657514081,
+      "source_history_relative_path": "attention/additive_last_seed42/history.json",
+      "canonical_history_sha256": "7efcb8481c27e3e05612a135c8a3140b4e1c483a69a19aaa60cb49e8afea90ae",
+      "history": [
+        {
+          "epoch": 1,
+          "train_normalized_MSE": 0.660898657514081,
+          "validation": {
+            "mae": [
+              12.457419452236758,
+              8.342721083705072
+            ],
+            "rmse": [
+              15.783102716803272,
+              10.619311777100878
+            ],
+            "bias": [
+              0.9298623167254306,
+              0.4174307022381712
+            ],
+            "macro_mae": [
+              12.457419452236758,
+              8.342721083705072
+            ]
+          },
+          "selection_macro_mae": 10.400070267970914,
+          "seconds": 63.4202302090016,
+          "lr": 0.001
+        },
+        {
+          "epoch": 2,
+          "train_normalized_MSE": 0.5466446652585766,
+          "validation": {
+            "mae": [
+              12.494043256121653,
+              8.448471908823208
+            ],
+            "rmse": [
+              15.920800689363352,
+              10.776430703195732
+            ],
+            "bias": [
+              -1.068652166095045,
+              -0.9256121509053089
+            ],
+            "macro_mae": [
+              12.494043256121651,
+              8.448471908823207
+            ]
+          },
+          "selection_macro_mae": 10.471257582472429,
+          "seconds": 65.95001195900113,
+          "lr": 0.001
+        },
+        {
+          "epoch": 3,
+          "train_normalized_MSE": 0.48525033602150536,
+          "validation": {
+            "mae": [
+              12.665503486604603,
+              8.567236117521922
+            ],
+            "rmse": [
+              15.97216037528161,
+              10.893488451540762
+            ],
+            "bias": [
+              1.6027791870413004,
+              0.9171302403564806
+            ],
+            "macro_mae": [
+              12.665503486604601,
+              8.56723611752192
+            ]
+          },
+          "selection_macro_mae": 10.61636980206326,
+          "seconds": 60.61761637499876,
+          "lr": 0.001
+        },
+        {
+          "epoch": 4,
+          "train_normalized_MSE": 0.4423798323092678,
+          "validation": {
+            "mae": [
+              12.727200472630836,
+              8.519666312248619
+            ],
+            "rmse": [
+              15.998714990841576,
+              10.862766637696888
+            ],
+            "bias": [
+              0.7695446392452275,
+              0.08267560281135418
+            ],
+            "macro_mae": [
+              12.727200472630836,
+              8.519666312248617
+            ]
+          },
+          "selection_macro_mae": 10.623433392439726,
+          "seconds": 69.62562224999783,
+          "lr": 0.001
+        },
+        {
+          "epoch": 5,
+          "train_normalized_MSE": 0.411508056515617,
+          "validation": {
+            "mae": [
+              12.587712773735877,
+              8.644905369425262
+            ],
+            "rmse": [
+              15.981381028179051,
+              11.127257329057944
+            ],
+            "bias": [
+              0.010418949027856192,
+              0.6182235950121173
+            ],
+            "macro_mae": [
+              12.587712773735875,
+              8.644905369425262
+            ]
+          },
+          "selection_macro_mae": 10.616309071580568,
+          "seconds": 65.73616316699918,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 6,
+          "train_normalized_MSE": 0.3686978366615463,
+          "validation": {
+            "mae": [
+              12.977641353728595,
+              8.772124364696166
+            ],
+            "rmse": [
+              16.428967699033645,
+              11.241999140521349
+            ],
+            "bias": [
+              0.5369136661843017,
+              0.5230684404571851
+            ],
+            "macro_mae": [
+              12.977641353728595,
+              8.772124364696166
+            ]
+          },
+          "selection_macro_mae": 10.87488285921238,
+          "seconds": 74.17459091600176,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 7,
+          "train_normalized_MSE": 0.35502340149769585,
+          "validation": {
+            "mae": [
+              12.671410205463568,
+              8.726058567729261
+            ],
+            "rmse": [
+              16.073162503583855,
+              11.15875064608903
+            ],
+            "bias": [
+              -1.3613916155916672,
+              -0.5605403293614034
+            ],
+            "macro_mae": [
+              12.671410205463568,
+              8.726058567729261
+            ]
+          },
+          "selection_macro_mae": 10.698734386596414,
+          "seconds": 79.66222408300018,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 8,
+          "train_normalized_MSE": 0.34468409978238607,
+          "validation": {
+            "mae": [
+              12.739285162919098,
+              8.653416550711349
+            ],
+            "rmse": [
+              16.177340167986042,
+              11.096472107863692
+            ],
+            "bias": [
+              0.303050745692518,
+              0.2450419204102622
+            ],
+            "macro_mae": [
+              12.739285162919098,
+              8.653416550711349
+            ]
+          },
+          "selection_macro_mae": 10.696350856815222,
+          "seconds": 69.1999693329999,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 9,
+          "train_normalized_MSE": 0.33645661322324627,
+          "validation": {
+            "mae": [
+              12.75750975559155,
+              8.741286578636478
+            ],
+            "rmse": [
+              16.16915487391218,
+              11.20237122847556
+            ],
+            "bias": [
+              0.5704030621382925,
+              0.9431087427945049
+            ],
+            "macro_mae": [
+              12.75750975559155,
+              8.741286578636478
+            ]
+          },
+          "selection_macro_mae": 10.749398167114014,
+          "seconds": 64.51940141600062,
+          "lr": 0.00025
+        }
+      ],
+      "config_hash": "8cd36b40afe55c23aada43dfeea3306526cea67815c6d7247b272cfb508cda13",
+      "manifest_hash": "88984e9b5a412cc20c3f9ee48badc9c82502cf982fedb7ae9e43315f314a3fca",
+      "best_checkpoint_sha256": "d04ca6eae68379acb07b0107decd6a45167e9900f1e4cb234b89d30afbf6843e"
+    },
+    "additive_last_seed43": {
+      "variant": "additive_last",
+      "seed": 43,
+      "shown_in_primary_figures": false,
+      "actual_epochs": 9,
+      "selected_epoch": 1,
+      "early_stopped": true,
+      "selected_validation_mean_macro_mae_mmhg": 10.366291962701965,
+      "training_normalized_mse_at_selected_epoch": 0.6678281009984639,
+      "source_history_relative_path": "attention/additive_last_seed43/history.json",
+      "canonical_history_sha256": "577787a2d271947ec6433a57db8d19a9650ca5387ba1cd29c21e64b53e3675c8",
+      "history": [
+        {
+          "epoch": 1,
+          "train_normalized_MSE": 0.6678281009984639,
+          "validation": {
+            "mae": [
+              12.507902978029517,
+              8.224680947374415
+            ],
+            "rmse": [
+              15.991863436726097,
+              10.549448895211226
+            ],
+            "bias": [
+              -1.3672671283284823,
+              -0.23363561265998417
+            ],
+            "macro_mae": [
+              12.507902978029515,
+              8.224680947374415
+            ]
+          },
+          "selection_macro_mae": 10.366291962701965,
+          "seconds": 106.1737361250016,
+          "lr": 0.001
+        },
+        {
+          "epoch": 2,
+          "train_normalized_MSE": 0.5484116983486943,
+          "validation": {
+            "mae": [
+              12.604609359028164,
+              8.245959815990043
+            ],
+            "rmse": [
+              16.01592268664929,
+              10.524977004572634
+            ],
+            "bias": [
+              -1.26730478025145,
+              -0.725490413054272
+            ],
+            "macro_mae": [
+              12.604609359028165,
+              8.245959815990041
+            ]
+          },
+          "selection_macro_mae": 10.425284587509104,
+          "seconds": 87.9205648749994,
+          "lr": 0.001
+        },
+        {
+          "epoch": 3,
+          "train_normalized_MSE": 0.4854503088197645,
+          "validation": {
+            "mae": [
+              12.627587495854607,
+              8.461886024530287
+            ],
+            "rmse": [
+              16.24788206561039,
+              10.784090001471565
+            ],
+            "bias": [
+              -0.19033929446229228,
+              -0.2168492308921284
+            ],
+            "macro_mae": [
+              12.627587495854607,
+              8.461886024530287
+            ]
+          },
+          "selection_macro_mae": 10.544736760192446,
+          "seconds": 103.86347604099865,
+          "lr": 0.001
+        },
+        {
+          "epoch": 4,
+          "train_normalized_MSE": 0.44156053987455196,
+          "validation": {
+            "mae": [
+              12.826028060747518,
+              8.744545129217483
+            ],
+            "rmse": [
+              16.321276469447866,
+              11.128958511892847
+            ],
+            "bias": [
+              0.7247393182582326,
+              1.2504403372053747
+            ],
+            "macro_mae": [
+              12.826028060747518,
+              8.744545129217483
+            ]
+          },
+          "selection_macro_mae": 10.785286594982502,
+          "seconds": 130.66712841700064,
+          "lr": 0.001
+        },
+        {
+          "epoch": 5,
+          "train_normalized_MSE": 0.40956429211469536,
+          "validation": {
+            "mae": [
+              12.902741045035699,
+              8.645317957743451
+            ],
+            "rmse": [
+              16.485199446315853,
+              11.005935987223687
+            ],
+            "bias": [
+              -0.15351233189856564,
+              0.8663969839612643
+            ],
+            "macro_mae": [
+              12.902741045035697,
+              8.645317957743451
+            ]
+          },
+          "selection_macro_mae": 10.774029501389574,
+          "seconds": 118.35127533400009,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 6,
+          "train_normalized_MSE": 0.368068596390169,
+          "validation": {
+            "mae": [
+              12.949469828219325,
+              8.63489446176423
+            ],
+            "rmse": [
+              16.55352445271258,
+              11.051253100675924
+            ],
+            "bias": [
+              0.815448058589741,
+              1.0530044086553432
+            ],
+            "macro_mae": [
+              12.949469828219327,
+              8.63489446176423
+            ]
+          },
+          "selection_macro_mae": 10.792182144991777,
+          "seconds": 111.82399600000281,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 7,
+          "train_normalized_MSE": 0.35526385688684076,
+          "validation": {
+            "mae": [
+              12.9585084081248,
+              8.78877248035537
+            ],
+            "rmse": [
+              16.534770690384377,
+              11.25516484668417
+            ],
+            "bias": [
+              1.6284974568971882,
+              1.5404774030049642
+            ],
+            "macro_mae": [
+              12.9585084081248,
+              8.788772480355368
+            ]
+          },
+          "selection_macro_mae": 10.873640444240085,
+          "seconds": 108.122535333001,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 8,
+          "train_normalized_MSE": 0.34596578181003584,
+          "validation": {
+            "mae": [
+              13.038997244448574,
+              8.841180930590188
+            ],
+            "rmse": [
+              16.639599086815206,
+              11.240719071041532
+            ],
+            "bias": [
+              -0.9456412705558318,
+              -0.41784141764596655
+            ],
+            "macro_mae": [
+              13.038997244448574,
+              8.84118093059019
+            ]
+          },
+          "selection_macro_mae": 10.940089087519382,
+          "seconds": 117.97025125000073,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 9,
+          "train_normalized_MSE": 0.3366462253584229,
+          "validation": {
+            "mae": [
+              12.937446575639424,
+              8.659841148555278
+            ],
+            "rmse": [
+              16.486980573456545,
+              11.0884831208639
+            ],
+            "bias": [
+              0.7705086740630644,
+              0.6628447437175998
+            ],
+            "macro_mae": [
+              12.937446575639425,
+              8.659841148555278
+            ]
+          },
+          "selection_macro_mae": 10.798643862097352,
+          "seconds": 103.74029249999876,
+          "lr": 0.00025
+        }
+      ],
+      "config_hash": "abed1783fb814cadcacee298639910a6145cabf2dae30e65866345e2c201e482",
+      "manifest_hash": "88984e9b5a412cc20c3f9ee48badc9c82502cf982fedb7ae9e43315f314a3fca",
+      "best_checkpoint_sha256": "58eebbe2fe906ebc5f85de5768999d86455c4c007a86d1cb433e746e5c4c30e7"
+    },
+    "additive_last_seed44": {
+      "variant": "additive_last",
+      "seed": 44,
+      "shown_in_primary_figures": false,
+      "actual_epochs": 11,
+      "selected_epoch": 3,
+      "early_stopped": true,
+      "selected_validation_mean_macro_mae_mmhg": 10.406806743531316,
+      "training_normalized_mse_at_selected_epoch": 0.48249227950588836,
+      "source_history_relative_path": "attention/additive_last_seed44/history.json",
+      "canonical_history_sha256": "782ea849a95be2d518cfd28229df432f7bcf24d1bd708707a56b74cd4b8a33a3",
+      "history": [
+        {
+          "epoch": 1,
+          "train_normalized_MSE": 0.6638155241935484,
+          "validation": {
+            "mae": [
+              12.645573794345061,
+              8.37727498114109
+            ],
+            "rmse": [
+              15.95656062483713,
+              10.675753760231695
+            ],
+            "bias": [
+              0.12263410394942319,
+              0.5575860728820164
+            ],
+            "macro_mae": [
+              12.645573794345061,
+              8.37727498114109
+            ]
+          },
+          "selection_macro_mae": 10.511424387743077,
+          "seconds": 101.45522387500023,
+          "lr": 0.001
+        },
+        {
+          "epoch": 2,
+          "train_normalized_MSE": 0.5446403369815668,
+          "validation": {
+            "mae": [
+              12.970591744063077,
+              8.669594817029106
+            ],
+            "rmse": [
+              16.447762414732676,
+              11.05790896811755
+            ],
+            "bias": [
+              1.5753638177558227,
+              1.559979921910498
+            ],
+            "macro_mae": [
+              12.970591744063077,
+              8.669594817029106
+            ]
+          },
+          "selection_macro_mae": 10.820093280546091,
+          "seconds": 98.95578362500237,
+          "lr": 0.001
+        },
+        {
+          "epoch": 3,
+          "train_normalized_MSE": 0.48249227950588836,
+          "validation": {
+            "mae": [
+              12.360263946597223,
+              8.453349540465409
+            ],
+            "rmse": [
+              15.763258915476698,
+              10.798322334396731
+            ],
+            "bias": [
+              -0.5028522429090959,
+              -0.34382717813606617
+            ],
+            "macro_mae": [
+              12.360263946597222,
+              8.453349540465409
+            ]
+          },
+          "selection_macro_mae": 10.406806743531316,
+          "seconds": 91.78673566699945,
+          "lr": 0.001
+        },
+        {
+          "epoch": 4,
+          "train_normalized_MSE": 0.4401621303763441,
+          "validation": {
+            "mae": [
+              12.955018223159843,
+              8.654504136796351
+            ],
+            "rmse": [
+              16.45877350860674,
+              11.153109865818248
+            ],
+            "bias": [
+              2.3460875866037827,
+              1.219010509385003
+            ],
+            "macro_mae": [
+              12.955018223159845,
+              8.654504136796351
+            ]
+          },
+          "selection_macro_mae": 10.804761179978097,
+          "seconds": 96.12499341700095,
+          "lr": 0.001
+        },
+        {
+          "epoch": 5,
+          "train_normalized_MSE": 0.4100818452380952,
+          "validation": {
+            "mae": [
+              12.700700510044893,
+              8.668536276949776
+            ],
+            "rmse": [
+              16.09246913868246,
+              11.073982167931952
+            ],
+            "bias": [
+              0.8220829343906155,
+              0.8274625833387728
+            ],
+            "macro_mae": [
+              12.700700510044891,
+              8.668536276949778
+            ]
+          },
+          "selection_macro_mae": 10.684618393497335,
+          "seconds": 99.67353041700335,
+          "lr": 0.001
+        },
+        {
+          "epoch": 6,
+          "train_normalized_MSE": 0.38970406105990785,
+          "validation": {
+            "mae": [
+              12.780883943096356,
+              8.46076114475727
+            ],
+            "rmse": [
+              16.220033991129533,
+              10.786295719987098
+            ],
+            "bias": [
+              -0.7486230912583846,
+              -0.5177052272690668
+            ],
+            "macro_mae": [
+              12.780883943096356,
+              8.46076114475727
+            ]
+          },
+          "selection_macro_mae": 10.620822543926813,
+          "seconds": 49.38235716700001,
+          "lr": 0.001
+        },
+        {
+          "epoch": 7,
+          "train_normalized_MSE": 0.3717817140296979,
+          "validation": {
+            "mae": [
+              12.578911292166621,
+              8.588272119120315
+            ],
+            "rmse": [
+              16.079688786533417,
+              10.95053253349161
+            ],
+            "bias": [
+              -1.8918611296349102,
+              -0.32123611944693103
+            ],
+            "macro_mae": [
+              12.578911292166621,
+              8.588272119120315
+            ]
+          },
+          "selection_macro_mae": 10.583591705643467,
+          "seconds": 63.03634641700046,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 8,
+          "train_normalized_MSE": 0.33872035810291856,
+          "validation": {
+            "mae": [
+              12.604087864083272,
+              8.631090974807739
+            ],
+            "rmse": [
+              15.985861240935671,
+              11.04209201748768
+            ],
+            "bias": [
+              0.6417300503011103,
+              0.7653201476291374
+            ],
+            "macro_mae": [
+              12.604087864083274,
+              8.631090974807739
+            ]
+          },
+          "selection_macro_mae": 10.617589419445506,
+          "seconds": 63.423144583000976,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 9,
+          "train_normalized_MSE": 0.3307217061891961,
+          "validation": {
+            "mae": [
+              12.565229645868142,
+              8.61437313898846
+            ],
+            "rmse": [
+              15.99913348852536,
+              11.05401423224705
+            ],
+            "bias": [
+              -0.006469086198895066,
+              0.15816815296808878
+            ],
+            "macro_mae": [
+              12.565229645868143,
+              8.61437313898846
+            ]
+          },
+          "selection_macro_mae": 10.589801392428303,
+          "seconds": 60.348588415999984,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 10,
+          "train_normalized_MSE": 0.3240763408858167,
+          "validation": {
+            "mae": [
+              12.59742005241138,
+              8.63232104005637
+            ],
+            "rmse": [
+              15.96507371726344,
+              10.966889180321793
+            ],
+            "bias": [
+              -0.8145767823965461,
+              -0.08234822551409403
+            ],
+            "macro_mae": [
+              12.59742005241138,
+              8.63232104005637
+            ]
+          },
+          "selection_macro_mae": 10.614870546233874,
+          "seconds": 57.83190187499713,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 11,
+          "train_normalized_MSE": 0.3181863239247312,
+          "validation": {
+            "mae": [
+              12.506156250779275,
+              8.570953481616797
+            ],
+            "rmse": [
+              15.845175688793889,
+              10.917973635813174
+            ],
+            "bias": [
+              -0.7255238349239032,
+              -0.1596903108888202
+            ],
+            "macro_mae": [
+              12.506156250779275,
+              8.570953481616797
+            ]
+          },
+          "selection_macro_mae": 10.538554866198037,
+          "seconds": 88.6631137910008,
+          "lr": 0.00025
+        }
+      ],
+      "config_hash": "42aba6be1126395e406ae2539879935e5c689f4c07f40e6d4877c671df52f3eb",
+      "manifest_hash": "88984e9b5a412cc20c3f9ee48badc9c82502cf982fedb7ae9e43315f314a3fca",
+      "best_checkpoint_sha256": "b74b1be5be31314567c74959a17a88f0c25b35571e56beb2162f93a331a6505a"
+    },
+    "baseline_ecg_seed42": {
+      "variant": "baseline_ecg",
+      "seed": 42,
+      "shown_in_primary_figures": false,
+      "actual_epochs": 9,
+      "selected_epoch": 1,
+      "early_stopped": true,
+      "selected_validation_mean_macro_mae_mmhg": 11.452611675665334,
+      "training_normalized_mse_at_selected_epoch": 0.8196701388888888,
+      "source_history_relative_path": "attention/baseline_ecg_seed42/history.json",
+      "canonical_history_sha256": "20961b7bf5f11058d6b81017dd14c946a772999864696d76dc686d8a9fda72ad",
+      "history": [
+        {
+          "epoch": 1,
+          "train_normalized_MSE": 0.8196701388888888,
+          "validation": {
+            "mae": [
+              14.188695283675635,
+              8.716528067655034
+            ],
+            "rmse": [
+              17.9109232492158,
+              11.343744495344167
+            ],
+            "bias": [
+              -0.8942238033369735,
+              0.061366574079902085
+            ],
+            "macro_mae": [
+              14.188695283675637,
+              8.716528067655034
+            ]
+          },
+          "selection_macro_mae": 11.452611675665334,
+          "seconds": 105.93162091599879,
+          "lr": 0.001
+        },
+        {
+          "epoch": 2,
+          "train_normalized_MSE": 0.6664776945724527,
+          "validation": {
+            "mae": [
+              14.558199127570347,
+              9.042171463701461
+            ],
+            "rmse": [
+              18.453741302189123,
+              11.828874781022876
+            ],
+            "bias": [
+              -0.9036633616796246,
+              0.5081292295897448
+            ],
+            "macro_mae": [
+              14.558199127570347,
+              9.04217146370146
+            ]
+          },
+          "selection_macro_mae": 11.800185295635902,
+          "seconds": 107.02232545800143,
+          "lr": 0.001
+        },
+        {
+          "epoch": 3,
+          "train_normalized_MSE": 0.5826988927291347,
+          "validation": {
+            "mae": [
+              14.771230079123267,
+              9.064694181029443
+            ],
+            "rmse": [
+              18.715066961938042,
+              11.895940670581624
+            ],
+            "bias": [
+              -1.0870624501948003,
+              -0.02108706252442466
+            ],
+            "macro_mae": [
+              14.771230079123265,
+              9.064694181029443
+            ]
+          },
+          "selection_macro_mae": 11.917962130076354,
+          "seconds": 106.84327183300047,
+          "lr": 0.001
+        },
+        {
+          "epoch": 4,
+          "train_normalized_MSE": 0.530473870327701,
+          "validation": {
+            "mae": [
+              14.688567609422737,
+              9.019187905446246
+            ],
+            "rmse": [
+              18.482617234618644,
+              11.781653092116446
+            ],
+            "bias": [
+              -0.4387115097156277,
+              -0.21884915205063643
+            ],
+            "macro_mae": [
+              14.688567609422735,
+              9.019187905446246
+            ]
+          },
+          "selection_macro_mae": 11.853877757434491,
+          "seconds": 108.16162791699753,
+          "lr": 0.001
+        },
+        {
+          "epoch": 5,
+          "train_normalized_MSE": 0.4971442172299027,
+          "validation": {
+            "mae": [
+              14.7127272206876,
+              9.156124181327996
+            ],
+            "rmse": [
+              18.72883846541503,
+              11.962773904215508
+            ],
+            "bias": [
+              -1.0711294904351234,
+              -0.4053909248775906
+            ],
+            "macro_mae": [
+              14.712727220687603,
+              9.156124181327996
+            ]
+          },
+          "selection_macro_mae": 11.9344257010078,
+          "seconds": 96.93041837500277,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 6,
+          "train_normalized_MSE": 0.45339713741679466,
+          "validation": {
+            "mae": [
+              14.947657185516976,
+              9.347129899263383
+            ],
+            "rmse": [
+              19.02966151801077,
+              12.209431133234753
+            ],
+            "bias": [
+              -0.4299216964178615,
+              0.25602597428692714
+            ],
+            "macro_mae": [
+              14.947657185516976,
+              9.347129899263381
+            ]
+          },
+          "selection_macro_mae": 12.147393542390178,
+          "seconds": 75.65640120799799,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 7,
+          "train_normalized_MSE": 0.4402312147977471,
+          "validation": {
+            "mae": [
+              14.734066638847192,
+              9.33328919576274
+            ],
+            "rmse": [
+              18.722874810003805,
+              12.12550577664567
+            ],
+            "bias": [
+              -1.338252206257096,
+              -0.01976771476092162
+            ],
+            "macro_mae": [
+              14.734066638847194,
+              9.33328919576274
+            ]
+          },
+          "selection_macro_mae": 12.033677917304967,
+          "seconds": 58.73197649999929,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 8,
+          "train_normalized_MSE": 0.42982066852278544,
+          "validation": {
+            "mae": [
+              14.867555116889653,
+              9.375350366974319
+            ],
+            "rmse": [
+              18.97902076573617,
+              12.18218233061901
+            ],
+            "bias": [
+              -1.1751697465777398,
+              -0.13723011121705728
+            ],
+            "macro_mae": [
+              14.867555116889653,
+              9.375350366974319
+            ]
+          },
+          "selection_macro_mae": 12.121452741931986,
+          "seconds": 57.001145541998994,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 9,
+          "train_normalized_MSE": 0.4218573188684076,
+          "validation": {
+            "mae": [
+              14.901145609716574,
+              9.32710705118047
+            ],
+            "rmse": [
+              18.977111215169497,
+              12.134891433241718
+            ],
+            "bias": [
+              -2.3241643467987023,
+              -0.3802062546213468
+            ],
+            "macro_mae": [
+              14.901145609716574,
+              9.32710705118047
+            ]
+          },
+          "selection_macro_mae": 12.11412633044852,
+          "seconds": 61.84499416700055,
+          "lr": 0.00025
+        }
+      ],
+      "config_hash": "a44fda2f525c80c616ab003329cf244910434879be7b539a01df26bfdf271fc7",
+      "manifest_hash": "88984e9b5a412cc20c3f9ee48badc9c82502cf982fedb7ae9e43315f314a3fca",
+      "best_checkpoint_sha256": "38c066596bea70ea17d8dbe6ac18cd40db16404a466b611f3bcad654e14b67d6"
+    },
+    "baseline_ppg_seed42": {
+      "variant": "baseline_ppg",
+      "seed": 42,
+      "shown_in_primary_figures": false,
+      "actual_epochs": 9,
+      "selected_epoch": 1,
+      "early_stopped": true,
+      "selected_validation_mean_macro_mae_mmhg": 10.340650378333198,
+      "training_normalized_mse_at_selected_epoch": 0.6884875832053251,
+      "source_history_relative_path": "attention/baseline_ppg_seed42/history.json",
+      "canonical_history_sha256": "b8b1d87b256a2fa707e79dc1e6a5190da2155cacc56d20694da34df65244d69f",
+      "history": [
+        {
+          "epoch": 1,
+          "train_normalized_MSE": 0.6884875832053251,
+          "validation": {
+            "mae": [
+              12.353642042533115,
+              8.32765871413328
+            ],
+            "rmse": [
+              15.7534087687567,
+              10.620871080817636
+            ],
+            "bias": [
+              -0.47275528637347397,
+              -0.38856300485354883
+            ],
+            "macro_mae": [
+              12.353642042533115,
+              8.32765871413328
+            ]
+          },
+          "selection_macro_mae": 10.340650378333198,
+          "seconds": 67.59882583400031,
+          "lr": 0.001
+        },
+        {
+          "epoch": 2,
+          "train_normalized_MSE": 0.6435287058371736,
+          "validation": {
+            "mae": [
+              12.50152763310406,
+              8.558328528205553
+            ],
+            "rmse": [
+              15.903518209608356,
+              10.881218222035757
+            ],
+            "bias": [
+              -0.34927800005232845,
+              -0.2688392303608082
+            ],
+            "macro_mae": [
+              12.501527633104061,
+              8.558328528205552
+            ]
+          },
+          "selection_macro_mae": 10.529928080654805,
+          "seconds": 63.066356790997816,
+          "lr": 0.001
+        },
+        {
+          "epoch": 3,
+          "train_normalized_MSE": 0.6203266209037378,
+          "validation": {
+            "mae": [
+              12.836574673266323,
+              8.579822294358854
+            ],
+            "rmse": [
+              16.321421899139047,
+              10.971113159020168
+            ],
+            "bias": [
+              -0.35665651466007586,
+              -0.5787745888586397
+            ],
+            "macro_mae": [
+              12.836574673266322,
+              8.579822294358854
+            ]
+          },
+          "selection_macro_mae": 10.708198483812588,
+          "seconds": 59.629111666003155,
+          "lr": 0.001
+        },
+        {
+          "epoch": 4,
+          "train_normalized_MSE": 0.5995685323860727,
+          "validation": {
+            "mae": [
+              12.68455527772506,
+              8.48125874284241
+            ],
+            "rmse": [
+              16.118814336476678,
+              10.871432341743947
+            ],
+            "bias": [
+              0.7093539952679917,
+              0.44504974059484625
+            ],
+            "macro_mae": [
+              12.68455527772506,
+              8.48125874284241
+            ]
+          },
+          "selection_macro_mae": 10.582907010283735,
+          "seconds": 61.342304500001774,
+          "lr": 0.001
+        },
+        {
+          "epoch": 5,
+          "train_normalized_MSE": 0.5812003568228367,
+          "validation": {
+            "mae": [
+              12.998760124875439,
+              8.558055903403847
+            ],
+            "rmse": [
+              16.53555300367318,
+              10.975846320896267
+            ],
+            "bias": [
+              -0.4704027070491402,
+              -0.40150367694872396
+            ],
+            "macro_mae": [
+              12.99876012487544,
+              8.558055903403847
+            ]
+          },
+          "selection_macro_mae": 10.778408014139643,
+          "seconds": 61.76161545800278,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 6,
+          "train_normalized_MSE": 0.5561258320532514,
+          "validation": {
+            "mae": [
+              13.006135219611503,
+              8.740838501409248
+            ],
+            "rmse": [
+              16.601412709379765,
+              11.232280817574214
+            ],
+            "bias": [
+              0.32505739822431845,
+              0.6449193640991494
+            ],
+            "macro_mae": [
+              13.006135219611503,
+              8.740838501409248
+            ]
+          },
+          "selection_macro_mae": 10.873486860510376,
+          "seconds": 61.84129170799861,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 7,
+          "train_normalized_MSE": 0.546358406938044,
+          "validation": {
+            "mae": [
+              12.796330292522907,
+              8.609620593764165
+            ],
+            "rmse": [
+              16.37498834285019,
+              11.005377470414823
+            ],
+            "bias": [
+              -0.4334465091427167,
+              0.030985536288332057
+            ],
+            "macro_mae": [
+              12.796330292522908,
+              8.609620593764165
+            ]
+          },
+          "selection_macro_mae": 10.702975443143536,
+          "seconds": 62.650140375000774,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 8,
+          "train_normalized_MSE": 0.5383229726702509,
+          "validation": {
+            "mae": [
+              12.867177564402422,
+              8.618770559021721
+            ],
+            "rmse": [
+              16.486042669668976,
+              11.110658678863182
+            ],
+            "bias": [
+              -0.4460548135417479,
+              -0.1563123901133184
+            ],
+            "macro_mae": [
+              12.86717756440242,
+              8.61877055902172
+            ]
+          },
+          "selection_macro_mae": 10.742974061712069,
+          "seconds": 67.0699793749991,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 9,
+          "train_normalized_MSE": 0.5313784882232463,
+          "validation": {
+            "mae": [
+              12.89692279757173,
+              8.679525957008202
+            ],
+            "rmse": [
+              16.469646358919956,
+              11.122183416499173
+            ],
+            "bias": [
+              -0.1690733841723866,
+              0.24382550556350638
+            ],
+            "macro_mae": [
+              12.896922797571728,
+              8.679525957008202
+            ]
+          },
+          "selection_macro_mae": 10.788224377289964,
+          "seconds": 75.19731320900246,
+          "lr": 0.00025
+        }
+      ],
+      "config_hash": "cd291ae68ec0b45945b696d09ca343d987e53f0f008eab4760852d8559b4d294",
+      "manifest_hash": "88984e9b5a412cc20c3f9ee48badc9c82502cf982fedb7ae9e43315f314a3fca",
+      "best_checkpoint_sha256": "a85e86481f63277299b9a6c2c28e50b4a8464a1ca324697793b7758b4844ae22"
+    },
+    "baseline_seed42": {
+      "variant": "baseline",
+      "seed": 42,
+      "shown_in_primary_figures": true,
+      "actual_epochs": 9,
+      "selected_epoch": 1,
+      "early_stopped": true,
+      "selected_validation_mean_macro_mae_mmhg": 10.374502795355188,
+      "training_normalized_mse_at_selected_epoch": 0.6614185707885305,
+      "source_history_relative_path": "attention/baseline_seed42/history.json",
+      "canonical_history_sha256": "bad75df0c8dc2b14441a33763ffbc96fe36463ec084796d2b5c6e8f1fd950bb3",
+      "history": [
+        {
+          "epoch": 1,
+          "train_normalized_MSE": 0.6614185707885305,
+          "validation": {
+            "mae": [
+              12.424452329951304,
+              8.324553260759071
+            ],
+            "rmse": [
+              15.876987653500144,
+              10.61414137023477
+            ],
+            "bias": [
+              -2.0702863175008033,
+              -1.3397586332427132
+            ],
+            "macro_mae": [
+              12.424452329951306,
+              8.324553260759071
+            ]
+          },
+          "selection_macro_mae": 10.374502795355188,
+          "seconds": 66.9336810420009,
+          "lr": 0.001
+        },
+        {
+          "epoch": 2,
+          "train_normalized_MSE": 0.5536948364695341,
+          "validation": {
+            "mae": [
+              12.760108556957157,
+              8.475438328418466
+            ],
+            "rmse": [
+              16.19937004753904,
+              10.774057903070446
+            ],
+            "bias": [
+              -1.4415209282879475,
+              -0.6520816236182495
+            ],
+            "macro_mae": [
+              12.760108556957155,
+              8.475438328418466
+            ]
+          },
+          "selection_macro_mae": 10.61777344268781,
+          "seconds": 49.03424412499953,
+          "lr": 0.001
+        },
+        {
+          "epoch": 3,
+          "train_normalized_MSE": 0.4953161002304147,
+          "validation": {
+            "mae": [
+              12.69925380597512,
+              8.525058397154014
+            ],
+            "rmse": [
+              16.04258429391489,
+              10.839333414175597
+            ],
+            "bias": [
+              1.8617909970658797,
+              1.246694703068998
+            ],
+            "macro_mae": [
+              12.699253805975118,
+              8.525058397154014
+            ]
+          },
+          "selection_macro_mae": 10.612156101564565,
+          "seconds": 45.326756915999795,
+          "lr": 0.001
+        },
+        {
+          "epoch": 4,
+          "train_normalized_MSE": 0.45300099206349204,
+          "validation": {
+            "mae": [
+              12.512964911869279,
+              8.331205072336727
+            ],
+            "rmse": [
+              15.782059454638883,
+              10.610458244083237
+            ],
+            "bias": [
+              -0.7586690080938516,
+              0.22006381816334195
+            ],
+            "macro_mae": [
+              12.51296491186928,
+              8.331205072336727
+            ]
+          },
+          "selection_macro_mae": 10.422084992103004,
+          "seconds": 45.82586170899958,
+          "lr": 0.001
+        },
+        {
+          "epoch": 5,
+          "train_normalized_MSE": 0.4219949676779314,
+          "validation": {
+            "mae": [
+              12.486758093425522,
+              8.530477460335803
+            ],
+            "rmse": [
+              15.756050139590611,
+              10.858583970241645
+            ],
+            "bias": [
+              -0.08207497845093409,
+              0.9651703653512178
+            ],
+            "macro_mae": [
+              12.486758093425522,
+              8.530477460335801
+            ]
+          },
+          "selection_macro_mae": 10.508617776880662,
+          "seconds": 54.56220966699948,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 6,
+          "train_normalized_MSE": 0.3816393849206349,
+          "validation": {
+            "mae": [
+              12.642253156778988,
+              8.631178161557074
+            ],
+            "rmse": [
+              16.003867013975633,
+              10.977151270538874
+            ],
+            "bias": [
+              0.04991645443218726,
+              0.49003320573656645
+            ],
+            "macro_mae": [
+              12.642253156778986,
+              8.631178161557074
+            ]
+          },
+          "selection_macro_mae": 10.63671565916803,
+          "seconds": 47.80507133399988,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 7,
+          "train_normalized_MSE": 0.36892161098310294,
+          "validation": {
+            "mae": [
+              12.856720101336638,
+              8.718545882045118
+            ],
+            "rmse": [
+              16.256031772056552,
+              11.080127173801438
+            ],
+            "bias": [
+              0.19258184736525572,
+              0.019908530816987707
+            ],
+            "macro_mae": [
+              12.856720101336636,
+              8.718545882045118
+            ]
+          },
+          "selection_macro_mae": 10.787632991690877,
+          "seconds": 43.778475125000114,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 8,
+          "train_normalized_MSE": 0.35914362519201226,
+          "validation": {
+            "mae": [
+              12.78462486029775,
+              8.602882547400617
+            ],
+            "rmse": [
+              16.213319046210245,
+              10.94042633366378
+            ],
+            "bias": [
+              0.2601261733306779,
+              -0.12446852271203641
+            ],
+            "macro_mae": [
+              12.784624860297749,
+              8.602882547400617
+            ]
+          },
+          "selection_macro_mae": 10.693753703849183,
+          "seconds": 50.273489832999985,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 9,
+          "train_normalized_MSE": 0.35184307795698927,
+          "validation": {
+            "mae": [
+              12.835844819026965,
+              8.672606080853276
+            ],
+            "rmse": [
+              16.249042795599845,
+              11.065728713569232
+            ],
+            "bias": [
+              0.035142258416723325,
+              0.2887785630369628
+            ],
+            "macro_mae": [
+              12.835844819026965,
+              8.672606080853278
+            ]
+          },
+          "selection_macro_mae": 10.754225449940122,
+          "seconds": 54.55810154199935,
+          "lr": 0.00025
+        }
+      ],
+      "config_hash": "8131f72dae8ab9428a830a819c83da874d4d3ebf5592aed9a858b038ee6d4d4a",
+      "manifest_hash": "88984e9b5a412cc20c3f9ee48badc9c82502cf982fedb7ae9e43315f314a3fca",
+      "best_checkpoint_sha256": "972125f69da1b01d827e2d8162228311987bb781da5640b72309d2b36cf15f35"
+    },
+    "baseline_seed43": {
+      "variant": "baseline",
+      "seed": 43,
+      "shown_in_primary_figures": true,
+      "actual_epochs": 17,
+      "selected_epoch": 9,
+      "early_stopped": true,
+      "selected_validation_mean_macro_mae_mmhg": 10.392812146825923,
+      "training_normalized_mse_at_selected_epoch": 0.3601812516001024,
+      "source_history_relative_path": "attention/baseline_seed43/history.json",
+      "canonical_history_sha256": "0bbcc4d7a740ec5dd4fae3b42609ff37093e7201fb5799050f4b4a43741ee087",
+      "history": [
+        {
+          "epoch": 1,
+          "train_normalized_MSE": 0.6689225710445469,
+          "validation": {
+            "mae": [
+              12.777617983078516,
+              8.323427654416474
+            ],
+            "rmse": [
+              16.219204828245143,
+              10.695132204935609
+            ],
+            "bias": [
+              0.6982716470404907,
+              0.8877166954455552
+            ],
+            "macro_mae": [
+              12.777617983078514,
+              8.323427654416472
+            ]
+          },
+          "selection_macro_mae": 10.550522818747492,
+          "seconds": 79.04726158400081,
+          "lr": 0.001
+        },
+        {
+          "epoch": 2,
+          "train_normalized_MSE": 0.5548521905401945,
+          "validation": {
+            "mae": [
+              12.741932098457108,
+              8.257286127849861
+            ],
+            "rmse": [
+              16.201161072047757,
+              10.562338991706847
+            ],
+            "bias": [
+              1.1826998171431047,
+              0.5796976188818613
+            ],
+            "macro_mae": [
+              12.741932098457108,
+              8.257286127849861
+            ]
+          },
+          "selection_macro_mae": 10.499609113153484,
+          "seconds": 63.161933875000614,
+          "lr": 0.001
+        },
+        {
+          "epoch": 3,
+          "train_normalized_MSE": 0.4988525265616999,
+          "validation": {
+            "mae": [
+              12.620858337978522,
+              8.335523094292041
+            ],
+            "rmse": [
+              16.09957798389862,
+              10.711285309932576
+            ],
+            "bias": [
+              -0.4435657732464649,
+              0.1889822750179856
+            ],
+            "macro_mae": [
+              12.620858337978524,
+              8.335523094292041
+            ]
+          },
+          "selection_macro_mae": 10.478190716135282,
+          "seconds": 59.59715758400125,
+          "lr": 0.001
+        },
+        {
+          "epoch": 4,
+          "train_normalized_MSE": 0.4562941228238607,
+          "validation": {
+            "mae": [
+              12.649168969249283,
+              8.545673020901503
+            ],
+            "rmse": [
+              16.135545679885638,
+              10.917809863047845
+            ],
+            "bias": [
+              -1.981288287650656,
+              -0.8729535580785186
+            ],
+            "macro_mae": [
+              12.649168969249283,
+              8.545673020901503
+            ]
+          },
+          "selection_macro_mae": 10.597420995075392,
+          "seconds": 76.60949945900029,
+          "lr": 0.001
+        },
+        {
+          "epoch": 5,
+          "train_normalized_MSE": 0.4264544930875576,
+          "validation": {
+            "mae": [
+              12.670007465559024,
+              8.281353727479775
+            ],
+            "rmse": [
+              16.106011578911193,
+              10.582312619776125
+            ],
+            "bias": [
+              -1.0632879883602813,
+              -0.20869118918975194
+            ],
+            "macro_mae": [
+              12.670007465559024,
+              8.281353727479777
+            ]
+          },
+          "selection_macro_mae": 10.4756805965194,
+          "seconds": 72.43600287499976,
+          "lr": 0.001
+        },
+        {
+          "epoch": 6,
+          "train_normalized_MSE": 0.40267213101638505,
+          "validation": {
+            "mae": [
+              12.590963368338567,
+              8.294389648901092
+            ],
+            "rmse": [
+              15.980962661146213,
+              10.648255680017375
+            ],
+            "bias": [
+              -1.0664186797208257,
+              0.09319032452724597
+            ],
+            "macro_mae": [
+              12.590963368338569,
+              8.294389648901092
+            ]
+          },
+          "selection_macro_mae": 10.44267650861983,
+          "seconds": 107.06130408300123,
+          "lr": 0.001
+        },
+        {
+          "epoch": 7,
+          "train_normalized_MSE": 0.38641925083205325,
+          "validation": {
+            "mae": [
+              12.493605772930163,
+              8.37968981028707
+            ],
+            "rmse": [
+              15.888484046382603,
+              10.747472265788257
+            ],
+            "bias": [
+              -0.3430541353645148,
+              0.31729364146788913
+            ],
+            "macro_mae": [
+              12.493605772930161,
+              8.37968981028707
+            ]
+          },
+          "selection_macro_mae": 10.436647791608616,
+          "seconds": 78.33027108299939,
+          "lr": 0.001
+        },
+        {
+          "epoch": 8,
+          "train_normalized_MSE": 0.3724651577700973,
+          "validation": {
+            "mae": [
+              12.855303841001458,
+              8.59227243501831
+            ],
+            "rmse": [
+              16.269518987738834,
+              11.014982518590626
+            ],
+            "bias": [
+              -0.25174855164907595,
+              0.8427209082025069
+            ],
+            "macro_mae": [
+              12.855303841001458,
+              8.59227243501831
+            ]
+          },
+          "selection_macro_mae": 10.723788138009883,
+          "seconds": 85.19088600000032,
+          "lr": 0.001
+        },
+        {
+          "epoch": 9,
+          "train_normalized_MSE": 0.3601812516001024,
+          "validation": {
+            "mae": [
+              12.477532090136298,
+              8.308092203515548
+            ],
+            "rmse": [
+              15.83626849336781,
+              10.675989212762074
+            ],
+            "bias": [
+              -0.3286011141207483,
+              0.14617200824949478
+            ],
+            "macro_mae": [
+              12.477532090136298,
+              8.308092203515548
+            ]
+          },
+          "selection_macro_mae": 10.392812146825923,
+          "seconds": 63.83219829199879,
+          "lr": 0.001
+        },
+        {
+          "epoch": 10,
+          "train_normalized_MSE": 0.3515047363031234,
+          "validation": {
+            "mae": [
+              12.77933212535249,
+              8.527759559507723
+            ],
+            "rmse": [
+              16.183430128026618,
+              10.945739324999998
+            ],
+            "bias": [
+              0.4405888091082926,
+              0.9803312602970335
+            ],
+            "macro_mae": [
+              12.77933212535249,
+              8.527759559507723
+            ]
+          },
+          "selection_macro_mae": 10.653545842430105,
+          "seconds": 72.42827662499985,
+          "lr": 0.001
+        },
+        {
+          "epoch": 11,
+          "train_normalized_MSE": 0.34262000768049156,
+          "validation": {
+            "mae": [
+              12.580248532195887,
+              8.42938193778197
+            ],
+            "rmse": [
+              15.957570717657084,
+              10.789484103971194
+            ],
+            "bias": [
+              -1.2845094140481066,
+              -0.13099077112144894
+            ],
+            "macro_mae": [
+              12.580248532195887,
+              8.429381937781969
+            ]
+          },
+          "selection_macro_mae": 10.504815234988929,
+          "seconds": 72.72874624999895,
+          "lr": 0.001
+        },
+        {
+          "epoch": 12,
+          "train_normalized_MSE": 0.33542994751664107,
+          "validation": {
+            "mae": [
+              12.532261147377667,
+              8.41298857058088
+            ],
+            "rmse": [
+              15.871270320942013,
+              10.766901047095846
+            ],
+            "bias": [
+              -0.3681429699063301,
+              0.6301372094010865
+            ],
+            "macro_mae": [
+              12.532261147377667,
+              8.412988570580879
+            ]
+          },
+          "selection_macro_mae": 10.472624858979273,
+          "seconds": 64.88002512500134,
+          "lr": 0.001
+        },
+        {
+          "epoch": 13,
+          "train_normalized_MSE": 0.330210693484383,
+          "validation": {
+            "mae": [
+              12.48883130920154,
+              8.43492037328305
+            ],
+            "rmse": [
+              15.86125263722104,
+              10.864023174655705
+            ],
+            "bias": [
+              -0.971546210458985,
+              0.13343946166612483
+            ],
+            "macro_mae": [
+              12.488831309201542,
+              8.43492037328305
+            ]
+          },
+          "selection_macro_mae": 10.461875841242296,
+          "seconds": 67.1020801249997,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 14,
+          "train_normalized_MSE": 0.3088556867639529,
+          "validation": {
+            "mae": [
+              12.624149205232108,
+              8.458650758145032
+            ],
+            "rmse": [
+              16.027357822630695,
+              10.871131538731003
+            ],
+            "bias": [
+              -0.046885478551741,
+              0.4576235379885744
+            ],
+            "macro_mae": [
+              12.624149205232108,
+              8.458650758145032
+            ]
+          },
+          "selection_macro_mae": 10.54139998168857,
+          "seconds": 73.2316743750016,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 15,
+          "train_normalized_MSE": 0.3045402105734767,
+          "validation": {
+            "mae": [
+              12.7148405349365,
+              8.50505892554367
+            ],
+            "rmse": [
+              16.13651326530061,
+              10.936112251161099
+            ],
+            "bias": [
+              0.5731293032014811,
+              1.0299825379418002
+            ],
+            "macro_mae": [
+              12.714840534936497,
+              8.50505892554367
+            ]
+          },
+          "selection_macro_mae": 10.609949730240084,
+          "seconds": 64.16841958300029,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 16,
+          "train_normalized_MSE": 0.3016941084229391,
+          "validation": {
+            "mae": [
+              12.735511775811514,
+              8.494505255365814
+            ],
+            "rmse": [
+              16.145416636259327,
+              10.923752127679217
+            ],
+            "bias": [
+              1.0616547111007901,
+              0.9849615148372121
+            ],
+            "macro_mae": [
+              12.735511775811512,
+              8.494505255365814
+            ]
+          },
+          "selection_macro_mae": 10.615008515588663,
+          "seconds": 73.03643816699878,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 17,
+          "train_normalized_MSE": 0.2993165962621608,
+          "validation": {
+            "mae": [
+              12.824372896276138,
+              8.564451307251497
+            ],
+            "rmse": [
+              16.24565442820383,
+              10.99591886282773
+            ],
+            "bias": [
+              0.8248157559169663,
+              0.6033132119587175
+            ],
+            "macro_mae": [
+              12.824372896276138,
+              8.564451307251497
+            ]
+          },
+          "selection_macro_mae": 10.694412101763817,
+          "seconds": 99.88542941599917,
+          "lr": 0.00025
+        }
+      ],
+      "config_hash": "4041d3f27741efd9b4286cb6b51b4c979cfaed7b26475b7561cc78c69e7de1f8",
+      "manifest_hash": "88984e9b5a412cc20c3f9ee48badc9c82502cf982fedb7ae9e43315f314a3fca",
+      "best_checkpoint_sha256": "f0e94192e2652ff994fc922e7981ea660c7d89da89113de03b10c8a46205bfc5"
+    },
+    "baseline_seed44": {
+      "variant": "baseline",
+      "seed": 44,
+      "shown_in_primary_figures": true,
+      "actual_epochs": 16,
+      "selected_epoch": 8,
+      "early_stopped": true,
+      "selected_validation_mean_macro_mae_mmhg": 10.345421101070114,
+      "training_normalized_mse_at_selected_epoch": 0.37620071684587814,
+      "source_history_relative_path": "attention/baseline_seed44/history.json",
+      "canonical_history_sha256": "e232b78cc7ba2ae3e6f3d2e3ac4d0ad1b7c16ebf7f195bba3da9eac5cca78e6f",
+      "history": [
+        {
+          "epoch": 1,
+          "train_normalized_MSE": 0.6664916554659498,
+          "validation": {
+            "mae": [
+              12.62508934068459,
+              8.480192839437061
+            ],
+            "rmse": [
+              15.92164322323807,
+              10.770977279425272
+            ],
+            "bias": [
+              0.7716032771600617,
+              1.0191134691238404
+            ],
+            "macro_mae": [
+              12.62508934068459,
+              8.480192839437061
+            ]
+          },
+          "selection_macro_mae": 10.552641090060826,
+          "seconds": 75.95000354199874,
+          "lr": 0.001
+        },
+        {
+          "epoch": 2,
+          "train_normalized_MSE": 0.5527342149897594,
+          "validation": {
+            "mae": [
+              12.883760001869113,
+              8.524468979956927
+            ],
+            "rmse": [
+              16.272167016292872,
+              10.889891390503635
+            ],
+            "bias": [
+              -0.16243573410643472,
+              0.5093864962458611
+            ],
+            "macro_mae": [
+              12.883760001869113,
+              8.524468979956927
+            ]
+          },
+          "selection_macro_mae": 10.704114490913021,
+          "seconds": 105.95492329199988,
+          "lr": 0.001
+        },
+        {
+          "epoch": 3,
+          "train_normalized_MSE": 0.4964393321172555,
+          "validation": {
+            "mae": [
+              12.525565084539078,
+              8.441548079528191
+            ],
+            "rmse": [
+              15.930475543665796,
+              10.813358799359216
+            ],
+            "bias": [
+              0.8723784158075297,
+              0.46816110009396517
+            ],
+            "macro_mae": [
+              12.525565084539076,
+              8.441548079528191
+            ]
+          },
+          "selection_macro_mae": 10.483556582033634,
+          "seconds": 91.20789241700004,
+          "lr": 0.001
+        },
+        {
+          "epoch": 4,
+          "train_normalized_MSE": 0.4564432123655914,
+          "validation": {
+            "mae": [
+              12.422084656633713,
+              8.37097155297244
+            ],
+            "rmse": [
+              15.800402968523027,
+              10.747574623342777
+            ],
+            "bias": [
+              -0.21908238668132712,
+              -0.6251946973579902
+            ],
+            "macro_mae": [
+              12.422084656633714,
+              8.37097155297244
+            ]
+          },
+          "selection_macro_mae": 10.396528104803078,
+          "seconds": 81.62205954199999,
+          "lr": 0.001
+        },
+        {
+          "epoch": 5,
+          "train_normalized_MSE": 0.42749475966461853,
+          "validation": {
+            "mae": [
+              12.723828067768503,
+              8.579432888053082
+            ],
+            "rmse": [
+              16.174085380534176,
+              10.982916830316904
+            ],
+            "bias": [
+              1.897050261663066,
+              1.3719683610730702
+            ],
+            "macro_mae": [
+              12.723828067768503,
+              8.579432888053082
+            ]
+          },
+          "selection_macro_mae": 10.651630477910793,
+          "seconds": 83.62305300000116,
+          "lr": 0.001
+        },
+        {
+          "epoch": 6,
+          "train_normalized_MSE": 0.40615699404761907,
+          "validation": {
+            "mae": [
+              12.4903481501672,
+              8.361516147631185
+            ],
+            "rmse": [
+              15.958400775672974,
+              10.758814567200467
+            ],
+            "bias": [
+              0.12877784111985455,
+              0.19607974268771983
+            ],
+            "macro_mae": [
+              12.4903481501672,
+              8.361516147631185
+            ]
+          },
+          "selection_macro_mae": 10.425932148899193,
+          "seconds": 71.16532145800011,
+          "lr": 0.001
+        },
+        {
+          "epoch": 7,
+          "train_normalized_MSE": 0.3887671610983103,
+          "validation": {
+            "mae": [
+              12.626061889032522,
+              8.497161755738436
+            ],
+            "rmse": [
+              16.15161144013598,
+              10.874118443570634
+            ],
+            "bias": [
+              1.1527637424844284,
+              0.36089708705743156
+            ],
+            "macro_mae": [
+              12.62606188903252,
+              8.497161755738434
+            ]
+          },
+          "selection_macro_mae": 10.561611822385476,
+          "seconds": 94.4549200829988,
+          "lr": 0.001
+        },
+        {
+          "epoch": 8,
+          "train_normalized_MSE": 0.37620071684587814,
+          "validation": {
+            "mae": [
+              12.327556079791652,
+              8.363286122348573
+            ],
+            "rmse": [
+              15.768568807834034,
+              10.72870681102312
+            ],
+            "bias": [
+              0.18257988133916148,
+              0.6834408341734498
+            ],
+            "macro_mae": [
+              12.327556079791654,
+              8.363286122348574
+            ]
+          },
+          "selection_macro_mae": 10.345421101070114,
+          "seconds": 91.42651408299935,
+          "lr": 0.001
+        },
+        {
+          "epoch": 9,
+          "train_normalized_MSE": 0.3647768257168459,
+          "validation": {
+            "mae": [
+              12.59207715894337,
+              8.4230368439798
+            ],
+            "rmse": [
+              16.019117777007935,
+              10.778713194582807
+            ],
+            "bias": [
+              -0.11078068288388075,
+              0.02801614922505838
+            ],
+            "macro_mae": [
+              12.592077158943374,
+              8.4230368439798
+            ]
+          },
+          "selection_macro_mae": 10.507557001461587,
+          "seconds": 96.10018754199882,
+          "lr": 0.001
+        },
+        {
+          "epoch": 10,
+          "train_normalized_MSE": 0.3558374935995904,
+          "validation": {
+            "mae": [
+              12.544086439576414,
+              8.424031439202803
+            ],
+            "rmse": [
+              15.94188615304079,
+              10.763482856413058
+            ],
+            "bias": [
+              0.5496671109839723,
+              1.2957533036117201
+            ],
+            "macro_mae": [
+              12.544086439576413,
+              8.424031439202802
+            ]
+          },
+          "selection_macro_mae": 10.484058939389607,
+          "seconds": 69.32564191600068,
+          "lr": 0.001
+        },
+        {
+          "epoch": 11,
+          "train_normalized_MSE": 0.3479647497439836,
+          "validation": {
+            "mae": [
+              12.545919673586333,
+              8.31417784056178
+            ],
+            "rmse": [
+              15.968048635392414,
+              10.693050003950505
+            ],
+            "bias": [
+              -0.11435565346920931,
+              0.40063944089191933
+            ],
+            "macro_mae": [
+              12.545919673586333,
+              8.314177840561777
+            ]
+          },
+          "selection_macro_mae": 10.430048757074054,
+          "seconds": 78.68285816699972,
+          "lr": 0.001
+        },
+        {
+          "epoch": 12,
+          "train_normalized_MSE": 0.34134168586789554,
+          "validation": {
+            "mae": [
+              12.45608316378461,
+              8.476034466977472
+            ],
+            "rmse": [
+              15.863422573033969,
+              10.88337135235016
+            ],
+            "bias": [
+              0.2893862451116244,
+              0.7180977008960865
+            ],
+            "macro_mae": [
+              12.45608316378461,
+              8.476034466977472
+            ]
+          },
+          "selection_macro_mae": 10.466058815381041,
+          "seconds": 70.03839529200013,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 13,
+          "train_normalized_MSE": 0.31882884504608294,
+          "validation": {
+            "mae": [
+              12.41264136483272,
+              8.410764754646355
+            ],
+            "rmse": [
+              15.811437674614936,
+              10.76022218478147
+            ],
+            "bias": [
+              0.03095384731336876,
+              0.5569416157073445
+            ],
+            "macro_mae": [
+              12.412641364832718,
+              8.410764754646353
+            ]
+          },
+          "selection_macro_mae": 10.411703059739535,
+          "seconds": 71.76554475000012,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 14,
+          "train_normalized_MSE": 0.31393365175371224,
+          "validation": {
+            "mae": [
+              12.561340032959427,
+              8.435563333939623
+            ],
+            "rmse": [
+              15.947589433323344,
+              10.799778356579006
+            ],
+            "bias": [
+              -0.3622699695052924,
+              0.2203921205467648
+            ],
+            "macro_mae": [
+              12.561340032959427,
+              8.435563333939623
+            ]
+          },
+          "selection_macro_mae": 10.498451683449524,
+          "seconds": 68.6538439169999,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 15,
+          "train_normalized_MSE": 0.3110569276433692,
+          "validation": {
+            "mae": [
+              12.699098839969547,
+              8.483640141012492
+            ],
+            "rmse": [
+              16.109058584832926,
+              10.822801267404092
+            ],
+            "bias": [
+              -0.3523037061095238,
+              0.2719603392261046
+            ],
+            "macro_mae": [
+              12.699098839969546,
+              8.483640141012492
+            ]
+          },
+          "selection_macro_mae": 10.591369490491019,
+          "seconds": 32.3563218750005,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 16,
+          "train_normalized_MSE": 0.3085872495839734,
+          "validation": {
+            "mae": [
+              12.56791830300181,
+              8.430309492128867
+            ],
+            "rmse": [
+              15.96918723616023,
+              10.788105703695102
+            ],
+            "bias": [
+              -0.3026324071817928,
+              0.725352809826533
+            ],
+            "macro_mae": [
+              12.56791830300181,
+              8.430309492128865
+            ]
+          },
+          "selection_macro_mae": 10.499113897565337,
+          "seconds": 29.38819554099973,
+          "lr": 0.00025
+        }
+      ],
+      "config_hash": "978ed317fa10b1d1ede56c7f5edf87045d6bc667aac5d0196ae71f498dc78282",
+      "manifest_hash": "88984e9b5a412cc20c3f9ee48badc9c82502cf982fedb7ae9e43315f314a3fca",
+      "best_checkpoint_sha256": "7d02fb4b94d2a33d6e325baeabecc894de928b80b8681e33f04d83b21c23a0bc"
+    },
+    "cbam_last_seed42": {
+      "variant": "cbam_last",
+      "seed": 42,
+      "shown_in_primary_figures": true,
+      "actual_epochs": 9,
+      "selected_epoch": 1,
+      "early_stopped": true,
+      "selected_validation_mean_macro_mae_mmhg": 10.37889890267893,
+      "training_normalized_mse_at_selected_epoch": 0.6654332677291347,
+      "source_history_relative_path": "attention/cbam_last_seed42/history.json",
+      "canonical_history_sha256": "98cfd43929ff6af7cbdb96ee92327e961dd322b9a6fa6278f678a293a5356c90",
+      "history": [
+        {
+          "epoch": 1,
+          "train_normalized_MSE": 0.6654332677291347,
+          "validation": {
+            "mae": [
+              12.436138204236824,
+              8.321659601121038
+            ],
+            "rmse": [
+              15.831227100731391,
+              10.59068349021795
+            ],
+            "bias": [
+              -0.12313693966026659,
+              0.28799890395667815
+            ],
+            "macro_mae": [
+              12.436138204236826,
+              8.321659601121036
+            ]
+          },
+          "selection_macro_mae": 10.37889890267893,
+          "seconds": 118.85822075000033,
+          "lr": 0.001
+        },
+        {
+          "epoch": 2,
+          "train_normalized_MSE": 0.5485996703789042,
+          "validation": {
+            "mae": [
+              12.59641751067506,
+              8.542768717143272
+            ],
+            "rmse": [
+              16.04902819896709,
+              10.9033243092518
+            ],
+            "bias": [
+              -0.6266825508740214,
+              -0.6085045093739474
+            ],
+            "macro_mae": [
+              12.596417510675058,
+              8.54276871714327
+            ]
+          },
+          "selection_macro_mae": 10.569593113909164,
+          "seconds": 121.06221895899944,
+          "lr": 0.001
+        },
+        {
+          "epoch": 3,
+          "train_normalized_MSE": 0.49160018241167436,
+          "validation": {
+            "mae": [
+              12.54451205117835,
+              8.427789093388451
+            ],
+            "rmse": [
+              15.808807409635726,
+              10.733837996459288
+            ],
+            "bias": [
+              1.9166519757222247,
+              1.3864353485681393
+            ],
+            "macro_mae": [
+              12.54451205117835,
+              8.427789093388451
+            ]
+          },
+          "selection_macro_mae": 10.4861505722834,
+          "seconds": 154.37246337499892,
+          "lr": 0.001
+        },
+        {
+          "epoch": 4,
+          "train_normalized_MSE": 0.4517078293010753,
+          "validation": {
+            "mae": [
+              12.630217056638665,
+              8.469930092383313
+            ],
+            "rmse": [
+              15.915222553330675,
+              10.856539495654111
+            ],
+            "bias": [
+              1.3614948893586793,
+              1.280865537347617
+            ],
+            "macro_mae": [
+              12.630217056638664,
+              8.469930092383313
+            ]
+          },
+          "selection_macro_mae": 10.55007357451099,
+          "seconds": 136.72521841699927,
+          "lr": 0.001
+        },
+        {
+          "epoch": 5,
+          "train_normalized_MSE": 0.42326680907578085,
+          "validation": {
+            "mae": [
+              12.578869799717708,
+              8.563644713549703
+            ],
+            "rmse": [
+              15.960307177696265,
+              10.98262809561853
+            ],
+            "bias": [
+              -0.6147516955380087,
+              0.031758688390254974
+            ],
+            "macro_mae": [
+              12.578869799717708,
+              8.563644713549703
+            ]
+          },
+          "selection_macro_mae": 10.571257256633706,
+          "seconds": 151.44949391699993,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 6,
+          "train_normalized_MSE": 0.38367431515617,
+          "validation": {
+            "mae": [
+              12.863552398648526,
+              8.717193400252748
+            ],
+            "rmse": [
+              16.237067516146926,
+              11.122480424466552
+            ],
+            "bias": [
+              1.0791160712087595,
+              0.8388932341226825
+            ],
+            "macro_mae": [
+              12.863552398648528,
+              8.717193400252748
+            ]
+          },
+          "selection_macro_mae": 10.790372899450638,
+          "seconds": 159.8290091250019,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 7,
+          "train_normalized_MSE": 0.37083597350230413,
+          "validation": {
+            "mae": [
+              12.564137043058873,
+              8.603977769502887
+            ],
+            "rmse": [
+              15.897221561389236,
+              10.95089647824732
+            ],
+            "bias": [
+              -1.520332147732929,
+              -0.7197385603630985
+            ],
+            "macro_mae": [
+              12.564137043058873,
+              8.603977769502887
+            ]
+          },
+          "selection_macro_mae": 10.58405740628088,
+          "seconds": 158.76244600000064,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 8,
+          "train_normalized_MSE": 0.3610379864311316,
+          "validation": {
+            "mae": [
+              12.695520463641044,
+              8.674771076220054
+            ],
+            "rmse": [
+              16.089887036645024,
+              11.079613650229401
+            ],
+            "bias": [
+              0.649643347605511,
+              0.39576438400480485
+            ],
+            "macro_mae": [
+              12.69552046364104,
+              8.674771076220054
+            ]
+          },
+          "selection_macro_mae": 10.685145769930546,
+          "seconds": 104.85790891699799,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 9,
+          "train_normalized_MSE": 0.3533846166154634,
+          "validation": {
+            "mae": [
+              12.75483673154204,
+              8.724060960831466
+            ],
+            "rmse": [
+              16.12549386769972,
+              11.14750279865725
+            ],
+            "bias": [
+              0.7877830172578494,
+              1.2999053022375813
+            ],
+            "macro_mae": [
+              12.754836731542042,
+              8.724060960831466
+            ]
+          },
+          "selection_macro_mae": 10.739448846186754,
+          "seconds": 41.502431375000015,
+          "lr": 0.00025
+        }
+      ],
+      "config_hash": "14a2a5ba1de13b3068389e15893767f4cf1ef3eb7a31c88b8040956335dadbcd",
+      "manifest_hash": "88984e9b5a412cc20c3f9ee48badc9c82502cf982fedb7ae9e43315f314a3fca",
+      "best_checkpoint_sha256": "4581914832942118273dbab8a50515616ffd590fa7d3353b57590e2a8ae8f12a"
+    },
+    "cbam_last_seed43": {
+      "variant": "cbam_last",
+      "seed": 43,
+      "shown_in_primary_figures": true,
+      "actual_epochs": 10,
+      "selected_epoch": 2,
+      "early_stopped": true,
+      "selected_validation_mean_macro_mae_mmhg": 10.382962707954423,
+      "training_normalized_mse_at_selected_epoch": 0.5531620823732719,
+      "source_history_relative_path": "attention/cbam_last_seed43/history.json",
+      "canonical_history_sha256": "e4c484b13eb02c451affdd83e9f9a36a7f7fec1de48f9bd6f0bbee77405cfbb3",
+      "history": [
+        {
+          "epoch": 1,
+          "train_normalized_MSE": 0.6736126312083973,
+          "validation": {
+            "mae": [
+              12.62025632676151,
+              8.407275855265281
+            ],
+            "rmse": [
+              16.1534481132292,
+              10.751491059633935
+            ],
+            "bias": [
+              -1.582228114704291,
+              -0.2350215228067504
+            ],
+            "macro_mae": [
+              12.620256326761512,
+              8.407275855265281
+            ]
+          },
+          "selection_macro_mae": 10.513766091013396,
+          "seconds": 44.804645832999086,
+          "lr": 0.001
+        },
+        {
+          "epoch": 2,
+          "train_normalized_MSE": 0.5531620823732719,
+          "validation": {
+            "mae": [
+              12.5233025914541,
+              8.242622824454749
+            ],
+            "rmse": [
+              15.920571875609037,
+              10.54504471100862
+            ],
+            "bias": [
+              0.15845552920191378,
+              -0.29800248968380466
+            ],
+            "macro_mae": [
+              12.5233025914541,
+              8.242622824454749
+            ]
+          },
+          "selection_macro_mae": 10.382962707954423,
+          "seconds": 42.975583875002485,
+          "lr": 0.001
+        },
+        {
+          "epoch": 3,
+          "train_normalized_MSE": 0.4946668186763953,
+          "validation": {
+            "mae": [
+              12.740053515577758,
+              8.49400883510157
+            ],
+            "rmse": [
+              16.255714309415296,
+              10.870637838029054
+            ],
+            "bias": [
+              -0.3669872349611035,
+              0.2020975955658489
+            ],
+            "macro_mae": [
+              12.740053515577756,
+              8.49400883510157
+            ]
+          },
+          "selection_macro_mae": 10.617031175339662,
+          "seconds": 45.41733229199963,
+          "lr": 0.001
+        },
+        {
+          "epoch": 4,
+          "train_normalized_MSE": 0.454995599718382,
+          "validation": {
+            "mae": [
+              12.87623973350834,
+              8.673943627763677
+            ],
+            "rmse": [
+              16.39277817455525,
+              11.046137799290047
+            ],
+            "bias": [
+              -2.2310688370355853,
+              -0.3729337964896803
+            ],
+            "macro_mae": [
+              12.876239733508337,
+              8.673943627763677
+            ]
+          },
+          "selection_macro_mae": 10.775091680636006,
+          "seconds": 40.66968887500116,
+          "lr": 0.001
+        },
+        {
+          "epoch": 5,
+          "train_normalized_MSE": 0.426626224078341,
+          "validation": {
+            "mae": [
+              12.698774996234311,
+              8.542708189012828
+            ],
+            "rmse": [
+              16.20267249366206,
+              10.87363672360097
+            ],
+            "bias": [
+              -0.7078757015091401,
+              0.19171421158092994
+            ],
+            "macro_mae": [
+              12.698774996234311,
+              8.542708189012828
+            ]
+          },
+          "selection_macro_mae": 10.62074159262357,
+          "seconds": 42.41520479099927,
+          "lr": 0.001
+        },
+        {
+          "epoch": 6,
+          "train_normalized_MSE": 0.40486695148489504,
+          "validation": {
+            "mae": [
+              12.713802089680124,
+              8.54147959853764
+            ],
+            "rmse": [
+              16.213408394849584,
+              10.980818822823533
+            ],
+            "bias": [
+              0.5229242560488206,
+              0.6432878352425716
+            ],
+            "macro_mae": [
+              12.713802089680122,
+              8.54147959853764
+            ]
+          },
+          "selection_macro_mae": 10.627640844108882,
+          "seconds": 38.4574434999995,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 7,
+          "train_normalized_MSE": 0.3696470174091142,
+          "validation": {
+            "mae": [
+              12.765395263996389,
+              8.656411019298766
+            ],
+            "rmse": [
+              16.288734677457974,
+              11.115403209168065
+            ],
+            "bias": [
+              0.5170627973145909,
+              0.7953257764931079
+            ],
+            "macro_mae": [
+              12.76539526399639,
+              8.656411019298766
+            ]
+          },
+          "selection_macro_mae": 10.710903141647577,
+          "seconds": 34.504918624999846,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 8,
+          "train_normalized_MSE": 0.3588737279185868,
+          "validation": {
+            "mae": [
+              12.87758036857402,
+              8.76280971991795
+            ],
+            "rmse": [
+              16.441340830964045,
+              11.160995602887246
+            ],
+            "bias": [
+              -0.49888622181283104,
+              0.0848056416268702
+            ],
+            "macro_mae": [
+              12.877580368574021,
+              8.762809719917952
+            ]
+          },
+          "selection_macro_mae": 10.820195044245986,
+          "seconds": 35.466251834001014,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 9,
+          "train_normalized_MSE": 0.3512744015616999,
+          "validation": {
+            "mae": [
+              12.843370492204471,
+              8.650828472828424
+            ],
+            "rmse": [
+              16.39574641080704,
+              11.107675128170662
+            ],
+            "bias": [
+              -0.12039441571191505,
+              0.11982666656926826
+            ],
+            "macro_mae": [
+              12.843370492204471,
+              8.650828472828424
+            ]
+          },
+          "selection_macro_mae": 10.747099482516447,
+          "seconds": 42.11666883400176,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 10,
+          "train_normalized_MSE": 0.3448797923067076,
+          "validation": {
+            "mae": [
+              12.945314495486242,
+              8.737015346520478
+            ],
+            "rmse": [
+              16.513776129301867,
+              11.213238920692106
+            ],
+            "bias": [
+              0.913517288422143,
+              0.5873282174821253
+            ],
+            "macro_mae": [
+              12.945314495486242,
+              8.737015346520478
+            ]
+          },
+          "selection_macro_mae": 10.84116492100336,
+          "seconds": 40.88353525000275,
+          "lr": 0.00025
+        }
+      ],
+      "config_hash": "0b16937af7309eaa98beec4d987e5aedd7cdedf3b9650096e7184b4a8797decd",
+      "manifest_hash": "88984e9b5a412cc20c3f9ee48badc9c82502cf982fedb7ae9e43315f314a3fca",
+      "best_checkpoint_sha256": "8cc21db27dacd7d048ead602a4c1442f0cadd6845d9a1d562cbe2cc6a42e95a8"
+    },
+    "cbam_last_seed44": {
+      "variant": "cbam_last",
+      "seed": 44,
+      "shown_in_primary_figures": true,
+      "actual_epochs": 9,
+      "selected_epoch": 1,
+      "early_stopped": true,
+      "selected_validation_mean_macro_mae_mmhg": 10.460743440991198,
+      "training_normalized_mse_at_selected_epoch": 0.6817469118023554,
+      "source_history_relative_path": "attention/cbam_last_seed44/history.json",
+      "canonical_history_sha256": "8ce13265ae31135decba3649f668896656a2b8c366ec4b8363874bdbfd9434bc",
+      "history": [
+        {
+          "epoch": 1,
+          "train_normalized_MSE": 0.6817469118023554,
+          "validation": {
+            "mae": [
+              12.604486501161698,
+              8.317000380820698
+            ],
+            "rmse": [
+              15.957015963972722,
+              10.607180059390823
+            ],
+            "bias": [
+              0.32879576191858007,
+              0.874714775107525
+            ],
+            "macro_mae": [
+              12.604486501161697,
+              8.317000380820698
+            ]
+          },
+          "selection_macro_mae": 10.460743440991198,
+          "seconds": 38.497096833001706,
+          "lr": 0.001
+        },
+        {
+          "epoch": 2,
+          "train_normalized_MSE": 0.5629495487711214,
+          "validation": {
+            "mae": [
+              12.954527504411008,
+              8.456174436542723
+            ],
+            "rmse": [
+              16.413019183325794,
+              10.772081665474985
+            ],
+            "bias": [
+              0.09889349104077727,
+              -0.26079370533978496
+            ],
+            "macro_mae": [
+              12.95452750441101,
+              8.456174436542723
+            ]
+          },
+          "selection_macro_mae": 10.705350970476866,
+          "seconds": 32.44586558299852,
+          "lr": 0.001
+        },
+        {
+          "epoch": 3,
+          "train_normalized_MSE": 0.5048610711085509,
+          "validation": {
+            "mae": [
+              12.519550861528627,
+              8.445779172634637
+            ],
+            "rmse": [
+              15.91025400023196,
+              10.761183036978116
+            ],
+            "bias": [
+              -0.33891198850340315,
+              -0.016187155853818965
+            ],
+            "macro_mae": [
+              12.519550861528627,
+              8.445779172634637
+            ]
+          },
+          "selection_macro_mae": 10.482665017081633,
+          "seconds": 28.9746695419999,
+          "lr": 0.001
+        },
+        {
+          "epoch": 4,
+          "train_normalized_MSE": 0.463811523937532,
+          "validation": {
+            "mae": [
+              12.63578390893009,
+              8.510870259062008
+            ],
+            "rmse": [
+              15.944693187657856,
+              10.813934457186413
+            ],
+            "bias": [
+              -0.33580256683958903,
+              -0.5689658951428201
+            ],
+            "macro_mae": [
+              12.635783908930089,
+              8.510870259062008
+            ]
+          },
+          "selection_macro_mae": 10.573327083996048,
+          "seconds": 29.81857725000009,
+          "lr": 0.001
+        },
+        {
+          "epoch": 5,
+          "train_normalized_MSE": 0.4333487743215566,
+          "validation": {
+            "mae": [
+              12.796229818849651,
+              8.784911801803995
+            ],
+            "rmse": [
+              16.14469688107642,
+              11.170213347151853
+            ],
+            "bias": [
+              1.8928653962634228,
+              1.8848093047738075
+            ],
+            "macro_mae": [
+              12.796229818849651,
+              8.784911801803995
+            ]
+          },
+          "selection_macro_mae": 10.790570810326823,
+          "seconds": 29.437135540996678,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 6,
+          "train_normalized_MSE": 0.3942959149385561,
+          "validation": {
+            "mae": [
+              12.856540476668764,
+              8.636320374574925
+            ],
+            "rmse": [
+              16.30731572439724,
+              10.983123459429745
+            ],
+            "bias": [
+              -0.4839964817519541,
+              0.4401866497264968
+            ],
+            "macro_mae": [
+              12.856540476668762,
+              8.636320374574927
+            ]
+          },
+          "selection_macro_mae": 10.746430425621845,
+          "seconds": 29.713547749997815,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 7,
+          "train_normalized_MSE": 0.3799464365719406,
+          "validation": {
+            "mae": [
+              12.987123550585023,
+              8.677547130816512
+            ],
+            "rmse": [
+              16.41129033373737,
+              11.073820439194197
+            ],
+            "bias": [
+              0.995652627337862,
+              0.8659719992015097
+            ],
+            "macro_mae": [
+              12.987123550585023,
+              8.677547130816512
+            ]
+          },
+          "selection_macro_mae": 10.832335340700768,
+          "seconds": 28.929150082996784,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 8,
+          "train_normalized_MSE": 0.36997439836149515,
+          "validation": {
+            "mae": [
+              13.00580750654141,
+              8.745170103234273
+            ],
+            "rmse": [
+              16.432843063083645,
+              11.158392995423467
+            ],
+            "bias": [
+              0.6085598017882418,
+              0.759036634641665
+            ],
+            "macro_mae": [
+              13.00580750654141,
+              8.745170103234273
+            ]
+          },
+          "selection_macro_mae": 10.87548880488784,
+          "seconds": 33.405176042000676,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 9,
+          "train_normalized_MSE": 0.3611773953533026,
+          "validation": {
+            "mae": [
+              12.825605546710667,
+              8.631955258161934
+            ],
+            "rmse": [
+              16.18581275350294,
+              11.00169212018764
+            ],
+            "bias": [
+              -0.5871210873678878,
+              -0.07077886219377871
+            ],
+            "macro_mae": [
+              12.825605546710667,
+              8.631955258161934
+            ]
+          },
+          "selection_macro_mae": 10.7287804024363,
+          "seconds": 51.21854849999727,
+          "lr": 0.00025
+        }
+      ],
+      "config_hash": "64d225e263dc16e9841d44e6b525018a975c95816bef051c47fdf6af3c3bba47",
+      "manifest_hash": "88984e9b5a412cc20c3f9ee48badc9c82502cf982fedb7ae9e43315f314a3fca",
+      "best_checkpoint_sha256": "0d08a243f84ac05d8fa50b52828dbed3fa39b12b1589a8a4fea42dd67cd0cc6b"
+    },
+    "se_all_seed42": {
+      "variant": "se_all",
+      "seed": 42,
+      "shown_in_primary_figures": false,
+      "actual_epochs": 9,
+      "selected_epoch": 1,
+      "early_stopped": true,
+      "selected_validation_mean_macro_mae_mmhg": 10.412173622846604,
+      "training_normalized_mse_at_selected_epoch": 0.6646727390552996,
+      "source_history_relative_path": "attention/se_all_seed42/history.json",
+      "canonical_history_sha256": "88bc1b1c7264400c6117914ae0bad27fbc069964530c62d7863565572f408c85",
+      "history": [
+        {
+          "epoch": 1,
+          "train_normalized_MSE": 0.6646727390552996,
+          "validation": {
+            "mae": [
+              12.500456707400303,
+              8.323890538292902
+            ],
+            "rmse": [
+              15.899802459116655,
+              10.591063740226716
+            ],
+            "bias": [
+              -0.5213660475832445,
+              -0.134318649161745
+            ],
+            "macro_mae": [
+              12.500456707400305,
+              8.323890538292902
+            ]
+          },
+          "selection_macro_mae": 10.412173622846604,
+          "seconds": 63.34341412499998,
+          "lr": 0.001
+        },
+        {
+          "epoch": 2,
+          "train_normalized_MSE": 0.5519414842549923,
+          "validation": {
+            "mae": [
+              12.677099709543917,
+              8.364052788140597
+            ],
+            "rmse": [
+              16.158501334361304,
+              10.722566928402902
+            ],
+            "bias": [
+              -0.5829955024299798,
+              -0.764737486452968
+            ],
+            "macro_mae": [
+              12.677099709543917,
+              8.364052788140597
+            ]
+          },
+          "selection_macro_mae": 10.520576248842257,
+          "seconds": 75.60645891700187,
+          "lr": 0.001
+        },
+        {
+          "epoch": 3,
+          "train_normalized_MSE": 0.4942461917562724,
+          "validation": {
+            "mae": [
+              12.589102550844352,
+              8.464094263535959
+            ],
+            "rmse": [
+              15.924552972635281,
+              10.855373692330032
+            ],
+            "bias": [
+              -0.3544323721969569,
+              1.1855275254558635
+            ],
+            "macro_mae": [
+              12.58910255084435,
+              8.46409426353596
+            ]
+          },
+          "selection_macro_mae": 10.526598407190155,
+          "seconds": 79.33652212499874,
+          "lr": 0.001
+        },
+        {
+          "epoch": 4,
+          "train_normalized_MSE": 0.45034822228622634,
+          "validation": {
+            "mae": [
+              13.052825625020045,
+              8.58099487401821
+            ],
+            "rmse": [
+              16.379237400876058,
+              10.979157464209267
+            ],
+            "bias": [
+              1.5847559308012327,
+              0.8389533074917617
+            ],
+            "macro_mae": [
+              13.052825625020043,
+              8.58099487401821
+            ]
+          },
+          "selection_macro_mae": 10.816910249519125,
+          "seconds": 80.6906045830001,
+          "lr": 0.001
+        },
+        {
+          "epoch": 5,
+          "train_normalized_MSE": 0.4184939836149514,
+          "validation": {
+            "mae": [
+              12.584040679699845,
+              8.504316886928347
+            ],
+            "rmse": [
+              15.916584168121686,
+              10.90793247369575
+            ],
+            "bias": [
+              -0.891801007202378,
+              0.09407843472781005
+            ],
+            "macro_mae": [
+              12.584040679699845,
+              8.504316886928345
+            ]
+          },
+          "selection_macro_mae": 10.544178783314095,
+          "seconds": 74.67075462499997,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 6,
+          "train_normalized_MSE": 0.3781869639656938,
+          "validation": {
+            "mae": [
+              12.84331323509967,
+              8.692100674079525
+            ],
+            "rmse": [
+              16.194885624805337,
+              11.17732910992418
+            ],
+            "bias": [
+              0.7876041443811522,
+              0.9637559911167181
+            ],
+            "macro_mae": [
+              12.84331323509967,
+              8.692100674079525
+            ]
+          },
+          "selection_macro_mae": 10.767706954589597,
+          "seconds": 117.33899083299912,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 7,
+          "train_normalized_MSE": 0.3644450844854071,
+          "validation": {
+            "mae": [
+              12.703187420798672,
+              8.584923160572847
+            ],
+            "rmse": [
+              16.011384646508862,
+              11.009999315885153
+            ],
+            "bias": [
+              -0.3213023983218052,
+              0.06946478248746307
+            ],
+            "macro_mae": [
+              12.703187420798672,
+              8.584923160572847
+            ]
+          },
+          "selection_macro_mae": 10.64405529068576,
+          "seconds": 137.45068724999874,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 8,
+          "train_normalized_MSE": 0.35397473438300053,
+          "validation": {
+            "mae": [
+              12.907381746007337,
+              8.691185093588299
+            ],
+            "rmse": [
+              16.30672234146033,
+              11.103573626279147
+            ],
+            "bias": [
+              0.28940676710119956,
+              -0.05100233687294854
+            ],
+            "macro_mae": [
+              12.907381746007337,
+              8.6911850935883
+            ]
+          },
+          "selection_macro_mae": 10.799283419797819,
+          "seconds": 138.34909720799988,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 9,
+          "train_normalized_MSE": 0.3448428699436764,
+          "validation": {
+            "mae": [
+              12.753301861495883,
+              8.704404107564025
+            ],
+            "rmse": [
+              16.16747152071932,
+              11.156080651562474
+            ],
+            "bias": [
+              0.5339397096523533,
+              0.7163954022305983
+            ],
+            "macro_mae": [
+              12.753301861495883,
+              8.704404107564025
+            ]
+          },
+          "selection_macro_mae": 10.728852984529954,
+          "seconds": 130.0800955420018,
+          "lr": 0.00025
+        }
+      ],
+      "config_hash": "c5f57b0de0db0627f439bc768897ce82a46396109df41fc07e9ca2a84bcf6111",
+      "manifest_hash": "88984e9b5a412cc20c3f9ee48badc9c82502cf982fedb7ae9e43315f314a3fca",
+      "best_checkpoint_sha256": "a9103143093e3b640903997284f722d021eccaf3b0a965f76a33c086ea59f2c3"
+    },
+    "se_all_seed43": {
+      "variant": "se_all",
+      "seed": 43,
+      "shown_in_primary_figures": false,
+      "actual_epochs": 13,
+      "selected_epoch": 5,
+      "early_stopped": true,
+      "selected_validation_mean_macro_mae_mmhg": 10.453960013775912,
+      "training_normalized_mse_at_selected_epoch": 0.42372031810035843,
+      "source_history_relative_path": "attention/se_all_seed43/history.json",
+      "canonical_history_sha256": "1b10645c05f86c5fe9ac646777a3901e709802169dba28dc5b0cfdb5c724328c",
+      "history": [
+        {
+          "epoch": 1,
+          "train_normalized_MSE": 0.6721068548387097,
+          "validation": {
+            "mae": [
+              12.841933339447888,
+              8.38512121036097
+            ],
+            "rmse": [
+              16.365362419023263,
+              10.744518966460321
+            ],
+            "bias": [
+              0.517988205673518,
+              0.17929036953934915
+            ],
+            "macro_mae": [
+              12.841933339447886,
+              8.38512121036097
+            ]
+          },
+          "selection_macro_mae": 10.613527274904428,
+          "seconds": 190.0893790830014,
+          "lr": 0.001
+        },
+        {
+          "epoch": 2,
+          "train_normalized_MSE": 0.5544753264208909,
+          "validation": {
+            "mae": [
+              12.801696740421985,
+              8.385979612944302
+            ],
+            "rmse": [
+              16.251360464317486,
+              10.719058711546571
+            ],
+            "bias": [
+              -1.6764869836193543,
+              -0.8990860084140743
+            ],
+            "macro_mae": [
+              12.801696740421983,
+              8.385979612944302
+            ]
+          },
+          "selection_macro_mae": 10.593838176683143,
+          "seconds": 162.63446158299848,
+          "lr": 0.001
+        },
+        {
+          "epoch": 3,
+          "train_normalized_MSE": 0.4978311811955965,
+          "validation": {
+            "mae": [
+              12.862813762106278,
+              8.46897623207834
+            ],
+            "rmse": [
+              16.272713769797818,
+              10.876658075363563
+            ],
+            "bias": [
+              0.8171351867141547,
+              0.2929324863133607
+            ],
+            "macro_mae": [
+              12.862813762106278,
+              8.46897623207834
+            ]
+          },
+          "selection_macro_mae": 10.665894997092309,
+          "seconds": 142.6858865840004,
+          "lr": 0.001
+        },
+        {
+          "epoch": 4,
+          "train_normalized_MSE": 0.45558199724782383,
+          "validation": {
+            "mae": [
+              12.56115243418349,
+              8.506866034810189
+            ],
+            "rmse": [
+              15.93930736040574,
+              10.951000434909309
+            ],
+            "bias": [
+              0.037332990268866224,
+              0.42036535480508097
+            ],
+            "macro_mae": [
+              12.561152434183493,
+              8.506866034810189
+            ]
+          },
+          "selection_macro_mae": 10.53400923449684,
+          "seconds": 143.7575539169993,
+          "lr": 0.001
+        },
+        {
+          "epoch": 5,
+          "train_normalized_MSE": 0.42372031810035843,
+          "validation": {
+            "mae": [
+              12.502407603959243,
+              8.405512423592585
+            ],
+            "rmse": [
+              15.910000670086403,
+              10.800052411705273
+            ],
+            "bias": [
+              -0.5929815950768965,
+              0.1657673853966925
+            ],
+            "macro_mae": [
+              12.502407603959242,
+              8.405512423592585
+            ]
+          },
+          "selection_macro_mae": 10.453960013775912,
+          "seconds": 138.54867645800186,
+          "lr": 0.001
+        },
+        {
+          "epoch": 6,
+          "train_normalized_MSE": 0.39870963741679466,
+          "validation": {
+            "mae": [
+              12.677873710294564,
+              8.55747645833978
+            ],
+            "rmse": [
+              16.033425309788228,
+              11.015622546311096
+            ],
+            "bias": [
+              -0.1140987972970362,
+              0.7149033487395003
+            ],
+            "macro_mae": [
+              12.677873710294563,
+              8.55747645833978
+            ]
+          },
+          "selection_macro_mae": 10.61767508431717,
+          "seconds": 138.89553745800004,
+          "lr": 0.001
+        },
+        {
+          "epoch": 7,
+          "train_normalized_MSE": 0.3805102326548899,
+          "validation": {
+            "mae": [
+              12.746203725371096,
+              8.685720110270712
+            ],
+            "rmse": [
+              16.07636340240432,
+              11.216359203880291
+            ],
+            "bias": [
+              2.013131432787136,
+              2.2281906965706084
+            ],
+            "macro_mae": [
+              12.746203725371096,
+              8.685720110270712
+            ]
+          },
+          "selection_macro_mae": 10.715961917820904,
+          "seconds": 150.1453293750019,
+          "lr": 0.001
+        },
+        {
+          "epoch": 8,
+          "train_normalized_MSE": 0.36531254000256014,
+          "validation": {
+            "mae": [
+              12.88980516344309,
+              8.818902625419476
+            ],
+            "rmse": [
+              16.378642944323033,
+              11.320122591388285
+            ],
+            "bias": [
+              0.423305557999346,
+              0.9415036216930107
+            ],
+            "macro_mae": [
+              12.889805163443087,
+              8.818902625419476
+            ]
+          },
+          "selection_macro_mae": 10.85435389443128,
+          "seconds": 151.46648704199833,
+          "lr": 0.001
+        },
+        {
+          "epoch": 9,
+          "train_normalized_MSE": 0.35216709869431645,
+          "validation": {
+            "mae": [
+              12.6228036115015,
+              8.548312470427266
+            ],
+            "rmse": [
+              15.947616444365964,
+              11.049509085531373
+            ],
+            "bias": [
+              0.6522417417830891,
+              0.9023395049351233
+            ],
+            "macro_mae": [
+              12.622803611501498,
+              8.548312470427266
+            ]
+          },
+          "selection_macro_mae": 10.585558040964383,
+          "seconds": 124.36669345800328,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 10,
+          "train_normalized_MSE": 0.3242716733870968,
+          "validation": {
+            "mae": [
+              12.854719812947291,
+              8.6786643454874
+            ],
+            "rmse": [
+              16.258148739351924,
+              11.193019366124034
+            ],
+            "bias": [
+              1.2448307873474227,
+              1.3420142206328887
+            ],
+            "macro_mae": [
+              12.85471981294729,
+              8.6786643454874
+            ]
+          },
+          "selection_macro_mae": 10.766692079217345,
+          "seconds": 97.98114999999962,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 11,
+          "train_normalized_MSE": 0.3174634976638505,
+          "validation": {
+            "mae": [
+              12.759210121576432,
+              8.59173808020574
+            ],
+            "rmse": [
+              16.132040984671473,
+              11.055622148336246
+            ],
+            "bias": [
+              0.40369072043233445,
+              0.5344145928268079
+            ],
+            "macro_mae": [
+              12.759210121576432,
+              8.59173808020574
+            ]
+          },
+          "selection_macro_mae": 10.675474100891087,
+          "seconds": 104.8759756670006,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 12,
+          "train_normalized_MSE": 0.31222206221198157,
+          "validation": {
+            "mae": [
+              12.652015561472487,
+              8.614608429648259
+            ],
+            "rmse": [
+              16.012875874908293,
+              11.093766060675676
+            ],
+            "bias": [
+              -0.005011180650304865,
+              0.6294520883648483
+            ],
+            "macro_mae": [
+              12.652015561472487,
+              8.614608429648259
+            ]
+          },
+          "selection_macro_mae": 10.633311995560373,
+          "seconds": 69.1328781250013,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 13,
+          "train_normalized_MSE": 0.30782836101510497,
+          "validation": {
+            "mae": [
+              12.848474156028695,
+              8.64639654689365
+            ],
+            "rmse": [
+              16.201158776920558,
+              11.133564139680631
+            ],
+            "bias": [
+              0.2646566669698115,
+              0.36520715532479464
+            ],
+            "macro_mae": [
+              12.848474156028695,
+              8.64639654689365
+            ]
+          },
+          "selection_macro_mae": 10.747435351461172,
+          "seconds": 56.26522933399974,
+          "lr": 0.00025
+        }
+      ],
+      "config_hash": "d9de7c9601bc0f5388d907b8ca14e9d1476a7bfec579d5d1da015195c12ec88a",
+      "manifest_hash": "88984e9b5a412cc20c3f9ee48badc9c82502cf982fedb7ae9e43315f314a3fca",
+      "best_checkpoint_sha256": "28261bcf536aa62d45ef5c5b2351202d1f24bea8facde4f7b6642fb80d61f94a"
+    },
+    "se_all_seed44": {
+      "variant": "se_all",
+      "seed": 44,
+      "shown_in_primary_figures": false,
+      "actual_epochs": 14,
+      "selected_epoch": 6,
+      "early_stopped": true,
+      "selected_validation_mean_macro_mae_mmhg": 10.316719592997321,
+      "training_normalized_mse_at_selected_epoch": 0.3999302755376344,
+      "source_history_relative_path": "attention/se_all_seed44/history.json",
+      "canonical_history_sha256": "ecc2ec2c007b62bb320f04e6f2aa4c03ef4e86468445bac55a376b1be97b7a25",
+      "history": [
+        {
+          "epoch": 1,
+          "train_normalized_MSE": 0.6682334869431643,
+          "validation": {
+            "mae": [
+              12.559849606895888,
+              8.338575189809005
+            ],
+            "rmse": [
+              15.963266967865673,
+              10.614942814187279
+            ],
+            "bias": [
+              -0.7126058114347634,
+              0.6230787367180541
+            ],
+            "macro_mae": [
+              12.559849606895888,
+              8.338575189809005
+            ]
+          },
+          "selection_macro_mae": 10.449212398352447,
+          "seconds": 64.16467008300242,
+          "lr": 0.001
+        },
+        {
+          "epoch": 2,
+          "train_normalized_MSE": 0.5540846214157706,
+          "validation": {
+            "mae": [
+              12.87411175960744,
+              8.429123065924204
+            ],
+            "rmse": [
+              16.354851651642523,
+              10.763475606986008
+            ],
+            "bias": [
+              0.3405292040220013,
+              0.06941296430649581
+            ],
+            "macro_mae": [
+              12.87411175960744,
+              8.429123065924204
+            ]
+          },
+          "selection_macro_mae": 10.651617412765821,
+          "seconds": 63.69877358300073,
+          "lr": 0.001
+        },
+        {
+          "epoch": 3,
+          "train_normalized_MSE": 0.4948089877752176,
+          "validation": {
+            "mae": [
+              12.477196591154293,
+              8.379038318384577
+            ],
+            "rmse": [
+              15.844412653667806,
+              10.642699466435397
+            ],
+            "bias": [
+              -2.046349801675037,
+              -1.1984627766189753
+            ],
+            "macro_mae": [
+              12.477196591154291,
+              8.379038318384575
+            ]
+          },
+          "selection_macro_mae": 10.428117454769433,
+          "seconds": 64.83174870800212,
+          "lr": 0.001
+        },
+        {
+          "epoch": 4,
+          "train_normalized_MSE": 0.4540282178059396,
+          "validation": {
+            "mae": [
+              12.552344308683166,
+              8.364099451899529
+            ],
+            "rmse": [
+              15.959460251038719,
+              10.74947257679073
+            ],
+            "bias": [
+              -0.07103372751562684,
+              0.22547751146334188
+            ],
+            "macro_mae": [
+              12.552344308683166,
+              8.364099451899529
+            ]
+          },
+          "selection_macro_mae": 10.458221880291347,
+          "seconds": 64.1449360000006,
+          "lr": 0.001
+        },
+        {
+          "epoch": 5,
+          "train_normalized_MSE": 0.42314940156169994,
+          "validation": {
+            "mae": [
+              12.66148751957549,
+              8.549955173664623
+            ],
+            "rmse": [
+              15.94146025886816,
+              10.898738984317033
+            ],
+            "bias": [
+              2.366439905928241,
+              1.4276386400063832
+            ],
+            "macro_mae": [
+              12.66148751957549,
+              8.549955173664623
+            ]
+          },
+          "selection_macro_mae": 10.605721346620056,
+          "seconds": 62.718000500000926,
+          "lr": 0.001
+        },
+        {
+          "epoch": 6,
+          "train_normalized_MSE": 0.3999302755376344,
+          "validation": {
+            "mae": [
+              12.39430533785511,
+              8.239133848139533
+            ],
+            "rmse": [
+              15.8465079941994,
+              10.559028020658097
+            ],
+            "bias": [
+              -1.150271441704697,
+              -0.02914443893565072
+            ],
+            "macro_mae": [
+              12.39430533785511,
+              8.239133848139533
+            ]
+          },
+          "selection_macro_mae": 10.316719592997321,
+          "seconds": 56.054063415998826,
+          "lr": 0.001
+        },
+        {
+          "epoch": 7,
+          "train_normalized_MSE": 0.38066136232718895,
+          "validation": {
+            "mae": [
+              12.487273744466128,
+              8.337667964398861
+            ],
+            "rmse": [
+              15.886522555642628,
+              10.769019424827617
+            ],
+            "bias": [
+              -0.20886925994246094,
+              0.2109640626443757
+            ],
+            "macro_mae": [
+              12.48727374446613,
+              8.337667964398861
+            ]
+          },
+          "selection_macro_mae": 10.412470854432495,
+          "seconds": 94.17440454199823,
+          "lr": 0.001
+        },
+        {
+          "epoch": 8,
+          "train_normalized_MSE": 0.36624259952636967,
+          "validation": {
+            "mae": [
+              12.328490040423693,
+              8.43002995705163
+            ],
+            "rmse": [
+              15.64681545581087,
+              10.85835957170245
+            ],
+            "bias": [
+              0.9972303782900175,
+              1.3710811982552211
+            ],
+            "macro_mae": [
+              12.328490040423693,
+              8.43002995705163
+            ]
+          },
+          "selection_macro_mae": 10.379259998737663,
+          "seconds": 95.70406974999787,
+          "lr": 0.001
+        },
+        {
+          "epoch": 9,
+          "train_normalized_MSE": 0.3545031282002048,
+          "validation": {
+            "mae": [
+              12.544734491187114,
+              8.39786952637412
+            ],
+            "rmse": [
+              15.926370163526807,
+              10.784224513923022
+            ],
+            "bias": [
+              -0.2366359260899049,
+              0.054097589050178176
+            ],
+            "macro_mae": [
+              12.544734491187114,
+              8.39786952637412
+            ]
+          },
+          "selection_macro_mae": 10.471302008780617,
+          "seconds": 101.8520383340001,
+          "lr": 0.001
+        },
+        {
+          "epoch": 10,
+          "train_normalized_MSE": 0.3424494367639529,
+          "validation": {
+            "mae": [
+              12.569415113385077,
+              8.461622212523663
+            ],
+            "rmse": [
+              16.021332372135284,
+              10.87034295072059
+            ],
+            "bias": [
+              -0.5593224980764919,
+              -0.1891225644559772
+            ],
+            "macro_mae": [
+              12.569415113385077,
+              8.461622212523663
+            ]
+          },
+          "selection_macro_mae": 10.51551866295437,
+          "seconds": 114.74321470799987,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 11,
+          "train_normalized_MSE": 0.3172814460125448,
+          "validation": {
+            "mae": [
+              12.644358554758407,
+              8.44754127131568
+            ],
+            "rmse": [
+              16.02080859948679,
+              10.83335059991882
+            ],
+            "bias": [
+              0.3083577029682972,
+              0.3375498927301831
+            ],
+            "macro_mae": [
+              12.644358554758407,
+              8.44754127131568
+            ]
+          },
+          "selection_macro_mae": 10.545949913037044,
+          "seconds": 102.33487958399928,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 12,
+          "train_normalized_MSE": 0.3114400521633385,
+          "validation": {
+            "mae": [
+              12.659441684296837,
+              8.573656259587517
+            ],
+            "rmse": [
+              16.061531271022506,
+              10.993888461600497
+            ],
+            "bias": [
+              0.9651571458688488,
+              0.8832540288567543
+            ],
+            "macro_mae": [
+              12.659441684296837,
+              8.573656259587517
+            ]
+          },
+          "selection_macro_mae": 10.616548971942176,
+          "seconds": 122.57184741700257,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 13,
+          "train_normalized_MSE": 0.3068108158922171,
+          "validation": {
+            "mae": [
+              12.592644615029847,
+              8.569507503592305
+            ],
+            "rmse": [
+              15.99780047636347,
+              10.982682759512032
+            ],
+            "bias": [
+              0.23419444113969803,
+              0.3686315873430835
+            ],
+            "macro_mae": [
+              12.592644615029847,
+              8.569507503592305
+            ]
+          },
+          "selection_macro_mae": 10.581076059311076,
+          "seconds": 102.04258362499968,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 14,
+          "train_normalized_MSE": 0.30319652457757296,
+          "validation": {
+            "mae": [
+              12.85409607787927,
+              8.68993918950911
+            ],
+            "rmse": [
+              16.32038258248391,
+              11.147639571295153
+            ],
+            "bias": [
+              1.2373046731507336,
+              1.028041132401537
+            ],
+            "macro_mae": [
+              12.85409607787927,
+              8.68993918950911
+            ]
+          },
+          "selection_macro_mae": 10.77201763369419,
+          "seconds": 108.8461289170009,
+          "lr": 0.00025
+        }
+      ],
+      "config_hash": "7ec306a588b59941c264b948781bceb0940bf8af67602aeb5b71ea0114fc6b84",
+      "manifest_hash": "88984e9b5a412cc20c3f9ee48badc9c82502cf982fedb7ae9e43315f314a3fca",
+      "best_checkpoint_sha256": "c70d5dd5a9a5ea607a33ce11d3658a5d897d99372142f2446c6ac7ff4db60697"
+    },
+    "se_last_seed42": {
+      "variant": "se_last",
+      "seed": 42,
+      "shown_in_primary_figures": true,
+      "actual_epochs": 9,
+      "selected_epoch": 1,
+      "early_stopped": true,
+      "selected_validation_mean_macro_mae_mmhg": 10.29125278564515,
+      "training_normalized_mse_at_selected_epoch": 0.6674595174091141,
+      "source_history_relative_path": "attention/se_last_seed42/history.json",
+      "canonical_history_sha256": "2eb8691a46c8dff578631d3fb7fced4284185584c1f72f6198f2dbb2466935c3",
+      "history": [
+        {
+          "epoch": 1,
+          "train_normalized_MSE": 0.6674595174091141,
+          "validation": {
+            "mae": [
+              12.397073144769227,
+              8.185432426521071
+            ],
+            "rmse": [
+              15.793000222741643,
+              10.438300870610554
+            ],
+            "bias": [
+              -0.8472400120562977,
+              -0.42721002681387793
+            ],
+            "macro_mae": [
+              12.397073144769228,
+              8.185432426521073
+            ]
+          },
+          "selection_macro_mae": 10.29125278564515,
+          "seconds": 44.592318792001606,
+          "lr": 0.001
+        },
+        {
+          "epoch": 2,
+          "train_normalized_MSE": 0.5578587429595494,
+          "validation": {
+            "mae": [
+              12.610492760881229,
+              8.553172748563465
+            ],
+            "rmse": [
+              16.074446526570977,
+              10.899090870472513
+            ],
+            "bias": [
+              -0.8306624193434362,
+              -0.4150179714516357
+            ],
+            "macro_mae": [
+              12.610492760881229,
+              8.553172748563467
+            ]
+          },
+          "selection_macro_mae": 10.581832754722349,
+          "seconds": 61.79299879100108,
+          "lr": 0.001
+        },
+        {
+          "epoch": 3,
+          "train_normalized_MSE": 0.5006477614567332,
+          "validation": {
+            "mae": [
+              12.361899631829173,
+              8.401744258072641
+            ],
+            "rmse": [
+              15.668195033160663,
+              10.72968437289418
+            ],
+            "bias": [
+              -0.047167945515226434,
+              1.340474749494482
+            ],
+            "macro_mae": [
+              12.361899631829175,
+              8.401744258072641
+            ]
+          },
+          "selection_macro_mae": 10.381821944950907,
+          "seconds": 58.60070583400011,
+          "lr": 0.001
+        },
+        {
+          "epoch": 4,
+          "train_normalized_MSE": 0.4574378360215054,
+          "validation": {
+            "mae": [
+              12.658497295280297,
+              8.426699246576538
+            ],
+            "rmse": [
+              15.970238526655752,
+              10.766004279014384
+            ],
+            "bias": [
+              1.6328461619990844,
+              0.33830707553360195
+            ],
+            "macro_mae": [
+              12.658497295280299,
+              8.426699246576538
+            ]
+          },
+          "selection_macro_mae": 10.54259827092842,
+          "seconds": 67.03179158300009,
+          "lr": 0.001
+        },
+        {
+          "epoch": 5,
+          "train_normalized_MSE": 0.4248068676395289,
+          "validation": {
+            "mae": [
+              12.431423371754311,
+              8.527580481988412
+            ],
+            "rmse": [
+              15.762703552627993,
+              10.867376844947676
+            ],
+            "bias": [
+              -0.3902425249969518,
+              0.1304836066784682
+            ],
+            "macro_mae": [
+              12.431423371754311,
+              8.527580481988412
+            ]
+          },
+          "selection_macro_mae": 10.479501926871361,
+          "seconds": 60.46064933299931,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 6,
+          "train_normalized_MSE": 0.38438824084741424,
+          "validation": {
+            "mae": [
+              12.698282626326437,
+              8.664556649272088
+            ],
+            "rmse": [
+              16.062498540144624,
+              11.075638723180317
+            ],
+            "bias": [
+              0.30527232946069155,
+              0.7134118306967947
+            ],
+            "macro_mae": [
+              12.698282626326437,
+              8.664556649272088
+            ]
+          },
+          "selection_macro_mae": 10.681419637799262,
+          "seconds": 62.882014291000814,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 7,
+          "train_normalized_MSE": 0.37067068292370714,
+          "validation": {
+            "mae": [
+              12.337168584984761,
+              8.529805887242158
+            ],
+            "rmse": [
+              15.604010105988682,
+              10.884123322895757
+            ],
+            "bias": [
+              -0.7965103806720839,
+              -0.08887710609921702
+            ],
+            "macro_mae": [
+              12.337168584984761,
+              8.529805887242158
+            ]
+          },
+          "selection_macro_mae": 10.43348723611346,
+          "seconds": 87.40364170800058,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 8,
+          "train_normalized_MSE": 0.35958329333077316,
+          "validation": {
+            "mae": [
+              12.504555856574465,
+              8.539353203387172
+            ],
+            "rmse": [
+              15.860582047654598,
+              10.900017070850152
+            ],
+            "bias": [
+              -0.13039740826244708,
+              0.06189740305697476
+            ],
+            "macro_mae": [
+              12.504555856574465,
+              8.539353203387172
+            ]
+          },
+          "selection_macro_mae": 10.521954529980817,
+          "seconds": 53.66767725000136,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 9,
+          "train_normalized_MSE": 0.3506903241807476,
+          "validation": {
+            "mae": [
+              12.499124210024322,
+              8.637558414759459
+            ],
+            "rmse": [
+              15.877220101403326,
+              11.066481117283374
+            ],
+            "bias": [
+              0.11097745128251889,
+              0.6556142289329459
+            ],
+            "macro_mae": [
+              12.49912421002432,
+              8.637558414759459
+            ]
+          },
+          "selection_macro_mae": 10.56834131239189,
+          "seconds": 52.456892041000174,
+          "lr": 0.00025
+        }
+      ],
+      "config_hash": "9364117bfee6a7cba35324773c62ab344da2bb92520c7e1daf26a6e275dc3edb",
+      "manifest_hash": "88984e9b5a412cc20c3f9ee48badc9c82502cf982fedb7ae9e43315f314a3fca",
+      "best_checkpoint_sha256": "bb5f0167d148e728c2026fd1a3e7d4485b869e0be15eeeb3f16f63bc28872b61"
+    },
+    "se_last_seed43": {
+      "variant": "se_last",
+      "seed": 43,
+      "shown_in_primary_figures": true,
+      "actual_epochs": 9,
+      "selected_epoch": 1,
+      "early_stopped": true,
+      "selected_validation_mean_macro_mae_mmhg": 10.456941563939605,
+      "training_normalized_mse_at_selected_epoch": 0.671609383000512,
+      "source_history_relative_path": "attention/se_last_seed43/history.json",
+      "canonical_history_sha256": "59b22c1000fe40254301dcf262224efb94b3ba2d5e160bade6d7e4d93307d075",
+      "history": [
+        {
+          "epoch": 1,
+          "train_normalized_MSE": 0.671609383000512,
+          "validation": {
+            "mae": [
+              12.585431062678497,
+              8.328452065200718
+            ],
+            "rmse": [
+              16.065920202472675,
+              10.684453956366243
+            ],
+            "bias": [
+              -0.8825934421685007,
+              -0.06097897782369896
+            ],
+            "macro_mae": [
+              12.585431062678495,
+              8.328452065200716
+            ]
+          },
+          "selection_macro_mae": 10.456941563939605,
+          "seconds": 87.97528612499991,
+          "lr": 0.001
+        },
+        {
+          "epoch": 2,
+          "train_normalized_MSE": 0.5551096070148489,
+          "validation": {
+            "mae": [
+              12.793503864219895,
+              8.262710403126698
+            ],
+            "rmse": [
+              16.152218481335815,
+              10.547585686568448
+            ],
+            "bias": [
+              0.7948103726462081,
+              0.4992177510151157
+            ],
+            "macro_mae": [
+              12.793503864219895,
+              8.262710403126698
+            ]
+          },
+          "selection_macro_mae": 10.528107133673297,
+          "seconds": 85.6376658750014,
+          "lr": 0.001
+        },
+        {
+          "epoch": 3,
+          "train_normalized_MSE": 0.4987627208141321,
+          "validation": {
+            "mae": [
+              12.59678753785513,
+              8.408718878913808
+            ],
+            "rmse": [
+              16.049361677013565,
+              10.706395316749033
+            ],
+            "bias": [
+              0.26119204422941916,
+              0.4936754348101439
+            ],
+            "macro_mae": [
+              12.59678753785513,
+              8.40871887891381
+            ]
+          },
+          "selection_macro_mae": 10.502753208384469,
+          "seconds": 82.32345945899942,
+          "lr": 0.001
+        },
+        {
+          "epoch": 4,
+          "train_normalized_MSE": 0.4582598886328725,
+          "validation": {
+            "mae": [
+              12.561820140646564,
+              8.515803322251196
+            ],
+            "rmse": [
+              16.019704706855922,
+              10.880747664612516
+            ],
+            "bias": [
+              -0.3744477328878862,
+              0.5316394638684061
+            ],
+            "macro_mae": [
+              12.561820140646565,
+              8.515803322251195
+            ]
+          },
+          "selection_macro_mae": 10.538811731448881,
+          "seconds": 73.87123162499847,
+          "lr": 0.001
+        },
+        {
+          "epoch": 5,
+          "train_normalized_MSE": 0.42692116295442906,
+          "validation": {
+            "mae": [
+              12.633234631297764,
+              8.34995661692487
+            ],
+            "rmse": [
+              16.063671769770302,
+              10.663362055215961
+            ],
+            "bias": [
+              -0.9083065781880308,
+              -0.1930998420825711
+            ],
+            "macro_mae": [
+              12.633234631297766,
+              8.34995661692487
+            ]
+          },
+          "selection_macro_mae": 10.491595624111318,
+          "seconds": 54.97461775000011,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 6,
+          "train_normalized_MSE": 0.38507228462621607,
+          "validation": {
+            "mae": [
+              12.683494140649284,
+              8.488364167732222
+            ],
+            "rmse": [
+              16.135889225983107,
+              10.889306169296049
+            ],
+            "bias": [
+              0.0781548700398869,
+              0.4147580044689002
+            ],
+            "macro_mae": [
+              12.683494140649282,
+              8.488364167732222
+            ]
+          },
+          "selection_macro_mae": 10.585929154190751,
+          "seconds": 56.84050316600042,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 7,
+          "train_normalized_MSE": 0.37187495999743986,
+          "validation": {
+            "mae": [
+              12.678353445452672,
+              8.514463668289007
+            ],
+            "rmse": [
+              16.174718663044235,
+              10.946520857760426
+            ],
+            "bias": [
+              0.218699048018014,
+              0.519338321575412
+            ],
+            "macro_mae": [
+              12.678353445452672,
+              8.51446366828901
+            ]
+          },
+          "selection_macro_mae": 10.596408556870841,
+          "seconds": 55.80945291699936,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 8,
+          "train_normalized_MSE": 0.3613087237583205,
+          "validation": {
+            "mae": [
+              12.680072451907176,
+              8.595977669733543
+            ],
+            "rmse": [
+              16.135441920523856,
+              10.96703228843737
+            ],
+            "bias": [
+              -0.22211747307468344,
+              0.1520868558574606
+            ],
+            "macro_mae": [
+              12.680072451907174,
+              8.595977669733543
+            ]
+          },
+          "selection_macro_mae": 10.638025060820357,
+          "seconds": 65.12312041699988,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 9,
+          "train_normalized_MSE": 0.35203297011008705,
+          "validation": {
+            "mae": [
+              12.75754188426115,
+              8.545161722986787
+            ],
+            "rmse": [
+              16.223956741712442,
+              10.977222046221856
+            ],
+            "bias": [
+              0.1529035523533821,
+              0.6822740819719103
+            ],
+            "macro_mae": [
+              12.75754188426115,
+              8.545161722986785
+            ]
+          },
+          "selection_macro_mae": 10.651351803623967,
+          "seconds": 49.697819209000954,
+          "lr": 0.00025
+        }
+      ],
+      "config_hash": "65236a6825a97276e5ecc3c0251a830f65be6a9ecef1b5f5cf17cf576a0ce5c5",
+      "manifest_hash": "88984e9b5a412cc20c3f9ee48badc9c82502cf982fedb7ae9e43315f314a3fca",
+      "best_checkpoint_sha256": "3214b861b156b9212a0e9d7575ce28c80e39e198e9a8cb710b315e74b4678575"
+    },
+    "se_last_seed44": {
+      "variant": "se_last",
+      "seed": 44,
+      "shown_in_primary_figures": true,
+      "actual_epochs": 9,
+      "selected_epoch": 1,
+      "early_stopped": true,
+      "selected_validation_mean_macro_mae_mmhg": 10.420737950200284,
+      "training_normalized_mse_at_selected_epoch": 0.6736207117255504,
+      "source_history_relative_path": "attention/se_last_seed44/history.json",
+      "canonical_history_sha256": "8f8b9b8101445637dd79804ea838754afb5ce1a89e244d803360b6eee7ce18cb",
+      "history": [
+        {
+          "epoch": 1,
+          "train_normalized_MSE": 0.6736207117255504,
+          "validation": {
+            "mae": [
+              12.562277866016936,
+              8.279198034383633
+            ],
+            "rmse": [
+              15.99410179486544,
+              10.525188997860901
+            ],
+            "bias": [
+              -1.8545278770504174,
+              0.40829588737752703
+            ],
+            "macro_mae": [
+              12.562277866016936,
+              8.279198034383633
+            ]
+          },
+          "selection_macro_mae": 10.420737950200284,
+          "seconds": 61.27471729100034,
+          "lr": 0.001
+        },
+        {
+          "epoch": 2,
+          "train_normalized_MSE": 0.5605430347542243,
+          "validation": {
+            "mae": [
+              12.80733779563948,
+              8.486420612092372
+            ],
+            "rmse": [
+              16.292091238304128,
+              10.85704185006704
+            ],
+            "bias": [
+              -0.20102941498712257,
+              0.7888144179626747
+            ],
+            "macro_mae": [
+              12.807337795639478,
+              8.486420612092372
+            ]
+          },
+          "selection_macro_mae": 10.646879203865925,
+          "seconds": 47.23219804099972,
+          "lr": 0.001
+        },
+        {
+          "epoch": 3,
+          "train_normalized_MSE": 0.5029100662442396,
+          "validation": {
+            "mae": [
+              12.510230802882601,
+              8.3830843364199
+            ],
+            "rmse": [
+              15.941207287683856,
+              10.722545059388386
+            ],
+            "bias": [
+              -1.975874679563222,
+              -0.7974229218231307
+            ],
+            "macro_mae": [
+              12.510230802882601,
+              8.3830843364199
+            ]
+          },
+          "selection_macro_mae": 10.44665756965125,
+          "seconds": 53.509621166000215,
+          "lr": 0.001
+        },
+        {
+          "epoch": 4,
+          "train_normalized_MSE": 0.46080805171530975,
+          "validation": {
+            "mae": [
+              12.63238758141244,
+              8.5322386417124
+            ],
+            "rmse": [
+              16.02309535093443,
+              10.890663654397182
+            ],
+            "bias": [
+              -0.7760397301227958,
+              -0.7593107830595087
+            ],
+            "macro_mae": [
+              12.63238758141244,
+              8.532238641712402
+            ]
+          },
+          "selection_macro_mae": 10.58231311156242,
+          "seconds": 55.3960931670008,
+          "lr": 0.001
+        },
+        {
+          "epoch": 5,
+          "train_normalized_MSE": 0.4278758240527394,
+          "validation": {
+            "mae": [
+              12.77335570603609,
+              8.717399886581633
+            ],
+            "rmse": [
+              16.20823940728454,
+              11.17300263259951
+            ],
+            "bias": [
+              1.5512673982315592,
+              1.6955767068598004
+            ],
+            "macro_mae": [
+              12.77335570603609,
+              8.717399886581633
+            ]
+          },
+          "selection_macro_mae": 10.745377796308862,
+          "seconds": 52.6594049159994,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 6,
+          "train_normalized_MSE": 0.3881383208525346,
+          "validation": {
+            "mae": [
+              12.757712730710153,
+              8.540788842461728
+            ],
+            "rmse": [
+              16.19132281040043,
+              11.000448359591969
+            ],
+            "bias": [
+              0.7051488965197846,
+              0.9418355302678214
+            ],
+            "macro_mae": [
+              12.757712730710153,
+              8.540788842461728
+            ]
+          },
+          "selection_macro_mae": 10.649250786585942,
+          "seconds": 38.47297141699892,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 7,
+          "train_normalized_MSE": 0.3745376504096262,
+          "validation": {
+            "mae": [
+              12.923029884861576,
+              8.715690406218723
+            ],
+            "rmse": [
+              16.440556504352067,
+              11.19064290200909
+            ],
+            "bias": [
+              0.3673314289362342,
+              0.7749294975841486
+            ],
+            "macro_mae": [
+              12.923029884861576,
+              8.715690406218725
+            ]
+          },
+          "selection_macro_mae": 10.81936014554015,
+          "seconds": 39.533304874999885,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 8,
+          "train_normalized_MSE": 0.3637770017281106,
+          "validation": {
+            "mae": [
+              12.836886507548668,
+              8.66020367184171
+            ],
+            "rmse": [
+              16.318979516202372,
+              11.149011315739205
+            ],
+            "bias": [
+              0.294221499507074,
+              0.5655651653806368
+            ],
+            "macro_mae": [
+              12.836886507548668,
+              8.660203671841709
+            ]
+          },
+          "selection_macro_mae": 10.748545089695188,
+          "seconds": 39.39733608300048,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 9,
+          "train_normalized_MSE": 0.35501356086789554,
+          "validation": {
+            "mae": [
+              12.874326278710807,
+              8.669932035936249
+            ],
+            "rmse": [
+              16.342011920430096,
+              11.139866853576834
+            ],
+            "bias": [
+              -0.2016071543097496,
+              0.3541010687748591
+            ],
+            "macro_mae": [
+              12.874326278710805,
+              8.669932035936249
+            ]
+          },
+          "selection_macro_mae": 10.772129157323526,
+          "seconds": 33.59286854199854,
+          "lr": 0.00025
+        }
+      ],
+      "config_hash": "9f4bd0b317b9919972db03c31727552ca97971cabdf2ab3c205f4bb0af2b550e",
+      "manifest_hash": "88984e9b5a412cc20c3f9ee48badc9c82502cf982fedb7ae9e43315f314a3fca",
+      "best_checkpoint_sha256": "6e5f261476c51c8a9e9227a7b05ac41da1f06276fc9244bbc3888c3ad685235f"
+    },
+    "temporal_last_seed42": {
+      "variant": "temporal_last",
+      "seed": 42,
+      "shown_in_primary_figures": true,
+      "actual_epochs": 9,
+      "selected_epoch": 1,
+      "early_stopped": true,
+      "selected_validation_mean_macro_mae_mmhg": 10.29902493727428,
+      "training_normalized_mse_at_selected_epoch": 0.6659282594086021,
+      "source_history_relative_path": "attention/temporal_last_seed42/history.json",
+      "canonical_history_sha256": "ce0710331e26760a942b6253323922b300679d8875ce387d74a01ff9f82de2c7",
+      "history": [
+        {
+          "epoch": 1,
+          "train_normalized_MSE": 0.6659282594086021,
+          "validation": {
+            "mae": [
+              12.322269856322695,
+              8.275780018225865
+            ],
+            "rmse": [
+              15.684108800177427,
+              10.546831464832808
+            ],
+            "bias": [
+              -1.6958235541427578,
+              -1.2265936608115833
+            ],
+            "macro_mae": [
+              12.322269856322697,
+              8.275780018225865
+            ]
+          },
+          "selection_macro_mae": 10.29902493727428,
+          "seconds": 40.87779650000084,
+          "lr": 0.001
+        },
+        {
+          "epoch": 2,
+          "train_normalized_MSE": 0.5436739951356887,
+          "validation": {
+            "mae": [
+              12.620659063535708,
+              8.537974564565552
+            ],
+            "rmse": [
+              15.998743194125474,
+              10.941232711607823
+            ],
+            "bias": [
+              0.026083831709844095,
+              0.254944681569382
+            ],
+            "macro_mae": [
+              12.620659063535706,
+              8.537974564565552
+            ]
+          },
+          "selection_macro_mae": 10.579316814050628,
+          "seconds": 39.478991957999824,
+          "lr": 0.001
+        },
+        {
+          "epoch": 3,
+          "train_normalized_MSE": 0.4778219006016385,
+          "validation": {
+            "mae": [
+              12.595986867999589,
+              8.519539317323101
+            ],
+            "rmse": [
+              15.870941671170652,
+              10.848480787948738
+            ],
+            "bias": [
+              1.3280551993736514,
+              0.6582053791041728
+            ],
+            "macro_mae": [
+              12.59598686799959,
+              8.519539317323101
+            ]
+          },
+          "selection_macro_mae": 10.557763092661347,
+          "seconds": 45.26357774999997,
+          "lr": 0.001
+        },
+        {
+          "epoch": 4,
+          "train_normalized_MSE": 0.43452100934459803,
+          "validation": {
+            "mae": [
+              12.629603224385667,
+              8.613479202820194
+            ],
+            "rmse": [
+              15.90145854966633,
+              10.999280401364551
+            ],
+            "bias": [
+              -0.32268124835358725,
+              0.5232130586549087
+            ],
+            "macro_mae": [
+              12.629603224385669,
+              8.613479202820196
+            ]
+          },
+          "selection_macro_mae": 10.621541213602931,
+          "seconds": 39.995937084000616,
+          "lr": 0.001
+        },
+        {
+          "epoch": 5,
+          "train_normalized_MSE": 0.40561275921658985,
+          "validation": {
+            "mae": [
+              12.658874552724537,
+              8.677161256472269
+            ],
+            "rmse": [
+              16.084447126337405,
+              11.099222821350361
+            ],
+            "bias": [
+              -0.3217616825743958,
+              0.32070309619108833
+            ],
+            "macro_mae": [
+              12.658874552724535,
+              8.677161256472269
+            ]
+          },
+          "selection_macro_mae": 10.668017904598402,
+          "seconds": 47.74695829200027,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 6,
+          "train_normalized_MSE": 0.36735743087557604,
+          "validation": {
+            "mae": [
+              12.743883330126604,
+              8.68493060304059
+            ],
+            "rmse": [
+              16.165729022250762,
+              11.090184462966295
+            ],
+            "bias": [
+              0.7945882164217808,
+              0.6641987966166603
+            ],
+            "macro_mae": [
+              12.743883330126602,
+              8.68493060304059
+            ]
+          },
+          "selection_macro_mae": 10.714406966583596,
+          "seconds": 64.31881508300103,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 7,
+          "train_normalized_MSE": 0.3548843525985663,
+          "validation": {
+            "mae": [
+              12.716295172384491,
+              8.706313319449071
+            ],
+            "rmse": [
+              16.12830282631244,
+              11.093748830125653
+            ],
+            "bias": [
+              -0.5898977367414369,
+              0.17943357781127647
+            ],
+            "macro_mae": [
+              12.716295172384491,
+              8.706313319449071
+            ]
+          },
+          "selection_macro_mae": 10.711304245916782,
+          "seconds": 66.96756762500081,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 8,
+          "train_normalized_MSE": 0.34601942524321555,
+          "validation": {
+            "mae": [
+              12.801984697525148,
+              8.778491037311378
+            ],
+            "rmse": [
+              16.19449194351304,
+              11.169044718897524
+            ],
+            "bias": [
+              -0.5090112280514505,
+              -0.2723931043236344
+            ],
+            "macro_mae": [
+              12.801984697525148,
+              8.778491037311376
+            ]
+          },
+          "selection_macro_mae": 10.790237867418263,
+          "seconds": 61.51999116599836,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 9,
+          "train_normalized_MSE": 0.3387297987071173,
+          "validation": {
+            "mae": [
+              12.736514077639137,
+              8.731106422841549
+            ],
+            "rmse": [
+              16.15443136386093,
+              11.138507537282104
+            ],
+            "bias": [
+              0.4516221256719695,
+              0.7473679900721267
+            ],
+            "macro_mae": [
+              12.736514077639137,
+              8.731106422841549
+            ]
+          },
+          "selection_macro_mae": 10.733810250240342,
+          "seconds": 72.65993424999942,
+          "lr": 0.00025
+        }
+      ],
+      "config_hash": "f0b75bee3262504a03de15ac3fdbb055e05a4d690dc0ec60abe3ab90869552e9",
+      "manifest_hash": "88984e9b5a412cc20c3f9ee48badc9c82502cf982fedb7ae9e43315f314a3fca",
+      "best_checkpoint_sha256": "497950cad45432b4efb3adfa90d7b27f5e276c2001ab45962fd5daaabfffadb6"
+    },
+    "temporal_last_seed43": {
+      "variant": "temporal_last",
+      "seed": 43,
+      "shown_in_primary_figures": true,
+      "actual_epochs": 13,
+      "selected_epoch": 5,
+      "early_stopped": true,
+      "selected_validation_mean_macro_mae_mmhg": 10.465658248933378,
+      "training_normalized_mse_at_selected_epoch": 0.4272804259472606,
+      "source_history_relative_path": "attention/temporal_last_seed43/history.json",
+      "canonical_history_sha256": "f402393299a52d017107ba22f712445c90d545ae1e67f8cced5f41202f63a902",
+      "history": [
+        {
+          "epoch": 1,
+          "train_normalized_MSE": 0.6712833621351767,
+          "validation": {
+            "mae": [
+              12.842429136512456,
+              8.39292539584416
+            ],
+            "rmse": [
+              16.35427203808436,
+              10.7539674798877
+            ],
+            "bias": [
+              0.6550024696522289,
+              0.34882443464464613
+            ],
+            "macro_mae": [
+              12.842429136512456,
+              8.392925395844161
+            ]
+          },
+          "selection_macro_mae": 10.617677266178308,
+          "seconds": 38.266903874999116,
+          "lr": 0.001
+        },
+        {
+          "epoch": 2,
+          "train_normalized_MSE": 0.5543584389400922,
+          "validation": {
+            "mae": [
+              12.761640475690365,
+              8.284621598654324
+            ],
+            "rmse": [
+              16.154332889792485,
+              10.553552673849124
+            ],
+            "bias": [
+              -0.11162396685944663,
+              -0.04862809368857631
+            ],
+            "macro_mae": [
+              12.761640475690365,
+              8.284621598654324
+            ]
+          },
+          "selection_macro_mae": 10.523131037172345,
+          "seconds": 63.934770624999146,
+          "lr": 0.001
+        },
+        {
+          "epoch": 3,
+          "train_normalized_MSE": 0.49830773169482845,
+          "validation": {
+            "mae": [
+              12.747135026311433,
+              8.424141444872927
+            ],
+            "rmse": [
+              16.297443040606442,
+              10.73454775093668
+            ],
+            "bias": [
+              -1.321802856138459,
+              -0.4546867627788473
+            ],
+            "macro_mae": [
+              12.747135026311433,
+              8.424141444872928
+            ]
+          },
+          "selection_macro_mae": 10.585638235592182,
+          "seconds": 60.36507770800017,
+          "lr": 0.001
+        },
+        {
+          "epoch": 4,
+          "train_normalized_MSE": 0.4572781057987711,
+          "validation": {
+            "mae": [
+              12.724290483031009,
+              8.430003183748987
+            ],
+            "rmse": [
+              16.150832208108884,
+              10.748222959713875
+            ],
+            "bias": [
+              -0.759170042861391,
+              0.34542882475588055
+            ],
+            "macro_mae": [
+              12.724290483031007,
+              8.430003183748987
+            ]
+          },
+          "selection_macro_mae": 10.577146833389996,
+          "seconds": 57.86087270799908,
+          "lr": 0.001
+        },
+        {
+          "epoch": 5,
+          "train_normalized_MSE": 0.4272804259472606,
+          "validation": {
+            "mae": [
+              12.654281630505015,
+              8.27703486736174
+            ],
+            "rmse": [
+              16.127695489187946,
+              10.641819092316108
+            ],
+            "bias": [
+              -0.1336046440181909,
+              0.4732242692399908
+            ],
+            "macro_mae": [
+              12.654281630505016,
+              8.27703486736174
+            ]
+          },
+          "selection_macro_mae": 10.465658248933378,
+          "seconds": 51.00397825000073,
+          "lr": 0.001
+        },
+        {
+          "epoch": 6,
+          "train_normalized_MSE": 0.4044168426779314,
+          "validation": {
+            "mae": [
+              12.691925786987499,
+              8.41339875139572
+            ],
+            "rmse": [
+              16.193438832362286,
+              10.840050835649489
+            ],
+            "bias": [
+              -0.17041134464519994,
+              0.4586162410400532
+            ],
+            "macro_mae": [
+              12.691925786987499,
+              8.41339875139572
+            ]
+          },
+          "selection_macro_mae": 10.55266226919161,
+          "seconds": 54.60166137500164,
+          "lr": 0.001
+        },
+        {
+          "epoch": 7,
+          "train_normalized_MSE": 0.38756468413978495,
+          "validation": {
+            "mae": [
+              12.728222929382765,
+              8.643156198439774
+            ],
+            "rmse": [
+              16.132671923416808,
+              11.064239121350148
+            ],
+            "bias": [
+              0.3486051438583268,
+              0.6686131804077714
+            ],
+            "macro_mae": [
+              12.728222929382767,
+              8.643156198439774
+            ]
+          },
+          "selection_macro_mae": 10.685689563911271,
+          "seconds": 63.171388709000894,
+          "lr": 0.001
+        },
+        {
+          "epoch": 8,
+          "train_normalized_MSE": 0.3731067588325653,
+          "validation": {
+            "mae": [
+              12.927962310281064,
+              8.64914768283014
+            ],
+            "rmse": [
+              16.468225525876115,
+              11.085595029665866
+            ],
+            "bias": [
+              -0.8193278841950276,
+              -0.051666590571403506
+            ],
+            "macro_mae": [
+              12.927962310281066,
+              8.64914768283014
+            ]
+          },
+          "selection_macro_mae": 10.788554996555604,
+          "seconds": 61.82939124999939,
+          "lr": 0.001
+        },
+        {
+          "epoch": 9,
+          "train_normalized_MSE": 0.36199224750384024,
+          "validation": {
+            "mae": [
+              12.69751788791683,
+              8.607627257594356
+            ],
+            "rmse": [
+              16.17920166405701,
+              11.023759556288429
+            ],
+            "bias": [
+              0.23697264586333874,
+              0.5545066014484122
+            ],
+            "macro_mae": [
+              12.697517887916831,
+              8.607627257594357
+            ]
+          },
+          "selection_macro_mae": 10.652572572755595,
+          "seconds": 57.51602891600123,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 10,
+          "train_normalized_MSE": 0.3367483118919611,
+          "validation": {
+            "mae": [
+              12.797269851079694,
+              8.599330446234456
+            ],
+            "rmse": [
+              16.323805140797887,
+              11.084037941858563
+            ],
+            "bias": [
+              0.4478080385261112,
+              0.6521611172843862
+            ],
+            "macro_mae": [
+              12.797269851079696,
+              8.599330446234456
+            ]
+          },
+          "selection_macro_mae": 10.698300148657076,
+          "seconds": 94.53821174999757,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 11,
+          "train_normalized_MSE": 0.3301281282002048,
+          "validation": {
+            "mae": [
+              12.702542205872358,
+              8.544540031254291
+            ],
+            "rmse": [
+              16.176883776132183,
+              10.991464471656247
+            ],
+            "bias": [
+              0.19159094702314447,
+              0.21027877910269632
+            ],
+            "macro_mae": [
+              12.70254220587236,
+              8.544540031254291
+            ]
+          },
+          "selection_macro_mae": 10.623541118563326,
+          "seconds": 93.58729112499714,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 12,
+          "train_normalized_MSE": 0.3260093245967742,
+          "validation": {
+            "mae": [
+              12.682421940951436,
+              8.523400535738027
+            ],
+            "rmse": [
+              16.159701474597707,
+              10.97507299366151
+            ],
+            "bias": [
+              0.6031606468337554,
+              0.9283265299267239
+            ],
+            "macro_mae": [
+              12.682421940951436,
+              8.523400535738027
+            ]
+          },
+          "selection_macro_mae": 10.602911238344731,
+          "seconds": 75.66599916700216,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 13,
+          "train_normalized_MSE": 0.3221146753392217,
+          "validation": {
+            "mae": [
+              12.660586790298973,
+              8.577257193928515
+            ],
+            "rmse": [
+              16.097287985210233,
+              11.013601770046233
+            ],
+            "bias": [
+              0.1861428376149248,
+              0.46886466341438116
+            ],
+            "macro_mae": [
+              12.660586790298973,
+              8.577257193928515
+            ]
+          },
+          "selection_macro_mae": 10.618921992113744,
+          "seconds": 71.68759316700016,
+          "lr": 0.00025
+        }
+      ],
+      "config_hash": "42063f94f01ad6ddc6872ce3fb874bf9b30110ea49b1348c57c598f45e110ccd",
+      "manifest_hash": "88984e9b5a412cc20c3f9ee48badc9c82502cf982fedb7ae9e43315f314a3fca",
+      "best_checkpoint_sha256": "0b5f5d43be98742f3b166b91702350b2966b29640f58d2f1cab64c6bc26cad1f"
+    },
+    "temporal_last_seed44": {
+      "variant": "temporal_last",
+      "seed": 44,
+      "shown_in_primary_figures": true,
+      "actual_epochs": 17,
+      "selected_epoch": 9,
+      "early_stopped": true,
+      "selected_validation_mean_macro_mae_mmhg": 10.44959620811321,
+      "training_normalized_mse_at_selected_epoch": 0.35503056195596516,
+      "source_history_relative_path": "attention/temporal_last_seed44/history.json",
+      "canonical_history_sha256": "245f2a826b0e36cfefe7a577a8a168d8d87f4d8c714dcaed92283fc61489087d",
+      "history": [
+        {
+          "epoch": 1,
+          "train_normalized_MSE": 0.6678742239503328,
+          "validation": {
+            "mae": [
+              12.473358583836644,
+              8.437934876978398
+            ],
+            "rmse": [
+              15.781803338666156,
+              10.706526710567806
+            ],
+            "bias": [
+              -0.20025956481695176,
+              0.8128698124377816
+            ],
+            "macro_mae": [
+              12.473358583836642,
+              8.437934876978398
+            ]
+          },
+          "selection_macro_mae": 10.45564673040752,
+          "seconds": 93.35646124999766,
+          "lr": 0.001
+        },
+        {
+          "epoch": 2,
+          "train_normalized_MSE": 0.5514225310419867,
+          "validation": {
+            "mae": [
+              12.924312120400094,
+              8.649783279995123
+            ],
+            "rmse": [
+              16.419507359875023,
+              11.068278204221746
+            ],
+            "bias": [
+              1.5847714123350602,
+              1.6721671240749183
+            ],
+            "macro_mae": [
+              12.924312120400094,
+              8.649783279995125
+            ]
+          },
+          "selection_macro_mae": 10.78704770019761,
+          "seconds": 95.94550133300072,
+          "lr": 0.001
+        },
+        {
+          "epoch": 3,
+          "train_normalized_MSE": 0.4923895929339478,
+          "validation": {
+            "mae": [
+              12.564022813847771,
+              8.43519200583299
+            ],
+            "rmse": [
+              15.990156127785502,
+              10.806169156246979
+            ],
+            "bias": [
+              0.7760086533647996,
+              0.6812856004193977
+            ],
+            "macro_mae": [
+              12.564022813847771,
+              8.43519200583299
+            ]
+          },
+          "selection_macro_mae": 10.49960740984038,
+          "seconds": 87.35054283300269,
+          "lr": 0.001
+        },
+        {
+          "epoch": 4,
+          "train_normalized_MSE": 0.45307007648489506,
+          "validation": {
+            "mae": [
+              12.561562553213703,
+              8.46064208365149
+            ],
+            "rmse": [
+              15.92948528183134,
+              10.881626843364202
+            ],
+            "bias": [
+              0.3151396628331255,
+              -1.2575451768658779
+            ],
+            "macro_mae": [
+              12.561562553213705,
+              8.460642083651491
+            ]
+          },
+          "selection_macro_mae": 10.511102318432599,
+          "seconds": 96.4063238330018,
+          "lr": 0.001
+        },
+        {
+          "epoch": 5,
+          "train_normalized_MSE": 0.4234124983998976,
+          "validation": {
+            "mae": [
+              12.766410467635703,
+              8.64696366235062
+            ],
+            "rmse": [
+              16.21278277658221,
+              11.108983681201249
+            ],
+            "bias": [
+              1.475329983289595,
+              1.1216248787111707
+            ],
+            "macro_mae": [
+              12.766410467635703,
+              8.646963662350618
+            ]
+          },
+          "selection_macro_mae": 10.706687064993162,
+          "seconds": 87.81456170800084,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 6,
+          "train_normalized_MSE": 0.38489855350742447,
+          "validation": {
+            "mae": [
+              12.583389634501051,
+              8.461173810837446
+            ],
+            "rmse": [
+              15.960128930116177,
+              10.895190174134347
+            ],
+            "bias": [
+              0.09080755373945942,
+              0.4522459238215729
+            ],
+            "macro_mae": [
+              12.583389634501051,
+              8.461173810837444
+            ]
+          },
+          "selection_macro_mae": 10.522281722669248,
+          "seconds": 101.02571558300042,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 7,
+          "train_normalized_MSE": 0.371834717421915,
+          "validation": {
+            "mae": [
+              12.775018303758568,
+              8.585080870930796
+            ],
+            "rmse": [
+              16.23734158213562,
+              11.051378866574554
+            ],
+            "bias": [
+              0.21055066966348224,
+              0.3367541719917898
+            ],
+            "macro_mae": [
+              12.77501830375857,
+              8.585080870930796
+            ]
+          },
+          "selection_macro_mae": 10.680049587344683,
+          "seconds": 103.10705083399807,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 8,
+          "train_normalized_MSE": 0.3634858630952381,
+          "validation": {
+            "mae": [
+              12.639911300661387,
+              8.633088984036887
+            ],
+            "rmse": [
+              16.10615792170128,
+              11.153798261280233
+            ],
+            "bias": [
+              0.9900254263370125,
+              1.0140337348536208
+            ],
+            "macro_mae": [
+              12.639911300661387,
+              8.633088984036888
+            ]
+          },
+          "selection_macro_mae": 10.636500142349139,
+          "seconds": 111.35098083299818,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 9,
+          "train_normalized_MSE": 0.35503056195596516,
+          "validation": {
+            "mae": [
+              12.484478609484654,
+              8.414713806741767
+            ],
+            "rmse": [
+              15.889628890407568,
+              10.854878361539539
+            ],
+            "bias": [
+              -0.19246718811768074,
+              0.44618460133119864
+            ],
+            "macro_mae": [
+              12.484478609484654,
+              8.414713806741767
+            ]
+          },
+          "selection_macro_mae": 10.44959620811321,
+          "seconds": 136.70286874999874,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 10,
+          "train_normalized_MSE": 0.34839513728878646,
+          "validation": {
+            "mae": [
+              12.758243362384814,
+              8.603062667504505
+            ],
+            "rmse": [
+              16.18034403367866,
+              11.061549685652666
+            ],
+            "bias": [
+              0.639841097648497,
+              0.5559399219022857
+            ],
+            "macro_mae": [
+              12.758243362384816,
+              8.603062667504505
+            ]
+          },
+          "selection_macro_mae": 10.68065301494466,
+          "seconds": 162.80462458299735,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 11,
+          "train_normalized_MSE": 0.3427160138248848,
+          "validation": {
+            "mae": [
+              12.568764645137168,
+              8.533145017977114
+            ],
+            "rmse": [
+              15.940187268304506,
+              10.924673757580878
+            ],
+            "bias": [
+              -0.46700154691934587,
+              0.48634500315895784
+            ],
+            "macro_mae": [
+              12.56876464513717,
+              8.533145017977114
+            ]
+          },
+          "selection_macro_mae": 10.550954831557142,
+          "seconds": 122.64642770900173,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 12,
+          "train_normalized_MSE": 0.3374739983358935,
+          "validation": {
+            "mae": [
+              12.666543031235536,
+              8.683628006003522
+            ],
+            "rmse": [
+              16.05276401201885,
+              11.095971746867386
+            ],
+            "bias": [
+              0.20368438589352147,
+              0.19457169704967076
+            ],
+            "macro_mae": [
+              12.666543031235534,
+              8.683628006003522
+            ]
+          },
+          "selection_macro_mae": 10.675085518619529,
+          "seconds": 124.243456917,
+          "lr": 0.0005
+        },
+        {
+          "epoch": 13,
+          "train_normalized_MSE": 0.3323236287122376,
+          "validation": {
+            "mae": [
+              12.582373434912276,
+              8.644167895504722
+            ],
+            "rmse": [
+              16.0067889008729,
+              11.100042916846983
+            ],
+            "bias": [
+              0.1993968572329592,
+              0.3765766159803779
+            ],
+            "macro_mae": [
+              12.582373434912276,
+              8.64416789550472
+            ]
+          },
+          "selection_macro_mae": 10.613270665208498,
+          "seconds": 107.65221550000206,
+          "lr": 0.00025
+        },
+        {
+          "epoch": 14,
+          "train_normalized_MSE": 0.31730886776753714,
+          "validation": {
+            "mae": [
+              12.74724553177754,
+              8.635523746935306
+            ],
+            "rmse": [
+              16.172981301546436,
+              11.087900307845949
+            ],
+            "bias": [
+              0.024838042424784768,
+              0.24206689499594547
+            ],
+            "macro_mae": [
+              12.747245531777542,
+              8.635523746935306
+            ]
+          },
+          "selection_macro_mae": 10.691384639356425,
+          "seconds": 124.15951400000267,
+          "lr": 0.00025
+        },
+        {
+          "epoch": 15,
+          "train_normalized_MSE": 0.31447576644905273,
+          "validation": {
+            "mae": [
+              12.779005641793763,
+              8.753916273128103
+            ],
+            "rmse": [
+              16.22132903149411,
+              11.247399555245883
+            ],
+            "bias": [
+              0.5565125570804984,
+              0.9281251250041855
+            ],
+            "macro_mae": [
+              12.779005641793765,
+              8.753916273128103
+            ]
+          },
+          "selection_macro_mae": 10.766460957460934,
+          "seconds": 136.76788283399947,
+          "lr": 0.00025
+        },
+        {
+          "epoch": 16,
+          "train_normalized_MSE": 0.3118420778929851,
+          "validation": {
+            "mae": [
+              12.70783928445092,
+              8.664477080161925
+            ],
+            "rmse": [
+              16.10116373363048,
+              11.116260162070564
+            ],
+            "bias": [
+              -0.24017836296999895,
+              0.37297760915976985
+            ],
+            "macro_mae": [
+              12.70783928445092,
+              8.664477080161925
+            ]
+          },
+          "selection_macro_mae": 10.686158182306421,
+          "seconds": 136.1424537089988,
+          "lr": 0.00025
+        },
+        {
+          "epoch": 17,
+          "train_normalized_MSE": 0.3098625912058372,
+          "validation": {
+            "mae": [
+              12.816058759336117,
+              8.701531298513766
+            ],
+            "rmse": [
+              16.30321497433918,
+              11.166892245024739
+            ],
+            "bias": [
+              -0.7277135706610149,
+              -0.2582203562612887
+            ],
+            "macro_mae": [
+              12.816058759336121,
+              8.701531298513766
+            ]
+          },
+          "selection_macro_mae": 10.758795028924943,
+          "seconds": 120.43482116700034,
+          "lr": 0.000125
+        }
+      ],
+      "config_hash": "2c2f1932eae45b64a1c500cc62c7283c1e00dfeb489aa33c884b1639695bbf23",
+      "manifest_hash": "88984e9b5a412cc20c3f9ee48badc9c82502cf982fedb7ae9e43315f314a3fca",
+      "best_checkpoint_sha256": "92cef37936430f14353eb6364c0cb0c6d8ea82b240ab86afb6921300131e857b"
+    }
+  }
+}

@@ -8,7 +8,7 @@ Dataset expansion, MIMIC training, and the teammate's larger CRC experiments are
 
 ## Verified status and authoritative documents
 
-At the documentation snapshot **2026-10-09 22:17 America/Chicago**, Track B has completed and verified all 1,068 development and 684 final-target units. Eighteen of twenty required population fits are complete; the ECG-only fit is running and the PPG-only fit remains. The combined final report remains pending the full population inventory and actual-result PDF inspection. Ninety-six automated tests pass, and the saved personal inference package exactly replays all eight strategies on 654 real query windows. [Draft PR #1](https://github.com/place-bot/Bad-Blood/pull/1) contains the work in progress; nothing has been merged. This dated snapshot is not a claim that the full study is complete. Consult [STATUS.md](STATUS.md) and the verified runtime inventory for later progress.
+At the documentation snapshot **2026-10-09 22:49 America/Chicago**, all **20 required population fits, 1,068 personal development units, and 684 final-target units are complete**. The strict report builder verified the complete inventory and generated the [combined report](reports/final_report.pdf) and [machine-readable results](reports/results/inventory.json). All 25 report pages pass visual inspection, and **98 automated tests pass**. The saved personal inference package exactly replays all eight strategies on 654 real query windows. Supplementary ECA fits were not run and are not required for completion. [PR #1](https://github.com/place-bot/Bad-Blood/pull/1) contains the dedicated research branch; V1 and main have not been changed by this work. See [final verification](reports/FINAL_VERIFICATION.md) for checks and PDF identities. The full local checkpoint/prediction bundle is not published; see [DATA_ACCESS.md](DATA_ACCESS.md) for reproduction requirements.
 
 The review/protocol gate was committed at [1b93cf13249931af650cdfa91e19343564032451](https://github.com/place-bot/Bad-Blood/commit/1b93cf13249931af650cdfa91e19343564032451), before implementation or training. The repository research base is `7553248168295bcad593739fdc733dbefff0c3b1`; the V1 network's source-changing commit is `1f33cdcf090d51133c91dd50af2e575f5eaa0053`.
 
@@ -24,9 +24,21 @@ The review/protocol gate was committed at [1b93cf13249931af650cdfa91e19343564032
 | [REVIEW_GATE.md](REVIEW_GATE.md) | Both literature PDFs compiled and visually checked |
 | [Track A review](attention_cnn/literature_review.pdf) | Attention evidence and prospective protocol |
 | [Track B review](personalized_forecasting/literature_review.pdf) | Calibration evidence and prospective protocol |
+| [Combined report PDF](reports/final_report.pdf) / [LaTeX source](reports/final_report.tex) | Actual completed-run results; all 25 pages visually inspected |
+| [Final verification](reports/FINAL_VERIFICATION.md) | Inventory, numeric audit, 98 tests, visual checks and PDF SHA-256 identities |
+| [Verified inventory](reports/results/inventory.json) / [Metric overview](reports/results/metric_overview.json) | Completed counts and browsable pooled/patient-macro metrics |
+| [Attention results](reports/results/attention.json.gz) / [Personal results](reports/results/personalization.json.gz) | Lossless detailed metric archives, not raw waveforms or model weights |
 | [STATUS.md](STATUS.md) | Dated workflow notes; runtime artifacts supply live run status |
 | [Runtime integrity check](reports/RUNTIME_INTEGRITY_CHECK_20261009.md) | Eight actual development units, exact saved-model replay, and frozen-parameter checks |
 | [Personal inference guide](personalized_forecasting/INFERENCE.md) | Apply completed personal weights or calibration coefficients without later labels; exact real-artifact replay evidence |
+
+## Main findings from the completed runs
+
+MAEs below are patient-macro values in mmHg, averaged across the three separately evaluated seeds 42/43/44, not an ensemble. SBP/DBP are kept separate. The paired 95% confidence intervals are descriptive patient-bootstrap intervals after averaging matched-seed differences; they are conditional on the fitted seeds and not adjusted for multiple comparisons.
+
+- **Attention:** validation selects the unchanged CNN. On the 141-patient primary test, CNN SBP/DBP MAE is **12.59/8.36**, versus **12.39/8.00** for SE-last. SE-minus-CNN changes are **−0.20 [−0.48, +0.07]** for SBP and **−0.36 [−0.53, −0.18]** for DBP. Thus SE has lower observed errors, with the DBP interval below zero and the SBP direction still uncertain; these test comparisons do not override validation selection. SE-last has the lowest observed MAEs among the six required three-seed variants, not proof of universal superiority. [Detailed attention interpretation](reports/results/attention_interpretation.json).
+- **Modality result:** at seed 42, PPG-only MAE is **12.296/7.771**, below matched-seed CNN **12.603/8.235** and SE-last **12.366/7.949**. This is a genuine observed advantage in the one completed run. ECG-only and PPG-only are retrained single-seed ablations, not part of the three-seed architecture ranking; they do not establish seed-robust sensor importance or show that ECG is universally unnecessary.
+- **Personal calibration, K=10:** across six target patients, population, full-model adaptation, and reference-mean SBP/DBP MAEs are **12.73/7.80**, **9.24/4.66**, and **9.01/4.04**, respectively. Full adaptation lowers the observed population-model error, but reference mean is lower still: full-minus-reference-mean changes are **+0.23 [−1.11, +1.37]** for SBP and **+0.62 [+0.13, +1.07]** for DBP. This six-person, ABP-derived-reference pilot does not establish a universal calibration count, cross-visit durability, or clinical deployment readiness. [Detailed personal interpretation](reports/results/personal_interpretation.json).
 
 ## Data contract and provenance
 
