@@ -268,6 +268,7 @@ predictions bitwise without modifying the existing artifacts.
 Only after the full required inventory is complete:
 
 ```sh
+cd "$BB_REPO/model training/v2"
 "$BB_PY" reports/build_report.py --artifact-root "$BB_RUN_ROOT" \
   --data-root "$BB_POP" --individual-root "$BB_PERSONAL"
 ```

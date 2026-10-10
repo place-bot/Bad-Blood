@@ -30,7 +30,7 @@ The two reference-only controls (`last_reference`, `calibration_mean`) validate 
 
 ## Exact invocation
 
-Set paths for your checkout, completed run, prepared input, and a separate output directory. The example uses a fixed, existing `head` unit for the first frozen target/seed/K10; it is an interface example, **not a recommendation selected from target performance**.
+Set paths for your checkout, completed run, prepared input, and a separate output directory. Use `BB_PY`, the virtual-environment Python defined in the [README environment setup](../README.md#environment-and-setup); if opening a new shell, export it again with the path to that environment's `bin/python`. The example uses a fixed, existing `head` unit for the first frozen target/seed/K10; it is an interface example, **not a recommendation selected from target performance**.
 
 ```bash
 export BB_REPO="/path/to/Bad-Blood"
@@ -39,7 +39,7 @@ export BB_INPUT="/path/to/observed_ecg_ppg.npy"
 export BB_INFERENCE="/path/to/new-inference-output"
 mkdir -p "$BB_INFERENCE"
 
-python "$BB_REPO/model training/v2/personalized_forecasting/predict.py" \
+"$BB_PY" "$BB_REPO/model training/v2/personalized_forecasting/predict.py" \
   --artifact "$BB_RUNS/personalization/test/vitaldb:p005879/seed42/K10/head/lr0.001_steps100/adapted.pt" \
   --population-checkpoint "$BB_RUNS/attention/baseline_seed42/best.pt" \
   --patient-id "vitaldb:p005879" \
@@ -53,7 +53,7 @@ Add `--already-normalized` only when the input already satisfies the normalizati
 For an existing scalar affine calibration, substitute the artifact and choose a new output path:
 
 ```bash
-python "$BB_REPO/model training/v2/personalized_forecasting/predict.py" \
+"$BB_PY" "$BB_REPO/model training/v2/personalized_forecasting/predict.py" \
   --artifact "$BB_RUNS/personalization/test/vitaldb:p005879/seed42/K10/affine/lambda1/calibration.json" \
   --population-checkpoint "$BB_RUNS/attention/baseline_seed42/best.pt" \
   --patient-id "vitaldb:p005879" \
@@ -88,7 +88,7 @@ sbp_dbp_mmhg = predict_personal(predictor, observed)
 There is no label argument. The API does not write files. Use the CLI's fixed CPU/thread settings and batch size for the recorded replay conditions.
 
 ```bash
-python -m unittest discover \
+"$BB_PY" -m unittest discover \
   -s "$BB_REPO/model training/v2/tests" \
   -p test_personal_prediction.py -v
 ```
