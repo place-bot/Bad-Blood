@@ -186,6 +186,57 @@ def _validation_table(records):
     ])
 
 
+def _observed_test_evidence(aruns, comparisons):
+    """Describe fixed-model test outcomes without using them for selection."""
+    means = {variant: np.mean([
+        aruns[f"{variant}_seed{seed}"]["metrics"]["test"]["macro"]["mae"]
+        for seed in SEEDS], axis=0).tolist() for variant in REQUIRED_THREE_SEED}
+    lowest = {}
+    for q, target in enumerate(TARGETS):
+        minimum = min(values[q] for values in means.values())
+        tied = [variant for variant, values in means.items() if abs(values[q] - minimum) <= TOLERANCE]
+        contrasts = {}
+        for variant in tied:
+            if variant != "baseline":
+                pair = comparisons[f"{variant}-minus-baseline"]["mae"]
+                contrasts[variant] = {key: float(pair[key][q]) for key in ("estimate", "ci_lower", "ci_upper")}
+        lowest[target] = {"variants": tied, "mae": minimum, "baseline_contrasts": contrasts}
+    se = comparisons["se_last-minus-baseline"]["mae"]
+    roles = {"additive_last": "capacity control", "se_all": "placement ablation"}
+    names = {target: ", ".join(DISPLAY[v] + (f" ({roles[v]})" if v in roles else "")
+                              for v in lowest[target]["variants"]) for target in TARGETS}
+    minimum_sentence = ("Across the six required three-seed models, the lowest observed primary-test MAEs are "
+        + " and ".join(f"{target} {lowest[target]['mae']:.3f} mmHg for {names[target]}" for target in TARGETS) + ".")
+    abstract = (
+        f"Separately, SE-last has primary-test SBP/DBP MAE {means['se_last'][0]:.3f}/{means['se_last'][1]:.3f} mmHg; "
+        f"SE-minus-CNN changes are {_delta_text(se)} mmHg (descriptive paired 95\\% patient intervals). "
+        + minimum_sentence + " These observed test comparisons do not change validation-based selection. ")
+    sentences = [minimum_sentence,
+        "These are descriptive endpoint-wise minima among prespecified fitted models, not a new model-selection rule or evidence of global superiority. "
+        "Capacity and placement controls retain their distinct roles; supplementary ECA and single-seed sensor ablations do not enter this six-model summary."]
+    for target in TARGETS:
+        q = TARGETS.index(target)
+        for variant, contrast in lowest[target]["baseline_contrasts"].items():
+            sentences.append(f"For {target}, {DISPLAY[variant]} minus CNN is {contrast['estimate']:+.3f} "
+                             f"[{contrast['ci_lower']:+.3f}, {contrast['ci_upper']:+.3f}] mmHg.")
+        delta = se["estimate"][q]
+        direction = "lower" if delta < -TOLERANCE else "higher" if delta > TOLERANCE else "unchanged"
+        relation = se["target_details"][target]["interval_relation"]
+        comparison_wording = f"{direction} than CNN's" if direction != "unchanged" else "unchanged from CNN's"
+        relation_wording = "is " + relation if relation.startswith("wholly") else relation
+        sentences.append(f"SE-last's observed {target} MAE is {comparison_wording} "
+                         f"(change {delta:+.3f} mmHg); its paired interval {relation_wording}.")
+    sentences.append(
+        "All intervals compare a fixed model with CNN, not the lowest model with every competitor; "
+        "they are descriptive, conditional on the fitted seeds, and not adjusted for multiple comparisons or selecting an observed minimum. "
+        "An interval including zero leaves the direction uncertain without erasing the observed point estimate. "
+        "A validation-selected model need not have the lowest test error, and a lower observed test error is not a deployment-selection decision.")
+    return {"candidate_models": list(REQUIRED_THREE_SEED), "seeds": list(SEEDS),
+            "test_mean_macro_mae": means, "lowest_observed_by_target": lowest,
+            "selection_uses_test": False, "abstract_latex": abstract,
+            "discussion_latex": " ".join(sentences)}
+
+
 def build_attention_interpretation(aruns, validation_winner=None):
     """Return (LaTeX, JSON-ready evidence) from complete verified real summaries.
 
@@ -208,7 +259,7 @@ def build_attention_interpretation(aruns, validation_winner=None):
     _require(validation_winner is None or validation_winner == required_winner,
              "Supplied winner is not the fixed all-six-required validation choice")
     comparisons = {}
-    for variant in (*ATTENTION_SET[1:], *(('eca_last',) if 'eca_last' in variants else ())):
+    for variant in (*REQUIRED_THREE_SEED[1:], *(('eca_last',) if 'eca_last' in variants else ())):
         comparisons[f"{variant}-minus-baseline"] = _comparison(aruns, variant, "baseline")
     for left, right, _ in SECONDARY_CONTRASTS:
         comparisons[f"{left}-minus-{right}"] = _comparison(aruns, left, right)
@@ -218,7 +269,9 @@ def build_attention_interpretation(aruns, validation_winner=None):
                 "tie_rule": "first model in the stated fixed candidate order; exact score ties only",
                 "selection_uses": "validation patient-macro MAE averaged over SBP/DBP and three seeds only",
                 "supplementary_eca_excluded": True}
+    observed_test = _observed_test_evidence(aruns, comparisons)
     details = {"selection": rankings, "validation_table": validation_records,
+               "observed_test_evidence": observed_test,
                "comparisons": comparisons, "target_order": list(TARGETS),
                "primary_test_patients": 141, "primary_test_windows": 56400,
                "uncertainty": "2,000 patient resamples after within-patient matched-seed averaging; descriptive, not multiplicity-adjusted",

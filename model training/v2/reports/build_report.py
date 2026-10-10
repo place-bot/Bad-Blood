@@ -367,7 +367,8 @@ def main():
             f"Within the prospective four-model attention comparison, validation selects {DISPLAY[attention_choice]}, "
             f"with primary-test patient-macro SBP/DBP MAE, averaged across seeds 42/43/44, of {attention_choice_mae[0]:.2f}/{attention_choice_mae[1]:.2f} mmHg "
             f"versus {base_mae[0]:.2f}/{base_mae[1]:.2f} for the unchanged CNN. ")
-    abstract_result = (attention_abstract +
+    observed_test = attention_interpretation_data["observed_test_evidence"]
+    abstract_result = (attention_abstract + observed_test["abstract_latex"] +
         f"With ten simulated personal references, three-seed mean patient-macro population and full-adaptation MAE are "
         f"{personal_abstract['population'][0]:.2f}/{personal_abstract['population'][1]:.2f} and "
         f"{personal_abstract['full'][0]:.2f}/{personal_abstract['full'][1]:.2f} mmHg; "
@@ -623,10 +624,15 @@ artifacts remained unchanged. This replay is an engineering consistency
 check, not another independent accuracy experiment.
 
 \section{Interpretation and limitations}
+""" + observed_test["discussion_latex"] + r"""
+
 The controlled attention intervention tests mechanisms, placement, modality
 availability and matched parameter count; equal capacity does not guarantee
-equal optimization. A validation-selected architecture can still have mixed
-test outcomes, and intervals spanning zero do not support a stable gain.
+equal optimization. Validation ranking is a prospective selection rule, not
+a declaration that the selected architecture is globally best. The full
+prespecified test comparison supplies separate evidence about generalization;
+neither a favorable point estimate nor a validation ranking alone establishes
+clinical usefulness or deployment readiness.
 The per-patient table and calibration curves, not a single best number,
 determine whether deeper adaptation consistently helps. A neural strategy
 that fails to outperform reference-only controls adds complexity without

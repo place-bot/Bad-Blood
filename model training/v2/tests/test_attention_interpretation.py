@@ -56,6 +56,16 @@ def fixture(include_eca=False):
     return runs
 
 
+def change_summary(run, split, transform):
+    """Consistent in-memory endpoint edits for reporting edge cases only."""
+    summary = run["metrics"][split]
+    for index, patient in enumerate(summary["per_patient"].values()):
+        patient["mae"] = np.asarray(transform(index, np.asarray(patient["mae"])), float).tolist()
+        patient["rmse"] = (np.asarray(patient["mae"]) + 2).tolist()
+    summary["macro"] = {metric: np.mean([p[metric] for p in summary["per_patient"].values()], 0).tolist()
+                        for metric in ("mae", "rmse")}
+
+
 class AttentionInterpretationTests(unittest.TestCase):
     def test_validation_roles_exclude_optional_model_and_never_use_test_rank(self):
         runs = fixture(include_eca=True)
@@ -168,6 +178,63 @@ class AttentionInterpretationTests(unittest.TestCase):
         self.assertIn("selection uses unrounded values", table)
         self.assertIn("not predictions in an ensemble", latex)
         self.assertIn("a seed-42 score is one run, not the three-seed mean", latex)
+
+    def test_observed_test_minima_are_descriptive_target_specific_and_do_not_reselect(self):
+        runs = fixture(include_eca=True)
+        _, data = build_attention_interpretation(runs)
+        observed = data["observed_test_evidence"]
+        self.assertEqual(observed["candidate_models"], list(REQUIRED_THREE_SEED))
+        self.assertFalse(observed["selection_uses_test"])
+        self.assertNotIn("eca_last", observed["test_mean_macro_mae"])
+        self.assertEqual(observed["lowest_observed_by_target"]["SBP"]["variants"], ["additive_last"])
+        self.assertEqual(observed["lowest_observed_by_target"]["DBP"]["variants"], ["additive_last"])
+        for seed in SEEDS:
+            change_summary(runs[f"se_all_seed{seed}"], "test", lambda i, y: [1., y[1]])
+            change_summary(runs[f"cbam_last_seed{seed}"], "test", lambda i, y: [y[0], 1.])
+        _, updated = build_attention_interpretation(runs)
+        self.assertEqual(data["selection"], updated["selection"])
+        observed = updated["observed_test_evidence"]
+        self.assertEqual(observed["lowest_observed_by_target"]["SBP"]["variants"], ["se_all"])
+        self.assertEqual(observed["lowest_observed_by_target"]["DBP"]["variants"], ["cbam_last"])
+        self.assertIn("SBP 1.000 mmHg for SE-all (placement ablation)", observed["abstract_latex"])
+        self.assertIn("DBP 1.000 mmHg for CBAM1D", observed["abstract_latex"])
+        self.assertIn("not a deployment-selection decision", observed["discussion_latex"])
+        self.assertIn("not adjusted for multiple comparisons or selecting an observed minimum", observed["discussion_latex"])
+
+    def test_validation_selected_baseline_does_not_suppress_se_test_improvement_or_uncertainty(self):
+        runs = fixture()
+        for seed in SEEDS:
+            change_summary(runs[f"baseline_seed{seed}"], "validation", lambda i, y: [1., 1.])
+            baseline = list(runs[f"baseline_seed{seed}"]["metrics"]["test"]["per_patient"].values())
+            change_summary(runs[f"se_last_seed{seed}"], "test", lambda i, y:
+                           np.asarray(baseline[i]["mae"]) + [-1. if i < 72 else 1., -.5])
+        _, data = build_attention_interpretation(runs, "baseline")
+        self.assertEqual(data["selection"]["attention_winner"], "baseline")
+        observed = data["observed_test_evidence"]
+        pair = data["comparisons"]["se_last-minus-baseline"]["mae"]
+        self.assertLess(pair["estimate"][0], 0)
+        self.assertLess(pair["ci_lower"][0], 0)
+        self.assertGreater(pair["ci_upper"][0], 0)
+        self.assertLess(pair["ci_upper"][1], 0)
+        self.assertIn("SE-last has primary-test SBP/DBP MAE", observed["abstract_latex"])
+        self.assertIn("descriptive paired 95\\% patient intervals", observed["abstract_latex"])
+        self.assertIn("SE-last's observed SBP MAE is lower than CNN's", observed["discussion_latex"])
+        self.assertIn("its paired interval includes or touches zero", observed["discussion_latex"])
+        self.assertIn("its paired interval is wholly below zero", observed["discussion_latex"])
+
+    def test_observed_baseline_minimum_has_no_fabricated_self_comparison(self):
+        runs = fixture()
+        for variant in REQUIRED_THREE_SEED[1:]:
+            for seed in SEEDS:
+                change_summary(runs[f"{variant}_seed{seed}"], "test", lambda i, y: [100., 100.])
+        _, data = build_attention_interpretation(runs)
+        observed = data["observed_test_evidence"]
+        for target in ("SBP", "DBP"):
+            self.assertEqual(observed["lowest_observed_by_target"][target]["variants"], ["baseline"])
+            self.assertEqual(observed["lowest_observed_by_target"][target]["baseline_contrasts"], {})
+        self.assertNotIn("CNN minus CNN", observed["discussion_latex"])
+        self.assertIn("SE-last's observed SBP MAE is higher", observed["discussion_latex"])
+        json.dumps(data, allow_nan=False)
 
 
 if __name__ == "__main__":

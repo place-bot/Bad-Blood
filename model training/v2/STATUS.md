@@ -1,5 +1,23 @@
 # Workflow status
 
+## 2026-10-09 22:17 America/Chicago: all required three-seed comparisons complete
+
+- Eighteen of twenty population fits are complete: all six required dual-channel
+  architectures have finished seeds 42/43/44. The original orchestrator is
+  running the ECG-only control, with the PPG-only control next.
+- SE-last retains the lowest observed primary-test SBP and DBP MAEs among
+  these six fixed three-seed models (12.386/8.002 mmHg). The CNN retains the
+  lowest mean validation score. Report generation now explicitly includes
+  both findings, paired uncertainty, and the difference between a planned
+  selection rule and observed test performance. No test outcome changed a
+  training setting or the remaining inventory.
+- Ninety-six automated tests pass, including target-specific test findings,
+  differing validation and test rankings, and avoiding unsupported comparisons
+  of an observed test minimum with every competitor.
+- The full required inventory, final report compilation, visual inspection,
+  and final GitHub handoff are still pending. V1 and unrelated files remain
+  unchanged relative to the research base.
+
 ## 2026-10-09 21:52 America/Chicago: sixteen fits and explicit split reporting
 
 - Sixteen of twenty required population fits are complete. All three seeds
