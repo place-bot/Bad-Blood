@@ -1,5 +1,21 @@
 # Workflow status
 
+## 2026-10-09 20:16 America/Chicago: connection restored, existing run retained
+
+- The user reported restored connectivity. The original population orchestrator
+  and its CBAM seed 43 child were still alive; new epoch logs and checkpoints
+  confirmed active computation. No replacement or duplicate job was started.
+- Ten of twenty required population fits are complete. CBAM seed 42 completed
+  nine epochs and selected epoch 1. CBAM seed 43 is now running. The full
+  personal-development and personal-test inventories remain complete.
+- Remote branch access was verified at `e356030`; the working tree was clean.
+  Eighty-eight tests and exact label-free replay of all eight personal strategies
+  were verified before this connection check. These are not a claim that the
+  remaining population fits or final PDF are finished.
+- Run timers, process elapsed time, and calendar elapsed time are different
+  quantities. Shared-host load and interruptions prevent treating these
+  observations as isolated throughput comparisons.
+
 ## 2026-10-09 17:03 America/Chicago: draft pull request and continuing population suite
 
 - [Draft PR #1](https://github.com/place-bot/Bad-Blood/pull/1) is open. The
