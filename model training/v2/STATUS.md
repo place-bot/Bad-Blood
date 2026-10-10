@@ -1,5 +1,31 @@
 # Workflow status
 
+## 2026-10-09 21:52 America/Chicago: sixteen fits and explicit split reporting
+
+- Sixteen of twenty required population fits are complete. All three seeds
+  for the four main architectures and the additive capacity control are done;
+  SE-all seed 42 is complete and seed 43 is running. Both modality ablations
+  and SE-all seed 44 remain. The original orchestrator continues without a
+  duplicate job or any change to the frozen training configuration.
+- Ninety-three automated tests pass. Report generation now includes a
+  separate validation table with SBP/DBP means, the three per-seed selection
+  scores, and their architecture-level average. Primary-test captions state
+  the split and aggregation explicitly. Three-seed results average separately
+  evaluated runs; they are not an ensemble of predictions.
+- In response to an interim user question, the sixteen saved validation/test
+  prediction hashes and pooled metrics were checked. Among the completed
+  three-seed models, SE-last has test MAE 12.39/8.00 mmHg versus 12.59/8.36
+  for the retrained CNN. The CNN's mean validation selection score is 10.371
+  versus SE-last's 10.390. A validation-selected model and an observed
+  test-metric leader are different statements; neither set of results changes
+  the remaining experiment configurations.
+- SE-last reduces primary-test MAE at all three matched seeds. Descriptive
+  paired patient-bootstrap intervals for SE-minus-CNN are [-0.480, 0.068]
+  mmHg for SBP and [-0.534, -0.184] for DBP. These are interim comparisons
+  of fixed fits, not a new model-selection rule or a completed final report.
+- The final report remains gated on all twenty required fits, strict artifact
+  verification, compilation, and all-page visual review. V1 remains unchanged.
+
 ## 2026-10-09 20:16 America/Chicago: connection restored, existing run retained
 
 - The user reported restored connectivity. The original population orchestrator
