@@ -23,6 +23,7 @@ from reports.extended_tables import build_extended_tables
 from reports.personal_interpretation import build_personal_interpretation
 from reports.attention_interpretation import build_attention_interpretation, REQUIRED_THREE_SEED
 from reports.personal_failure_context import build_personal_failure_context
+from reports.training_diagnostics import build_training_diagnostics
 from reports.result_storage import write_compressed_json, build_metric_overview
 from reports.verify_inventory import verify_a_inventory, verify_b_inventory
 
@@ -322,6 +323,7 @@ def main():
     extended_tables = build_extended_tables(aruns, bs, bc, selection)
     personal_interpretation, personal_interpretation_data = build_personal_interpretation(bs, bc, bd)
     attention_interpretation, attention_interpretation_data = build_attention_interpretation(aruns, winner)
+    training_diagnostics, training_diagnostics_data = build_training_diagnostics(out, aruns)
     context_units = []
     for record in units:
         if (record["strategy"], record["budget"], record["seed"]) == ("population", 10, 42):
@@ -337,6 +339,7 @@ def main():
         "drift": {"/".join(map(str, k)): v for k, v in bd.items()}, "selection": selection})
     write_json(results / "personal_interpretation.json", personal_interpretation_data)
     write_json(results / "attention_interpretation.json", attention_interpretation_data)
+    write_json(results / "training_diagnostics.json", training_diagnostics_data)
     write_json(results / "personal_failure_context.json", failure_context_data)
     write_json(results / "metric_overview.json", build_metric_overview(
         aruns, bs, attention_interpretation_data["selection"]))
@@ -579,8 +582,11 @@ paired, pressure-range, budget and patient-level tables.
     final += "\n\n".join(tex(x) for x in observations)
     final += "\n\n" + extra_notes
     final += "\n\n" + attention_interpretation
+    final += "\n\n" + training_diagnostics
     final += "\n\n" + personal_interpretation
     for name, caption in (("attention_results", "Population comparison: patient-macro errors; bars show across-seed SD, absent for single-seed modality ablations."),
+        ("attention_training_mse", "Complete recorded training histories for the four primary architectures. Lines distinguish seeds and stop at their actual last epochs. MSE uses standardized targets and training-time augmentation; it is not measured in mmHg."),
+        ("attention_validation_mae", "Complete validation histories for the same fixed fits. The ordinate averages patient-macro SBP and DBP MAE in mmHg. Circles mark saved validation-selected epochs; neither curves nor markers use test outcomes."),
         ("personal_budget", "Calibration-budget curves on common later queries. Every curve averages six patients equally and three seeds; reference age changes with nested budget."),
         ("personal_drift", "Within-case error versus minutes since the actual final reference at K=10. Patient counts vary by interval; complete counts are saved with the results."),
         ("patient_changes", "Every final patient's paired change at K=10. Negative values improve on the matched population model; heterogeneous failures must not be hidden."),
