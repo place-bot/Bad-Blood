@@ -1,11 +1,14 @@
 """Synthetic algorithm tests; not blood-pressure experiment results."""
 import inspect
 import unittest
+import tempfile
+from pathlib import Path
 import numpy as np
 import torch
 from shared.models import BPNet
 from paired_se.model import PairSE,same_person_references,chronological_pairs,predict_bank
 from paired_se.run import fit_personal,configurations
+from paired_se.predict import load_predict
 
 
 class PairedSETests(unittest.TestCase):
@@ -47,6 +50,18 @@ class PairedSETests(unittest.TestCase):
             if scope=='head':self.assertTrue(all(k.startswith('change.') for k in audit['changed']))
             for k,v in self.model.state_dict().items():torch.testing.assert_close(v,before[k],rtol=0,atol=0)
         self.assertEqual(len(configurations()),9)
+
+    def test_reference_permutation_and_saved_inference(self):
+        a=predict_bank(self.model,self.x,self.x,self.y,[100,70],[20,10])
+        b=predict_bank(self.model,self.x,self.x[::-1].copy(),self.y[::-1].copy(),[100,70],[20,10])
+        np.testing.assert_allclose(a,b,atol=2e-5)
+        with tempfile.TemporaryDirectory() as directory:
+            path=Path(directory)/'model.pt'
+            torch.save(dict(state_dict=self.model.state_dict(),center=[100,70],scale=[20,10]),path)
+            got=load_predict(path,self.x,self.x,self.y)
+            np.testing.assert_allclose(got,a,atol=1e-6)
+            with self.assertRaises(ValueError):load_predict(path,self.x*2,self.x,self.y)
+            with self.assertRaises(ValueError):load_predict(path,self.x,self.x,self.y[:,::-1])
 
 
 if __name__=='__main__':unittest.main()

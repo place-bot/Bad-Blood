@@ -6,6 +6,17 @@ V1 is preserved in `../PulseDB-based Model-V1/`. The unchanged reference is `BPN
 
 Dataset expansion, MIMIC training, and the teammate's larger CRC experiments are outside this study.
 
+## Latest: reference-conditioned CNN+SE
+
+The [paired-measurement extension](paired_se/README.md) is complete. It uses
+known reference BP and reference/current ECG/PPG with the same support/query
+data as the dense SE study. Selected pair-head adaptation achieved **8.32/3.76**
+SBP/DBP target MAE versus **9.47/4.22** (personal mean) and **9.16/4.40** (bias).
+All three seeds improved over both controls on these previously examined six
+targets, although development did not meet the joint objective. This is an
+exploratory result, not new independent validation. All metrics, uncertainty,
+saved checkpoints and verification are linked in the extension.
+
 ## October 12 extension — best test MAE pretrained CNN plus SE
 
 **CNN+SE (`se_last`) is the strongest pretrained model by primary-test MAE

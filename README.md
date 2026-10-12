@@ -2,6 +2,17 @@
 
 ECG/PPG blood-pressure prediction and a PulseDB-aligned collection workflow.
 
+## Reference-conditioned personalization — October 12
+
+The new [paired CNN+SE experiment](model%20training/v2/paired_se/README.md)
+uses known reference BP plus reference/current ECG/PPG. With identical early
+calibration data and later query windows, it achieved **8.32 / 3.76 mmHg**
+SBP/DBP MAE versus **9.47 / 4.22** for personal mean and **9.16 / 4.40** for
+simple personal bias correction. Three seeds each improved over both controls
+on these six previously examined target people. This is exploratory evidence;
+the full report includes development results, uncertainty, individual outcomes
+and metrics that did not improve. V1 and all earlier results remain preserved.
+
 ## V2 pretrained model highlight
 
 **CNN + SE is V2's strongest pretrained model by observed primary-test MAE
