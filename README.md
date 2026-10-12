@@ -2,6 +2,24 @@
 
 ECG/PPG blood-pressure prediction and a PulseDB-aligned collection workflow.
 
+## V2 results snapshot — 20261012
+
+The dated [V2 release record](model%20training/v2/releases/20261012/README.md)
+groups two research outcomes, with implementation, metrics and trained weights:
+
+1. [Population CNN+SE architecture](model%20training/v2/releases/20261012/01_population_cnn_se/):
+   final-block SE attention; observed matched-test MAE **12.39 / 8.00** mmHg.
+2. [Reference-conditioned personalization](model%20training/v2/releases/20261012/02_personalization/):
+   known reference waveform/BP plus current waveform. On **16 new people**, with
+   unchanged settings and the same early-20%-of-time calibration rule, MAE was
+   **12.67 / 7.61**, versus **17.41 / 9.71** for personal mean and **12.82 / 7.48**
+   for bias correction. The new validation **did not confirm stable superiority
+   over bias correction**. The earlier six-person improvement below is retained
+   separately, not pooled with the new cohort.
+
+All values above are SBP / DBP. The snapshot records the `20261012` version date,
+provenance, checksums, full metrics and reproduction instructions. V1 is preserved.
+
 ## Reference-conditioned personalization — October 12
 
 The new [paired CNN+SE experiment](model%20training/v2/paired_se/README.md)

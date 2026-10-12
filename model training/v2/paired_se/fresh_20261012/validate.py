@@ -79,7 +79,13 @@ def download(row,folder):
 def read_person(path,patient):
     subject=patient.split(':')[1]
     with h5py.File(path,'r') as f:
-        g=f['Subj_Wins'];n=g['T'].size
+        g=f['Subj_Wins']
+        # MATLAB serializes a one-window struct directly, not as cell references.
+        # It cannot provide both calibration and test windows under this protocol.
+        if h5py.check_dtype(ref=g['T'].dtype) is None:
+            assert g['T'].size!=1250, 'Single-window record: insufficient early/later windows'
+            raise ValueError('Unsupported non-reference timestamp representation')
+        n=g['T'].size
         x=np.empty((n,2,1250),np.float32);y=np.empty((n,2),np.float32)
         start=np.empty(n);end=np.empty(n);cases=set()
         for i in range(n):

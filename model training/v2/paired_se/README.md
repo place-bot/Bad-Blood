@@ -1,5 +1,21 @@
 # Reference-conditioned CNN+SE
 
+## 20261012 update — previously unused participants
+
+[Fixed-method follow-up results](fresh_20261012/results/RESULTS.md): 16 eligible
+new people out of 21 prospectively locked candidates, no overlap with prior
+train/validation/test/AAMI or exploratory identities. The same 20%-of-time
+calibration rule, model, checkpoints and adaptation settings were retained.
+
+MAE (SBP / DBP): paired **12.67 / 7.61**, personal mean **17.41 / 9.71**, bias
+correction **12.82 / 7.48** mmHg. **The model did not stably beat both controls
+on new participants.** Its advantage over personal mean remained, while both
+MAE-difference intervals versus bias include zero. The earlier six-person
+result below is a separate exploratory experiment.
+
+The [dated personalization package](../releases/20261012/02_personalization/)
+keeps architecture, source, trained weights and both result sets together.
+
 This experiment implements a paired-measurement approach inspired by
 [Mekonnen et al. (2024)](https://pmc.ncbi.nlm.nih.gov/articles/PMC11467377/).
 It keeps our pretrained ECG/PPG CNN+SE backbone, rather than reproducing that

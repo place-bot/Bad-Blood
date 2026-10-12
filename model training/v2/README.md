@@ -1,5 +1,20 @@
 # Bad-Blood V2: attention and personal BP calibration
 
+## Dated outcomes: V2 — 20261012
+
+Start at the [20261012 version record](releases/20261012/README.md):
+
+- [Outcome 1 — population CNN+SE](releases/20261012/01_population_cnn_se/):
+  architecture, implementation, comparison metrics and three trained weights.
+- [Outcome 2 — personalization](releases/20261012/02_personalization/): paired
+  architecture, adaptation implementation, population/personal weights, old-six
+  results and the new fixed-method validation on 16 previously unused people.
+
+**New validation:** paired MAE 12.67 / 7.61 vs personal mean 17.41 / 9.71 and
+bias correction 12.82 / 7.48 mmHg (SBP / DBP). Methods/parameters were unchanged.
+The advantage over personal mean replicated; stable superiority over bias
+correction did not. Full metrics and exclusions are in the dated record.
+
 This directory implements two controlled studies using the existing VitalDB-derived data. Track A compares attention mechanisms in the unchanged high-resolution V1 CNN architecture. Track B uses early personal ECG/PPG and scalar BP references to adapt that population model, then estimates **same-window SBP/DBP from later observed ECG/PPG**. The directory name `personalized_forecasting/` is retained from the original assignment; this is not open-loop waveform forecasting.
 
 V1 is preserved in `../PulseDB-based Model-V1/`. The unchanged reference is `BPNet(pool=1)`, with 37,666 trainable parameters, two 125-Hz input channels, 1,250 samples per channel, and two scalar outputs. “Higher resolution” means retaining the original ten-second input resolution rather than applying the alternate model's initial fivefold pooling. New V2 baseline weights are trained from scratch on the corrected population split; the historical V1 checkpoint is not a clean personal-cohort initializer.
