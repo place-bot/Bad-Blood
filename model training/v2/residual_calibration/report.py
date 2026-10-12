@@ -20,7 +20,8 @@ def main():
         shutil.copyfile(a.run/name,dest/name)
     models=ROOT/'residual_calibration/models'; models.mkdir(exist_ok=True)
     for path in a.run.glob('*/*/*/seed*/selected/model.pt'):
-        relative=path.relative_to(a.run);target=models/relative;target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(path,target)
+        relative=Path(*(part.replace(':','_') for part in path.relative_to(a.run).parts))
+        target=models/relative;target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(path,target)
     atomic_json(models/'manifest.json',{str(p.relative_to(models)):file_hash(p) for p in sorted(models.rglob('*.pt'))})
     fmt=lambda a:f'{a[0]:.2f} / {a[1]:.2f}'
     names={'population':'Population','calibration_mean':'Personal mean','bias':'Same-input bias correction','prior_pair':'Previous PairSE','selected':'New development-selected pipeline'}
