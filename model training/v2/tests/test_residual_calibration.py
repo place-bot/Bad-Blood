@@ -1,5 +1,6 @@
 import unittest
 import numpy as np
+import torch
 from residual_calibration.model import candidates,fit,predict,forward_cv
 
 class ResidualCalibrationTests(unittest.TestCase):
@@ -25,5 +26,22 @@ class ResidualCalibrationTests(unittest.TestCase):
         cfg=dict(family='prediction_linear',width=1.,penalty=.01)
         st=fit(cfg,h,p,y,[0,0],[1,1]); err=abs(predict(st,h,p)-y).mean()
         self.assertLess(err,.01)
+
+    @unittest.skipUnless(torch.backends.mps.is_available(), 'MPS replay check')
+    def test_saved_pair_double_labels_and_ppg_mask(self):
+        from modality_se.model import ModalitySE
+        from paired_se.model import PairSE, predict_bank
+        from residual_calibration.run import predict_saved
+        model=PairSE(ModalitySE('ppg')).to('mps').eval()
+        rng=np.random.default_rng(3);x=rng.random((3,2,1250),dtype=np.float32);refs=x[:2]
+        y=np.array([[115,75],[125,85]],np.float32);c=np.array([120.,80.]);s=np.array([20.,10.])
+        with torch.inference_mode():hr,pr=model.encode(torch.as_tensor(refs,device='mps'))
+        saved=dict(modality='ppg',encoder=model.encoder.state_dict(),center=c,scale=s,
+            feature_center=np.zeros(48),feature_scale=np.ones(48),selected=['prior_pair','prior_pair'],states=[None,None],
+            prior=dict(state_dict=model.state_dict(),hr=hr.cpu().numpy(),pr=pr.cpu().numpy(),yr=(y-c)/s))
+        expected=predict_bank(model,x,refs,y,c,s,'mps')
+        np.testing.assert_allclose(predict_saved(saved,x),expected,atol=.001,rtol=0)
+        other=x.copy();other[:,0]+=50
+        np.testing.assert_array_equal(predict_saved(saved,x),predict_saved(saved,other))
 
 if __name__=='__main__': unittest.main()

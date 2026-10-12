@@ -58,13 +58,13 @@ def predict_saved(saved, x):
             # Only encoded support features and known labels, no raw bank needed.
             with torch.inference_mode():
                 hc, pc = prior.encode(torch.as_tensor(x, device='mps'))
-                hr, pr, yr = [torch.as_tensor(saved['prior'][k], device='mps') for k in ('hr', 'pr', 'yr')]
+                hr, pr, yr = [torch.as_tensor(saved['prior'][k], dtype=torch.float32, device='mps') for k in ('hr', 'pr', 'yr')]
                 out = []
                 for first in range(0, len(x), 32):
                     ch, cp = hc[first:first+32], pc[first:first+32]; b, n = len(ch), len(hr)
                     y = prior.from_features(ch[:,None,:].expand(-1,n,-1).reshape(-1,48),
                         cp[:,None,:].expand(-1,n,-1).reshape(-1,2), hr.repeat(b,1), pr.repeat(b,1), yr.repeat(b,1))
-                    out.append(y.reshape(b,n,2).mean(1).cpu().numpy()*saved['scale']+saved['center'])
+                    out.append(y.reshape(b,n,2).mean(1).cpu().numpy()*np.asarray(saved['scale'],np.float32)+np.asarray(saved['center'],np.float32))
             results.append(np.concatenate(out)[:,j])
         else:
             results.append(predict(saved['states'][j], h, p)[:,j])
@@ -154,6 +154,8 @@ def main():
         selected=[min(names,key=lambda m:summary[m]['macro']['mae'][j]) for j in (0,1)]
         locks[modality]=dict(selected=selected, seed_averaged_development_mae={m:summary[m]['macro']['mae'] for m in names},
                              query_targets_used=False)
+    if (a.output/'selection.json').exists():
+        assert json.loads((a.output/'selection.json').read_text())==locks, 'Development selection changed on replay'
     atomic_json(a.output/'selection.json',locks)
     print('LOCKED',json.dumps(locks),flush=True)
     # Only after both locks are on disk do we load target files.

@@ -10,5 +10,7 @@
   "performance_goal": "Both endpoints outperform personal mean and same-input bias correction, with seed consistency; not presumed",
   "independent_acceptance": "Previously evaluated targets are exploratory replication only. No claim of untouched independent validation or target-based retuning.",
   "terminal_choice": "Verify and report. Preserve all models; no deployment, push or email.",
-  "pending_verify": true
+  "pending_verify": false,
+  "status": "verified_comparison_complete",
+  "performance_goal_met": false
 }
