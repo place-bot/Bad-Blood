@@ -2,6 +2,22 @@
 
 ECG/PPG blood-pressure prediction and a PulseDB-aligned collection workflow.
 
+## V2 pretrained model highlight
+
+**CNN + SE is V2's strongest pretrained model by observed primary-test MAE
+among the six required three-seed architecture comparisons:** 12.39 mmHg SBP /
+8.00 mmHg DBP, with 38,296 parameters. It adds a channel-attention gate to the
+last residual block of the V1 high-resolution CNN. This is a test-result ranking;
+the original validation-selected architecture was the unchanged CNN. PPG-only
+had lower errors in a separate single-seed ablation, not a three-seed comparison.
+
+The [full-support SE personalization experiment](model%20training/v2/se_personalization/README.md)
+uses **all eligible windows in each person's first 20% of recording time** and
+compares later predictions with both that person's reference mean and a simple
+personal bias correction. Earlier V1 and V2 results are preserved.
+The completed dense fine-tune did not beat those controls; the linked report
+includes the negative result and literature-guided follow-up screening.
+
 ## Embedded system and deployment plan
 
 Our goal is a compact, locally running blood-pressure estimation system.

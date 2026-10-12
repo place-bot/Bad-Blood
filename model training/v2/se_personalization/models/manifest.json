@@ -1,0 +1,125 @@
+{
+  "pretrained_se_seed42.pt": {
+    "role": "population",
+    "sha256": "28bdbc2ea1fd62e19d4a31f437e615f02e6573b95191f786dc9c11a152ddcda7",
+    "source_checkpoint_sha256": "bb5f0167d148e728c2026fd1a3e7d4485b869e0be15eeeb3f16f63bc28872b61"
+  },
+  "pretrained_se_seed43.pt": {
+    "role": "population",
+    "sha256": "11dd6cee40ff75b00358baea83e056ad126534155e9f3bd3b0e4d251cae76c25",
+    "source_checkpoint_sha256": "3214b861b156b9212a0e9d7575ce28c80e39e198e9a8cb710b315e74b4678575"
+  },
+  "pretrained_se_seed44.pt": {
+    "role": "population",
+    "sha256": "492709a8d4ab19c70a29d4c23f9e8e1d6ba84f4b46635e80b1728483623035e6",
+    "source_checkpoint_sha256": "6e5f261476c51c8a9e9227a7b05ac41da1f06276fc9244bbc3888c3ad685235f"
+  },
+  "vitaldb_p005879_seed42.pt": {
+    "patient": "vitaldb:p005879",
+    "role": "personal",
+    "seed": 42,
+    "sha256": "264b6f93fd330fc22adc3bc98626a21a2c87cc742f6c1552f553c41a7f77e908"
+  },
+  "vitaldb_p005879_seed43.pt": {
+    "patient": "vitaldb:p005879",
+    "role": "personal",
+    "seed": 43,
+    "sha256": "6e226c2099846fe30a7c6c2773cd090585ceff956a80c803c478c9b741f608c9"
+  },
+  "vitaldb_p005879_seed44.pt": {
+    "patient": "vitaldb:p005879",
+    "role": "personal",
+    "seed": 44,
+    "sha256": "69300eb0f840fe4ebecef30c4dcab6542bbad2d96246d6d9d9228ec9c6ed11ac"
+  },
+  "vitaldb_p005885_seed42.pt": {
+    "patient": "vitaldb:p005885",
+    "role": "personal",
+    "seed": 42,
+    "sha256": "8457370dcd26ab9e82904df0a08f89f4634a9505136d012ed4aa14fa8d99a3e3"
+  },
+  "vitaldb_p005885_seed43.pt": {
+    "patient": "vitaldb:p005885",
+    "role": "personal",
+    "seed": 43,
+    "sha256": "7fde1acc93ead3ebe146e6e5422ed997c2dada0f6214511c9da04c6eb0140613"
+  },
+  "vitaldb_p005885_seed44.pt": {
+    "patient": "vitaldb:p005885",
+    "role": "personal",
+    "seed": 44,
+    "sha256": "844e56baf1a600e13d10fd2821696e28d9daa6dd2f45df587cd573f225960a61"
+  },
+  "vitaldb_p005977_seed42.pt": {
+    "patient": "vitaldb:p005977",
+    "role": "personal",
+    "seed": 42,
+    "sha256": "46a974107d848639deda210a11b0b40cab1977c6e1c321e41b0cd8d51387de0f"
+  },
+  "vitaldb_p005977_seed43.pt": {
+    "patient": "vitaldb:p005977",
+    "role": "personal",
+    "seed": 43,
+    "sha256": "7830b9682b208375cdee074e35b0150fd3248cceedd488a26072a65b79820588"
+  },
+  "vitaldb_p005977_seed44.pt": {
+    "patient": "vitaldb:p005977",
+    "role": "personal",
+    "seed": 44,
+    "sha256": "ec800bec864e081adcc6a24aed000d3acff22a2707b08e21f25d9344fad37db0"
+  },
+  "vitaldb_p005984_seed42.pt": {
+    "patient": "vitaldb:p005984",
+    "role": "personal",
+    "seed": 42,
+    "sha256": "f35d06437e16de871b32deec95010d2c13d47216096b930c0f764641900ad97c"
+  },
+  "vitaldb_p005984_seed43.pt": {
+    "patient": "vitaldb:p005984",
+    "role": "personal",
+    "seed": 43,
+    "sha256": "2a9049adc4bcb56ad3cd66e5c63f01cca290f239357cceeab199e96364974166"
+  },
+  "vitaldb_p005984_seed44.pt": {
+    "patient": "vitaldb:p005984",
+    "role": "personal",
+    "seed": 44,
+    "sha256": "074f092bf6bd53d3114d3cbc397ce3ec8a44732b47a3614f899bac9ee585031f"
+  },
+  "vitaldb_p006009_seed42.pt": {
+    "patient": "vitaldb:p006009",
+    "role": "personal",
+    "seed": 42,
+    "sha256": "8827f2d138490a287296c6a3a9337a20838a7fdffc430c43993942fbfd1b21d6"
+  },
+  "vitaldb_p006009_seed43.pt": {
+    "patient": "vitaldb:p006009",
+    "role": "personal",
+    "seed": 43,
+    "sha256": "5df4e1ee4f972fd9c0e0b9eae2156b031614617a527a7667f1b375db39175d07"
+  },
+  "vitaldb_p006009_seed44.pt": {
+    "patient": "vitaldb:p006009",
+    "role": "personal",
+    "seed": 44,
+    "sha256": "5954fa594f53c0a78f313cc7582ce87730739e35b725a5d920997bac1e5f5d55"
+  },
+  "vitaldb_p006052_seed42.pt": {
+    "patient": "vitaldb:p006052",
+    "role": "personal",
+    "seed": 42,
+    "sha256": "b087240cbf85afbb161baec6a97b1b4bc788598be6a06e2a85d8ac029e4cf48e"
+  },
+  "vitaldb_p006052_seed43.pt": {
+    "patient": "vitaldb:p006052",
+    "role": "personal",
+    "seed": 43,
+    "sha256": "b5aa581bda90e7b07ea620ed1f5735a86012a652cd6682a072bb96c0d738ab8c"
+  },
+  "vitaldb_p006052_seed44.pt": {
+    "patient": "vitaldb:p006052",
+    "role": "personal",
+    "seed": 44,
+    "sha256": "5b16db92de8145339e8315769f84f8a7c0b6d6fa4d8fe373012e02f72681242d"
+  }
+}

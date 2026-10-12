@@ -1,0 +1,39 @@
+{
+  "iterations": 24,
+  "mode": "classic",
+  "selection": {
+    "mae": [
+      6.678590122215564,
+      5.20294109838518
+    ],
+    "mean_mae": 5.940765610300372,
+    "method": "full_centered_lr0.001_s100",
+    "ratios": {
+      "bias": [
+        0.9883624794855461,
+        0.8843802204783678
+      ],
+      "calibration_mean": [
+        0.5330237713265613,
+        0.9885862148592347
+      ]
+    },
+    "setting": {
+      "lr": 0.001,
+      "objective": "centered",
+      "scope": "full",
+      "steps": 100
+    },
+    "worst_ratio": 0.9885862148592347
+  },
+  "target_objective_met": false,
+  "test_retuning": false,
+  "verification": {
+    "checks_passed": true,
+    "development_units": 324,
+    "exact_manifest_and_metrics": true,
+    "max_replay_absolute_error_mmHg": 0.0,
+    "saved_model_replayed_query_predictions": 12852,
+    "target_units": 72
+  }
+}

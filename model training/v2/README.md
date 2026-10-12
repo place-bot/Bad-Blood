@@ -6,6 +6,24 @@ V1 is preserved in `../PulseDB-based Model-V1/`. The unchanged reference is `BPN
 
 Dataset expansion, MIMIC training, and the teammate's larger CRC experiments are outside this study.
 
+## October 12 extension — best test MAE pretrained CNN plus SE
+
+**CNN+SE (`se_last`) is the strongest pretrained model by primary-test MAE
+among our six required three-seed V2 architecture comparisons** (SBP 12.386,
+DBP 8.002 mmHg; 38,296 parameters). This describes the observed test ranking,
+not a change to the original validation selection. The separate PPG-only run
+has lower single-seed errors and has not been replicated over three seeds.
+
+At the user's request, the [new SE personalization experiment](se_personalization/README.md)
+starts from these SE checkpoints and uses each person's **complete early 20%
+support**, rather than only ten sparse references. It preserves the original
+later query windows and compares against support-mean and additive-bias controls
+using exactly the same support. This is a separately versioned exploratory
+extension; the October 9 sparse-reference results below are not overwritten.
+The dense fine-tune did not beat both controls on the target participants.
+A regularized frozen-feature follow-up also failed its development gate and
+was not taken to target testing. See the extension for full results and sources.
+
 ## Verified status and authoritative documents
 
 At the documentation snapshot **2026-10-09 22:49 America/Chicago**, all **20 required population fits, 1,068 personal development units, and 684 final-target units are complete**. The strict report builder verified the complete inventory and generated the [combined report](reports/final_report.pdf) and [machine-readable results](reports/results/inventory.json). All 25 report pages pass visual inspection, and **98 automated tests pass**. The saved personal inference package exactly replays all eight strategies on 654 real query windows. Supplementary ECA fits were not run and are not required for completion. [PR #1](https://github.com/place-bot/Bad-Blood/pull/1) contains the dedicated research branch; V1 and main have not been changed by this work. See [final verification](reports/FINAL_VERIFICATION.md) for checks and PDF identities. The full local checkpoint/prediction bundle is not published; see [DATA_ACCESS.md](DATA_ACCESS.md) for reproduction requirements.

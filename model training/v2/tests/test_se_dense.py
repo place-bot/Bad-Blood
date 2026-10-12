@@ -2,6 +2,7 @@ import copy
 import inspect
 from pathlib import Path
 import sys
+import tempfile
 import unittest
 import numpy as np
 import torch
@@ -9,6 +10,7 @@ import torch
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 from se_personalization.run import dense_support,fit,grid,name,select,DEV_IDS,SEEDS
+from se_personalization.predict import load_and_predict
 from shared.models import BPNet
 from personalized_forecasting.adaptation import predict
 from test_personalization import toy_patient
@@ -59,5 +61,20 @@ class SEDenseTests(unittest.TestCase):
         self.assertEqual(s['selected']['setting'],grid()[0])
         with self.assertRaises(ValueError): select(rows[:-1])
         with self.assertRaises(ValueError): select(rows+[rows[0]])
+
+    def test_saved_centered_model_replay_and_invalid_inputs(self):
+        rng=np.random.default_rng(7)
+        x=rng.uniform(0,1,(5,2,1250)).astype('float32')
+        y=np.array([[100,60],[120,80],[110,70]],'float32')
+        model,offset,_=fit(BPNet(variant='se_last'),x[:3],y,[120,80],[20,10],
+            dict(scope='full',objective='centered',lr=.0001,steps=2))
+        expected,_=predict(model,x[3:],[120,80],[20,10])
+        expected+=offset*[20,10]
+        with tempfile.TemporaryDirectory() as folder:
+            path=Path(folder)/'weights.pt'
+            torch.save(dict(variant='se_last',state_dict=model.state_dict(),center=[120,80],scale=[20,10],offset_standardized=offset),path)
+            np.testing.assert_allclose(load_and_predict(path,x[3:]),expected,rtol=0,atol=1e-5)
+            with self.assertRaises(ValueError):load_and_predict(path,np.zeros_like(x))
+            with self.assertRaises(ValueError):load_and_predict(path,x*2)
 
 if __name__=='__main__': unittest.main()

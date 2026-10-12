@@ -1,0 +1,643 @@
+{
+  "controls": {
+    "bias": [
+      6.757227495818989,
+      5.8831495525429895
+    ],
+    "calibration_mean": [
+      12.529629036232743,
+      5.2630119863911204
+    ]
+  },
+  "manifest_hash": "c29a5dbca005d54701b9212d10bcdaead36523fb9014a09a1af1462df9154e62",
+  "ranking": [
+    {
+      "mae": [
+        13.424646928051134,
+        9.161425474973024
+      ],
+      "mean_mae": 11.293036201512079,
+      "method": "head_gate_plain_lr0.0001_s20",
+      "ratios": {
+        "bias": [
+          1.9867093325417249,
+          1.5572314443397075
+        ],
+        "calibration_mean": [
+          1.0714321141695584,
+          1.7407190974792117
+        ]
+      },
+      "setting": {
+        "lr": 0.0001,
+        "objective": "plain",
+        "scope": "head_gate",
+        "steps": 20
+      },
+      "worst_ratio": 1.9867093325417249
+    },
+    {
+      "mae": [
+        10.259715647352385,
+        6.994451840075999
+      ],
+      "mean_mae": 8.627083743714191,
+      "method": "head_gate_plain_lr0.001_s20",
+      "ratios": {
+        "bias": [
+          1.5183321345478673,
+          1.1888958078675136
+        ],
+        "calibration_mean": [
+          0.8188363452488256,
+          1.328982692451008
+        ]
+      },
+      "setting": {
+        "lr": 0.001,
+        "objective": "plain",
+        "scope": "head_gate",
+        "steps": 20
+      },
+      "worst_ratio": 1.5183321345478673
+    },
+    {
+      "mae": [
+        11.870614208291222,
+        8.18020127067251
+      ],
+      "mean_mae": 10.025407739481867,
+      "method": "head_gate_plain_lr0.0001_s100",
+      "ratios": {
+        "bias": [
+          1.7567285126386707,
+          1.3904459163606713
+        ],
+        "calibration_mean": [
+          0.9474034844897798,
+          1.5542813301251333
+        ]
+      },
+      "setting": {
+        "lr": 0.0001,
+        "objective": "plain",
+        "scope": "head_gate",
+        "steps": 100
+      },
+      "worst_ratio": 1.7567285126386707
+    },
+    {
+      "mae": [
+        7.917204619836138,
+        5.815377875759366
+      ],
+      "mean_mae": 6.8662912477977525,
+      "method": "head_gate_plain_lr0.001_s100",
+      "ratios": {
+        "bias": [
+          1.1716646545842775,
+          0.988480374979703
+        ],
+        "calibration_mean": [
+          0.6318786132407785,
+          1.1049524285326597
+        ]
+      },
+      "setting": {
+        "lr": 0.001,
+        "objective": "plain",
+        "scope": "head_gate",
+        "steps": 100
+      },
+      "worst_ratio": 1.1716646545842775
+    },
+    {
+      "mae": [
+        6.947614635174372,
+        6.017851448358749
+      ],
+      "mean_mae": 6.4827330417665605,
+      "method": "last_gate_plain_lr0.0001_s20",
+      "ratios": {
+        "bias": [
+          1.028175333666535,
+          1.022896221592316
+        ],
+        "calibration_mean": [
+          0.554494838999902,
+          1.1434234738433926
+        ]
+      },
+      "setting": {
+        "lr": 0.0001,
+        "objective": "plain",
+        "scope": "last_gate",
+        "steps": 20
+      },
+      "worst_ratio": 1.1434234738433926
+    },
+    {
+      "mae": [
+        8.640858493072221,
+        5.269163739307728
+      ],
+      "mean_mae": 6.955011116189974,
+      "method": "last_gate_plain_lr0.001_s20",
+      "ratios": {
+        "bias": [
+          1.278757966698431,
+          0.8956365450594628
+        ],
+        "calibration_mean": [
+          0.689634024126723,
+          1.001168865458128
+        ]
+      },
+      "setting": {
+        "lr": 0.001,
+        "objective": "plain",
+        "scope": "last_gate",
+        "steps": 20
+      },
+      "worst_ratio": 1.278757966698431
+    },
+    {
+      "mae": [
+        6.105297132654413,
+        6.180365744034717
+      ],
+      "mean_mae": 6.142831438344565,
+      "method": "last_gate_plain_lr0.0001_s100",
+      "ratios": {
+        "bias": [
+          0.90352102788193,
+          1.050519910948593
+        ],
+        "calibration_mean": [
+          0.48726878625052095,
+          1.1743020460556906
+        ]
+      },
+      "setting": {
+        "lr": 0.0001,
+        "objective": "plain",
+        "scope": "last_gate",
+        "steps": 100
+      },
+      "worst_ratio": 1.1743020460556906
+    },
+    {
+      "mae": [
+        6.715774203051304,
+        6.999345780480013
+      ],
+      "mean_mae": 6.857559991765658,
+      "method": "last_gate_plain_lr0.001_s100",
+      "ratios": {
+        "bias": [
+          0.993865340068344,
+          1.1897276650828208
+        ],
+        "calibration_mean": [
+          0.5359914634049311,
+          1.329912566906295
+        ]
+      },
+      "setting": {
+        "lr": 0.001,
+        "objective": "plain",
+        "scope": "last_gate",
+        "steps": 100
+      },
+      "worst_ratio": 1.329912566906295
+    },
+    {
+      "mae": [
+        7.2253986849586065,
+        5.133359124816205
+      ],
+      "mean_mae": 6.179378904887406,
+      "method": "full_plain_lr0.0001_s20",
+      "ratios": {
+        "bias": [
+          1.069284508983795,
+          0.8725528866756943
+        ],
+        "calibration_mean": [
+          0.576665012512697,
+          0.9753652733624459
+        ]
+      },
+      "setting": {
+        "lr": 0.0001,
+        "objective": "plain",
+        "scope": "full",
+        "steps": 20
+      },
+      "worst_ratio": 1.069284508983795
+    },
+    {
+      "mae": [
+        8.43173385972104,
+        5.817505811014057
+      ],
+      "mean_mae": 7.1246198353675485,
+      "method": "full_plain_lr0.001_s20",
+      "ratios": {
+        "bias": [
+          1.2478096771106415,
+          0.9888420749901627
+        ],
+        "calibration_mean": [
+          0.672943615117291,
+          1.1053567474398167
+        ]
+      },
+      "setting": {
+        "lr": 0.001,
+        "objective": "plain",
+        "scope": "full",
+        "steps": 20
+      },
+      "worst_ratio": 1.2478096771106415
+    },
+    {
+      "mae": [
+        7.223017020611753,
+        7.569566723715625
+      ],
+      "mean_mae": 7.3962918721636886,
+      "method": "full_plain_lr0.0001_s100",
+      "ratios": {
+        "bias": [
+          1.068932047216254,
+          1.2866520995448234
+        ],
+        "calibration_mean": [
+          0.576474929922066,
+          1.4382575497241312
+        ]
+      },
+      "setting": {
+        "lr": 0.0001,
+        "objective": "plain",
+        "scope": "full",
+        "steps": 100
+      },
+      "worst_ratio": 1.4382575497241312
+    },
+    {
+      "mae": [
+        6.758505266709569,
+        5.701603925135643
+      ],
+      "mean_mae": 6.230054595922606,
+      "method": "full_plain_lr0.001_s100",
+      "ratios": {
+        "bias": [
+          1.0001890969175407,
+          0.9691414223306846
+        ],
+        "calibration_mean": [
+          0.5394018647452019,
+          1.0833347786170002
+        ]
+      },
+      "setting": {
+        "lr": 0.001,
+        "objective": "plain",
+        "scope": "full",
+        "steps": 100
+      },
+      "worst_ratio": 1.0833347786170002
+    },
+    {
+      "mae": [
+        6.7642548508664175,
+        5.851684848544916
+      ],
+      "mean_mae": 6.307969849705667,
+      "method": "head_gate_centered_lr0.0001_s20",
+      "ratios": {
+        "bias": [
+          1.0010399760925286,
+          0.9946517246048125
+        ],
+        "calibration_mean": [
+          0.5398607437862512,
+          1.1118509446066172
+        ]
+      },
+      "setting": {
+        "lr": 0.0001,
+        "objective": "centered",
+        "scope": "head_gate",
+        "steps": 20
+      },
+      "worst_ratio": 1.1118509446066172
+    },
+    {
+      "mae": [
+        7.139745647903442,
+        5.710283854717178
+      ],
+      "mean_mae": 6.42501475131031,
+      "method": "head_gate_centered_lr0.001_s20",
+      "ratios": {
+        "bias": [
+          1.0566087426124302,
+          0.9706168105566703
+        ],
+        "calibration_mean": [
+          0.5698289731688764,
+          1.0849840109584767
+        ]
+      },
+      "setting": {
+        "lr": 0.001,
+        "objective": "centered",
+        "scope": "head_gate",
+        "steps": 20
+      },
+      "worst_ratio": 1.0849840109584767
+    },
+    {
+      "mae": [
+        6.8481766615028405,
+        5.777125758297999
+      ],
+      "mean_mae": 6.3126512099004195,
+      "method": "head_gate_centered_lr0.0001_s100",
+      "ratios": {
+        "bias": [
+          1.0134595388034702,
+          0.9819783955348949
+        ],
+        "calibration_mean": [
+          0.5465586125255203,
+          1.0976843247243695
+        ]
+      },
+      "setting": {
+        "lr": 0.0001,
+        "objective": "centered",
+        "scope": "head_gate",
+        "steps": 100
+      },
+      "worst_ratio": 1.0976843247243695
+    },
+    {
+      "mae": [
+        7.344079782858057,
+        8.545778102455287
+      ],
+      "mean_mae": 7.944928942656672,
+      "method": "head_gate_centered_lr0.001_s100",
+      "ratios": {
+        "bias": [
+          1.0868480878292437,
+          1.4525855625685016
+        ],
+        "calibration_mean": [
+          0.5861370485607119,
+          1.6237428538169034
+        ]
+      },
+      "setting": {
+        "lr": 0.001,
+        "objective": "centered",
+        "scope": "head_gate",
+        "steps": 100
+      },
+      "worst_ratio": 1.6237428538169034
+    },
+    {
+      "mae": [
+        6.322696103747185,
+        5.996497442328191
+      ],
+      "mean_mae": 6.159596773037688,
+      "method": "last_gate_centered_lr0.0001_s20",
+      "ratios": {
+        "bias": [
+          0.9356938341441562,
+          1.0192665321139434
+        ],
+        "calibration_mean": [
+          0.5046195769614115,
+          1.1393661002166986
+        ]
+      },
+      "setting": {
+        "lr": 0.0001,
+        "objective": "centered",
+        "scope": "last_gate",
+        "steps": 20
+      },
+      "worst_ratio": 1.1393661002166986
+    },
+    {
+      "mae": [
+        7.532671975229381,
+        6.252262089467361
+      ],
+      "mean_mae": 6.892467032348371,
+      "method": "last_gate_centered_lr0.001_s20",
+      "ratios": {
+        "bias": [
+          1.1147577878486696,
+          1.0627406346936774
+        ],
+        "calibration_mean": [
+          0.6011887465659729,
+          1.187962730397385
+        ]
+      },
+      "setting": {
+        "lr": 0.001,
+        "objective": "centered",
+        "scope": "last_gate",
+        "steps": 20
+      },
+      "worst_ratio": 1.187962730397385
+    },
+    {
+      "mae": [
+        7.459513311193959,
+        8.125017411186372
+      ],
+      "mean_mae": 7.792265361190165,
+      "method": "last_gate_centered_lr0.0001_s100",
+      "ratios": {
+        "bias": [
+          1.1039310598628664,
+          1.381065930522595
+        ],
+        "calibration_mean": [
+          0.5953498934104752,
+          1.5437961061452468
+        ]
+      },
+      "setting": {
+        "lr": 0.0001,
+        "objective": "centered",
+        "scope": "last_gate",
+        "steps": 100
+      },
+      "worst_ratio": 1.5437961061452468
+    },
+    {
+      "mae": [
+        6.9994373122089,
+        5.647286844264362
+      ],
+      "mean_mae": 6.323362078236631,
+      "method": "last_gate_centered_lr0.001_s100",
+      "ratios": {
+        "bias": [
+          1.0358445555577014,
+          0.9599087689047993
+        ],
+        "calibration_mean": [
+          0.5586308494823089,
+          1.0730142471396387
+        ]
+      },
+      "setting": {
+        "lr": 0.001,
+        "objective": "centered",
+        "scope": "last_gate",
+        "steps": 100
+      },
+      "worst_ratio": 1.0730142471396387
+    },
+    {
+      "mae": [
+        6.799147772185919,
+        6.752830379856423
+      ],
+      "mean_mae": 6.775989076021171,
+      "method": "full_centered_lr0.0001_s20",
+      "ratios": {
+        "bias": [
+          1.00620376868958,
+          1.1478257215027814
+        ],
+        "calibration_mean": [
+          0.5426455765389687,
+          1.2830733422833946
+        ]
+      },
+      "setting": {
+        "lr": 0.0001,
+        "objective": "centered",
+        "scope": "full",
+        "steps": 20
+      },
+      "worst_ratio": 1.2830733422833946
+    },
+    {
+      "mae": [
+        7.904005189297249,
+        5.383902801290905
+      ],
+      "mean_mae": 6.643953995294076,
+      "method": "full_centered_lr0.001_s20",
+      "ratios": {
+        "bias": [
+          1.1697112749552718,
+          0.9151395444237371
+        ],
+        "calibration_mean": [
+          0.6308251558318864,
+          1.0229698916157475
+        ]
+      },
+      "setting": {
+        "lr": 0.001,
+        "objective": "centered",
+        "scope": "full",
+        "steps": 20
+      },
+      "worst_ratio": 1.1697112749552718
+    },
+    {
+      "mae": [
+        6.872635520613006,
+        6.628587859927133
+      ],
+      "mean_mae": 6.75061169027007,
+      "method": "full_centered_lr0.0001_s100",
+      "ratios": {
+        "bias": [
+          1.017079197772374,
+          1.1267073530473022
+        ],
+        "calibration_mean": [
+          0.5485106941904632,
+          1.259466609057145
+        ]
+      },
+      "setting": {
+        "lr": 0.0001,
+        "objective": "centered",
+        "scope": "full",
+        "steps": 100
+      },
+      "worst_ratio": 1.259466609057145
+    },
+    {
+      "mae": [
+        6.678590122215564,
+        5.20294109838518
+      ],
+      "mean_mae": 5.940765610300372,
+      "method": "full_centered_lr0.001_s100",
+      "ratios": {
+        "bias": [
+          0.9883624794855461,
+          0.8843802204783678
+        ],
+        "calibration_mean": [
+          0.5330237713265613,
+          0.9885862148592347
+        ]
+      },
+      "setting": {
+        "lr": 0.001,
+        "objective": "centered",
+        "scope": "full",
+        "steps": 100
+      },
+      "worst_ratio": 0.9885862148592347
+    }
+  ],
+  "selected": {
+    "mae": [
+      6.678590122215564,
+      5.20294109838518
+    ],
+    "mean_mae": 5.940765610300372,
+    "method": "full_centered_lr0.001_s100",
+    "ratios": {
+      "bias": [
+        0.9883624794855461,
+        0.8843802204783678
+      ],
+      "calibration_mean": [
+        0.5330237713265613,
+        0.9885862148592347
+      ]
+    },
+    "setting": {
+      "lr": 0.001,
+      "objective": "centered",
+      "scope": "full",
+      "steps": 100
+    },
+    "worst_ratio": 0.9885862148592347
+  },
+  "selection_hash": "56af1c5983480e50c0ef8c4a328122a42152d914a1a5c52565f2cc071db7bb0a",
+  "selection_scope": "four development patients, three seeds only",
+  "success": true
+}

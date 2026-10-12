@@ -1,0 +1,8 @@
+{
+  "checks_passed": true,
+  "development_units": 324,
+  "exact_manifest_and_metrics": true,
+  "max_replay_absolute_error_mmHg": 0.0,
+  "saved_model_replayed_query_predictions": 12852,
+  "target_units": 72
+}
