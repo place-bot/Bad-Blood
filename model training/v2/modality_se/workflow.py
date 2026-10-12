@@ -19,6 +19,10 @@ def main():
     atomic_json(a.output/'status.json',dict(stage='personalization',status='running'))
     cmd=[sys.executable,str(ROOT/'modality_se/personalize.py'),'--data',str(a.data),'--output',str(a.output),'--prior',str(a.prior),'--personal',str(a.personal),'--fresh',str(a.fresh)]
     subprocess.run(cmd,check=True)
-    atomic_json(a.output/'status.json',dict(stage='verification_pending',status='training_complete'))
+    done=a.output/'study_complete.json'
+    if done.exists() and json.loads(done.read_text()).get('status')=='verified_complete':
+        atomic_json(a.output/'status.json',dict(stage='complete',status='verified_complete'))
+    else:
+        raise RuntimeError('Personalization returned without verified study completion')
 
 if __name__=='__main__':main()

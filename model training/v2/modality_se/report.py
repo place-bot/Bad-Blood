@@ -47,7 +47,12 @@ def main():
             metrics=json.loads((folder/'metrics.json').read_text())
             for split in ('validation','test','aami'):
                 path=folder/f'predictions_{split}.npz';assert file_hash(path)==done['prediction_sha256'][path.name]
-                with np.load(path) as f:equivalent(summarize(f['y'],f['pred'],f['subjects']),metrics[split])
+                with np.load(path) as f:
+                    equivalent(summarize(f['y'],f['pred'],f['subjects']),metrics[split])
+                    if modality=='ppg':
+                        with np.load(a.prior/f'se_last_seed{seed}'/path.name) as baseline:
+                            np.testing.assert_array_equal(f['y'],baseline['y'])
+                            np.testing.assert_array_equal(f['subjects'],baseline['subjects'])
             runs.append(dict(seed=seed,completion=done,metrics=metrics))
         population[modality]=dict(runs=runs,summary={s:aggregate([r['metrics'][s] for r in runs]) for s in ('validation','test','aami')})
         records[modality]={}
@@ -116,7 +121,8 @@ def main():
     export=ROOT/'modality_se/results';export.mkdir(exist_ok=True)
     atomic_json(export/'comparison.json',results)
     atomic_json(export/'verification.json',dict(units=units,replayed_target_predictions=replays,max_replay_absolute_difference=maxreplay,
-        exact_support_query_match_across_modalities=True,independent_metrics_recomputed=True,seed_count=3,previously_examined_targets=True))
+        exact_support_query_match_across_modalities=True,exact_population_labels_and_subjects_across_modalities=True,
+        independent_metrics_recomputed=True,seed_count=3,previously_examined_targets=True))
     atomic_json(export/'per_person_seed_metrics.json',[dict(modality=m,phase=p,patient=r['patient'],seed=r['seed'],method=r['method'],metrics=r['metrics']) for m in records for p in records[m] for r in records[m][p]])
     shutil.copyfile(a.run/'personal_manifest.json',export/'manifest.json')
     weights=ROOT/'modality_se/models';weights.mkdir(exist_ok=True)
@@ -149,6 +155,8 @@ def main():
             for k in ('population','calibration_mean','bias',method):
                 stats=results['personalization'][phase]['methods'][m][k]['macro'];vals=[fmt(stats[z],z.startswith('within')) for z in METRICS[:7]]
                 lines.append('| '+m+' / '+k+' | '+' | '.join(vals)+' |')
+        for m in ('dual','ppg'):
+            method=completion['selections'][m]['selected']['method']
             lines+=['',f"{m}: selected on development `{method}`; both-controls/both-endpoints success here = **{results['personalization'][phase]['paired'][m]['beats_both_controls_both_pressures']}**.",'']
     lines+=['','## Verification and interpretation',f'- Verified all {units} units and replayed {replays} target predictions; maximum difference {maxreplay:.8f} mmHg.',
         '- Complete per-person/seed results, seed variability, pressure ranges and paired person-bootstrap intervals are in the JSON files.',

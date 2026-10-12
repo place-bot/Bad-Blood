@@ -50,4 +50,22 @@ class ModalitySETests(unittest.TestCase):
             a=load_predict(p,q,r,bp);q[:,0]+=100;r[:,0]-=100
             np.testing.assert_array_equal(a,load_predict(p,q,r,bp))
 
+    def test_report_averages_seed_metrics_not_predictions(self):
+        from modality_se.report import aggregate, METRICS
+        metrics=[{scope:{k:[float(seed),float(seed*2)] for k in METRICS}
+                  for scope in ('macro','pooled')} for seed in (1,2,3)]
+        result=aggregate(metrics)
+        for scope in ('macro','pooled'):
+            np.testing.assert_array_equal(result[scope]['mae']['mean'],[2.,4.])
+            np.testing.assert_array_equal(result[scope]['mae']['seed_sd'],[1.,2.])
+
+    def test_report_paired_person_bootstrap(self):
+        from modality_se.report import differences
+        control={str(i):[10.,8.] for i in range(5)}
+        better={str(i):[9.,6.] for i in range(5)}
+        result=differences(better,control)
+        np.testing.assert_array_equal(result['delta_mae'],[-1.,-2.])
+        np.testing.assert_array_equal(result['ci95'],[[-1.,-2.],[-1.,-2.]])
+        self.assertEqual(result['people_improved'],[5,5])
+
 if __name__=='__main__':unittest.main()
