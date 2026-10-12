@@ -1,0 +1,165 @@
+{
+  "date": "20261012",
+  "folder": "https://drive.google.com/drive/folders/1QZ-Z-C9MoLk1S9MovF3Tt6NjAEGbSJI3",
+  "page_unique_files": 50,
+  "protocol_sha256": "bfd61c6d1d9cba8e4a4e8db42b0bc0e109d60e2ada2f7f1da3a976067305a896",
+  "records": [
+    {
+      "drive_id": "1QfCON52RXs5-G537bqf8E7t4f8efgDB6",
+      "file": "p000001.mat",
+      "patient": "vitaldb:p000001",
+      "role": "train"
+    },
+    {
+      "drive_id": "1Qk-70GfnsDBf0iftRN1LjU-eoRDarXEf",
+      "file": "p000003.mat",
+      "patient": "vitaldb:p000003",
+      "role": "train"
+    },
+    {
+      "drive_id": "1QlWcqLt4TSJkYSJpGMeWu7hFVypXgaSz",
+      "file": "p000005.mat",
+      "patient": "vitaldb:p000005",
+      "role": "train"
+    },
+    {
+      "drive_id": "1RCrlhAUG_RpMd6Wk_vA3-nESwUT5NkvI",
+      "file": "p000012.mat",
+      "patient": "vitaldb:p000012",
+      "role": "train"
+    },
+    {
+      "drive_id": "1RDR_XpRXjay-gbTTiG6VBEJBJNToY4Iu",
+      "file": "p000013.mat",
+      "patient": "vitaldb:p000013",
+      "role": "train"
+    },
+    {
+      "drive_id": "1RHxV-TlvNowCF14NmFoWMtltsNIELRox",
+      "file": "p000016.mat",
+      "patient": "vitaldb:p000016",
+      "role": "train"
+    },
+    {
+      "drive_id": "1RIentSpvuCxGgpAQ0raXO0tvHYJzRv6l",
+      "file": "p000019.mat",
+      "patient": "vitaldb:p000019",
+      "role": "train"
+    },
+    {
+      "drive_id": "1R_WhjzE6pbHjhMtmVKwl8rJdduhRXvS5",
+      "file": "p000024.mat",
+      "patient": "vitaldb:p000024",
+      "role": "train"
+    },
+    {
+      "drive_id": "1Rfz_StTyJDuszJkb7nhLjeP5H1T45ut1",
+      "file": "p000028.mat",
+      "patient": "vitaldb:p000028",
+      "role": "train"
+    },
+    {
+      "drive_id": "1RrVt1H3Ho58os4N4zkMPTLiOnLveIa41",
+      "file": "p000030.mat",
+      "patient": "vitaldb:p000030",
+      "role": "train"
+    },
+    {
+      "drive_id": "1RtgiUbHDgcXHam-BdKUYcn6CH48kOq9e",
+      "file": "p000033.mat",
+      "patient": "vitaldb:p000033",
+      "role": "train"
+    },
+    {
+      "drive_id": "1Ru3D09fBhUFVw6b8D4i5jsM5L20srhrs",
+      "file": "p000035.mat",
+      "patient": "vitaldb:p000035",
+      "role": "train"
+    },
+    {
+      "drive_id": "1S3ghpv1YlN69WmAUJNww9DdZU3xR_Vyq",
+      "file": "p000043.mat",
+      "patient": "vitaldb:p000043",
+      "role": "train"
+    },
+    {
+      "drive_id": "1SK_64zxhCTWfIf6prBNM22iBZ4PoxFfr",
+      "file": "p000051.mat",
+      "patient": "vitaldb:p000051",
+      "role": "train"
+    },
+    {
+      "drive_id": "1SOOb6ivNFnTUgbcSK9RH46OcY7KdhyMW",
+      "file": "p000052.mat",
+      "patient": "vitaldb:p000052",
+      "role": "train"
+    },
+    {
+      "drive_id": "1Sn58I4XYLlKVgGd0gPB4ROcunUunPk5N",
+      "file": "p000063.mat",
+      "patient": "vitaldb:p000063",
+      "role": "train"
+    },
+    {
+      "drive_id": "1Sy5LEucTSOhdvBZe-vmtJtZTvwVjfWTU",
+      "file": "p000064.mat",
+      "patient": "vitaldb:p000064",
+      "role": "train"
+    },
+    {
+      "drive_id": "1Tj9Bq1OmVHkivhD-ZryCBxlUFX1Flc0-",
+      "file": "p000088.mat",
+      "patient": "vitaldb:p000088",
+      "role": "train"
+    },
+    {
+      "drive_id": "1Tnfrh56BFmRQ9K1wEmN26kGKeWz0w5_9",
+      "file": "p000089.mat",
+      "patient": "vitaldb:p000089",
+      "role": "train"
+    },
+    {
+      "drive_id": "1TwAwUC6Eb8rLX0JbNVzJd61kimWdw_VA",
+      "file": "p000093.mat",
+      "patient": "vitaldb:p000093",
+      "role": "train"
+    },
+    {
+      "drive_id": "1TxgSY56bDCdRjPzNJ0Zfsm7TX1MMKGHD",
+      "file": "p000097.mat",
+      "patient": "vitaldb:p000097",
+      "role": "train"
+    },
+    {
+      "drive_id": "1TzWelGt4g4sxhf23ZZPaEfmU9GOgbvnh",
+      "file": "p000101.mat",
+      "patient": "vitaldb:p000101",
+      "role": "train"
+    },
+    {
+      "drive_id": "1U2j9V_3MaamSR4qf0hIJStia0MjOj_Gw",
+      "file": "p000102.mat",
+      "patient": "vitaldb:p000102",
+      "role": "train"
+    },
+    {
+      "drive_id": "1U8vUR6B9VZGRFGkY4ZWxwbqfF86EDUY4",
+      "file": "p000109.mat",
+      "patient": "vitaldb:p000109",
+      "role": "train"
+    },
+    {
+      "drive_id": "1S7jan0ewT3IDfXvrn0AIYpE53zxvG3wD",
+      "file": "p000050.mat",
+      "patient": "vitaldb:p000050",
+      "role": "validation"
+    },
+    {
+      "drive_id": "1TCsS44VlVElCBUismfA6YZqGKRIg6Br3",
+      "file": "p000074.mat",
+      "patient": "vitaldb:p000074",
+      "role": "validation"
+    }
+  ],
+  "selection": "all original train/validation IDs from observed public first page"
+}
