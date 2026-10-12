@@ -1,0 +1,24 @@
+{
+  "date": "20261012",
+  "development_people": [
+    "vitaldb:p005548",
+    "vitaldb:p005647",
+    "vitaldb:p005968",
+    "vitaldb:p006090"
+  ],
+  "population_checkpoint_sha256": "e182025027760adb79a211617391b98e496588d659e37de7519d0d8ff4611724",
+  "protocol_sha256": "32aceed96013529ee199ea7eac8f2c5b34d5c207e2c4e78f1a77c3f5eacdc7dc",
+  "seed": 42,
+  "source_sha256": {
+    "model.py": "b3c6c3badb34ae4b90e78bcb5eb585aa1c3328614cc9a04345b446111dd16197",
+    "run.py": "8ea43b59883613d803da75ca09bd18b0718ffd45253d70d455ae8720fb578ea3"
+  },
+  "target_predictions": false,
+  "train_people": 1085,
+  "validation_people": 192,
+  "variants": [
+    "attention",
+    "context",
+    "kernel"
+  ]
+}
