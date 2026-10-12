@@ -22,6 +22,13 @@ comparison against personal mean and bias correction. Their implementations,
 experimental weights and full results are preserved separately; they do not
 replace the frozen `v2-20261012.1` outcomes or claim new-test superiority.
 
+The subsequent [chronological source-training comparison](temporal_pretraining/README.md)
+uses recovered timestamps (22 source-training people, two source-validation
+people) and the four-person development cohort. Source-validation MAE improved,
+but matched random training was competitive and personal post-training did not
+beat both controls. This is a frozen-encoder conditioning-head experiment,
+not full-PulseDB encoder retraining; the released model is unchanged.
+
 This directory implements two controlled studies using the existing VitalDB-derived data. Track A compares attention mechanisms in the unchanged high-resolution V1 CNN architecture. Track B uses early personal ECG/PPG and scalar BP references to adapt that population model, then estimates **same-window SBP/DBP from later observed ECG/PPG**. The directory name `personalized_forecasting/` is retained from the original assignment; this is not open-loop waveform forecasting.
 
 V1 is preserved in `../PulseDB-based Model-V1/`. The unchanged reference is `BPNet(pool=1)`, with 37,666 trainable parameters, two 125-Hz input channels, 1,250 samples per channel, and two scalar outputs. “Higher resolution” means retaining the original ten-second input resolution rather than applying the alternate model's initial fivefold pooling. New V2 baseline weights are trained from scratch on the corrected population split; the historical V1 checkpoint is not a clean personal-cohort initializer.

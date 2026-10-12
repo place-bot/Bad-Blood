@@ -1,0 +1,17 @@
+{
+  "code_sha256": "40e8acc1eb4d40bcfa54ad3c15f1e9feac028b78ecded3e407407b26af185964",
+  "encoder_frozen": true,
+  "initializer_sha256": {
+    "context": "c48741b8fb427e5548021d1041585880d943afbd406127fb60bb422a1a18c810",
+    "pair": "e182025027760adb79a211617391b98e496588d659e37de7519d0d8ff4611724"
+  },
+  "prepared_sha256": "cb3dea73619aa664057eff2ae0c07433627c921f425b71a735ae482d93141cda",
+  "protocol_sha256": "bfd61c6d1d9cba8e4a4e8db42b0bc0e109d60e2ada2f7f1da3a976067305a896",
+  "seed": 42,
+  "sources_sha256": "12883b599dcd836bd40e8f9b4d1e87651fc58036e5d7d5b29580aaf2c1f90ad4",
+  "target_people_read": false,
+  "train_people": 22,
+  "train_windows": 19926,
+  "validation_people": 2,
+  "validation_windows": 1107
+}

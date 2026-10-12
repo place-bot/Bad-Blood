@@ -1,12 +1,19 @@
 import unittest
 import numpy as np
 import torch
-from temporal_pretraining.run import episode_indices, bank
+from temporal_pretraining.run import episode_indices, episode_people, bank
 from context_se.adapt import MaskedContext
 from paired_se.model import PairSE
 from shared.models import BPNet
 
 class TemporalPretrainingTests(unittest.TestCase):
+    def test_matched_person_exposure(self):
+        a=episode_people(22,3)
+        np.random.default_rng(0).random(10000)
+        np.testing.assert_array_equal(a,episode_people(22,3))
+        self.assertEqual(len(a),64)
+        self.assertTrue(np.all((a>=0)&(a<22)))
+
     def test_chronology_and_random_budget(self):
         d=dict(h=np.zeros((100,48)),support=np.arange(18),query=np.arange(21,100),start=np.arange(100)*10.,end=np.arange(100)*10.+10.)
         for seed in range(20):

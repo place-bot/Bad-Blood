@@ -34,6 +34,10 @@ def episode_indices(d,rng,mode):
 
 def tensor(a):return torch.as_tensor(a,dtype=torch.float32)
 
+def episode_people(n,epoch):
+    # Independent of reference/query RNG consumption in the two sampling modes.
+    return np.random.default_rng(4200+epoch).integers(n,size=64)
+
 def bank(model,kind,h,p,ys,hs,ps,fc,fs):
     """Only known reference labels ys are accepted, never query labels."""
     if kind=='context':
@@ -141,8 +145,8 @@ def main():
             print(name,'INITIAL',init['macro']['mae'],flush=True)
             for epoch in range(1,21):
                 tic=time.perf_counter();rng=np.random.default_rng(42+epoch);losses=[]
-                for update in range(64):
-                    d=data['train'][int(rng.integers(len(data['train'])))];s,q=episode_indices(d,rng,mode)
+                for person_index in episode_people(len(data['train']),epoch):
+                    d=data['train'][int(person_index)];s,q=episode_indices(d,rng,mode)
                     opt.zero_grad(set_to_none=True)
                     pred=bank(model,kind,tensor(d['h'][q]),tensor(d['p'][q]),tensor(d['yn'][s]),tensor(d['h'][s]),tensor(d['p'][s]),fc,fs)
                     loss=F.mse_loss(pred,tensor(d['yn'][q]))

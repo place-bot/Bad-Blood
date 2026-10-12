@@ -1,0 +1,9 @@
+{
+  "goal_achieved": false,
+  "independent_verification": "Not entered: development joint criterion failed",
+  "personal_development_pass": false,
+  "preserved_release": "v2-20261012.1",
+  "reason": "Four matched source fits and six personal settings complete; chronology did not establish superiority over matched random training or both personal controls",
+  "source_validation_both_improved": true,
+  "status": "CEILING"
+}
