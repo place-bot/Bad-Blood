@@ -89,7 +89,7 @@ def main():
     for dest in (pop,personal):
         manifests[dest.name]={str(f.relative_to(dest)):file_hash(f) for f in sorted(dest.rglob('*')) if f.is_file() and f.name!='SHA256SUMS.json' and '__pycache__' not in str(f)}
         atomic_json(dest/'SHA256SUMS.json',manifests[dest.name])
-    atomic_json(target/'version.json',dict(version='v2-20261012',date='20261012',
+    atomic_json(target/'version.json',dict(version='v2-20261012.1',date='20261012',
         original_completed_experiment_commit='97aaeb30e7c7e60c148b191c41734eb2fe2e82fc',
         fresh_protocol_commit='981e15a',fresh_lock_hash=fresh['lock_hash'],
         population_model='CNN+SE se_last',personal_model='reference-conditioned CNN+SE, pair-head adaptation',

@@ -7,5 +7,5 @@
   "original_completed_experiment_commit": "97aaeb30e7c7e60c148b191c41734eb2fe2e82fc",
   "personal_model": "reference-conditioned CNN+SE, pair-head adaptation",
   "population_model": "CNN+SE se_last",
-  "version": "v2-20261012"
+  "version": "v2-20261012.1"
 }

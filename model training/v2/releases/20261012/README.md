@@ -1,6 +1,6 @@
 # Bad-Blood V2 research snapshot — 20261012
 
-Version: **v2-20261012**. This dated snapshot packages two V2 research outcomes.
+Version: **v2-20261012.1** (complete source, results and weights). This dated snapshot packages two V2 research outcomes.
 V1, previous experiments and their negative results remain unchanged. Each
 folder includes architecture/training source, results and trained weights;
 `SHA256SUMS.json` identifies the packaged files. `version.json` records provenance.
@@ -57,7 +57,8 @@ claim new ND cuff results or clinical-device certification.
 - `97aaeb3`: original completed and verified paired-SE six-person experiment.
 - `981e15a`: new-participant protocol, candidate manifest and fixed settings
   committed before downloading/evaluating new signals.
-- `v2-20261012`: two outcome packages, new-participant results, models and
+- `v2-20261012`: initial documentation/results snapshot.
+- `v2-20261012.1`: complete outcome packages including all published model weights and
   reproduction instructions. A singleton-MATLAB loader fix only identifies
   one-window files as ineligible; it does not change the model or calibration rule.
 
