@@ -1,0 +1,22 @@
+{
+  "date": "20261012",
+  "status": "verified_comparison_complete",
+  "units_remaining": 0,
+  "pending_verify": false,
+  "performance_goal_met": false,
+  "verification": {
+    "evaluation_units": 816,
+    "seeds": [42, 43, 44],
+    "replayed_target_predictions": 39564,
+    "maximum_replay_difference_mmHg": 0.0,
+    "unit_tests_passed": 131,
+    "exported_checkpoint_hashes_verified": 144,
+    "exported_population_models_replayed": 6,
+    "maximum_exported_population_cpu_vs_mps_difference_mmHg": 0.000014027669749339111,
+    "calibration_and_query_ids_matched": true,
+    "independent_new_target_cohort": false
+  },
+  "result": "model training/v2/modality_se/results/STABILITY.md",
+  "finding": "PPG personalization beats personal mean on both endpoints in all seeds, but loses DBP to PPG bias correction in all seeds on the 16-person cohort. Dual personalization also fails joint superiority. Retain both modalities, do not replace existing released models.",
+  "actions": "Models, implementations, complete metrics and stability report saved locally. No email, deployment or automatic push."
+}

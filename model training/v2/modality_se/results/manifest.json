@@ -1,0 +1,25 @@
+{
+  "checkpoints": {
+    "dual_42": "bb5f0167d148e728c2026fd1a3e7d4485b869e0be15eeeb3f16f63bc28872b61",
+    "dual_43": "3214b861b156b9212a0e9d7575ce28c80e39e198e9a8cb710b315e74b4678575",
+    "dual_44": "6e5f261476c51c8a9e9227a7b05ac41da1f06276fc9244bbc3888c3ad685235f",
+    "ppg_42": "bacf457d1df5b403b9146a11f839619126a1d4527e4df5df70bd324a152a4689",
+    "ppg_43": "ef5b4ffc426c2ac0d6b61e959cbd50ec60ffb0983f6c82c29de0e5c515540a02",
+    "ppg_44": "a65d9a2f41d0b26fadc5eb2460795fc399289c6af61e9677a8aa8786246b51c1"
+  },
+  "date": "20261012",
+  "population_manifest_hash": "88984e9b5a412cc20c3f9ee48badc9c82502cf982fedb7ae9e43315f314a3fca",
+  "protocol_sha256": "52883aa8fdf0f2a0016dbe6239802bee4370d18d8134a85d167158f2f3a5ee4b",
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "source_hashes": {
+    "modality_se/model.py": "b2905f29dc65ce2410d835420f1c04988888497fd0584efed14a6e6d8f804c47",
+    "modality_se/personalize.py": "cd6dc00edc42aefe815a0f9879c7df5a8ef452b1f0dd06a463b1329e254b40e1",
+    "paired_se/model.py": "e3aab16ca2cea2062d77f36f01ccbf40b659df100a868351dfb82c3c06f57a05",
+    "paired_se/run.py": "51da6115f6554908ac99ea7064e49f9afa6f0be577e54d543cffc9bad41e0941",
+    "shared/metrics.py": "21d6a71ad45349488a4884f5da600e1d2c72310834b361d88fe1969d659a2c58"
+  }
+}

@@ -11,5 +11,8 @@
   "independent_acceptance": "Previously examined target cohorts are descriptive replication, not untouched final acceptance. Never retune on their outcomes.",
   "terminal_choice": "verify and report; do not deploy or replace released models",
   "user_confirmed": "20261012: same data, multiple seeds, unchanged calibration budget, all metrics, compare personal mean and bias correction",
-  "pending_verify": true
+  "pending_verify": false,
+  "status": "verified_comparison_complete",
+  "performance_goal_met": false,
+  "completion_note": "All 816 units verified. Both modalities retained. Neither achieves stable superiority to both controls in both pressures on the previously examined 16-person cohort. No target-based retuning or deployment."
 }

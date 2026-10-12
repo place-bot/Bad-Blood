@@ -5,6 +5,18 @@ models are preserved. Do not infer completion from the existence of this folder:
 `results/verification.json` and the runtime `study_complete.json` are written
 only after the full inventory and saved predictions have passed verification.
 
+## Completed result
+
+All 816 units are verified. Both input modalities and their three-seed weights
+are retained. See [stability review](results/STABILITY.md) for every seed, both
+macro and pooled metrics, and participant-bootstrap intervals.
+
+On the 16-person replication cohort, PPG personalization beats personal mean
+for both pressures in all three seeds, but loses to PPG bias correction on DBP
+in all three seeds. Neither modality establishes a stable joint advantage over
+both controls. Lower aggregate Bias alone does not imply more accurate
+predictions. Existing published models are unchanged.
+
 ## Design
 
 - Same SE-last architecture and 38,296 parameters; seeds42/43/44.
@@ -58,6 +70,8 @@ After verification, generated outputs are:
 - `results/comparison.json`: full metrics, seed summaries and paired intervals.
 - `results/per_person_seed_metrics.json`: every personal method/person/seed.
 - `results/verification.json`: inventory, budget identity and replay checks.
+- `results/STABILITY.md` and `results/stability.json`: per-seed stability versus
+  each control, with separate macro and pooled interpretation.
 - `models/`: compact population/reference models and selected personal weights.
 - `models/manifest.json`: checkpoint SHA256 identities.
 
@@ -67,3 +81,6 @@ PPG model ignores the ECG slot. Pair checkpoints additionally require normalized
 reference waveforms and their SBP/DBP in mmHg. Output is N×2, SBP/DBP in mmHg.
 The encoder and input mask are reconstructed from the checkpoint's `modality`.
 Raw waveform data are not added to Git.
+
+Run `python modality_se/stability.py` after the verified comparison to regenerate
+the stability review. It does not train, select, or change any model.
