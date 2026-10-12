@@ -16,3 +16,6 @@ data/nd/processed/
 *.out
 *.toc
 deployment/raspberry-pi/results/
+*.egg-info/
+build/
+dist/

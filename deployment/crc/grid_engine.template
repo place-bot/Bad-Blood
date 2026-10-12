@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# TEMPLATE ONLY: copy outside Git, fill site/account-approved queue, GPU,
+# CPU, memory and walltime directives before removing the guard below.
+# CRC general cluster uses qsub/Grid Engine; resource names are account-specific.
+# Request one GPU, initially four CPU cores and 32 GiB host RAM if permitted.
+# Export only the BP_* variables required by run_job.sh using approved job settings.
+echo 'Configure verified Grid Engine resource directives before submission.' >&2
+exit 2
+# exec bash "$BP_REPO/deployment/crc/run_job.sh"

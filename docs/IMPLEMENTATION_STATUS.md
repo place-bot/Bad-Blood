@@ -1,5 +1,7 @@
 # Wearable software implementation status
 
+The acquisition foundation below was completed October 9. The [V2 training and release addition](#v2-training-and-release-addition) was verified October 11 on `feature/model-v2-crc-attention`.
+
 October 9, 2026 — branch `feature/wearable-acquisition-foundation`.
 
 This implements the software foundation of the [optimization plan](WEARABLE_BP_OPTIMIZATION_PLAN.md). It does not complete the hardware, data-collection or clinical milestones.
@@ -27,3 +29,24 @@ The test suites cover raw/offline waveform parity, bounded queues, faults during
 The remaining work depends on hardware and study data: select and implement the actual ECG/PPG transport driver; verify synchronization, filtering, placement and electrical design; collect restricted raw/reference recordings; validate quality thresholds and reading coverage; profile power and memory on the target Pi; and evaluate adaptation/calibration on held-out participants. Native-rate resampling, robust motion/morphology assessment, a private acquisition recorder, model retraining, quantization, a custom PCB and systemd installation are not implemented in this branch.
 
 Run instructions and exact test commands are in [ACQUISITION.md](../deployment/raspberry-pi/ACQUISITION.md).
+
+## V2 training and release addition
+
+October 11, 2026 — branch `feature/model-v2-crc-attention`. Commands and precise limitations are in the [V2 implementation guide](../bp_training/README.md) and [CRC execution guide](../deployment/crc/README.md).
+
+| Implemented | Verification |
+|---|---|
+| V1-compatible adapter, 419,210-parameter wider control, 425,698-parameter dual encoder/TCN | Released V1 weights produce identical adapter outputs; all candidates have finite gradients and expected shapes |
+| Separate temporal-pooling, SE and combined attention variants | Pooling starts uniform; combined model has 434,099 parameters; attention shape/parameter checks pass |
+| Strict configurations, hashed data manifests, exclusions and training-only transforms | Tampered files, participant leakage, invalid splits, reference input channels and holdout training are rejected |
+| Explicit CUDA/CPU/MPS selection; optional CUDA mixed precision | Requested unavailable CUDA fails; actual CUDA/AMP execution remains unverified without a GPU |
+| Single-device trainer, scheduler, capped sampling, seed/state logging and best/last checkpoints | CPU stop/resume and failure-mid-epoch recovery reproduce uninterrupted final weights exactly |
+| Development evaluation, paired participant-bootstrap comparisons and complete-seed summaries | Participant weighting, missing/duplicate seeds and matched evaluation records checked |
+| Inference-only FP32 export and explicit Pi bundle loading | Synthetic-trained candidate exports/reloads with ≤0.01 mmHg conversion difference on public fixtures at 1/2/4 threads |
+| Frozen-artifact held-out evaluation | Training-manifest binding and participant exclusions required; known development participants cannot be relabeled final evidence |
+| Model-aware dashboard and rollback | Selected model identity is visible; freshness/invalid-output suppression remains active; no silent fallback |
+| CRC entry point and guarded scheduler templates | Shell syntax checked; account-specific resource directives deliberately remain unfilled |
+
+Verification completed: **17 V2 tests, 26 acquisition/deployment/system tests, 7 original V1 tests and 6 dashboard tests passed (56 total)**. Tests ran locally on macOS, with PyTorch shared-memory workers and loopback HTTP tests run outside the restrictive sandbox. Python compilation, CLI/config checks, shell syntax, documentation links and Git whitespace were also checked. The V1 model implementation and released weights are unchanged.
+
+Only small synthetic datasets were trained for software tests. Their labels and errors are not accuracy evidence. The full prepared PulseDB arrays, CRC allocation and physical Pi/sensors were unavailable in this checkout. Consequently, source-data V2 training, real CUDA/AMP behavior, model selection, wearable adaptation, prospective accuracy, Pi latency/power/soak results and clinical claims remain outstanding. ONNX/INT8, distillation, cross/self-attention and multi-source reconciliation remain evidence-gated extensions, not implemented features.

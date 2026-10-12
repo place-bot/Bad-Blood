@@ -7,6 +7,7 @@ const {test} = require("node:test");
 
 const valid = (changes = {}) => ({
   boot_id: "boot-a", sequence: 1, mode: "recorded_raw_replay", status: "ok",
+  model: "V1 / cnn_full",
   age_seconds: 1, prediction: {SBP_mmHg: 120, DBP_mmHg: 75}, inference_ms: 6,
   pipeline_ms: 10, waveforms: {ecg: Array(1250).fill(.5), ppg: Array(1250).fill(.5)},
   updated_at: "2026-10-09T00:00:00Z", message: "Raw replay", ...changes,
@@ -53,6 +54,17 @@ test("raw recordings are labeled replay; invalid BP never gets a green state", a
   await ui.context.refresh();
   assert.equal(ui.elements.get("sbp").textContent, "--");
   assert.equal(ui.elements.get("status-dot").classList.enabled, false);
+});
+
+test("model identity follows the verified service bundle and explicit rollback", async () => {
+  const ui = await dashboard();
+  assert.equal(ui.elements.get("model-name").textContent, "V1 / cnn_full");
+  ui.setPayload(valid({sequence: 2, model: "V2 candidate / dual_tcn / attention=both"}));
+  await ui.context.refresh();
+  assert.equal(ui.elements.get("model-name").textContent, "V2 candidate / dual_tcn / attention=both");
+  ui.setPayload(valid({boot_id: "rollback", sequence: 0, model: "V1 / cnn_full"}));
+  await ui.context.refresh();
+  assert.equal(ui.elements.get("model-name").textContent, "V1 / cnn_full");
 });
 
 test("service restart accepts a new sequence and redraws cleared readings", async () => {

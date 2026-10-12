@@ -23,11 +23,14 @@ STALE_AFTER_SECONDS = 12
 
 
 class InferenceState:
-    def __init__(self, source: WaveformSource, predict: Callable, interval_seconds=5.0):
+    def __init__(self, source: WaveformSource, predict: Callable, interval_seconds=5.0,
+                 model_label="V1 / cnn_full"):
         if source.mode not in SOURCE_MODES:
             raise ValueError(f"Unsupported source mode: {source.mode}")
         if not math.isfinite(interval_seconds) or interval_seconds <= 0:
             raise ValueError("Update interval must be positive and finite")
+        if not isinstance(model_label, str) or not model_label.strip():
+            raise ValueError("Model identity must be a nonempty string")
         self.source = source
         self.predict = predict
         self.interval_seconds = interval_seconds
@@ -37,7 +40,7 @@ class InferenceState:
         self._last_acquisition = None
         self._generation = None
         self._state = {
-            "mode": source.mode, "model": "V1 / cnn_full", "sequence": 0,
+            "mode": source.mode, "model": model_label, "sequence": 0,
             "boot_id": uuid.uuid4().hex,
             "status": "initializing", "hostname": socket.gethostname(),
             "updated_at": None, "segment_id": None, "position": None,

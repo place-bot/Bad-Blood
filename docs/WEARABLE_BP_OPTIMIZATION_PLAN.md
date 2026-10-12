@@ -2,6 +2,8 @@
 
 Prepared October 9, 2026, using repository evidence and primary sources reviewed October 8–9. This is an implementation and research plan. Proposed targets below are engineering goals, not measured results or clinical acceptance criteria.
 
+For the detailed model implementation, controlled experiments and Notre Dame CRC workflow, see the [Model V2 implementation plan](MODEL_V2_CRC_IMPLEMENTATION_PLAN.md). The [implementation status](IMPLEMENTATION_STATUS.md) records acquisition work completed after this roadmap was written.
+
 **Recommendation:** retain the working Pi 4 inference system, add reliable synchronized ECG/PPG acquisition, establish accuracy on the actual wearable hardware, and then optimize size, memory and battery life. The current model is already fast enough for the planned five-second update interval. The main risk is whether its estimates remain useful when the sensors, placement, people and reference method change.
 
 The working assumption is a research prototype with body-worn sensors and a nearby or belt-mounted Raspberry Pi. Start with seated measurements at rest. A single wrist-worn device, measurement during activity, and medical use require additional decisions and evidence. This plan assumes cuffless estimation because the existing system predicts BP from ECG and PPG; an inflatable wearable cuff would be a separate architecture.

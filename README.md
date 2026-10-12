@@ -42,6 +42,8 @@ the [optimization plan](docs/WEARABLE_BP_OPTIMIZATION_PLAN.md) for subsequent wo
 ## Start here
 
 - [Wearable BP optimization plan and implementation roadmap](docs/WEARABLE_BP_OPTIMIZATION_PLAN.md)
+- [Model V2 implementation, CRC training and Pi release plan](docs/MODEL_V2_CRC_IMPLEMENTATION_PLAN.md)
+- [Implemented V2 trainer, attention experiments and launch commands](bp_training/README.md)
 - [Computer-to-Pi deployment: prompt for Codex](deployment/OMEN-Codex-Prompt/README.md)
 - [English collection manual](data/Data%20Collection%20Manual/Data_Collection_Manual_EN.pdf)
 - [中文采集手册](data/Data%20Collection%20Manual/Data_Collection_Manual_ZH.pdf)
@@ -63,7 +65,8 @@ The AAMI-designated subset MAE is **19.34 / 13.17 mmHg**.
 
 The training run used the complete author-provided **VitalDB training subset**,
 not all 5.2 million segments in the full PulseDB release. ND adaptation and
-Raspberry Pi execution measurements are subsequent work.
+full wearable-pipeline measurements remain subsequent work; recorded-data
+Pi inference measurements are available above.
 
 Actual ND participant records and photos belong in restricted research
 storage. This public repository contains no ND participant measurements.

@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Bad Blood | Raspberry Pi V1</title>
+  <title>Bad Blood | Raspberry Pi</title>
   <link rel="stylesheet" href="/style.css">
   <script src="/app.js" defer></script>
 </head>
 <body>
   <main class="shell">
     <header class="topbar">
-      <div><div class="eyebrow">BAD BLOOD / V1</div><h1>Blood pressure estimates</h1></div>
+      <div><div class="eyebrow">BAD BLOOD / <span id="model-name">--</span></div><h1>Blood pressure estimates</h1></div>
       <div class="connection"><span id="status-dot" class="dot"></span><span id="status">Connecting...</span></div>
     </header>
 
@@ -20,8 +20,8 @@
     </section>
 
     <section class="vitals" aria-label="Latest model estimates">
-      <article class="metric"><div class="metric-label">Systolic estimate</div><div><span id="sbp" class="metric-value">--</span><span class="unit">mmHg</span></div><div class="metric-foot">SBP / V1 cnn_full</div></article>
-      <article class="metric"><div class="metric-label">Diastolic estimate</div><div><span id="dbp" class="metric-value">--</span><span class="unit">mmHg</span></div><div class="metric-foot">DBP / V1 cnn_full</div></article>
+      <article class="metric"><div class="metric-label">Systolic estimate</div><div><span id="sbp" class="metric-value">--</span><span class="unit">mmHg</span></div><div class="metric-foot">SBP</div></article>
+      <article class="metric"><div class="metric-label">Diastolic estimate</div><div><span id="dbp" class="metric-value">--</span><span class="unit">mmHg</span></div><div class="metric-foot">DBP</div></article>
     </section>
 
     <section class="waveforms" aria-label="Input waveforms">
@@ -42,7 +42,7 @@
       <div><span>Pi hostname</span><strong id="hostname">--</strong></div>
     </section>
     <p id="message" class="message" role="status">Waiting for Raspberry Pi data.</p>
-    <footer>V1 prototype estimates. Not validated for medical decisions.</footer>
+    <footer>Prototype estimates. Not validated for medical decisions.</footer>
   </main>
 </body>
 </html>

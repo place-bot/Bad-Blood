@@ -1,4 +1,4 @@
-"""Run the existing V1 Predictor on a Raspberry Pi with a loopback dashboard."""
+"""Run a verified V1 or explicit V2 candidate bundle with a loopback dashboard."""
 
 import argparse
 import hashlib
@@ -28,6 +28,8 @@ def main():
                         help="Required raw replay session/quality-policy JSON sidecar")
     parser.add_argument("--threads", type=int, choices=(1, 2, 4), default=4,
                         help="Inference CPU threads; benchmark on the target Pi (default: 4)")
+    parser.add_argument("--bundle", type=Path,
+                        help="Explicit V2 candidate bundle directory; omission retains the released V1")
     parser.add_argument("--port", type=int, default=8000,
                         help="Pi loopback port for the SSH-tunneled dashboard")
     args = parser.parse_args()
@@ -37,6 +39,24 @@ def main():
         parser.error("--raw-input and --session must be supplied together")
     logging.basicConfig(level=logging.INFO,
                         format="%(asctime)s %(levelname)s %(message)s")
+
+    predictor, preprocess, bundle_id, model_label = load_predictor(args.bundle, args.threads)
+    source = (raw_replay(args.raw_input, args.session, preprocess) if args.raw_input
+              else PulseDBReplay(args.input))
+    state = InferenceState(source, predictor.predict, interval_seconds=5.0,
+                           model_label=model_label)
+    state.publish(bundle_id=bundle_id, inference_threads=args.threads)
+    serve(state, port=args.port)
+
+
+def load_predictor(bundle_path=None, threads=4):
+    if bundle_path is not None:
+        sys.path.insert(0, str(ROOT))
+        from bp_runtime.release import BundlePredictor
+        from bp_runtime.preprocessing import from_raw_125
+        predictor = BundlePredictor(bundle_path, threads=threads)
+        logging.info("Selected %s; bundle=%s", predictor.model_label, predictor.bundle_id)
+        return predictor, from_raw_125, predictor.bundle_id, predictor.model_label
 
     bundle_id = verify_bundle(V1)
     manifest = json.loads((V1 / "model_checksums.json").read_text())
@@ -50,7 +70,7 @@ def main():
 
     predictor = Predictor(V1 / "models")
     import torch
-    torch.set_num_threads(args.threads)
+    torch.set_num_threads(threads)
     if (predictor.config["cnn_name"] != "cnn_full"
             or predictor.config["tree_weight"] != 0):
         raise ValueError("This deployment requires the released cnn_full only")
@@ -61,11 +81,7 @@ def main():
                  parameters, actual)
 
     from common import from_raw_125
-    source = (raw_replay(args.raw_input, args.session, from_raw_125) if args.raw_input
-              else PulseDBReplay(args.input))
-    state = InferenceState(source, predictor.predict, interval_seconds=5.0)
-    state.publish(bundle_id=bundle_id, inference_threads=args.threads)
-    serve(state, port=args.port)
+    return predictor, from_raw_125, bundle_id, "V1 / cnn_full"
 
 
 if __name__ == "__main__":

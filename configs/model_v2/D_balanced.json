@@ -1,0 +1,8 @@
+{
+  "architecture": "v1",
+  "balancing": true,
+  "balance_cap": 4.0,
+  "balance_min_subjects": 10,
+  "sbp_edges": [90, 110, 130, 150, 170],
+  "dbp_edges": [60, 80, 100]
+}

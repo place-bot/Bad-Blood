@@ -1,0 +1,4 @@
+{
+  "architecture": "dual_tcn",
+  "attention": "se"
+}

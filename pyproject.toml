@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bad-blood-bp"
+version = "0.1.0"
+description = "ECG/PPG BP research training and explicit Pi model bundles"
+requires-python = ">=3.9"
+dependencies = ["numpy>=1.24,<3", "scipy>=1.10,<2", "torch>=2.8,<2.9"]
+
+[project.scripts]
+bp-train = "bp_training.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["bp_runtime*", "bp_training*"]

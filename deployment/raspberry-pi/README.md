@@ -1,6 +1,8 @@
-# Raspberry Pi V1 deployment and acquisition foundation
+# Raspberry Pi deployment and acquisition foundation
 
 This prototype runs the repository's unchanged V1 `cnn_full` model on a Raspberry Pi 4B. It replays 20 **public, recorded** PulseDB windows. Each five-second update is a separate ten-second ECG/PPG segment; segments may be from different participants. The numbers are model estimates from recordings, not live measurements or clinical readings. The bundled PulseDB source and its terms are under `data/PulseDB/`.
+
+V1 remains the default. The application also accepts an explicitly exported V2 candidate with `--bundle /absolute/path/to/bundle`. It verifies the architecture, contract, runtime hashes, weights and numerical fixtures before starting. The API/dashboard display the actual selected model; an invalid V2 bundle fails startup instead of silently falling back. See the [V2 training/export guide](../../bp_training/README.md). V2 Pi performance and wearable accuracy have not yet been measured.
 
 The new software foundation also supports paced continuous **raw-recording replay**, bounded acquisition buffering, acquisition timestamps, experimental raw quality checks and failure recovery. See [ACQUISITION.md](ACQUISITION.md) for the raw CSV/sidecar format, driver contract, tests and remaining hardware work. No physical sensor driver is implemented, and the new raw pipeline has not yet been measured on the Pi.
 
@@ -15,7 +17,7 @@ The new software foundation also supports paced continuous **raw-recording repla
 | `preprocessing` | `pulsedb_filtered_minmax_v2`; filtered and independently min-max normalized to `[0, 1]` |
 | `segment_id` | Nonempty source window identifier (may repeat on later replay cycles) |
 
-`InferenceState` calls `validate_window()` and then **the same** released `Predictor.predict(waves[None], input_format="filtered")` for every source. The added batch axis makes the exact V1 `(1, 2, 1250)` input. The replay adapter discards the CSV's reference SBP/DBP and participant metadata; they never reach the model. The original V1 normalization is retained, without another bandpass filter.
+`InferenceState` calls `validate_window()` and then the selected predictor's `predict(waves[None], input_format="filtered")` for every source. Both model versions accept the same `(1, 2, 1250)` input. The replay adapter discards the CSV's reference SBP/DBP and participant metadata; they never reach the model. The original V1 normalization is retained, without another bandpass filter.
 
 A future device reader belongs behind `BufferedSource` in `acquisition.py`. It must collect verified synchronized ECG and PPG at 125 Hz and provide sample counters, monotonic acquisition timestamps and quality flags. Unsupported native rates require a separately validated resampler. Streaming windows must include acquisition provenance and raw-screening metadata; a mode label alone is insufficient. The browser distinguishes public replay, raw replay and connected-device input. No real device adapter exists yet, and sensor compatibility, calibration and clinical suitability remain unestablished. `test_deployment.py` uses a device stub to enforce the shared model entry; `test_acquisition.py` injects data gaps, resets, duplicates, clock faults and bad quality.
 

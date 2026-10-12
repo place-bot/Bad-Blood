@@ -1,0 +1,20 @@
+{
+  "schema": "bp_campaign_v1",
+  "seeds": [20260923, 20260924, 20260925],
+  "initial": [
+    "configs/model_v2/A_v1.json",
+    "configs/model_v2/B_mmhg_mse.json",
+    "configs/model_v2/C_mmhg_huber.json",
+    "configs/model_v2/D_balanced.json",
+    "configs/model_v2/E_wider.json",
+    "configs/model_v2/F_dual_tcn.json"
+  ],
+  "attention_after_baseline_confirmation": [
+    "configs/model_v2/G_attention_pool.json",
+    "configs/model_v2/H_attention_se.json",
+    "configs/model_v2/I_attention_both.json"
+  ],
+  "combined_candidate": "Create a reviewed config only after A-F support the selected changes; three additional seeds",
+  "attention_control": "G-I currently match F's recipe; if another recipe wins, change all attention controls together",
+  "submission": "manual after account/resource verification; no jobs launched automatically"
+}

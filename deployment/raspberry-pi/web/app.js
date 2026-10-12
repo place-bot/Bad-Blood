@@ -41,6 +41,7 @@ function presentSource(mode) {
 
 function sourceUnavailable() {
   currentMode = null;
+  el("model-name").textContent = "--";
   el("source-badge").textContent = "SOURCE UNAVAILABLE";
   el("source-description").textContent = "Waiting for source status from the Raspberry Pi.";
 }
@@ -120,6 +121,7 @@ async function refresh() {
     }
     if (data.sequence < responseSequence) return;
     responseSequence = data.sequence;
+    el("model-name").textContent = typeof data.model === "string" ? data.model : "Unknown model";
     if (!presentSource(data.mode)) {
       clearReadings();
       sourceUnavailable();

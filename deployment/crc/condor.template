@@ -1,0 +1,8 @@
+# TEMPLATE ONLY: obtain current CAML universe/container/GPU/storage requirements.
+# Do not submit this file unchanged; it intentionally has no queue statement.
+# executable = /absolute/path/to/tested/job-wrapper
+# request_gpus = 1
+# request_cpus = 4
+# request_memory = 32GB
+# Configure BP_* environment, absolute paths, logs, transfer/shared-storage policy,
+# and the account-approved execution environment before adding queue.
