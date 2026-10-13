@@ -1,11 +1,11 @@
 \begin{table}[t]
-\centering\caption{Matched dual-input architecture comparison. Three-seed participant-macro MAE (SBP / DBP), mmHg. Validation selection favored plain CNN; observed test MAE favored SE.}\label{tab:architecture}
+\centering\caption{Dual-input architectures: three-seed participant-macro MAE (SBP / DBP), mmHg. Bold: lowest per pressure and split.}\label{tab:architecture}
 \scriptsize
 \setlength{\tabcolsep}{4pt}
 \begin{tabular}{lrrr}\toprule
 Model & Parameters & Validation & Main test\\\midrule
-Plain CNN & 37666 & 12.41 / 8.33 & 12.59 / 8.36\\
-CNN+SE & 38296 & 12.51 / 8.26 & 12.39 / 8.00\\
+Plain CNN & 37666 & \textbf{12.41} / 8.33 & 12.59 / 8.36\\
+CNN+SE & 38296 & 12.51 / \textbf{8.26} & \textbf{12.39} / \textbf{8.00}\\
 CNN+temporal & 37680 & 12.49 / 8.32 & 12.58 / 8.31\\
 CNN+CBAM & 38310 & 12.52 / 8.29 & 12.42 / 8.11\\
 CNN+additive & 38296 & 12.44 / 8.34 & 12.66 / 8.18\\

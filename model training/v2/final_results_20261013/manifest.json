@@ -596,8 +596,8 @@
     "sha256": "05a1dba354917ed6f19b152a1e03bf9df771df4dba9948a357bc9ac73383ace3"
   },
   "build_package.py": {
-    "bytes": 7560,
-    "sha256": "6d6e124b523356c62ab99c8f8ddc83a2129e6c03ef0ca7676002ad561ff29b19"
+    "bytes": 9710,
+    "sha256": "16ee6d443e2c83a92747724025683850b01c20609e5254a500d40e202e97c06f"
   },
   "implementation/adapt.py": {
     "bytes": 3087,
@@ -668,8 +668,8 @@
     "sha256": "1eb2f241b23eaa29eec08ed2d6632e674dfc61634aa700cdc495e50444482407"
   },
   "report/Bad_Blood_V2_Final_Report_20261013.pdf": {
-    "bytes": 216960,
-    "sha256": "8c9a414fec468f871e1f0286ae62e1d609c50dedb711b5f79679625d48d23264"
+    "bytes": 218094,
+    "sha256": "4fdc43b95cf78723090b756121b7d6b7f339f75987e30287c31f3adeb0f243fd"
   },
   "report/main.bbl": {
     "bytes": 2520,
@@ -684,36 +684,36 @@
     "sha256": "0da7cb8410236fcba43001a5dfd5e74e56f46aaa8d0100ef0ccf472194e8c980"
   },
   "report/tables/architecture.tex": {
-    "bytes": 691,
-    "sha256": "8be0875c19be1758123196d5ab94a0f39d2636129c9944a38f1e0479d0628179"
+    "bytes": 676,
+    "sha256": "dbad07fd46d46b8f43e385bdd140af012318dbe199f11f92c653bc7efe48f7df"
   },
   "report/tables/epochs.tex": {
-    "bytes": 466,
-    "sha256": "17ce98901ef07911f0e8059db77efdda30e4b780cc9dfc6fcec22574a0557756"
+    "bytes": 522,
+    "sha256": "fec3f01623396308bcf7af774fc5318791f36a62256d9139e6a27a9f45a23970"
   },
   "report/tables/historical_six_macro.tex": {
-    "bytes": 1166,
-    "sha256": "57254a8aa4e0e6f815bb89af463a3a6c88743bc3e86c5d71fbc1086ef124c850"
+    "bytes": 1346,
+    "sha256": "02e9641ccb3d7c6ae5f230405bb3effcb9c549c5013832e80c47df0fee2b80fd"
   },
   "report/tables/historical_six_pooled.tex": {
-    "bytes": 1170,
-    "sha256": "bb1505466444cebcd1ce59970ea6455bc1a6aa0dcd0b3abe4a4af555805b01fd"
+    "bytes": 1341,
+    "sha256": "c2a95e93a1c88066861891301b16dbb22c8d18773486a0b0bcf9bd1a71f3ea66"
   },
   "report/tables/population.tex": {
-    "bytes": 1177,
-    "sha256": "3ba026efd90bc7c4342f28b7a9ee56fb276a28223ca6061d24a2ac772cbe5728"
+    "bytes": 1979,
+    "sha256": "594a2b73d802c7e20ba9594a52c1390bde9f451003b50560f40cfc775c69c1be"
   },
   "report/tables/previous_sixteen_macro.tex": {
-    "bytes": 1174,
-    "sha256": "d8d6f0312d9a87ce6c0fe105083ec1ccec04ac8ce318df3b562886c0c89d2cc3"
+    "bytes": 1345,
+    "sha256": "6d4826f81ce7a5b2051558cbe0e209a8bfd76f9d3edb590d52cfba5e13001c99"
   },
   "report/tables/previous_sixteen_pooled.tex": {
-    "bytes": 1183,
-    "sha256": "b5d60e5311528d4d6e1a96d9e207e444f68e3100e837848f622e4d0898ee43d7"
+    "bytes": 1354,
+    "sha256": "1fc8a5790857cc5528bb681969cc3ecc0920d9b6334fef06fed8d66076fe03c3"
   },
   "report/tables/seeds.tex": {
-    "bytes": 1138,
-    "sha256": "37f5354ad90eac126075eca3443aa73d75752dc44cbc52a8057ec3153493b382"
+    "bytes": 1402,
+    "sha256": "028b1c06a22c80eca6f925db76eccac72a067ce4c72447cd7e8565b318fa877a"
   },
   "reproduction_source/attention_cnn/train.py": {
     "bytes": 21526,
