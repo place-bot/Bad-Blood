@@ -1,0 +1,21 @@
+{
+  "date": "20261013",
+  "status": "passed",
+  "loaded_checkpoints": 144,
+  "repository_unit_tests_passed": 136,
+  "synthetic_interface_test": true,
+  "not_new_accuracy_evaluation": true,
+  "max_original_inference_difference_mmHg": 6.479187504737638e-06,
+  "ppg_checkpoint_checks": 72,
+  "max_ecg_invariance_difference": 0.0,
+  "selected_adaptation_equivalence": [
+    {
+      "modality": "dual",
+      "max_state_difference": 0.0
+    },
+    {
+      "modality": "ppg",
+      "max_state_difference": 0.0
+    }
+  ]
+}

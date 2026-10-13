@@ -1,0 +1,14 @@
+\begin{table*}[t]
+\centering\caption{Original six people: pooled metrics, three-seed average. Pairs are SBP / DBP; errors in mmHg. Pooled SD includes between-person offsets.}\label{tab:historical_six_pooled}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrrrrr}\toprule
+Split / input & MAE & RMSE & Bias & SD & Within 5 (\%) & Within 10 (\%) & Within 15 (\%)\\\midrule
+dual / Mean & 9.86 / 4.17 & 12.98 / 5.57 & 1.55 / -0.70 & 12.89 / 5.53 & 35.46 / 68.81 & 62.28 / 92.46 & 77.64 / 97.74\\
+dual / Bias correction & 9.61 / 4.57 & 12.11 / 5.66 & 2.20 / 0.20 & 11.88 / 5.61 & 32.15 / 60.35 & 61.21 / 93.11 & 79.67 / 99.39\\
+dual / PairSE & 8.92 / 3.91 & 11.52 / 5.13 & 2.12 / -0.11 & 11.31 / 5.10 & 35.23 / 69.72 & 65.39 / 94.78 & 83.23 / 99.13\\
+ppg / Mean & 9.86 / 4.17 & 12.98 / 5.57 & 1.55 / -0.70 & 12.89 / 5.53 & 35.46 / 68.81 & 62.28 / 92.46 & 77.64 / 97.74\\
+ppg / Bias correction & 8.51 / 4.17 & 10.99 / 5.39 & 0.06 / -1.38 & 10.99 / 5.21 & 38.10 / 64.92 & 66.80 / 93.88 & 83.85 / 99.09\\
+ppg / PairSE & 8.47 / 3.94 & 10.80 / 5.16 & -1.14 / -1.73 & 10.73 / 4.86 & 36.35 / 70.15 & 66.69 / 94.49 & 85.08 / 98.93\\
+\bottomrule\end{tabular}
+\end{table*}

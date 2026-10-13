@@ -1,0 +1,14 @@
+\begin{table*}[t]
+\centering\caption{Population pooled metrics, averaged across three seeds. All pressure pairs are SBP / DBP. Thresholds are absolute errors in mmHg; SD uses N-1.}\label{tab:population}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrrrrr}\toprule
+Split / input & MAE & RMSE & Bias & SD & Within 5 (\%) & Within 10 (\%) & Within 15 (\%)\\\midrule
+validation / dual & 12.51 / 8.26 & 15.95 / 10.55 & -1.19 / -0.03 & 15.90 / 10.54 & 26.13 / 37.91 & 48.54 / 67.08 & 66.09 / 85.17\\
+validation / ppg & 12.50 / 8.41 & 15.92 / 10.71 & -1.43 / -0.72 & 15.83 / 10.62 & 25.39 / 37.28 & 48.35 / 66.37 & 66.64 / 84.30\\
+test / dual & 12.39 / 8.00 & 15.89 / 10.19 & -1.76 / -0.89 & 15.78 / 10.15 & 26.03 / 38.83 & 49.22 / 68.91 & 67.60 / 86.68\\
+test / ppg & 12.32 / 7.85 & 15.73 / 9.88 & -2.05 / -1.64 & 15.57 / 9.67 & 25.52 / 38.39 & 48.67 / 69.38 & 67.82 / 87.85\\
+aami / dual & 19.46 / 12.42 & 26.33 / 16.14 & -13.22 / -8.21 & 22.76 / 13.90 & 17.82 / 25.23 & 35.79 / 49.65 & 51.75 / 69.92\\
+aami / ppg & 20.10 / 12.99 & 27.16 / 16.47 & -13.95 / -9.11 & 23.30 / 13.69 & 19.22 / 22.87 & 35.59 / 45.80 & 50.35 / 67.17\\
+\bottomrule\end{tabular}
+\end{table*}

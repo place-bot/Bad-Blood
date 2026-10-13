@@ -1,5 +1,14 @@
 # Bad-Blood V2: attention and personal BP calibration
 
+## Final results package - 20261013
+
+**[Current consolidated V2 models, IEEE report and full comparisons](final_results_20261013/)**
+groups both pretrained CNN+SE input modes and their learned PairSE personalizers.
+It includes 144 weight files, portable inference/adaptation, complete metrics,
+three-seed and per-person results, source snapshots and checksums. All models
+load successfully; the 136-test suite passes. Earlier dated results below are
+preserved as the research history, not a replacement for this final index.
+
 ## Dated outcomes: V2 — 20261012
 
 Start at the [20261012 version record](releases/20261012/README.md):
@@ -51,8 +60,9 @@ saved checkpoints and verification are linked in the extension.
 **CNN+SE (`se_last`) is the strongest pretrained model by primary-test MAE
 among our six required three-seed V2 architecture comparisons** (SBP 12.386,
 DBP 8.002 mmHg; 38,296 parameters). This describes the observed test ranking,
-not a change to the original validation selection. The separate PPG-only run
-has lower single-seed errors and has not been replicated over three seeds.
+not a change to the original validation selection. The later matched
+three-seed PPG-only CNN+SE comparison is now complete in the final package;
+it is separate from the earlier one-seed plain-CNN PPG ablation.
 
 At the user's request, the [new SE personalization experiment](se_personalization/README.md)
 starts from these SE checkpoints and uses each person's **complete early 20%

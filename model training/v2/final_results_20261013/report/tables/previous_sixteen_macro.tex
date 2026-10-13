@@ -1,0 +1,14 @@
+\begin{table*}[t]
+\centering\caption{Subsequent sixteen people: macro metrics, three-seed average. Pairs are SBP / DBP; errors in mmHg. Macro SD averages within-person sample SD.}\label{tab:previous_sixteen_macro}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrrrrr}\toprule
+Split / input & MAE & RMSE & Bias & SD & Within 5 (\%) & Within 10 (\%) & Within 15 (\%)\\\midrule
+dual / Mean & 17.41 / 9.71 & 19.56 / 10.87 & 3.23 / 3.02 & 11.18 / 5.73 & 15.06 / 23.73 & 28.68 / 57.18 & 42.71 / 81.01\\
+dual / Bias correction & 12.82 / 7.48 & 14.60 / 8.56 & 5.19 / 3.11 & 8.38 / 4.83 & 21.87 / 40.94 & 42.33 / 69.61 & 61.71 / 91.21\\
+dual / PairSE & 12.67 / 7.61 & 14.58 / 8.72 & 2.93 / 1.78 & 9.18 / 4.92 & 27.74 / 40.67 & 48.45 / 72.59 & 62.60 / 89.10\\
+ppg / Mean & 17.41 / 9.71 & 19.56 / 10.87 & 3.23 / 3.02 & 11.18 / 5.73 & 15.06 / 23.73 & 28.68 / 57.18 & 42.71 / 81.01\\
+ppg / Bias correction & 12.74 / 6.89 & 14.33 / 7.95 & 4.55 / 2.73 & 8.07 / 4.57 & 20.55 / 42.05 & 40.49 / 76.80 & 63.05 / 93.28\\
+ppg / PairSE & 12.47 / 7.51 & 14.07 / 8.60 & 2.63 / 1.61 & 8.78 / 4.81 & 26.39 / 38.33 & 46.45 / 70.90 & 63.59 / 88.89\\
+\bottomrule\end{tabular}
+\end{table*}

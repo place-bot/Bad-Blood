@@ -2,6 +2,22 @@
 
 ECG/PPG blood-pressure prediction and a PulseDB-aligned collection workflow.
 
+## V2 final results - 20261013
+
+**[Open the consolidated V2 final folder](model%20training/v2/final_results_20261013/)**
+for the IEEE report, runnable models, weights, architecture/training source and
+complete three-seed comparisons. Both ECG+PPG and PPG-only CNN+SE are retained,
+together with reference-conditioned PairSE personalization.
+
+Dual PairSE beats both personal mean and additive bias correction in SBP and
+DBP in all three seeds on the original six people (MAE **8.32 / 3.76** mmHg).
+Both modalities beat personal mean across seeds on the subsequent sixteen
+people, but their DBP does not consistently beat bias correction. The final
+report includes both results, full metrics and the follow-up experiments.
+
+The sections below retain the earlier dated research record; the linked final
+folder is the current consolidated entry point.
+
 ## V2 results snapshot — 20261012
 
 The dated [V2 release record](model%20training/v2/releases/20261012/README.md)
@@ -37,8 +53,9 @@ and metrics that did not improve. V1 and all earlier results remain preserved.
 among the six required three-seed architecture comparisons:** 12.39 mmHg SBP /
 8.00 mmHg DBP, with 38,296 parameters. It adds a channel-attention gate to the
 last residual block of the V1 high-resolution CNN. This is a test-result ranking;
-the original validation-selected architecture was the unchanged CNN. PPG-only
-had lower errors in a separate single-seed ablation, not a three-seed comparison.
+the original validation-selected architecture was the unchanged CNN. A later
+matched three-seed PPG-only CNN+SE study is included in the final folder above;
+the earlier single-seed plain-CNN modality ablation is a separate experiment.
 
 The [full-support SE personalization experiment](model%20training/v2/se_personalization/README.md)
 uses **all eligible windows in each person's first 20% of recording time** and
