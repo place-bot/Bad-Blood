@@ -1,0 +1,9 @@
+{
+  "original_code_commit": "0a46ad3",
+  "issue": "Saved prior-PairSE reference labels reconstructed as float64, unsupported by MPS during predictor replay.",
+  "repair": "Explicit float32 conversion only in saved prior-PairSE inference, consistent with the original predict_bank implementation.",
+  "training_method_changed": false,
+  "candidate_grid_changed": false,
+  "selection_changed": false,
+  "guard": "Resume asserts both development selections exactly match the existing selection.json before writing."
+}

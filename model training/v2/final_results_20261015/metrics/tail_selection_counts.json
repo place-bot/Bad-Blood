@@ -1,0 +1,186 @@
+{
+  "ppg": [
+    {
+      "endpoint": 0,
+      "configuration": "source",
+      "count": 11
+    },
+    {
+      "endpoint": 0,
+      "configuration": "{'lr': 0.0001, 'scope': 'tail', 'steps': 100}",
+      "count": 4
+    },
+    {
+      "endpoint": 0,
+      "configuration": "{'lr': 0.0001, 'scope': 'tail', 'steps': 10}",
+      "count": 20
+    },
+    {
+      "endpoint": 0,
+      "configuration": "{'lr': 0.0001, 'scope': 'tail', 'steps': 25}",
+      "count": 4
+    },
+    {
+      "endpoint": 0,
+      "configuration": "{'lr': 0.0001, 'scope': 'tail', 'steps': 50}",
+      "count": 4
+    },
+    {
+      "endpoint": 0,
+      "configuration": "{'lr': 0.0003, 'scope': 'tail', 'steps': 100}",
+      "count": 23
+    },
+    {
+      "endpoint": 0,
+      "configuration": "{'lr': 0.0003, 'scope': 'tail', 'steps': 10}",
+      "count": 10
+    },
+    {
+      "endpoint": 0,
+      "configuration": "{'lr': 0.0003, 'scope': 'tail', 'steps': 25}",
+      "count": 4
+    },
+    {
+      "endpoint": 0,
+      "configuration": "{'lr': 0.0003, 'scope': 'tail', 'steps': 50}",
+      "count": 10
+    },
+    {
+      "endpoint": 1,
+      "configuration": "source",
+      "count": 5
+    },
+    {
+      "endpoint": 1,
+      "configuration": "{'lr': 0.0001, 'scope': 'tail', 'steps': 100}",
+      "count": 5
+    },
+    {
+      "endpoint": 1,
+      "configuration": "{'lr': 0.0001, 'scope': 'tail', 'steps': 10}",
+      "count": 20
+    },
+    {
+      "endpoint": 1,
+      "configuration": "{'lr': 0.0001, 'scope': 'tail', 'steps': 25}",
+      "count": 2
+    },
+    {
+      "endpoint": 1,
+      "configuration": "{'lr': 0.0001, 'scope': 'tail', 'steps': 50}",
+      "count": 6
+    },
+    {
+      "endpoint": 1,
+      "configuration": "{'lr': 0.0003, 'scope': 'tail', 'steps': 100}",
+      "count": 22
+    },
+    {
+      "endpoint": 1,
+      "configuration": "{'lr': 0.0003, 'scope': 'tail', 'steps': 10}",
+      "count": 11
+    },
+    {
+      "endpoint": 1,
+      "configuration": "{'lr': 0.0003, 'scope': 'tail', 'steps': 25}",
+      "count": 9
+    },
+    {
+      "endpoint": 1,
+      "configuration": "{'lr': 0.0003, 'scope': 'tail', 'steps': 50}",
+      "count": 10
+    }
+  ],
+  "dual": [
+    {
+      "endpoint": 0,
+      "configuration": "source",
+      "count": 11
+    },
+    {
+      "endpoint": 0,
+      "configuration": "{'lr': 0.0001, 'scope': 'tail', 'steps': 100}",
+      "count": 9
+    },
+    {
+      "endpoint": 0,
+      "configuration": "{'lr': 0.0001, 'scope': 'tail', 'steps': 10}",
+      "count": 13
+    },
+    {
+      "endpoint": 0,
+      "configuration": "{'lr': 0.0001, 'scope': 'tail', 'steps': 25}",
+      "count": 2
+    },
+    {
+      "endpoint": 0,
+      "configuration": "{'lr': 0.0001, 'scope': 'tail', 'steps': 50}",
+      "count": 4
+    },
+    {
+      "endpoint": 0,
+      "configuration": "{'lr': 0.0003, 'scope': 'tail', 'steps': 100}",
+      "count": 21
+    },
+    {
+      "endpoint": 0,
+      "configuration": "{'lr': 0.0003, 'scope': 'tail', 'steps': 10}",
+      "count": 13
+    },
+    {
+      "endpoint": 0,
+      "configuration": "{'lr': 0.0003, 'scope': 'tail', 'steps': 25}",
+      "count": 9
+    },
+    {
+      "endpoint": 0,
+      "configuration": "{'lr': 0.0003, 'scope': 'tail', 'steps': 50}",
+      "count": 8
+    },
+    {
+      "endpoint": 1,
+      "configuration": "source",
+      "count": 8
+    },
+    {
+      "endpoint": 1,
+      "configuration": "{'lr': 0.0001, 'scope': 'tail', 'steps': 100}",
+      "count": 4
+    },
+    {
+      "endpoint": 1,
+      "configuration": "{'lr': 0.0001, 'scope': 'tail', 'steps': 10}",
+      "count": 17
+    },
+    {
+      "endpoint": 1,
+      "configuration": "{'lr': 0.0001, 'scope': 'tail', 'steps': 25}",
+      "count": 4
+    },
+    {
+      "endpoint": 1,
+      "configuration": "{'lr': 0.0001, 'scope': 'tail', 'steps': 50}",
+      "count": 7
+    },
+    {
+      "endpoint": 1,
+      "configuration": "{'lr': 0.0003, 'scope': 'tail', 'steps': 100}",
+      "count": 26
+    },
+    {
+      "endpoint": 1,
+      "configuration": "{'lr': 0.0003, 'scope': 'tail', 'steps': 10}",
+      "count": 10
+    },
+    {
+      "endpoint": 1,
+      "configuration": "{'lr': 0.0003, 'scope': 'tail', 'steps': 25}",
+      "count": 9
+    },
+    {
+      "endpoint": 1,
+      "configuration": "{'lr': 0.0003, 'scope': 'tail', 'steps': 50}",
+      "count": 5
+    }
+  ]
+}

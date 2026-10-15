@@ -1,0 +1,185 @@
+\documentclass[11pt]{article}
+\usepackage[preprint]{acl}
+\usepackage{times}
+\renewcommand{\ttdefault}{lmtt}
+\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,booktabs,array,tabularx}
+\usepackage{url}
+\title{Attention for the Existing High-Resolution Bad-Blood CNN:\\Evidence Review and Frozen Experimental Protocol}
+\author{Bad-Blood Research and Engineering\\Track A, Version 2\\\texttt{place-bot/Bad-Blood}}
+\date{}
+\begin{document}
+\maketitle
+\begin{abstract}
+This review asks whether channel and temporal attention improve the existing Bad-Blood convolutional blood-pressure estimator under controlled comparison. The audited reference is the 37,666-parameter \texttt{BPNet(pool=1)} at repository commit \texttt{7553248}; it receives synchronized 10-second ECG/PPG windows sampled at 125 Hz and estimates contemporaneous systolic and diastolic pressure. Original attention papers motivate small, testable interventions. Physiological studies establish relevance but expose important differences in task, calibration, evaluation unit, and computational scale. We distinguish learned feature channels from input modalities and waveform reconstruction from future forecasting. The resulting protocol preserves the high-resolution backbone, reserves separate patients for the personalization track, fixes all training settings, and evaluates attention type, placement, modality dependence, and capacity. This document specifies a prospective study and contains no new experimental results.
+\end{abstract}
+
+\section{Scope and evidence standard}
+The research question is: can attention improve the existing ECG/PPG-to-SBP/DBP mapping without changing its task, data budget, or model-selection rules? ECG denotes electrocardiography, PPG photoplethysmography, and SBP/DBP systolic/diastolic blood pressure. ABP denotes the arterial-pressure waveform. A model consuming a window and estimating pressure in that same window performs contemporaneous estimation. Producing a matching ABP waveform is reconstruction. Neither demonstrates prediction beyond the last observed sample. Track B studies personal calibration followed by estimation from later observed ECG/PPG, with SBP/DBP labels from each later input window itself. Strict future forecasting without observing that later ECG/PPG is outside the scope of both tracks.
+
+We inspected original conference papers, publisher pages, an author-accepted manuscript, and official code repositories. Sources were checked on October 9, 2026. This is a focused engineering review, not a systematic meta-analysis. Publication status, inaccessible details, and unverified code availability are stated explicitly. All reviewed papers in Table~\ref{tab:literature} are published articles or conference papers; the Tang manuscript is an accepted version of a published conference paper. No preprint result is substituted for a published result. Numerical values are reported only where verified from the primary material. Missing detail is recorded as not established by the inspected source, rather than guessed.
+
+The literature does not provide a single transferable benchmark number. A result from a calibrated cohort, a record-level split without patient identifiers, or a different target cannot be used as a direct comparator for a patient-disjoint VitalDB experiment. Our experimental conclusions will come from rerunning all variants through one pipeline.
+
+\section{Audited architectural reference}
+The source is \texttt{model training/}\allowbreak\texttt{PulseDB-based Model-V1/network.py} at commit \texttt{7553248}. The high-resolution configuration explicitly sets the initial average-pooling factor to one; the class default of five is a different, lower-resolution configuration. Table~\ref{tab:backbone} describes the retained architecture. The two convolution kernels in each residual block have lengths seven and five, with batch normalization after each convolution, SiLU between convolutions and after residual addition, and a projection shortcut when dimensions change.
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{lll}
+\toprule
+Stage & Channels & Length\\
+\midrule
+ECG/PPG input & 2 & 1,250\\
+Average pool, factor 1 & 2 & 1,250\\
+Convolution, kernel 7, stride 2 & 8 & 625\\
+Residual block, stride 2 & 16 & 313\\
+Residual block, stride 2 & 32 & 157\\
+Residual block, stride 2 & 48 & 79\\
+Adaptive mean pool & 48 & 1\\
+Dropout 0.15, linear, SiLU & 32 & ---\\
+Linear SBP/DBP output & 2 & ---\\
+\bottomrule
+\end{tabular}
+\caption{Existing high-resolution backbone. Batch dimension is omitted. The original model has 37,666 trainable parameters; the waveform duration and the scalar target are preserved.}
+\label{tab:backbone}
+\end{table}
+
+The existing converter selects ECG and PPG from the first two channels of the official VitalDB-specific PulseDB arrays, retaining the provided SBP/DBP labels. Each input channel is min--max normalized within its 10-second window; flat or nonfinite signals and invalid labels are excluded. The reference labels originate from ABP, not actual cuff readings. The raw-signal adapter and the already filtered PulseDB input path must remain distinguishable: calling the raw adapter on already prepared windows would introduce an additional preprocessing change.
+
+The original objective is mean squared error after standardizing each pressure target with training-only mean and standard deviation. Its checkpoint and learning-rate decisions use the average of SBP and DBP patient-macro MAE in mmHg. This distinction between optimization objective and selection metric is retained. Existing checkpoint scores are historical context, not the v2 baseline score: excluding the Track B cohort changes the training population, so every v2 model, including the unchanged architecture, must be retrained.
+
+\section{Mechanisms and what they attend to}
+For intermediate features $F\in\mathbb{R}^{B\times C\times T}$, $C$ indexes learned filters and $T$ time positions. Once the first convolution has mixed ECG and PPG, those learned channels no longer correspond one-to-one to sensors. A gate over 48 filters therefore is not evidence that a model assigned a particular weight to ECG versus PPG.
+
+\subsection{Feature-channel attention}
+\citet{hu2018se} introduced squeeze-and-excitation (SE): global spatial pooling produces a channel descriptor, a bottleneck MLP learns channel relationships, and a sigmoid gate rescales each feature channel. The original empirical tasks were image classification and detection, not BP estimation; patient splits and personal calibration are inapplicable. Official code is available at \url{https://github.com/hujie-frank/SENet}. We use the operator as an architectural hypothesis and make no claim that the original image gains imply blood-pressure gains.
+
+For our 1D adaptation,
+\begin{align}
+z_c &= T^{-1}\sum_{t=1}^{T}F_{c,t},\\
+a &= \sigma\!\left(W_2\operatorname{ReLU}(W_1z+b_1)+b_2\right),\\
+F'_{c,t} &= a_cF_{c,t}.
+\end{align}
+This definition uses the entire observed input representation, which is appropriate for Track A. It should not be described as a causal per-sample streaming operator.
+
+\citet{wang2020eca} proposed efficient channel attention (ECA), avoiding the MLP's dimensionality reduction. A short convolution acts across the pooled channel descriptor, followed by sigmoid rescaling. Its reported efficiency evidence also comes from vision tasks. Official code is \url{https://github.com/BangguWu/ECANet}. The convolution is over feature-channel indices, even though it is implemented as a 1D convolution; it is not temporal convolution over the physiological waveform. ECA is particularly relevant here because three additional weights are negligible relative to the fixed backbone, giving an informative low-capacity attention comparison.
+
+\subsection{Temporal and combined attention}
+\citet{woo2018cbam} proposed CBAM with sequential channel and spatial attention for image classification and detection. The channel gate combines average- and max-pooled descriptors through a shared MLP; spatial attention pools across channels and convolves the resulting maps. Official code is \url{https://github.com/Jongchan/attention-module}. The original paper does not validate a physiological 1D adaptation. Our temporal adaptation replaces the image spatial map with the single time axis and must be named \emph{CBAM1D}, not an exact reproduction of the image architecture.
+
+Our standalone temporal gate is
+\begin{equation}
+a_t=\sigma\!\left(\operatorname{Conv}_{7}\!\left[
+\operatorname{mean}_{c}F;\operatorname{max}_{c}F\right]\right),
+\end{equation}
+with shape $B\times1\times T$, multiplied into $F$. It assigns salience to temporal positions. It is not pairwise self-attention and does not build a $T\times T$ similarity matrix. Combined CBAM1D first applies a channel gate and then this temporal gate. Both are distinct from a Transformer, which mixes values across positions using query--key similarities.
+
+\section{Physiological evidence and limitations}
+\subsection{Temporal attention after recurrent features}
+\citet{eom2020attention} studied 15 volunteers with ECG, PPG, and ballistocardiography, using 5-second inputs and a CNN--bidirectional-GRU--attention model for scalar BP estimation. Attention weights select among recurrent time-step features. The study is explicitly calibration-based and uses each participant's data; it is not an unseen-patient forecasting evaluation. The abstract reports SBP/DBP MAE of 4.06/3.33 mmHg and $R^2$ of 0.52/0.49. Its small, calibrated laboratory cohort limits transfer to VitalDB. The inspected evidence did not establish a publicly released official implementation or a deployment calibration budget counted as independent cuff events. This paper motivates temporal weighting and modality ablations, but it does not establish that a small CNN gate reproduces the recurrent model's performance.
+
+\subsection{A direct 1D CBAM example}
+\citet{dai2024tcn} combine four dilated-convolution residual blocks with CBAM for contemporaneous SBP/DBP estimation on MIMIC-II-derived UCI data. Inputs are PPG and two derivatives, shaped $3\times1000$ at 125 Hz; the temporal kernel is seven and channel reduction sixteen. Their split takes the first 70\% for training, next 10\% for validation, and final 20\% for testing. Patient-disjointness is not established. Table 3 reports SBP/DBP MAE 5.3482/2.1190 mmHg and error standard deviation 8.3410/3.1795 mmHg; the TCN without CBAM has MAE 5.8680/2.3707. Official code and personal calibration were not verified. The text inconsistently describes 10-second segmentation versus 8-second final samples, so our explicit shapes take precedence over an undocumented reproduction. Causal convolutions alone do not make same-window labels a future target.
+
+\subsection{Multiscale features and task sharing}
+\citet{hu2022multiscale} propose MSF-MTLNet: parallel convolution kernels produce different receptive fields, attention fuses the scale branches, and task-specific processing refines shared features for SBP and DBP. The publisher's inspected text explicitly describes an inter-subject evaluation and contemporaneous PPG-based estimation. Full numeric tables, exact split construction, and official code were not independently accessible in the reviewed primary material; we therefore do not quote secondary-source performance numbers. The contribution is a rationale for multiscale representation, not evidence that adding several branches to our CNN is a controlled attention-only intervention. A new multiscale backbone would require a separate no-attention version with the same branches and capacity. It is outside the principal matrix, which preserves the audited backbone.
+
+\subsection{Fusion and CNN--attention hybrids}
+\citet{tang2025aff} use 10-second, 125-Hz ECG/PPG inputs with demographic variables from the VitalDB portion of PulseDB. Their ResNet-like CNN, Transformer, and iterative attentional feature fusion estimate contemporaneous scalar pressure. The split is calibration-based: each of 1,293 subjects supplies 360 training and 40 test windows. Reported SBP/DBP MAE is 3.79/2.37 mmHg; the manuscript also describes early stopping on test loss. Those results cannot support patient-independent generalization or independent final-test evaluation. The fusion joins local/global and demographic features, not separate ECG and PPG encoders. No official code release was verified. The paper provides an architectural idea and a concrete example of why protocol scrutiny matters as much as reported error.
+
+\citet{zheng2025utrans} map 5-second ECG, PPG, and two PPG derivatives to contemporaneous normalized BP waveforms and scalar pressure. UTransBPNet combines SE--U-Net blocks, a 12-layer Transformer bottleneck, and attention between U-Net levels, not ECG--PPG modality streams. Drink (25 subjects) and Exercise (20 subjects) use leave-one-subject-out validation; MIMIC uses ten-fold instance-independent validation on 163 recordings, with patient identities unavailable. MIMIC SBP/DBP MAD is 4.38/2.25 mmHg. At 32.55 million parameters it is far larger than our reference. Its scenario-specific fine-tuning is explicitly not personal calibration. No official public code was located. The study supports testing both short-range and longer-range features while documenting distribution shifts; it does not demonstrate future-waveform prediction or that full-model tuning is optimal with a few personal samples.
+
+\citet{jin2026cra} provide a direct modality-fusion example: CRA-BPNet processes ECG and PPG through separate streams, then uses constrained rhythm cross-attention with temporal locality and frequency priors before multiscale recurrent processing. The publisher preview describes scalar SBP/DBP estimation and calibration-based PulseDB and UCI-BP tests; it reports 1.077 million parameters and 65.78 million FLOPs. Exact error tables, patient grouping beyond that calibration-based designation, and official code were not verified, so they are not asserted. This is distinct from gating already mixed channels. A faithful ECG--PPG cross-attention study would alter the architecture substantially; it is a possible supplementary follow-up after lightweight gates, not a substitute for the required baseline comparison.
+
+\begin{table*}[t]
+\centering\footnotesize
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.25cm}>{\raggedright\arraybackslash}p{3.5cm}>{\raggedright\arraybackslash}X@{}}
+\toprule
+Source & Task and attention & Evaluation evidence and implementation relevance\\
+\midrule
+Hu et al. (2018) & Image tasks; pooled feature-channel SE & Not a physiological evaluation. Official code. Transfer the operator, not claimed BP accuracy.\\
+Wang et al. (2020) & Image tasks; ECA across pooled channels & Official code. Very small parameter overhead; convolution axis must be stated.\\
+Woo et al. (2018) & Image tasks; channel then spatial CBAM & Official code. Our temporal version is an explicit 1D adaptation.\\
+Eom et al. (2020) & ECG/PPG/BCG to scalar BP; temporal attention & 15-person calibrated study; MAE 4.06/3.33 mmHg. No future-waveform claim.\\
+Dai et al. (2024) & PPG and derivatives to scalar BP; TCN--CBAM & 70/10/20 split; patient separation not established. MAE 5.3482/2.1190 mmHg.\\
+Hu et al. (2022) & PPG to scalar BP; multiscale attention, MTL & Publisher reports inter-subject split. Full quantitative verification incomplete.\\
+Tang et al. (2025) & ECG/PPG + demographics to scalar BP; AFF & Same 1,293 subjects in train/test; test used for stopping. MAE 3.79/2.37 mmHg.\\
+Zheng et al. (2025) & ECG/PPG/derivatives to concurrent waveform/BP & LOSO for two private cohorts; recording folds for MIMIC. MIMIC MAD 4.38/2.25 mmHg.\\
+Jin et al. (2026) & ECG/PPG to scalar BP; cross-modal attention & Calibration-based evaluation in preview; numerical accuracy not verified.\\
+\bottomrule
+\end{tabularx}
+\caption{Comparative evidence map. Numerical pairs are SBP/DBP in the source's stated metric; they are not a common leaderboard. The physiological methods estimate or reconstruct contemporaneous pressure, not a strictly later waveform. Code availability means an official public release was actually verified; ``not located'' elsewhere is not proof that none exists.}
+\label{tab:literature}
+\end{table*}
+
+\section{Frozen experimental protocol}
+\subsection{Cohorts and inference information}
+Only the existing VitalDB-derived balanced data are used; expanding datasets is outside this study. PulseDB provides subject identifiers and distinguishes calibration-based from calibration-free evaluation \citep{wang2023pulsedb}. VitalDB provenance is verified from the official subset metadata and repository audit, not inferred from a filename. The full eligible existing training cohort is retained after exclusions required for clean evaluation. Thirty-one previously inspected raw-record patients are excluded from all population partitions, including primary testing, to protect the separate Track B cohort and avoid reusing exploratory cases for final evaluation. The shared audit and deterministic manifest record their exact identifiers, eligibility, and roles. Exclusions are applied identically to all Track A models.
+
+Population train, validation, and test are separated by verified patient identity. Record-to-patient mapping is applied before segment assignment. The corrected audited population contains 1,085 training patients (390,600 windows), 192 validation patients (69,120 windows), and 141 primary-test patients (56,400 windows). These are the post-exclusion counts, not the historical v1 cohort sizes. The original validation subject assignment is retained for remaining patients unless the shared audit demonstrates an identity defect. Official calibration-free test data provide the primary evaluation. The named AAMI subset is a separate distributional stress test with 116 patients and 666 windows; the audited 31-patient exclusion removes none of its patients. Any patient overlap between test subsets is recorded, and their estimates are not pooled as independent cohorts. A named subset or low error does not establish compliance with a clinical device standard.
+
+The inputs remain ECG/PPG from the label's own 10-second interval. All input normalization uses only that interval. Target-standardization statistics use training patients only. No ABP landmarks, target amplitudes, cuff values, demographics, or patient identity are fed as predictors. Precomputed reference-dependent quality selection is documented separately from an input-only deployed quality rule. Missing or flat inputs are excluded consistently, with counts retained. Track A results are explicitly conditional on the available offline signal-selection procedure.
+
+\subsection{Models and insertion points}
+The principal models are the unchanged high-resolution CNN, SE-last, temporal-last, and CBAM1D-last. ECA-last is included if its negligible overhead permits the same full run budget. Every ``last'' gate acts on the $B\times48\times79$ output after the last residual block and before adaptive pooling; the residual block itself is unchanged. SE uses reduction eight, giving hidden width six. CBAM1D shares the same width-six MLP across average- and max-pooled descriptors. ECA uses a fixed three-tap convolution over the pooled channel axis. Temporal convolution has kernel seven, padding three, and no bias. Gate outputs use sigmoid without an additional residual rescaling.
+
+SE-all supplies a placement ablation at the outputs of all three residual blocks, with $(C,T)=(16,313),(32,157),(48,79)$ and widths $2,4,6$. Placement is chosen prospectively and not optimized on test data. The input, head, convolution widths, activation functions, dropout, targets, and label pipeline stay fixed. Baseline architecture identity and parameter count must be asserted before training.
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{lrr}
+\toprule
+Variant & Added parameters & Total\\
+\midrule
+Baseline & 0 & 37,666\\
+SE-last & 630 & 38,296\\
+Temporal-last & 14 & 37,680\\
+CBAM1D-last & 644 & 38,310\\
+ECA-last & 3 & 37,669\\
+SE-all & 1,004 & 38,670\\
+Additive context-last & 630 & 38,296\\
+\bottomrule
+\end{tabular}
+\caption{Analytic expected parameter counts for the specified implementations. Runtime counts must be checked and reported. A biased SE MLP has $2Cd+d+C$ parameters; temporal attention has $2k$ and ECA has $k$.}
+\label{tab:capacity}
+\end{table}
+
+The required capacity control uses the same two biased linear layers as SE: broadcast the resulting pooled-context descriptor and add it to the last-block features without a multiplicative sigmoid gate. It has exactly the same 630 additional parameters as SE-last but tests a different computation. This is a more direct capacity comparison than an input-independent 48-parameter gain. Both the matched control and the absolute/relative overhead (SE-last adds approximately 1.67\%) are reported. Equal parameter counts do not imply equal optimization or expressiveness; the result can distinguish these specified operators, not prove a universal advantage of attention.
+
+ECG-only and PPG-only baseline models are trained from scratch with the missing normalized channel set to zero. This preserves the two-input architecture and its parameter count. Input noise is applied only to available channels. These are ablations of available information, not inferred channel-importance explanations. To contain the run budget, these two supplementary ablations use seed 42 and are interpreted descriptively; they do not support a seed-robust claim about the interaction of attention and modality.
+
+\subsection{Optimization and experiment budget}
+All principal trainable comparisons use seeds 42, 43, and 44. Each seed fixes initialization, batch ordering, augmentation, and supported deterministic operations; any nondeterministic backend operations are recorded. There is no architecture-specific learning-rate search. The shared settings retain AdamW with learning rate $10^{-3}$, weight decay $10^{-3}$, batch size 256, normalized MSE, Gaussian input noise with standard deviation 0.003, and gradient-norm clipping at five. ReduceLROnPlateau monitors validation macro-MAE with factor 0.5 and patience three. Maximum training is 40 epochs and stopping patience is eight epochs without improvement. Model selection loads the lowest validation macro-MAE checkpoint; it does not use the final epoch or any test score.
+
+The required inventory contains baseline, SE-last, temporal-last, CBAM1D-last, SE-all, and additive context-last at all three seeds (18 runs), plus the two seed-42 modality ablations (20 runs in total). ECA-last at three seeds is the first supplementary addition if projected runtime permits. No run is removed because its outcome is negative. Missing resources must leave a named unfinished run, its reason, and a resumable command; a smoke test never replaces a principal run. The literature/protocol commit precedes implementation and training, and every later deviation is recorded with its reason and time.
+
+\subsection{Costs and reproducible outputs}
+At the last block, SE's two dense transformations require $2Cd=576$ multiply--accumulates per example, plus pooling, nonlinearities, and 3,792 feature multiplications. ECA uses $Ck=144$ descriptor multiply--accumulates. Temporal convolution uses $2kT=1,106$ multiply--accumulates, plus pooling and feature multiplications. CBAM evaluates its shared MLP twice and applies both gates. These counts explain scaling but are not complete FLOP or latency measurements; comparisons must state whether a multiply--accumulate counts as one or two FLOPs.
+
+The pipeline reports actual trainable parameters, measured CPU/device inference latency after warmup, batch size, peak memory where measurable, training duration, hardware, and software versions. A model that reduces MAE but substantially increases inference cost presents a tradeoff. Raspberry Pi performance is not inferred from desktop timings. Each run saves its configuration, seed, split-manifest hash, software/source identifiers, best checkpoint metadata, training history, predictions, reference labels, subject/record identifiers, and available segment timestamps or source indices. A table entry must be traceable to those artifacts.
+
+\section{Evaluation and interpretation}
+For pressure output $q$ and error $e_{ijq}=\hat y_{ijq}-y_{ijq}$ in patient $i$, window $j$, the pooled metrics are
+\begin{align}
+\operatorname{MAE}_q &= \frac{1}{N}\sum_{i,j}|e_{ijq}|,\\
+\operatorname{RMSE}_q &= \sqrt{\frac{1}{N}\sum_{i,j}e_{ijq}^2}.
+\end{align}
+Patient-macro MAE averages the individual patient MAEs with equal patient weights. Report both pooled and macro aggregation, because patients contributing more windows otherwise receive greater weight. SBP and DBP each receive a separate mmHg column. The mean of their macro-MAEs is only the fixed model-selection scalar.
+
+Report mean signed error, error standard deviation, median absolute error, absolute-error quantiles, fractions within 5/10/15 mmHg, Pearson correlation, and $R^2$. Undefined correlation for a constant reference is flagged rather than replaced by zero. Pressure-range analysis uses predeclared descriptive bins and reports both patient and window counts. For SBP, use below 100, 100--139, and at least 140 mmHg; for DBP, below 60, 60--89, and at least 90 mmHg. These are analysis strata, not diagnostic decisions. Sparse strata are retained and their uncertainty explained.
+
+For the main paired comparison, calculate each patient's model-minus-baseline change in MAE and RMSE. Use the same test patients and matched seeds. A patient bootstrap resamples patients with all their windows together; it must not resample individual overlapping windows as independent observations. Report seed-wise estimates separately from the patient confidence interval. With few patients, display all individual differences and avoid overstating the interval's precision. Bland--Altman figures include patient-level mean errors or an explicitly repeated-measurement analysis; a conventional pooled scatter alone does not resolve within-person dependence.
+
+Attention helps only if gains survive a fair rerun, show useful patient-level consistency, and justify their computation. A low pooled error with failures at pressure extremes is not a uniform improvement. Interpret SE versus temporal attention as different mechanisms, SE-last versus SE-all as placement, and SE versus additive context as a capacity-matched operator comparison. Null or inconsistent findings are scientifically informative, particularly if the unchanged small baseline performs comparably at lower cost.
+
+Finally, salience maps are not physiological explanations by themselves. Learned channel weights do not identify sensor importance, and temporal weights do not prove causal relevance of a heartbeat landmark. No result here supports durability of personal calibration, cross-visit transfer, future waveform forecasting, or clinical-standard compliance; those claims require different information and evaluation protocols.
+
+\section{Pre-implementation decision}
+The review supports lightweight SE, temporal, and combined gates as direct interventions on the audited backbone, with ECA offering an inexpensive alternative. Larger fusion and multiscale hybrids are relevant context but would confound the first controlled comparison. The study will proceed only after both tracks' literature-review PDFs compile and are visually inspected, then the frozen protocol is committed. The final research report will replace prospective expectations with saved, verified experimental outcomes, including negative results and unfinished runs.
+
+\bibliography{references}
+\end{document}

@@ -1,0 +1,350 @@
+{
+  "historical_six": {
+    "ppg": {
+      "selected": "paired_head_lr0.0003_s25",
+      "controls": {
+        "calibration_mean": {
+          "seed_deltas": [
+            [
+              -1.4046425696059792,
+              -0.2701361038171042
+            ],
+            [
+              -0.8395369462727356,
+              -0.17607876880012263
+            ],
+            [
+              -1.5899836097350546,
+              -0.6643410998650823
+            ]
+          ],
+          "seeds_better_per_endpoint": [
+            3,
+            3
+          ],
+          "all_seeds_both_endpoints": true,
+          "participant_bootstrap_ci95": [
+            [
+              -2.7155761461627215,
+              -0.995099402260745
+            ],
+            [
+              0.8056564060279593,
+              0.4137204661547577
+            ]
+          ],
+          "ci_upper_below_zero_per_endpoint": [
+            false,
+            false
+          ],
+          "people_improved": [
+            5,
+            4
+          ],
+          "n_people": 6
+        },
+        "bias": {
+          "seed_deltas": [
+            [
+              0.2138746917073595,
+              -0.4229612655077757
+            ],
+            [
+              0.062402832212919535,
+              -0.1798288914599553
+            ],
+            [
+              -0.5241122284798978,
+              -0.6906241678791862
+            ]
+          ],
+          "seeds_better_per_endpoint": [
+            1,
+            3
+          ],
+          "all_seeds_both_endpoints": false,
+          "participant_bootstrap_ci95": [
+            [
+              -1.6136312802822743,
+              -1.3236510078066157
+            ],
+            [
+              1.5597764508019687,
+              0.189755094302079
+            ]
+          ],
+          "ci_upper_below_zero_per_endpoint": [
+            false,
+            false
+          ],
+          "people_improved": [
+            3,
+            4
+          ],
+          "n_people": 6
+        }
+      },
+      "all_seeds_beat_both_controls_both_pressures": false
+    },
+    "dual": {
+      "selected": "paired_head_lr0.0003_s25",
+      "controls": {
+        "calibration_mean": {
+          "seed_deltas": [
+            [
+              -1.87636715217963,
+              -0.48386746504685485
+            ],
+            [
+              -0.41758971730737215,
+              -0.256583452677694
+            ],
+            [
+              -1.1490401498985658,
+              -0.6364074055551767
+            ]
+          ],
+          "seeds_better_per_endpoint": [
+            3,
+            3
+          ],
+          "all_seeds_both_endpoints": true,
+          "participant_bootstrap_ci95": [
+            [
+              -2.2341142831915577,
+              -0.9648812046985142
+            ],
+            [
+              0.050978558487849636,
+              0.1605237229560951
+            ]
+          ],
+          "ci_upper_below_zero_per_endpoint": [
+            false,
+            false
+          ],
+          "people_improved": [
+            5,
+            4
+          ],
+          "n_people": 6
+        },
+        "bias": {
+          "seed_deltas": [
+            [
+              -1.4042883542143612,
+              -0.6121386577445702
+            ],
+            [
+              -0.8557915342274267,
+              -0.69586474151459
+            ],
+            [
+              -0.2588810261476162,
+              -0.6158494961829022
+            ]
+          ],
+          "seeds_better_per_endpoint": [
+            3,
+            3
+          ],
+          "all_seeds_both_endpoints": true,
+          "participant_bootstrap_ci95": [
+            [
+              -1.4556700897527388,
+              -0.9518194283664164
+            ],
+            [
+              -0.23398791274046715,
+              -0.2885819500746958
+            ]
+          ],
+          "ci_upper_below_zero_per_endpoint": [
+            true,
+            true
+          ],
+          "people_improved": [
+            5,
+            5
+          ],
+          "n_people": 6
+        }
+      },
+      "all_seeds_beat_both_controls_both_pressures": true
+    }
+  },
+  "previous_sixteen": {
+    "ppg": {
+      "selected": "paired_head_lr0.0003_s25",
+      "controls": {
+        "calibration_mean": {
+          "seed_deltas": [
+            [
+              -5.015449419421989,
+              -2.419477208548283
+            ],
+            [
+              -4.99361991399887,
+              -2.0297968956605894
+            ],
+            [
+              -4.829502265714568,
+              -2.1416508095988442
+            ]
+          ],
+          "seeds_better_per_endpoint": [
+            3,
+            3
+          ],
+          "all_seeds_both_endpoints": true,
+          "participant_bootstrap_ci95": [
+            [
+              -8.088034029993548,
+              -3.5330175742095977
+            ],
+            [
+              -1.521643868747132,
+              -0.9240889967677733
+            ]
+          ],
+          "ci_upper_below_zero_per_endpoint": [
+            true,
+            true
+          ],
+          "people_improved": [
+            12,
+            13
+          ],
+          "n_people": 16
+        },
+        "bias": {
+          "seed_deltas": [
+            [
+              -0.28675965420351623,
+              0.43754798391142913
+            ],
+            [
+              -0.4938857116165245,
+              0.7434484217189201
+            ],
+            [
+              -0.03736012054484483,
+              0.6974498019135478
+            ]
+          ],
+          "seeds_better_per_endpoint": [
+            3,
+            0
+          ],
+          "all_seeds_both_endpoints": false,
+          "participant_bootstrap_ci95": [
+            [
+              -2.1226174772855253,
+              -0.03621254406466955
+            ],
+            [
+              1.531865273653452,
+              1.2557655787511197
+            ]
+          ],
+          "ci_upper_below_zero_per_endpoint": [
+            false,
+            false
+          ],
+          "people_improved": [
+            8,
+            4
+          ],
+          "n_people": 16
+        }
+      },
+      "all_seeds_beat_both_controls_both_pressures": false
+    },
+    "dual": {
+      "selected": "paired_head_lr0.0003_s25",
+      "controls": {
+        "calibration_mean": {
+          "seed_deltas": [
+            [
+              -4.627504704667908,
+              -1.9765599712576236
+            ],
+            [
+              -4.787989058276203,
+              -2.2076526410310873
+            ],
+            [
+              -4.7968545419602755,
+              -2.1118825598417406
+            ]
+          ],
+          "seeds_better_per_endpoint": [
+            3,
+            3
+          ],
+          "all_seeds_both_endpoints": true,
+          "participant_bootstrap_ci95": [
+            [
+              -8.353196729124543,
+              -3.621566696895561
+            ],
+            [
+              -0.8136451047446811,
+              -0.5441700689087651
+            ]
+          ],
+          "ci_upper_below_zero_per_endpoint": [
+            true,
+            true
+          ],
+          "people_improved": [
+            13,
+            12
+          ],
+          "n_people": 16
+        },
+        "bias": {
+          "seed_deltas": [
+            [
+              0.10431537403942315,
+              0.23884495577911125
+            ],
+            [
+              -0.15640760812915566,
+              -0.07184933274618732
+            ],
+            [
+              -0.38723042240543215,
+              0.23463141551647393
+            ]
+          ],
+          "seeds_better_per_endpoint": [
+            2,
+            1
+          ],
+          "all_seeds_both_endpoints": false,
+          "participant_bootstrap_ci95": [
+            [
+              -2.334301102115873,
+              -0.8651072849193211
+            ],
+            [
+              2.0874836089903237,
+              0.9841970187033814
+            ]
+          ],
+          "ci_upper_below_zero_per_endpoint": [
+            false,
+            false
+          ],
+          "people_improved": [
+            8,
+            6
+          ],
+          "n_people": 16
+        }
+      },
+      "all_seeds_beat_both_controls_both_pressures": false
+    }
+  }
+}

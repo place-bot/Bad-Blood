@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "personal_endpoint_checkpoints": 360,
+  "source_checkpoints": 6,
+  "portable_predictions_replayed": 96,
+  "max_portable_replay_difference_mmHg": 1.52587890625e-05,
+  "ppg_ecg_invariance_difference": 0.0,
+  "frozen_experiment_hashes_match": true,
+  "original_experiment_verification": "passed",
+  "adopted_method": "rolling_tail"
+}

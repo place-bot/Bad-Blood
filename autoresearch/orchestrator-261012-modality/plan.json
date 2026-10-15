@@ -1,0 +1,18 @@
+{
+  "mode": "orchestrator",
+  "archetype": "optimize-metric",
+  "goal": "Compare three-seed PPG-only SE versus dual SE and same-budget personalization against personal mean and additive bias",
+  "max_cycles": 3,
+  "seeds": [42,43,44],
+  "bounded_inventory": "3 new waveform fits + 3 new pair-source fits + 288 personal development units + 528 fixed target units",
+  "working_signal": "Population validation macro MAE; four-person three-seed development worst ratio against both personal controls",
+  "working_predicate_command": "python modality_se/status.py --run /Users/jguo9/Desktop/26fall/LLM/output/bad_blood_v2_runs/20261012_modality_se",
+  "completion_expected": "verified_complete",
+  "independent_acceptance": "Previously examined target cohorts are descriptive replication, not untouched final acceptance. Never retune on their outcomes.",
+  "terminal_choice": "verify and report; do not deploy or replace released models",
+  "user_confirmed": "20261012: same data, multiple seeds, unchanged calibration budget, all metrics, compare personal mean and bias correction",
+  "pending_verify": false,
+  "status": "verified_comparison_complete",
+  "performance_goal_met": false,
+  "completion_note": "All 816 units verified. Both modalities retained. Neither achieves stable superiority to both controls in both pressures on the previously examined 16-person cohort. No target-based retuning or deployment."
+}

@@ -1,0 +1,19 @@
+{
+  "manifest_hash": "74e4497743fc2e6ebdc7c523df6291b7b0c73660664e1b16f82f912d9baba771",
+  "selected": {
+    "config": {
+      "lr": 0.0003,
+      "scope": "head",
+      "steps": 25
+    },
+    "mae": [
+      7.530879506158979,
+      5.155417667599071
+    ],
+    "mean_mae": 6.343148586879025,
+    "method": "paired_head_lr0.0003_s25",
+    "worst_ratio": 1.1144925185452657
+  },
+  "status": "complete",
+  "success": true
+}

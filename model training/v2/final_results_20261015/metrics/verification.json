@@ -1,0 +1,3867 @@
+{
+  "endpoint_selections": [
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000006",
+      "seed": 42,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000006",
+      "seed": 42,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000006",
+      "seed": 43,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000006",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000006",
+      "seed": 44,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000006",
+      "seed": 44,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000006",
+      "seed": 42,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000006",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000006",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000006",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000006",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000006",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000008",
+      "seed": 42,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000008",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000008",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000008",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000008",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000008",
+      "seed": 44,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000008",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000008",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000008",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000008",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000008",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000008",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000022",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000022",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000022",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000022",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000022",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000022",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000022",
+      "seed": 42,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000022",
+      "seed": 42,
+      "selected": null
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000022",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000022",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000022",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000022",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000023",
+      "seed": 42,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000023",
+      "seed": 42,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000023",
+      "seed": 43,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000023",
+      "seed": 43,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000023",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000023",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000023",
+      "seed": 42,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000023",
+      "seed": 42,
+      "selected": null
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000023",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000023",
+      "seed": 43,
+      "selected": null
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000023",
+      "seed": 44,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000023",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000037",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000037",
+      "seed": 42,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000037",
+      "seed": 43,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000037",
+      "seed": 43,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000037",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000037",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000037",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000037",
+      "seed": 42,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000037",
+      "seed": 43,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000037",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000037",
+      "seed": 44,
+      "selected": null
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000037",
+      "seed": 44,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000056",
+      "seed": 42,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000056",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000056",
+      "seed": 43,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000056",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000056",
+      "seed": 44,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000056",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000056",
+      "seed": 42,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000056",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000056",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000056",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000056",
+      "seed": 44,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000056",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000058",
+      "seed": 42,
+      "selected": null
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000058",
+      "seed": 42,
+      "selected": null
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000058",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000058",
+      "seed": 43,
+      "selected": null
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000058",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000058",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000058",
+      "seed": 42,
+      "selected": null
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000058",
+      "seed": 42,
+      "selected": null
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000058",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000058",
+      "seed": 43,
+      "selected": null
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000058",
+      "seed": 44,
+      "selected": null
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000058",
+      "seed": 44,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000061",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000061",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000061",
+      "seed": 43,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000061",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000061",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000061",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000061",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000061",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000061",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000061",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000061",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000061",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000071",
+      "seed": 42,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000071",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000071",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000071",
+      "seed": 43,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000071",
+      "seed": 44,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000071",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000071",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000071",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000071",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000071",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000071",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000071",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000079",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000079",
+      "seed": 42,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000079",
+      "seed": 43,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000079",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000079",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000079",
+      "seed": 44,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000079",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000079",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000079",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000079",
+      "seed": 43,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000079",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000079",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000085",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000085",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000085",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000085",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000085",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000085",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000085",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000085",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000085",
+      "seed": 43,
+      "selected": null
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000085",
+      "seed": 43,
+      "selected": null
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000085",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000085",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000107",
+      "seed": 42,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000107",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000107",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000107",
+      "seed": 43,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000107",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000107",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000107",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000107",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000107",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000107",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000107",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000107",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000110",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000110",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000110",
+      "seed": 43,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000110",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p000110",
+      "seed": 44,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p000110",
+      "seed": 44,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000110",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000110",
+      "seed": 42,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000110",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000110",
+      "seed": 43,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p000110",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p000110",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005554",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005554",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005554",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005554",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005554",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005554",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005554",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005554",
+      "seed": 42,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005554",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005554",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005554",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005554",
+      "seed": 44,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005641",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005641",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005641",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005641",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005641",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005641",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005641",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005641",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005641",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005641",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005641",
+      "seed": 44,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005641",
+      "seed": 44,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005884",
+      "seed": 42,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005884",
+      "seed": 42,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005884",
+      "seed": 43,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005884",
+      "seed": 43,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005884",
+      "seed": 44,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005884",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005884",
+      "seed": 42,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005884",
+      "seed": 42,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005884",
+      "seed": 43,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005884",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005884",
+      "seed": 44,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005884",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005885",
+      "seed": 42,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005885",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005885",
+      "seed": 43,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005885",
+      "seed": 43,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005885",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005885",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005885",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005885",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005885",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005885",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005885",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005885",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005891",
+      "seed": 42,
+      "selected": null
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005891",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005891",
+      "seed": 43,
+      "selected": null
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005891",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005891",
+      "seed": 44,
+      "selected": null
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005891",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005891",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005891",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005891",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005891",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005891",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005891",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005897",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005897",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005897",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005897",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005897",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005897",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005897",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005897",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005897",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005897",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005897",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005897",
+      "seed": 44,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005903",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005903",
+      "seed": 42,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005903",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005903",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005903",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005903",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005903",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005903",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005903",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005903",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005903",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005903",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005906",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005906",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005906",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005906",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005906",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005906",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005906",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005906",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005906",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005906",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005906",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005906",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005924",
+      "seed": 42,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005924",
+      "seed": 42,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005924",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005924",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005924",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005924",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005924",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005924",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005924",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005924",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005924",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005924",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005977",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005977",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005977",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005977",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005977",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005977",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005977",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005977",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005977",
+      "seed": 43,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005977",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005977",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005977",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005984",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005984",
+      "seed": 42,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005984",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005984",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p005984",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p005984",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005984",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005984",
+      "seed": 42,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005984",
+      "seed": 43,
+      "selected": null
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005984",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p005984",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p005984",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p006003",
+      "seed": 42,
+      "selected": null
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p006003",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p006003",
+      "seed": 43,
+      "selected": null
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p006003",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p006003",
+      "seed": 44,
+      "selected": null
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p006003",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p006003",
+      "seed": 42,
+      "selected": null
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p006003",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p006003",
+      "seed": 43,
+      "selected": null
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p006003",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p006003",
+      "seed": 44,
+      "selected": null
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p006003",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p006009",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p006009",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p006009",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p006009",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p006009",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p006009",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p006009",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p006009",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p006009",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p006009",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p006009",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p006009",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p006058",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p006058",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p006058",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p006058",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p006058",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p006058",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p006058",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p006058",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p006058",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p006058",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p006058",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p006058",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p006069",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p006069",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p006069",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p006069",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p006069",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 50
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p006069",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p006069",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p006069",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p006069",
+      "seed": 43,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p006069",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p006069",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p006069",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p006081",
+      "seed": 42,
+      "selected": null
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p006081",
+      "seed": 42,
+      "selected": null
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p006081",
+      "seed": 43,
+      "selected": null
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p006081",
+      "seed": 43,
+      "selected": null
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p006081",
+      "seed": 44,
+      "selected": null
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p006081",
+      "seed": 44,
+      "selected": null
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p006081",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p006081",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p006081",
+      "seed": 43,
+      "selected": null
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p006081",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "head",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p006081",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p006081",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p006086",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p006086",
+      "seed": 42,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p006086",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p006086",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "ppg",
+      "person": "vitaldb:p006086",
+      "seed": 44,
+      "selected": {
+        "lr": 0.001,
+        "scope": "head",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "ppg",
+      "person": "vitaldb:p006086",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 25
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p006086",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0001,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p006086",
+      "seed": 42,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p006086",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p006086",
+      "seed": 43,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 100
+      }
+    },
+    {
+      "endpoint": 0,
+      "mode": "dual",
+      "person": "vitaldb:p006086",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 10
+      }
+    },
+    {
+      "endpoint": 1,
+      "mode": "dual",
+      "person": "vitaldb:p006086",
+      "seed": 44,
+      "selected": {
+        "lr": 0.0003,
+        "scope": "tail",
+        "steps": 10
+      }
+    }
+  ],
+  "final_test_after_all_choices_and_weights": true,
+  "full_budget_matched": true,
+  "lock_hash": "f679dacca6283e72b5538040d9753f071251e3e2698110162690aaeb4c9328e8",
+  "max_replay_difference_mmHg": 1.52587890625e-05,
+  "metric_checks": "all methods/people/seeds; sample SD ddof=1",
+  "model_replays": 720,
+  "selected_scopes": {
+    "dual_0_head": 26,
+    "dual_0_source": 9,
+    "dual_0_tail": 55,
+    "dual_1_head": 33,
+    "dual_1_source": 6,
+    "dual_1_tail": 51,
+    "ppg_0_head": 31,
+    "ppg_0_source": 10,
+    "ppg_0_tail": 49,
+    "ppg_1_head": 32,
+    "ppg_1_source": 5,
+    "ppg_1_tail": 53
+  },
+  "status": "passed",
+  "units": 180,
+  "validation_folds": 1080
+}

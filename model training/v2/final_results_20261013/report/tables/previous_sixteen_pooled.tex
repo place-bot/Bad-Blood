@@ -1,0 +1,14 @@
+\begin{table*}[t]
+\centering\caption{Subsequent sixteen people: pooled metrics, three-seed average. Pairs are SBP / DBP; errors in mmHg. Pooled SD includes between-person offsets. Bold: best per pressure across all six rows.}\label{tab:previous_sixteen_pooled}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrrrrr}\toprule
+Split / input & MAE & RMSE & Bias & SD & Within 5 (\%) & Within 10 (\%) & Within 15 (\%)\\\midrule
+dual / Mean & 16.96 / 9.34 & 20.53 / 10.99 & 0.39 / 1.33 & 20.53 / 10.91 & 16.80 / 24.24 & 32.25 / 59.61 & 48.18 / 83.07\\
+dual / Bias correction & \textbf{11.77} / 6.83 & \textbf{14.68} / 8.79 & 3.00 / 1.64 & \textbf{14.36} / 8.63 & 27.50 / 45.63 & \textbf{48.69} / 75.11 & \textbf{67.60} / 92.73\\
+dual / PairSE & 13.01 / 7.66 & 16.57 / 9.73 & 0.58 / 0.67 & 16.57 / 9.71 & \textbf{28.04} / 41.79 & 47.62 / 70.39 & 61.95 / 87.94\\
+ppg / Mean & 16.96 / 9.34 & 20.53 / 10.99 & 0.39 / 1.33 & 20.53 / 10.91 & 16.80 / 24.24 & 32.25 / 59.61 & 48.18 / 83.07\\
+ppg / Bias correction & 12.03 / \textbf{6.58} & 14.74 / \textbf{8.25} & 2.72 / 1.92 & 14.49 / \textbf{8.03} & 26.22 / \textbf{46.35} & 47.40 / \textbf{76.83} & 65.08 / \textbf{94.13}\\
+ppg / PairSE & 12.34 / 7.30 & 15.29 / 9.16 & \textbf{-0.25} / \textbf{0.37} & 15.28 / 9.15 & 26.25 / 42.51 & 47.55 / 71.73 & 65.05 / 89.68\\
+\bottomrule\end{tabular}
+\end{table*}

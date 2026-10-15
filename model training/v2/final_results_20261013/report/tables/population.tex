@@ -1,0 +1,15 @@
+\begin{table*}[t]
+\centering\caption{Population pooled metrics, averaged across three seeds. All pressure pairs are SBP / DBP. Thresholds are absolute errors in mmHg; SD uses N-1. Bold: best per pressure within each split.}\label{tab:population}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrrrrr}\toprule
+Split / input & MAE & RMSE & Bias & SD & Within 5 (\%) & Within 10 (\%) & Within 15 (\%)\\\midrule
+validation / dual & 12.51 / \textbf{8.26} & 15.95 / \textbf{10.55} & \textbf{-1.19} / \textbf{-0.03} & 15.90 / \textbf{10.54} & \textbf{26.13} / \textbf{37.91} & \textbf{48.54} / \textbf{67.08} & 66.09 / \textbf{85.17}\\
+validation / ppg & \textbf{12.50} / 8.41 & \textbf{15.92} / 10.71 & -1.43 / -0.72 & \textbf{15.83} / 10.62 & 25.39 / 37.28 & 48.35 / 66.37 & \textbf{66.64} / 84.30\\
+test / dual & 12.39 / 8.00 & 15.89 / 10.19 & \textbf{-1.76} / \textbf{-0.89} & 15.78 / 10.15 & \textbf{26.03} / \textbf{38.83} & \textbf{49.22} / 68.91 & 67.60 / 86.68\\
+test / ppg & \textbf{12.32} / \textbf{7.85} & \textbf{15.73} / \textbf{9.88} & -2.05 / -1.64 & \textbf{15.57} / \textbf{9.67} & 25.52 / 38.39 & 48.67 / \textbf{69.38} & \textbf{67.82} / \textbf{87.85}\\
+aami / dual & \textbf{19.46} / \textbf{12.42} & \textbf{26.33} / \textbf{16.14} & \textbf{-13.22} / \textbf{-8.21} & \textbf{22.76} / 13.90 & 17.82 / \textbf{25.23} & \textbf{35.79} / \textbf{49.65} & \textbf{51.75} / \textbf{69.92}\\
+aami / ppg & 20.10 / 12.99 & 27.16 / 16.47 & -13.95 / -9.11 & 23.30 / \textbf{13.69} & \textbf{19.22} / 22.87 & 35.59 / 45.80 & 50.35 / 67.17\\
+\bottomrule\end{tabular}
+\par\smallskip\begin{minipage}{\textwidth}\footnotesize Table notation: bold marks the best value per SBP/DBP in the stated comparison group: lower MAE, RMSE and SD, Bias closest to zero, and higher within-threshold percentages. Comparisons use unrounded values; numerical ties are all bold. Bold does not imply statistical significance or determine model selection.\end{minipage}
+\end{table*}

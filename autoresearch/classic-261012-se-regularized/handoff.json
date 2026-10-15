@@ -1,0 +1,21 @@
+{
+  "iterations": 24,
+  "manifest_hash": "52819282fe0202c528e8179ee922f5c89ced407316c90b5879f8e48d9bbbf27a",
+  "mode": "classic",
+  "selected": {
+    "config": {
+      "anchor": "population",
+      "feature": "penultimate32",
+      "penalty": 100.0
+    },
+    "mae": [
+      6.906665059576906,
+      5.558093785223336
+    ],
+    "mean_mae": 6.232379422400121,
+    "method": "penultimate32_population_lambda100",
+    "worst_ratio": 1.0560670961029968
+  },
+  "status": "development_complete",
+  "target_evaluated": false
+}

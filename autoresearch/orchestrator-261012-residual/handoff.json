@@ -1,0 +1,21 @@
+{
+  "date": "20261012",
+  "status": "verified_comparison_complete",
+  "performance_goal_met": false,
+  "units_remaining": 0,
+  "pending_verify": false,
+  "units": 1260,
+  "replayed_target_predictions": 39564,
+  "unit_tests_passed": 136,
+  "exported_personal_checkpoint_hashes_verified": 132,
+  "max_replay_error_mmHg": 0.0000152587890625,
+  "new_candidate_configurations": 21,
+  "seeds": [42, 43, 44],
+  "source_populations_unchanged": true,
+  "calibration_budget_unchanged": true,
+  "independent_new_test": false,
+  "finding": "Endpoint-specific residual regression improves development scores but does not achieve joint target superiority. Dual selected RBF for SBP and linear prediction correction for DBP; PPG selected the prior PairSE for both. No new model promoted.",
+  "report": "model training/v2/residual_calibration/results/REVIEW.md",
+  "followup": "If joint stable superiority remains required, define a larger independent development cohort and untouched acceptance cohort before another search. Do not tune on these same targets.",
+  "external_actions": "None: no push, email or deployment."
+}

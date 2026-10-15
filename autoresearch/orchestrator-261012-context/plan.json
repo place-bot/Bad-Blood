@@ -1,0 +1,14 @@
+{
+  "mode": "orchestrator",
+  "archetype": "optimize-metric",
+  "goal": "Reference-set personalization with lower SBP and DBP MAE than personal mean and matched-SE bias correction",
+  "max_cycles": 3,
+  "candidate_order": ["attention", "context", "kernel"],
+  "working_signal": "Worst development MAE ratio against both controls; four existing development participants; seed42 screen",
+  "working_predicate_command": "python context_se/run.py --output /Users/jguo9/Desktop/26fall/LLM/output/bad_blood_v2_runs/20261012_context --check",
+  "working_predicate_expected_output": "PASS",
+  "independent_acceptance": "Require matched seeds42/43/44 and another prospectively frozen never-used participant cohort. The six historic targets and 16 participants from the 20261012 follow-up are excluded from independent acceptance.",
+  "stop_rule": "Stop and report if all three development candidates fail. If a candidate passes, replicate seeds before independent verification; never call a development win achieved generalization.",
+  "pending_verify": false,
+  "user_notification": "Report meaningful progress, verified results, or required action; do not imply guaranteed superiority. Draft email only; no sending."
+}

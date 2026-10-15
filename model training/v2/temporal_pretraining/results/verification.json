@@ -1,0 +1,17 @@
+{
+  "encoder_unchanged": true,
+  "independently_recomputed_metrics": [
+    "mae",
+    "bias",
+    "error_sd",
+    "within_5",
+    "within_10",
+    "within_15"
+  ],
+  "max_absolute_replay_difference": 0.0,
+  "original_source_roles_preserved": true,
+  "prediction_files_replayed": 40,
+  "small_validation_cohort": 2,
+  "target_people_evaluated": false,
+  "zero_calibration_change": 0.0
+}

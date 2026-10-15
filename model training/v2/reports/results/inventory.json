@@ -1,0 +1,19 @@
+{
+  "population_completed": 20,
+  "population_required": 20,
+  "personal_development_completed": 1068,
+  "personal_test_completed": 684,
+  "supplementary_ECA_completed": false,
+  "artifact_root": "/Users/jguo9/Desktop/26fall/LLM/output/bad_blood_v2_runs/20261009",
+  "protocol_commit": "1b93cf13249931af650cdfa91e19343564032451",
+  "representative_patients": [
+    "vitaldb:p005885",
+    "vitaldb:p005977"
+  ],
+  "raw_predictions_in_git": false,
+  "full_metric_archives": [
+    "attention.json.gz",
+    "personalization.json.gz"
+  ],
+  "browsable_metric_summary": "metric_overview.json"
+}

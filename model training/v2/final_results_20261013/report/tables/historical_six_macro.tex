@@ -1,0 +1,14 @@
+\begin{table*}[t]
+\centering\caption{Original six people: macro metrics, three-seed average. Pairs are SBP / DBP; errors in mmHg. Macro SD averages within-person sample SD. Bold: best per pressure across all six rows.}\label{tab:historical_six_macro}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrrrrr}\toprule
+Split / input & MAE & RMSE & Bias & SD & Within 5 (\%) & Within 10 (\%) & Within 15 (\%)\\\midrule
+dual / Mean & 9.47 / 4.22 & 12.19 / 5.46 & \textbf{0.50} / -0.95 & 11.14 / 4.82 & 35.72 / 68.34 & 64.56 / 92.32 & 80.14 / 97.75\\
+dual / Bias correction & 9.16 / 4.40 & 11.23 / 5.27 & 0.60 / \textbf{-0.46} & 9.35 / 4.25 & 33.26 / 62.42 & 63.41 / 93.89 & 81.90 / \textbf{99.53}\\
+dual / PairSE & 8.32 / \textbf{3.76} & 10.27 / \textbf{4.69} & 0.98 / -0.53 & 9.07 / \textbf{4.11} & 36.65 / \textbf{71.51} & 68.06 / \textbf{95.53} & 86.12 / 99.28\\
+ppg / Mean & 9.47 / 4.22 & 12.19 / 5.46 & \textbf{0.50} / -0.95 & 11.14 / 4.82 & 35.72 / 68.34 & 64.56 / 92.32 & 80.14 / 97.75\\
+ppg / Bias correction & 8.27 / 4.28 & 10.31 / 5.34 & -1.49 / -1.83 & \textbf{8.49} / 4.15 & \textbf{39.01} / 63.42 & \textbf{68.40} / 93.20 & 85.32 / 99.11\\
+ppg / PairSE & \textbf{8.19} / 3.85 & \textbf{10.17} / 4.83 & -1.89 / -1.79 & 8.66 / 4.26 & 37.68 / 70.85 & 68.21 / 94.91 & \textbf{86.24} / 99.11\\
+\bottomrule\end{tabular}
+\end{table*}

@@ -1,0 +1,15 @@
+{
+  "mode": "orchestrator",
+  "archetype": "optimize-metric",
+  "goal": "Improve reference-conditioned source training and personal adaptation using chronological calibration episodes",
+  "max_cycles": 4,
+  "candidate_order": ["pair_random", "pair_chronological", "context_random", "context_chronological"],
+  "working_signal": "Original source-validation participant-macro MAE; four original personal development people for adaptation selection",
+  "working_predicate_command": "python temporal_pretraining/check.py",
+  "working_predicate_expected_output": "PASS",
+  "independent_acceptance": "Replicate seeds and a prospectively frozen untouched cohort after development success. Never reuse the six historic or sixteen recently examined targets as fresh acceptance data.",
+  "terminal_choice": "stop-at-verified; do not replace published model",
+  "user_confirmed": "20261012: SBP and DBP macro MAE both lower with same calibration budget, also inspect Bias, SD and within5/10/15",
+  "stop_rule": "Four source fits; if selected chronology improves both source-validation endpoints, test six personal head settings. Stop without promotion if joint personal criterion fails.",
+  "pending_verify": false
+}

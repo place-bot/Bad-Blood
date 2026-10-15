@@ -2,6 +2,91 @@
 
 ECG/PPG blood-pressure prediction and a PulseDB-aligned collection workflow.
 
+## Current V2 personalization - 20261015
+
+**[Open the current V2 folder](model%20training/v2/final_results_20261015/)**
+
+The adopted method is **PairSE tail adaptation**: update the change head,
+last CNN residual block and its Squeeze-and-Excitation (SE) gate. Each person
+selects their own learning rate and update count separately for SBP and DBP,
+using three temporal validation periods inside their first 80% of data.
+The later 20% is test. Both PPG-only and ECG+PPG remain available.
+
+| Input | Personal mean MAE | Bias-corrected MAE | Adopted tail MAE | Reduction vs bias |
+|---|---:|---:|---:|---:|
+| PPG only | 12.24 / 6.02 | 8.51 / 5.38 | **6.89 / 4.29** | 19.0% / 20.3% |
+| ECG + PPG | 12.24 / 6.02 | 9.09 / 5.70 | **7.14 / 4.31** | 21.5% / 24.4% |
+
+SBP / DBP in mmHg; equal-person metrics over the same 30 people, averaged over
+three source seeds (not an ensemble). Both endpoints improve in the overall
+mean in every seed. This cohort was previously evaluated, so the comparison
+is exploratory. The folder contains the updated IEEE report and Beamer, source
+models, 360 endpoint-specific personal checkpoints, portable fitting/inference,
+all controls and full metrics. Head-only and automatic scope selection remain
+comparators, **not additional adopted methods**.
+
+## Archived V2 final results - 20261013
+
+**[Open the consolidated V2 final folder](model%20training/v2/final_results_20261013/)**
+for the IEEE report, runnable models, weights, architecture/training source and
+complete three-seed comparisons. Both ECG+PPG and PPG-only CNN+SE are retained,
+together with reference-conditioned PairSE personalization.
+
+Dual PairSE beats both personal mean and additive bias correction in SBP and
+DBP in all three seeds on the original six people (MAE **8.32 / 3.76** mmHg).
+Both modalities beat personal mean across seeds on the subsequent sixteen
+people, but their DBP does not consistently beat bias correction. The final
+report includes both results, full metrics and the follow-up experiments.
+
+The sections below retain the earlier dated research record. Use the 20261015
+folder above for the current personal method; population training is unchanged.
+
+## V2 results snapshot — 20261012
+
+The dated [V2 release record](model%20training/v2/releases/20261012/README.md)
+groups two research outcomes, with implementation, metrics and trained weights:
+
+1. [Population CNN+SE architecture](model%20training/v2/releases/20261012/01_population_cnn_se/):
+   final-block SE attention; observed matched-test MAE **12.39 / 8.00** mmHg.
+2. [Reference-conditioned personalization](model%20training/v2/releases/20261012/02_personalization/):
+   known reference waveform/BP plus current waveform. On **16 new people**, with
+   unchanged settings and the same early-20%-of-time calibration rule, MAE was
+   **12.67 / 7.61**, versus **17.41 / 9.71** for personal mean and **12.82 / 7.48**
+   for bias correction. The new validation **did not confirm stable superiority
+   over bias correction**. The earlier six-person improvement below is retained
+   separately, not pooled with the new cohort.
+
+All values above are SBP / DBP. The snapshot records the `20261012` version date,
+provenance, checksums, full metrics and reproduction instructions. V1 is preserved.
+
+## Reference-conditioned personalization — October 12
+
+The new [paired CNN+SE experiment](model%20training/v2/paired_se/README.md)
+uses known reference BP plus reference/current ECG/PPG. With identical early
+calibration data and later query windows, it achieved **8.32 / 3.76 mmHg**
+SBP/DBP MAE versus **9.47 / 4.22** for personal mean and **9.16 / 4.40** for
+simple personal bias correction. Three seeds each improved over both controls
+on these six previously examined target people. This is exploratory evidence;
+the full report includes development results, uncertainty, individual outcomes
+and metrics that did not improve. V1 and all earlier results remain preserved.
+
+## V2 pretrained model highlight
+
+**CNN + SE is V2's strongest pretrained model by observed primary-test MAE
+among the six required three-seed architecture comparisons:** 12.39 mmHg SBP /
+8.00 mmHg DBP, with 38,296 parameters. It adds a channel-attention gate to the
+last residual block of the V1 high-resolution CNN. This is a test-result ranking;
+the original validation-selected architecture was the unchanged CNN. A later
+matched three-seed PPG-only CNN+SE study is included in the final folder above;
+the earlier single-seed plain-CNN modality ablation is a separate experiment.
+
+The [full-support SE personalization experiment](model%20training/v2/se_personalization/README.md)
+uses **all eligible windows in each person's first 20% of recording time** and
+compares later predictions with both that person's reference mean and a simple
+personal bias correction. Earlier V1 and V2 results are preserved.
+The completed dense fine-tune did not beat those controls; the linked report
+includes the negative result and literature-guided follow-up screening.
+
 ## Embedded system and deployment plan
 
 Our goal is a compact, locally running blood-pressure estimation system.

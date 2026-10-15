@@ -1,0 +1,11 @@
+{
+  "date": "20261012",
+  "fresh_lock_hash": "7cc5df0e25924d66a68984d9dbc62d23cdf21f6ae3881f120b25b2ed621744bc",
+  "fresh_people": 16,
+  "fresh_primary_success": false,
+  "fresh_protocol_commit": "981e15a",
+  "original_completed_experiment_commit": "97aaeb30e7c7e60c148b191c41734eb2fe2e82fc",
+  "personal_model": "reference-conditioned CNN+SE, pair-head adaptation",
+  "population_model": "CNN+SE se_last",
+  "version": "v2-20261012.1"
+}

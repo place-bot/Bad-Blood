@@ -1,0 +1,159 @@
+\documentclass[11pt]{article}
+\usepackage[preprint]{acl}
+\usepackage{times}
+\renewcommand{\ttdefault}{lmtt}
+\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,booktabs,tabularx,array}
+\usepackage{graphicx}
+\usepackage{url}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\title{Personal Calibration for Later Blood-Pressure Estimation:\\ Evidence Review and Frozen Protocol for Bad-Blood v2}
+\author{Bad-Blood Project\\Research and Engineering Report}
+\date{}
+\begin{document}
+\maketitle
+\begin{abstract}
+This study asks whether a population blood-pressure estimator can be calibrated with a few early personal ECG/PPG and reference-pressure pairs, then estimate later systolic and diastolic pressure using the later observed ECG/PPG. We review primary evidence for pretraining, limited-data adaptation, one-reference calibration, and durability. A short forecasting comparison explains why the revised task is contemporaneous personalized estimation rather than open-loop prediction. The frozen pilot uses four development and six final VitalDB patients, chronological calibration, matched sparse-reference budgets, and an unchanged high-resolution CNN. Available reference labels are invasive-ABP-derived segment pressures; the experiment therefore simulates sparse reference calibration and does not validate actual cuffs. This prospective review contains no new experimental results.
+\end{abstract}
+
+\section{Scope and evidence standard}
+The motivating workflow is to collect personal ECG/PPG with reference pressure, then apply a personalized model later. The user clarified and confirmed on October 9, 2026 that later ECG/PPG is available and the required outputs are the corresponding SBP and DBP. This revision supersedes the original attachment's strict future-waveform tasks. Open-loop ECG, PPG, and ABP forecasting are out of scope. The directory name \texttt{personalized\_forecasting} is retained for compatibility with the requested repository structure; it does not describe the revised scientific task.
+
+This is a focused narrative review, not a systematic review or meta-analysis. Searches were performed on October 9, 2026 for physiological waveform forecasting, PPG blood-pressure personalization, transfer learning, low-rank adaptation, cuff calibration, and temporal stability. We prioritized journal articles, original author manuscripts, official publisher records, and author-hosted papers. All nine cited works are published journal articles. Details verified only from an abstract are explicitly identified; absent details and code links are not inferred. Numerical results belong to their original studies, not Bad-Blood, and are not directly comparable across datasets.
+
+\section{Task definition and forecasting distinction}
+Let $X$ denote ECG/PPG and $Y$ a waveform or pressure label, with personal calibration set $\mathcal C_i$ acquired before test deployment.
+
+\paragraph{Personalized contemporaneous estimation.}
+After estimating personal parameters $\phi_i$ from $\mathcal C_i$, the model receives the \emph{later, currently observed} ECG/PPG window and estimates pressure for that window:
+\begin{equation}
+ \widehat{\mathbf b}_{i,t}=f_{\theta,\phi_i}(X_{i,[t-L,t]}),
+\end{equation}
+where $\mathbf b$ contains SBP and DBP measured over the corresponding observed interval. Here $L=10$ seconds at 125 Hz, giving 1,250 samples for each input channel and two scalar outputs in mmHg. Later reference pressure is available only to the evaluator. Each prediction is issued once its ECG/PPG window has been observed; no later pressure label is used for adaptation, stopping, normalization, or model selection. Targets are the provided \texttt{SegSBP} and \texttt{SegDBP}, derived from invasive ABP rather than cuffs. Labels and inputs retain their original segment alignment.
+
+\paragraph{Future ECG/PPG forecasting.}
+At a fixed origin $t$, a forecaster receives only earlier signals and outputs ECG/PPG for a strictly later interval. Such waveform forecasting would require phase and morphology endpoints. This is a distinct task and is not implemented or evaluated here.
+
+\paragraph{Future ABP forecasting.}
+A future ABP forecaster receives earlier ECG/PPG and predicts later ABP. Supplying ECG/PPG from the target interval instead defines contemporaneous reconstruction. Neither waveform task is required by the revised specification. Sparse scalar BP references also cannot provide dense waveform supervision.
+
+\section{Personalized pressure estimation}
+\paragraph{Last-layer and feature adaptation.}
+\citet{leitner2022} use five-second PPG windows, downsampled from 125 to 25 Hz, to estimate concurrent SBP/DBP derived from invasive ABP. Their BP-CRNN has convolutional, recurrent, and fully connected layers. Personalization updates the final convolution, final fully connected layer, and batch-normalization parameters; the two named layers contain approximately 18,000 of 250,000 parameters. The 100 MIMIC-III patients have at least ten usable hours each; alternating disjoint groups of 50 patients provide population pretraining and targets. Within each target, however, samples are shuffled into personal splits. At 50 labelled windows, SBP/DBP MAE is 5.86/3.59 mmHg. The abstract's 3.52/2.20 mmHg values describe a different data regime and must not be labelled 50-shot performance. This supports testing restricted adaptation, but does not establish chronological durability or a requirement of 50 independent cuffs. An official code release was not verified.
+
+\paragraph{One-reference conditioning.}
+\citet{schlesinger2020} compare a current 30-second PPG spectrogram with a patient's first PPG/reference-BP pair using a Siamese CNN. Their 329 MIMIC-II patients are disjoint across training, validation, and test partitions. Reported SBP/DBP MAE improves from 9.71/4.95 to 7.98/4.11 mmHg. References come from concurrent invasive arterial waveforms, so this is one ABP-derived calibration sample rather than a trial of one real cuff measurement. The paper reports maintained precision up to 600 minutes, explicitly with data not shown. Excluding pressure changes exceeding 50 mmHg from calibration limits evidence about large drift. The architecture illustrates later BP estimation given later PPG, not future-waveform forecasting. No public implementation was verified.
+
+\paragraph{Parameter-efficient adaptation.}
+\citet{li2026} describe a Transformer-based PPG estimator with a pulse-pressure penalty and sampling-rate-robust low-rank adaptation. The indexed abstract reports 113,812 pretraining samples from 2,405 subjects, 316 personalization subjects with 50 samples each, and SBP/DBP MAE of 1.52/1.07 mmHg across the study's UCI, Queensland, and CAS-BP evaluation. Bibliographic information and these abstract-level statements were verified; exact partitioning, chronological support/query separation, independent-reference counts, and official code were not. Consequently, this is a rationale for a supplementary low-rank adaptation experiment, not a benchmark target or evidence that 50 cuffs are required. Adapting its mechanism to a convolutional backbone would require an explicit new design and trainable-parameter accounting.
+
+\section{Calibration durability and practical evidence}
+\paragraph{A large, demanding comparator study.}
+The Aurora-BP study of \citet{mieloszyk2022} includes 1,125 participants and compares wearable tonometry, optical signals, and ECG in controlled and ambulatory settings. Participant-stratified evaluation includes a return visit at least 24 hours after calibration and 24-hour ambulatory pressure. A calibration-and-time-of-day model provides a strong comparator without waveform features. Its competitive performance motivates including reference-only controls and testing incremental benefit from ECG/PPG. This study uses real cuff references and does not evaluate open-loop waveform forecasting. Its documented sample-data and processing repository is \url{https://github.com/aurorabp/sample-data}. Sensor and reference differences limit direct transfer to intraoperative VitalDB recordings.
+
+\paragraph{A real cross-session test.}
+\citet{yavarimanesh2022} study ten repeat participants across sessions approximately one year apart, recording ECG, ear/finger/toe PPG, and manual cuff BP during physiological interventions. Subject-specific models calibrated in one session are tested a year later. Only the toe pulse-arrival-time--SBP model remains useful: reported RMSE is $9.6\pm0.8$ mmHg versus $12.7\pm1.0$ mmHg for the initial mean-cuff comparator. This is evidence about a specific sensor location and model, not annual durability of finger-PPG neural calibration. The small cohort and intervention setting limit generalization; no verified public code or universal number of calibration events follows from this study.
+
+\paragraph{Short-term recalibration.}
+\citet{seo2023} record ECG/PPG and alternating wrist/arm cuffs from twelve healthy participants during a three-hour protocol including exercise. Their attention-based neural model and linear comparator are evaluated with recalibration. The indexed abstract reports arm-reference SBP/DBP MAE of $4.746\pm1.529$/$3.448\pm0.608$ mmHg for its stated analysis. Recalibration uses observed reference error, so its timing depends on acquiring new labels; it is not an autonomous error detector. This supports measuring performance against time since calibration and explicitly counting each new reference. It does not establish an optimal recalibration schedule for unseen patients, cross-visit stability, or a training-free deployment rule. No official code release was verified.
+
+\paragraph{What the evidence can answer.}
+There is no universal minimum cuff count or universal persistence time established by these heterogeneous studies. A single reference identifies an additive offset, but cannot independently identify both slope and intercept. Multiple nearly identical pressure readings still provide little information about a personal slope. Updating more parameters should be treated as a budget-dependent hypothesis; neither full-model nor head-only adaptation is assumed superior. Within-record testing addresses minutes or hours in one setting, whereas a later visit adds sensor placement and physiological change. The two forms of generalization must be reported separately.
+
+\section{Forecasting literature as a task contrast}
+\paragraph{Pulse forecasting with personal training.}
+\citet{badiola2025} use four prior dual-wavelength PPG pulses to predict the next pulse with XGBoost AC features and ridge DC features. The 17 healthy volunteers provide 459 minutes at 100 Hz; personal models use a 70\% early/30\% held-out temporal split. Reported mean waveform $R^2$ exceeds 0.9; 1.28\% SpO$_2$ RMSE is a downstream saturation metric, not waveform RMSE. Four pulses describe inference context rather than total personal training. This is a genuine pulse forecast, unlike our later ECG/PPG-to-current-BP mapping; it does not establish cross-visit durability.
+
+\paragraph{Forecast distributions.}
+\citet{festag2023} use an attention-based recurrent conditional Wasserstein GAN with ten-second ECG/ABP series. Interior masks define imputation; terminal masks define forecasting. The original abstract reports approximately 65,000 training samples and 14,000 test series from different persons. Forecast MSE is 0.069 for ECG and 33.73 for ABP, compared with 0.082 and 196.53 for a recurrent-copula comparator. Past ABP is observed, so this does not demonstrate ECG/PPG-only future ABP prediction. Horizon-specific details and official code were not sufficiently verified for reproduction.
+
+\paragraph{A caution about reported metrics.}
+\citet{zacarias2024} forecast 48 MIT-BIH ECG records with an LSTM. Their prose labels aggregate RMSE as 0.0070 and MAE as 0.0522, whereas the class-specific table puts the smaller scale under MAE. Since RMSE cannot be below MAE for identically weighted errors, we retain this as a reporting caution rather than an accuracy target. None of these forecasting results tests the revised scalar calibration protocol.
+
+\begin{table*}[t]
+\centering\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{2.1cm}>{\raggedright\arraybackslash}p{2.55cm}Y Y}
+\toprule
+Study & Task and personal information & Evidence useful to this project & Constraint on interpretation\\
+\midrule
+Leitner et al. (2022) & Current PPG $\to$ SBP/DBP; labelled personal windows & Last-convolution/head adaptation & Shuffled personal splits; ABP labels\\
+Schlesinger et al. (2020) & First PPG/BP reference plus current PPG & One-reference conditional estimation & Invasive reference; extreme changes excluded\\
+Li et al. (2026) & Current PPG $\to$ SBP/DBP; low-rank adaptation & A parameter-efficient candidate & Detailed temporal protocol unverified\\
+Mieloszyk et al. (2022) & Current wearable signals after cuff calibration & Strong reference-only comparator; ambulatory evaluation & Different sensors and environment\\
+Yavarimanesh et al. (2022) & Current pulse timing after prior-visit calibration & Genuine one-year session transfer & Ten participants; toe-specific result\\
+Seo et al. (2023) & Current ECG/PPG with repeated cuff recalibration & Reference-event accounting; short-term durability & Recalibration trigger requires new labels\\
+Badiola et al. (2025) & Past four PPG pulses $\to$ next pulse & Personalized pulse forecast; ridge comparator & Short horizon and substantial personal training\\
+Festag and Spreckelsen (2023) & Past ECG/ABP $\to$ terminal waveform interval & Distinguishes imputation from forecasting & Past ABP input exceeds ECG/PPG-only information\\
+Zacarias et al. (2024) & Past ECG $\to$ ECG & Forecasting precedent & Inconsistent aggregate metric labels\\
+\bottomrule
+\end{tabularx}
+\caption{Task-aware evidence comparison. Source results are not directly comparable and do not constitute project experimental findings.}
+\label{tab:evidence}
+\end{table*}
+
+\section{Frozen VitalDB pilot protocol}
+\label{sec:protocol}
+The following choices define the prospective experiment. The repository audit and versioned protocol document record the supporting counts, source commit, manifests, and configuration. Changes after the pretraining commit require a dated amendment and reason. Individual source files with record identity and timestamps support chronological evaluation; the balanced population subset does not retain the required timestamps.
+
+\subsection{Cohort, provenance, and information budgets}
+Exclude all 31 previously explored subject IDs from population training, population validation, and fitted normalization statistics. The resulting population split contains 1,085 training and 192 validation patients. The historical checkpoint has seen some personal patients and cannot initialize this experiment. Instead, use the freshly retrained unchanged Track A baseline separately for seeds 42, 43, and 44; attention effects remain a separate research question.
+
+Eligibility is determined only from metadata and numeric validity: complete readable file, one case, at least 400 retained ten-second windows, at least 300 adjacent window pairs, at least 100 windows beginning at least one hour after the first retained sample, and finite nonflat signals. These predetermined criteria yield 17 initial candidates; adjacency is a conservative continuity criterion retained from the audit, not a requirement that scalar inference consume two windows. Sorted IDs are shuffled with NumPy \texttt{default\_rng(20261009)}. The initial first six form target candidates and the next four development patients. A further availability check requires ten sufficiently spaced early references. Candidate p005983 has only six and is replaced by p005977, the next unused candidate in the seeded order. This replacement uses no model outputs. Table~\ref{tab:cohort} freezes the resulting membership. Unselected subjects are not used in Track B.
+
+The six final patients contribute 5,103 windows (850.5 observed minutes); the four development patients contribute 2,409 windows (401.5 observed minutes). These are sums of retained windows, not continuous elapsed durations. The audit documents missing or truncated files, insufficient-record exclusions, and the two-case subject excluded from this single-case pilot. Timestamps are clip-relative; cross-visit durability is not tested. Repeated seeds and correlated windows do not replace independent patients.
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{ll}
+\toprule
+Role & Fixed subject IDs\\
+\midrule
+Development & p005548, p005647, p005968, p006090\\
+Final targets & p005879, p005885, p005977,\\
+ & p005984, p006009, p006052\\
+\bottomrule
+\end{tabular}
+\caption{Metadata-only cohort assignment. No model-performance criterion is used. Each listed subject has one eligible case.}
+\label{tab:cohort}
+\end{table}
+
+Within each case, let $a$ be the first observed sample time and $z$ the end of the last retained window. Set the common calibration end $c=a+0.2(z-a)$ using elapsed record time, not window count. Support windows must lie completely within $[a,c]$. Query windows must begin at or after $c+10$ seconds and end by $z$. Drop any boundary-crossing window. Retain gaps; do not concatenate separated segments into an artificial continuous recording.
+
+Evaluate $K\in\{1,2,3,5,10\}$ nonoverlapping reference windows. First construct a chronological greedy candidate pool with starts separated by at least 60 seconds. Select ten approximately evenly spaced candidate indices by rounding a ten-point linear spacing over the pool, verifying index uniqueness. Budget $K$ uses the first $K$ of these ten references, so support sets are nested and use earlier events first. All budgets and strategies share the query set beginning after $c+10$ seconds. Save actual selection times and flag unavailable budgets rather than silently reducing $K$. Each selected window supplies one paired SBP/DBP event, even when reused for optimization steps. Chronological separation does not make these measurements statistically independent.
+
+No actual NIBP/cuff event fields exist in the working data. Every budget is therefore an \emph{ABP-derived sparse-reference simulation}, not a real cuff-calibration experiment. Raw ABP, reference landmarks, and ABP-derived quality metadata remain evaluator/label-construction information and are not input features. The reported calibration cost includes $K$ reference windows and $10K$ seconds of observed ECG/PPG, with the larger elapsed calibration span reported separately.
+
+\subsection{Adaptation comparisons}
+The principal matrix compares no adaptation, additive bias correction, shrinkage affine correction for $K\geq3$, head-only fine-tuning, last-block-plus-head fine-tuning, and full-model fine-tuning. Include last-reference and calibration-mean predictors as reference-only controls. Use the audited 37,666-parameter \texttt{BPNet(pool=1)} without a forecasting decoder: stem channels 8, residual outputs 16/32/48, global average pooling, and a 48--32--2 prediction head. Every patient and strategy starts from the same population checkpoint for each seed. Parameter-efficient adaptation is reviewed but is not a required additional model: the small backbone and principal freezing comparisons already address the adaptation-capacity question.
+
+For scalar targets, an additive correction is
+\begin{equation}
+ \widehat b'_{i,t}=\widehat b_{i,t}+\frac{1}{K}\sum_{k=1}^{K}(b_{i,k}-\widehat b_{i,k}).
+\end{equation}
+Fit SBP and DBP separately. Affine correction uses standardized predictions $v_k$ and labels $u_k$, minimizing
+\begin{equation}
+ \sum_{k=1}^{K}(u_k-\alpha v_k-\beta)^2+\lambda(\alpha-1)^2.
+\end{equation}
+Choose $\lambda\in\{1,10,100\}$ using mean development patient-macro MAE across four patients and three seeds; ties select stronger shrinkage. The intercept is unpenalized and slope shrinks toward one. Constant predictions yield an offset correction, not an independently estimated slope. No method fits query BP means, variances, or pressure ranges.
+
+For each trainable strategy and budget, evaluate learning rates $\{10^{-4},10^{-3}\}$ and update counts $\{20,100\}$. Select only by the four development patients' mean patient-macro MAE, averaging SBP/DBP and the three seeds. Ties prefer fewer steps, then lower learning rate. Refit each final patient's adaptation from its seed-specific population weights with the selected setting. Never use final query labels for early stopping or hyperparameter selection. Repeated steps optimize the same $K$ references and do not increase the information budget.
+
+Head-only adaptation updates the two linear layers; last-block-plus-head additionally updates the final residual block; full adaptation updates all model parameters. Batch-normalization running statistics remain frozen; affine parameters train only in enabled blocks. Keep dropout inactive. Use full-support-batch AdamW, weight decay 0.001, gradient clipping at norm five, and no augmentation. Record parameter masks and verify that frozen tensors and running statistics remain unchanged. Training uses the population-fitted target transform and MSE; selection and reporting use mmHg.
+
+\subsection{Preprocessing and evaluation}
+Keep the audited input pipeline consistent across comparisons: provided \texttt{ECG\_F}/\texttt{PPG\_F}, ten-second windows, 125 Hz, and per-window per-channel min--max normalization. These are the filtered fields used for population training; do not apply an additional raw-window adapter. The offline filtering and incompletely documented upstream resampling support prevent a claim of native-stream causality. Whole-record normalization statistics, new cross-boundary interpolation, and target-derived features remain prohibited. Reference-dependent upstream selection is a limitation of the curated dataset, not evidence of deployment-time signal quality.
+
+Primary endpoints are separate SBP and DBP MAE/RMSE in mmHg. Also report signed error, error standard deviation, median absolute error, 90th/95th absolute-error quantiles, fractions within 5/10/15 mmHg, Pearson correlation, and $R^2$. Stratify pressure ranges with counts. Report every patient's paired change from no adaptation; Bland--Altman summaries must acknowledge repeated measurements. Patient-macro errors are primary and give each patient equal weight. Pooled-window errors are secondary and give each window equal weight.
+
+Primary durability bins are 0--15, 15--30, 30--60, and at least 60 minutes since the last actual reference event for budget $K$: query-window end minus last-support-window end. Budgets have different last-reference times even though they share all query windows. As a secondary common-time analysis, report bins relative to $c$, explicitly labelled time since adaptation boundary. Report bin patient/window counts and empty bins as unavailable; no minimum late-bin coverage is promised. These curves measure within-record durability, not forecast horizon or persistence across visits. No forecast-horizon curve or waveform plot is required by the revised scalar task.
+
+Use paired patient-level resampling where feasible, display all six final patients, and acknowledge imprecise uncertainty in this small pilot. Separate training-seed variability from between-patient variability; do not bootstrap windows as independent people. Save predictions, references, timestamps, IDs, configuration hashes, and source checkpoint identifiers. Report trainable parameters, adaptation runtime, inference latency, and hardware. No threshold comparison alone establishes clinical-standard compliance.
+
+\section{Interpretation commitments}
+An apparent personalization gain must be interpreted relative to reference-only controls on the same subsequent samples. Negative or heterogeneous findings are valid outcomes. The final report will distinguish actual cuffs from invasive labels, within-session durability from cross-visit persistence, and contemporaneous personalization from strict forecasting. Neither the literature nor this pilot can establish a clinically sufficient cuff count or a persistent benefit across visits. Strong results would justify a later study with independently acquired cuff events and repeated visits; they would not retroactively validate those unsupported conditions.
+
+\bibliography{references}
+\end{document}

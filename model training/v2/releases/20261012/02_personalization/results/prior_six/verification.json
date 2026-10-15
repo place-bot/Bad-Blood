@@ -1,0 +1,8 @@
+{
+  "checksum_metrics_and_temporal_guards_pass": true,
+  "development_units": 144,
+  "max_replay_absolute_difference": 0.0,
+  "replayed_query_predictions": 12852,
+  "selection_recomputed_from_development": true,
+  "test_units": 72
+}

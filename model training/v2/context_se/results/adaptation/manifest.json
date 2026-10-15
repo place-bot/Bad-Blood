@@ -1,0 +1,51 @@
+{
+  "code_sha256": "defe24beca6b86b64096de001c9bdf074d98cff84ce38951e1035554703db040",
+  "people": [
+    "vitaldb:p005548",
+    "vitaldb:p005647",
+    "vitaldb:p005968",
+    "vitaldb:p006090"
+  ],
+  "protocol_sha256": "2ae5539b0fedf1bad07389fbc77c1894b2bace42d5f55a1f67b75460548b60c4",
+  "seed": 42,
+  "settings": [
+    {
+      "lr": 0.0001,
+      "steps": 10
+    },
+    {
+      "lr": 0.0001,
+      "steps": 25
+    },
+    {
+      "lr": 0.0001,
+      "steps": 100
+    },
+    {
+      "lr": 0.0003,
+      "steps": 10
+    },
+    {
+      "lr": 0.0003,
+      "steps": 25
+    },
+    {
+      "lr": 0.0003,
+      "steps": 100
+    },
+    {
+      "lr": 0.001,
+      "steps": 10
+    },
+    {
+      "lr": 0.001,
+      "steps": 25
+    },
+    {
+      "lr": 0.001,
+      "steps": 100
+    }
+  ],
+  "source_checkpoint_sha256": "c48741b8fb427e5548021d1041585880d943afbd406127fb60bb422a1a18c810",
+  "target_used": false
+}

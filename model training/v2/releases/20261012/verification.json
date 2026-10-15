@@ -1,0 +1,10 @@
+{
+  "checksummed_files": 142,
+  "date": "20261012",
+  "independently_recomputed_units": 192,
+  "project_tests_passed": 117,
+  "snapshot_max_replay_difference": 0.0,
+  "snapshot_runner_replayed_predictions": 6930,
+  "status": "verified",
+  "unchanged_personal_encoders": 48
+}

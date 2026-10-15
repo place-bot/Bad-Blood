@@ -1,0 +1,10 @@
+iteration	method	worst_development_ratio
+1	paired_unadapted	1.31405454
+2	paired_head_lr0.0003_s25	1.11449252
+3	paired_head_lr0.0003_s100	1.21585036
+4	paired_head_lr0.001_s25	1.22595058
+5	paired_head_lr0.001_s100	1.27605494
+6	paired_full_lr0.0003_s25	1.34055836
+7	paired_full_lr0.0003_s100	1.27424722
+8	paired_full_lr0.001_s25	1.24030928
+9	paired_full_lr0.001_s100	1.15670782

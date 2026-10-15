@@ -1,0 +1,10 @@
+{
+  "exact_population_labels_and_subjects_across_modalities": true,
+  "exact_support_query_match_across_modalities": true,
+  "independent_metrics_recomputed": true,
+  "max_replay_absolute_difference": 0.0,
+  "previously_examined_targets": true,
+  "replayed_target_predictions": 39564,
+  "seed_count": 3,
+  "units": 816
+}

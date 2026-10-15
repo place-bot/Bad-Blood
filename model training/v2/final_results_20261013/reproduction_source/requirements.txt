@@ -1,0 +1,6 @@
+# Versions used for the October 2026 local experiment. Python 3.12.13.
+torch==2.14.0
+numpy==2.5.3
+scipy==1.18.1
+h5py==3.16.0
+matplotlib==3.11.2
