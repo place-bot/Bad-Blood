@@ -16,4 +16,6 @@ output/bp_model/.venv/bin/python 'output/Bad-Blood/model training/v2/rolling_per
 
 For two workers, run `train --worker 0 --workers 2 --threads 2` and `train --worker 1 --workers 2 --threads 2`. They have disjoint units; results resume from hashed fold artifacts and completed units. All 180 units must finish before evaluation opens the final test outcomes. Do not edit the frozen training code after `prepare`.
 
+`run_all.py --workers 4` runs one local job through training, evaluation and independent verification automatically, with resumable fold/unit artifacts and separate worker logs. Do not launch it while other workers for this output directory are still running. `job_status.json` records its phase, PID, progress or failure; it does not schedule future runs or send messages.
+
 Output is `output/bad_blood_v2_runs/20261015_rolling_personal/`. `RESULTS.md`, `summary.json`, and `verification.json` will exist only after their respective phases finish. The old post-hoc diagnostic suggested this experiment, so final scores on the same cohort are exploratory, not new independent validation. No GitHub publication is performed by these scripts.
