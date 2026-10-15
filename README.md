@@ -2,7 +2,30 @@
 
 ECG/PPG blood-pressure prediction and a PulseDB-aligned collection workflow.
 
-## V2 final results - 20261013
+## Current V2 personalization - 20261015
+
+**[Open the current V2 folder](model%20training/v2/final_results_20261015/)**
+
+The adopted method is **PairSE tail adaptation**: update the change head,
+last CNN residual block and its Squeeze-and-Excitation (SE) gate. Each person
+selects their own learning rate and update count separately for SBP and DBP,
+using three temporal validation periods inside their first 80% of data.
+The later 20% is test. Both PPG-only and ECG+PPG remain available.
+
+| Input | Personal mean MAE | Bias-corrected MAE | Adopted tail MAE | Reduction vs bias |
+|---|---:|---:|---:|---:|
+| PPG only | 12.24 / 6.02 | 8.51 / 5.38 | **6.89 / 4.29** | 19.0% / 20.3% |
+| ECG + PPG | 12.24 / 6.02 | 9.09 / 5.70 | **7.14 / 4.31** | 21.5% / 24.4% |
+
+SBP / DBP in mmHg; equal-person metrics over the same 30 people, averaged over
+three source seeds (not an ensemble). Both endpoints improve in the overall
+mean in every seed. This cohort was previously evaluated, so the comparison
+is exploratory. The folder contains the updated IEEE report and Beamer, source
+models, 360 endpoint-specific personal checkpoints, portable fitting/inference,
+all controls and full metrics. Head-only and automatic scope selection remain
+comparators, **not additional adopted methods**.
+
+## Archived V2 final results - 20261013
 
 **[Open the consolidated V2 final folder](model%20training/v2/final_results_20261013/)**
 for the IEEE report, runnable models, weights, architecture/training source and
@@ -15,8 +38,8 @@ Both modalities beat personal mean across seeds on the subsequent sixteen
 people, but their DBP does not consistently beat bias correction. The final
 report includes both results, full metrics and the follow-up experiments.
 
-The sections below retain the earlier dated research record; the linked final
-folder is the current consolidated entry point.
+The sections below retain the earlier dated research record. Use the 20261015
+folder above for the current personal method; population training is unchanged.
 
 ## V2 results snapshot — 20261012
 

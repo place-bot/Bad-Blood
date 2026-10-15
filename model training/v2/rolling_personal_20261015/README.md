@@ -1,5 +1,12 @@
 # Rolling, endpoint-specific personal adaptation
 
+**Completed and independently verified:** 180 units, three source seeds,
+both input modes, 30 people. The adopted method is **tail adaptation only**;
+head-only and automatic head/tail scope selection remain matched comparators.
+See the [20261015 release](../final_results_20261015/) for runnable tail-only
+fitting/inference, weights, all results, the IEEE report and updated Beamer.
+The experimental source below remains frozen for reproducibility.
+
 Local experiment requested 2026-10-15. See `PROTOCOL.md` for the locked comparison; previous models are retained.
 
 Code implements three within-person temporal validation folds, independent SBP/DBP selection, and matched all-pair head-only versus last-CNN-block/SE adaptation. It uses exactly the previous random 30-person cohort and 80/20 indices, with three pretrained seeds and both input modalities.

@@ -1,8 +1,25 @@
 # Bad-Blood V2: attention and personal BP calibration
 
-## Final results package - 20261013
+## Current personal method - 20261015
 
-**[Current consolidated V2 models, IEEE report and full comparisons](final_results_20261013/)**
+**[Current V2 folder: tail adaptation, both signal modes](final_results_20261015/)**
+contains the updated IEEE report/Beamer, runnable fitting and inference, six
+source initializers, 360 independently selected endpoint checkpoints, and all
+metrics for the same 30 people's chronological 80/20 comparison.
+
+Only **tail adaptation** is adopted: pressure-change head + last residual CNN
+block + SE. Learning rate and update count are selected independently for each
+person and each pressure in three internal temporal validation periods.
+PPG-only MAE is **6.89 / 4.29**; dual MAE is **7.14 / 4.31** mmHg. Compared
+with matched bias correction, reductions are **19.0% / 20.3%** and
+**21.5% / 24.4%**. Both endpoints beat both controls in the overall mean for
+each of three seeds; not every individual improves. Head-only and automatic
+scope selection are comparison policies, not adopted models. This previously
+examined cohort is exploratory; earlier results remain below as dated history.
+
+## Archived final results package - 20261013
+
+**[Archived consolidated V2 models, IEEE report and full comparisons](final_results_20261013/)**
 groups both pretrained CNN+SE input modes and their learned PairSE personalizers.
 It includes 144 weight files, portable inference/adaptation, complete metrics,
 three-seed and per-person results, source snapshots and checksums. All models

@@ -1,0 +1,174 @@
+{
+  "release": "20261015",
+  "adopted_method": "rolling_tail",
+  "input_modes": [
+    "ppg",
+    "dual"
+  ],
+  "files": {
+    "01_pretrained/README.md": {
+      "bytes": 564,
+      "sha256": "cdc3e988d5c6b9b98ad1849b13fa73a03e86d2b00eab630971ee6b720c0ded02"
+    },
+    "02_personalization/README.md": {
+      "bytes": 3742,
+      "sha256": "10a465b834b577f743565dd3b410f46405f6a03ce93073ed341b5c2ee8638ea2"
+    },
+    "02_personalization/personal_weights/dual_seed42.tar.gz": {
+      "bytes": 11044337,
+      "sha256": "2666d8ac7fa131788aef8c6230d48a8a9212a6224f273fb01e779c49bf231095"
+    },
+    "02_personalization/personal_weights/dual_seed43.tar.gz": {
+      "bytes": 11044825,
+      "sha256": "257c6ecf5c061fd67ae8e307539492932e0297bd59a18e8f818d11a2af17fd1d"
+    },
+    "02_personalization/personal_weights/dual_seed44.tar.gz": {
+      "bytes": 11044614,
+      "sha256": "3e4ba32a35768b37a669716bae636d693f6ea57d04186c0ff908a4d6db3823a5"
+    },
+    "02_personalization/personal_weights/ppg_seed42.tar.gz": {
+      "bytes": 11038421,
+      "sha256": "757859c76289e9d0e1d1f3cbdcaf5f24ee78d426e7e34bff3893f20578ed826e"
+    },
+    "02_personalization/personal_weights/ppg_seed43.tar.gz": {
+      "bytes": 11035655,
+      "sha256": "80af6b8a70a4a95021a51cb0657117a6c8a140b8f7cd9ead172c3f3b7a1b0a20"
+    },
+    "02_personalization/personal_weights/ppg_seed44.tar.gz": {
+      "bytes": 11038931,
+      "sha256": "835a2f83e7947f58af4903c6da24b6e377b5d57db4593b059e19dbb8e05fc634"
+    },
+    "02_personalization/source_weights/dual_pair_population_seed42.pt": {
+      "bytes": 215783,
+      "sha256": "836ae9039d0af8a24f6b9cf10f5a3723fdc56d4e62881ba5da18ed4313dabef7"
+    },
+    "02_personalization/source_weights/dual_pair_population_seed43.pt": {
+      "bytes": 215783,
+      "sha256": "83fbf8fb735f13fc616f4daa64d6c3ef1aade3477b55da3b204e654f33d9ac8b"
+    },
+    "02_personalization/source_weights/dual_pair_population_seed44.pt": {
+      "bytes": 215783,
+      "sha256": "a6e00a9f41b41240d3e3aad8be90500c90a48f85e9dccb3fb2384af36530fa13"
+    },
+    "02_personalization/source_weights/ppg_pair_population_seed42.pt": {
+      "bytes": 215701,
+      "sha256": "0f2b7b7e19b929c081ba4ef1063943f1794998baf3f6ee21e8c2f302ee696f35"
+    },
+    "02_personalization/source_weights/ppg_pair_population_seed43.pt": {
+      "bytes": 215701,
+      "sha256": "27cfa85f56b055c2a9b985a27feab5585788266e688e59434b7ab2ec797a107d"
+    },
+    "02_personalization/source_weights/ppg_pair_population_seed44.pt": {
+      "bytes": 215701,
+      "sha256": "3b8666c1652f27b48dccdd6661c44b178806e149c4430729ecb8e305a2fab5e9"
+    },
+    "README.md": {
+      "bytes": 3262,
+      "sha256": "3630e2ab94003064c48be0edd4dd384120d82efaa2824b3c841cf25df2c412ed"
+    },
+    "REPRODUCE.md": {
+      "bytes": 4082,
+      "sha256": "442a8828235bcd57c5632d55182dc08706acb9c5c04e430e6bcf11791ceff749"
+    },
+    "beamer/Bad_Blood_V2_Models_Explained.pdf": {
+      "bytes": 342442,
+      "sha256": "2162aa99d03c34a1ccddeb62b052ede3a47e64e0f344e3099feae88cb0f069e3"
+    },
+    "beamer/Bad_Blood_V2_Models_Explained.tex": {
+      "bytes": 108479,
+      "sha256": "80bb256c011c62faeaab70ad06aa7cc05344369345760efe4e0ec19f55f165e7"
+    },
+    "build_release.py": {
+      "bytes": 47907,
+      "sha256": "2fc82ab6d2eb751efc0369941410a754bcb5517de50a2fa6e1506b629ad2aee7"
+    },
+    "finalize_release.py": {
+      "bytes": 1653,
+      "sha256": "b3baddaa9e0b39af9072a0347898eee0acb52ae5f5ea1cec59fe0cff0ae71cbb"
+    },
+    "implementation/modality_se/model.py": {
+      "bytes": 912,
+      "sha256": "b2905f29dc65ce2410d835420f1c04988888497fd0584efed14a6e6d8f804c47"
+    },
+    "implementation/paired_se/model.py": {
+      "bytes": 3769,
+      "sha256": "e3aab16ca2cea2062d77f36f01ccbf40b659df100a868351dfb82c3c06f57a05"
+    },
+    "implementation/personalize.py": {
+      "bytes": 6090,
+      "sha256": "701a8870a7b0258c3afca21331752fb95311ead18b60df4b781152427fe37aa8"
+    },
+    "implementation/requirements.txt": {
+      "bytes": 23,
+      "sha256": "ad988618f5fbe4348e96e0219b18e19743d9ac0d01baebc6bd652e280a5db548"
+    },
+    "implementation/rolling_core.py": {
+      "bytes": 6134,
+      "sha256": "84f44ae5a28ece4d56fd9d85b8ae206bdb86ad5a8e6e844781b5f48ce1e94e12"
+    },
+    "implementation/shared/models.py": {
+      "bytes": 5661,
+      "sha256": "52a7cbf378c73b5a958b9832f8f1338b5fd7b8b45c9a768ffcb67bf336e1b6bf"
+    },
+    "metrics/RESULTS.md": {
+      "bytes": 11443,
+      "sha256": "fca0f372367e348af42749e40830575c7940f32e5844be83e1e2d0009eb45acc"
+    },
+    "metrics/complete.json": {
+      "bytes": 307,
+      "sha256": "383391d2820361b399b6b2c871d74b490aa37b8b6c1d54658bd77a1c8ce96c70"
+    },
+    "metrics/lock.json": {
+      "bytes": 637514,
+      "sha256": "bdf8bfdfbd8a9149f46e95161950ca1a2ee961dc48d4c6c6eee44012229a9e6a"
+    },
+    "metrics/summary.json": {
+      "bytes": 3253054,
+      "sha256": "0437e9ff09ee2854a98629a555b964616b483802a76c698942662aad52e03d67"
+    },
+    "metrics/tail_selection_counts.json": {
+      "bytes": 4298,
+      "sha256": "446091d9759a0cdbac6de0edd906d5f22cdc0b69e04442f8271bb4c1167adb97"
+    },
+    "metrics/tail_selections.json": {
+      "bytes": 215194,
+      "sha256": "16aee1bc8a898fa83eee86f1f0e0206036cce267f5f4201905327af1009e7cd1"
+    },
+    "metrics/training_complete.json": {
+      "bytes": 26546,
+      "sha256": "b047e8a0089c1c05ccba723d5fd66d5691abf068a5a2908a4a2cbd54732ef8dd"
+    },
+    "metrics/unit_evidence.tar.gz": {
+      "bytes": 7884370,
+      "sha256": "ae88eb70b11c777ca21e9e8fedcf15e398c405ad83ff24c290c42cdd2c8a5e17"
+    },
+    "metrics/verification.json": {
+      "bytes": 71857,
+      "sha256": "fa5a5a933442eb9e4597b3592fc477e4b3fc2eed8f9d71d612f4c6d63f6b93ee"
+    },
+    "metrics/worked_example.json": {
+      "bytes": 416,
+      "sha256": "ffc95f67a39561ff31ee081fedf727a3e6c9ccbcfb4e119390497d3e247dfaa8"
+    },
+    "release_verification.json": {
+      "bytes": 357,
+      "sha256": "40527cf8a6f1305d81e012aa94198fbf22be2046ab974ec3dbd7628bdeaade3e"
+    },
+    "report/Bad_Blood_V2_Final_Report_20261015.pdf": {
+      "bytes": 201614,
+      "sha256": "9746501012a66871beaf78731733510c0c8a91bf1141e2edab2b8549b3743bce"
+    },
+    "report/main.tex": {
+      "bytes": 28668,
+      "sha256": "76db110b1b470ddf281e9d346abce7af9194bbb5d0e0f585b7a1d077dcb23321"
+    },
+    "test_portable.py": {
+      "bytes": 2314,
+      "sha256": "9aa22d92e4efa16c39a45b6acfb61a4d6d1aa540c249dace4eca527104ffd649"
+    },
+    "verify_release.py": {
+      "bytes": 5104,
+      "sha256": "43f1a11754fe3035e418511ad924edaa6198f4b15e595fde44c7a2ba33088a41"
+    }
+  }
+}
