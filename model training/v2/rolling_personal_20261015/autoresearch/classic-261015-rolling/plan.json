@@ -1,0 +1,14 @@
+{
+  "mode": "classic",
+  "iterations": 1,
+  "scope": "model training/v2/rolling_personal_20261015/ and dedicated local output",
+  "goal": "Compare frozen rolling/end-point/scope adaptations using identical 30-person budgets",
+  "metric": "Descriptive count of people below both controls on both endpoints, with full metrics; candidate selection uses own-development MAE only",
+  "baseline_counts": {"ppg": 6, "dual": 7},
+  "guard": "output/bp_model/.venv/bin/python 'output/Bad-Blood/model training/v2/rolling_personal_20261015/test_rolling.py'",
+  "verify": "output/bp_model/.venv/bin/python 'output/Bad-Blood/model training/v2/rolling_personal_20261015/verify.py' --output output/bad_blood_v2_runs/20261015_rolling_personal",
+  "safety_screen": "Local computation and artifact writes only; no deletion, credentials, network write or deployment",
+  "publish": false,
+  "dirty_worktree": "Existing untracked prior experimental directories preserved",
+  "stop": "One predeclared comparison, independently verify and report regardless of outcome; no test-driven keep/discard of hypotheses"
+}
